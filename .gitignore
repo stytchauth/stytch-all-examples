@@ -1,0 +1,22 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# IntelliJ
+.idea/*
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# misc
+.DS_Store
+/.vscode
+
+
+# local env files
+.env.local
+.env
+
+# tsc
+dist
+tsconfig.tsbuildinfo
