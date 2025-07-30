@@ -1,0 +1,15 @@
+{
+  "name": "@stytch-all-examples/frontend",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "echo \"Frontend dev server not configured\"",
+    "build": "echo \"Frontend build not configured\"",
+    "test": "echo \"No tests specified\"",
+    "lint": "echo \"No linting configured\"",
+    "clean": "echo \"Frontend clean not configured\""
+  },
+  "dependencies": {
+    "@stytch-all-examples/internal": "workspace:*"
+  }
+}

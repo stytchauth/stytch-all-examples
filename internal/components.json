@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "new-york",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "tailwind.config.js",
+    "css": "components/styles.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "aliases": {
+    "components": "@stytch-all-examples/internal/components",
+    "utils": "@stytch-all-examples/internal/lib/utils",
+    "ui": "@stytch-all-examples/internal/components/ui",
+    "lib": "@stytch-all-examples/internal/lib",
+    "hooks": "@stytch-all-examples/internal/hooks"
+  },
+  "iconLibrary": "lucide"
+}
