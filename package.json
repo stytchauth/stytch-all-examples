@@ -1,0 +1,22 @@
+{
+  "name": "stytch-all-examples",
+  "private": true,
+  "workspaces": [
+    "internal",
+    "frontend",
+    "frontend/react/headless",
+    "backend"
+  ],
+  "packageManager": "yarn@4.0.0",
+  "scripts": {
+    "build": "yarn workspaces foreach -A run build",
+    "dev": "yarn workspaces foreach -pi run dev",
+    "test": "yarn workspaces foreach -A run test",
+    "lint": "yarn workspaces foreach -A run lint",
+    "clean": "yarn workspaces foreach -A run clean"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  }
+}
