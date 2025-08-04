@@ -4,14 +4,23 @@
 .idea/*
 
 # dependencies
-/node_modules
+**/node_modules
 /.pnp
 .pnp.js
+.pnp.cjs
+.pnp.loader.mjs
+
+# Yarn v4 with PnP
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 # misc
 .DS_Store
 /.vscode
-
 
 # local env files
 .env.local
