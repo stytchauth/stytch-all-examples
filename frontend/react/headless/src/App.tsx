@@ -19,7 +19,7 @@ function App() {
         <div className="flex-1 m-20">
           <Intro />
         </div>
-        <div className="flex-1">
+        <div className="flex-1 flex flex-col justify-center items-center">
           <LoginForm
             onEmailLogin={handleEmailLogin}
             onGoogleLogin={handleGoogleLogin}

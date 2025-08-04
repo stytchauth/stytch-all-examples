@@ -19,9 +19,7 @@
     "build:css": "tailwindcss -i ./components/styles.css -o ./dist/styles.css --config ./tailwind.config.js",
     "dev": "echo 'Using source files directly'",
     "dev:css": "tailwindcss -i ./components/styles.css -o ./dist/styles.css --config ./tailwind.config.js --watch",
-    "clean": "rm -rf dist",
-    "test": "echo \"No tests specified\"",
-    "lint": "echo \"No linting configured\""
+    "clean": "rm -rf dist"
   },
   "peerDependencies": {
     "react": ">=18.0.0",
