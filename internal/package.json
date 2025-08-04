@@ -11,13 +11,14 @@
   "exports": {
     ".": "./src/index.ts",
     "./components/ui/*": "./components/ui/*",
-    "./lib/*": "./lib/*"
+    "./lib/*": "./lib/*",
+    "./dist/styles.css": "./dist/styles.css"
   },
   "scripts": {
     "build": "echo 'Using source files directly'",
-    "build:css": "tailwindcss -i ./components/styles.css -o ./dist/styles.css",
+    "build:css": "tailwindcss -i ./components/styles.css -o ./dist/styles.css --config ./tailwind.config.js",
     "dev": "echo 'Using source files directly'",
-    "dev:css": "tailwindcss -i ./components/styles.css -o ./dist/styles.css --watch",
+    "dev:css": "tailwindcss -i ./components/styles.css -o ./dist/styles.css --config ./tailwind.config.js --watch",
     "clean": "rm -rf dist",
     "test": "echo \"No tests specified\"",
     "lint": "echo \"No linting configured\""
@@ -27,6 +28,8 @@
     "react-dom": ">=18.0.0"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.534.0",

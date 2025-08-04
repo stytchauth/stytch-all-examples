@@ -11,11 +11,11 @@
     "prefix": ""
   },
   "aliases": {
-    "components": "@stytch-all-examples/internal/components",
-    "utils": "@stytch-all-examples/internal/lib/utils",
-    "ui": "@stytch-all-examples/internal/components/ui",
-    "lib": "@stytch-all-examples/internal/lib",
-    "hooks": "@stytch-all-examples/internal/hooks"
+    "components": "@/components",
+    "utils": "@/lib/utils",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
   },
   "iconLibrary": "lucide"
 }

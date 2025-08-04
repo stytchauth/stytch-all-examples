@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "echo \"Frontend dev server not configured\"",
-    "build": "echo \"Frontend build not configured\"",
+    "dev": "echo \"Choose a specific app: cd react/headless && yarn dev\"",
+    "build": "echo \"Frontend parent workspace - no build needed\"",
     "test": "echo \"No tests specified\"",
     "lint": "echo \"No linting configured\"",
-    "clean": "echo \"Frontend clean not configured\""
+    "clean": "echo \"Frontend parent workspace - no clean needed\""
   },
   "dependencies": {
     "@stytch-all-examples/internal": "workspace:*"

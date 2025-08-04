@@ -4,6 +4,7 @@
   "workspaces": [
     "internal",
     "frontend",
+    "frontend/react/headless",
     "backend"
   ],
   "packageManager": "yarn@4.0.0",

@@ -1,6 +1,26 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* We don't want to use this, but i have to for now*/
+@source inline("w-xl w-lg w-md w-sm w-2xl");
+@source inline("gap-10");
+@source inline("m-20");
+@source inline("underline");
+
+@theme {
+  --color-code: #f4eee9;
+  --color-page: #fbfaf9;
+  --font-sans: "Booton", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+
+  /* Add custom font sizes */
+  --text-h1: 24px;
+  --text-h2: 20px;
+  --text-h3: 18px;
+  --text-body1: 14px;
+  --text-body2: 12px;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
