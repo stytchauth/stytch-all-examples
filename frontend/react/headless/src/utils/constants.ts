@@ -11,3 +11,5 @@ export const HEADLESS_LIST_ITEMS = [
   "Stytch API processes the request and returns a response to your frontend.",
   "The SDK automatically manages the session upon successful authentication.",
 ];
+export const HEADLESS_INTRO_DESCRIPTION =
+  "This application demonstrates integrating with the Stytch API using your own frontend and the Headless SDK at a high-level.";

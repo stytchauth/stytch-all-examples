@@ -29,3 +29,6 @@
 # tsc
 dist
 tsconfig.tsbuildinfo
+
+# vite
+**/.vite

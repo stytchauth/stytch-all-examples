@@ -4,27 +4,43 @@ import {
   CardHeader,
   CardTitle,
 } from "@stytch-all-examples/internal/components/ui/card";
-import { Typography } from "@stytch-all-examples/internal/components/ui/typography";
-import { ExampleIcon } from "./example-icon";
+import { ExampleAppHeader } from "./example-app-header";
+import { Button } from "./ui/button";
 
-export function MagicLinkSentCard() {
+export function MagicLinkSentCard({
+  onResendClick,
+  onEmailChangeClick,
+}: {
+  onResendClick: () => void;
+  onEmailChangeClick: () => void;
+}) {
   return (
     <div className="flex flex-col gap-4 w-sm">
       <Card className="shadow-lg">
-        <CardHeader className="items-center flex flex-col gap-4">
-          <div className="flex justify-center">
-            <ExampleIcon />
-          </div>
+        <CardHeader className="items-center flex flex-col gap-8">
+          <ExampleAppHeader />
           <CardTitle className="text-center">Check your email</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex flex-col gap-4 w-full items-center">
-            <Typography variant="body1" className="text-center text-gray-600">
-              We've sent a magic link to your email address.
-            </Typography>
-            <Typography variant="body2" className="text-center text-gray-500">
-              Didn't get it?
-            </Typography>
+          <div className="flex flex-col w-full items-center">
+            <p className="text-center text-md font-semibold">Didn't get it?</p>
+            <p className="text-center">
+              <Button
+                variant="link"
+                onClick={() => {}}
+                className="p-0 text-blue-500 font-normal"
+              >
+                Resend
+              </Button>{" "}
+              or{" "}
+              <Button
+                variant="link"
+                onClick={() => {}}
+                className="p-0 text-blue-500 font-normal"
+              >
+                Change email
+              </Button>{" "}
+            </p>
           </div>
         </CardContent>
       </Card>

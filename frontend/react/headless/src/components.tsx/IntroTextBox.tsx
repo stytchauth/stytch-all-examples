@@ -13,7 +13,7 @@ import {
   HEADLESS_LIST_ITEMS,
 } from "../utils/constants";
 
-function Intro() {
+export function IntroTextBox() {
   return (
     <TextBox title={INTRO_TITLE}>
       <Typography variant="body1">
@@ -38,5 +38,3 @@ function Intro() {
     </TextBox>
   );
 }
-
-export default Intro;

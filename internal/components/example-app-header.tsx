@@ -1,4 +1,13 @@
-export const ExampleIcon = () => {
+export function ExampleAppHeader() {
+  return (
+    <div className="flex flex-col gap-1 items-center">
+      <ExampleIcon />
+      <p className="text-gray-500 text-xs">Your App</p>
+    </div>
+  );
+}
+
+const ExampleIcon = () => {
   return (
     <svg
       width="48"
