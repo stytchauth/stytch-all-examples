@@ -9,11 +9,11 @@
   ],
   "packageManager": "yarn@4.0.0",
   "scripts": {
-    "build": "yarn workspaces foreach -A run build",
-    "dev": "yarn workspaces foreach -pi run dev",
-    "test": "yarn workspaces foreach -A run test",
-    "lint": "yarn workspaces foreach -A run lint",
-    "clean": "yarn workspaces foreach -A run clean"
+    "build": "echo 'Navigate to the specific project to build it'",
+    "dev": "echo 'Navigate to the specific project to run it'",
+    "test": "echo 'Navigate to the specific project to test it'",
+    "lint": "echo 'Navigate to the specific project to lint it'",
+    "clean": "echo 'Navigate to the specific project to clean it'"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

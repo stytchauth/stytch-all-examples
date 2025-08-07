@@ -3,10 +3,14 @@ import "../dist/styles.css";
 
 // Export the login form component
 export { B2BSessionCard } from "../components/b2b/b2b-session-card";
-export { OrganizationDiscoveryCard } from "../components/b2b/organization-discovery-card";
+export { OrgCreateTextBox } from "../components/b2b/org-create-text-box";
+export { OrgDiscoveryCard } from "../components/b2b/org-discovery-card";
+export { OrgsTextBox } from "../components/b2b/orgs-text-box";
 export { CalloutAlert } from "../components/callout-alert";
 export { LoginForm } from "../components/login-form";
-export { MagicLinkSentCard } from "../components/magic-link-sent-card";
+export { AdditionalResources } from "../components/shared/additional-resources";
+export { MagicLinkSentCard } from "../components/shared/magic-link-sent-card";
+export { RedirectUrlTextBox } from "../components/shared/redirect-url-text-box";
 export { Link } from "../components/ui/link";
 export { List } from "../components/ui/list";
 export { default as Page } from "../components/ui/page";

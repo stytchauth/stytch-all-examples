@@ -1,8 +1,9 @@
+@import "../public/booton.css";
 @import "tailwindcss";
 @import "tw-animate-css";
 
 /* We don't want to use this, but i have to for now*/
-@source inline("m-10");
+@source inline("m-10 m-16 p-16 gap-16");
 
 @theme {
   --color-code: #f4eee9;

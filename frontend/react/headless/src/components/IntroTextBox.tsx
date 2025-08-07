@@ -17,10 +17,11 @@ export function IntroTextBox() {
   return (
     <TextBox title={INTRO_TITLE}>
       <Typography variant="body1">
-        This application demonstrates integrating with the Stytch API{" "}
-        <b>using your own frontend</b> and the Headless SDK at a high-level.
+        See how Stytch simplifies user auth with just a few lines of code. This
+        application demonstrates a Stytch API integration that{" "}
+        <b>uses your own frontend</b>:
       </Typography>
-      <List className="text-body2" items={HEADLESS_LIST_ITEMS} />
+      <List className="text-body1" items={HEADLESS_LIST_ITEMS} />
       <CalloutAlert
         title={CALLOUT_ALERT_TITLE}
         description={
@@ -29,9 +30,14 @@ export function IntroTextBox() {
             <Link
               href={DISCOVERY_EMAIL_MAGIC_LINK_URL}
               text="send an email magic link"
+              className="font-semibold"
             />{" "}
             via the API or{" "}
-            <Link href={DISCOVERY_OAUTH_LOGIN_URL} text="login with OAuth." />
+            <Link
+              href={DISCOVERY_OAUTH_LOGIN_URL}
+              text="login with OAuth."
+              className="font-semibold"
+            />
           </Typography>
         }
       />

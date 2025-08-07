@@ -12,12 +12,14 @@
     ".": "./src/index.ts",
     "./components/ui/*": "./components/ui/*",
     "./lib/*": "./lib/*",
-    "./dist/styles.css": "./dist/styles.css"
+    "./dist/styles.css": "./dist/styles.css",
+    "./dist/fonts/*": "./dist/fonts/*"
   },
   "scripts": {
-    "build": "echo 'Using source files directly'",
+    "build": "npm run build:css && npm run build:fonts",
     "build:css": "tailwindcss -i ./components/styles.css -o ./dist/styles.css --config ./tailwind.config.js",
-    "dev": "echo 'Using source files directly'",
+    "build:fonts": "mkdir -p dist/fonts && cp assets/fonts/*.woff2 dist/fonts/ 2>/dev/null || cp public/fonts/*.woff2 dist/fonts/ 2>/dev/null || true",
+    "dev": "npm run dev:css && npm run build:fonts",
     "dev:css": "tailwindcss -i ./components/styles.css -o ./dist/styles.css --config ./tailwind.config.js --watch",
     "clean": "rm -rf dist"
   },

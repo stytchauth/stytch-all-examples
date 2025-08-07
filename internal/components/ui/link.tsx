@@ -10,7 +10,7 @@ export function Link({
   className?: string;
 }) {
   return (
-    <a className={cn("underline", "font-semibold", className)} href={href}>
+    <a className={cn("underline", className)} href={href}>
       {text}
     </a>
   );

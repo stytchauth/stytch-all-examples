@@ -4,8 +4,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@stytch-all-examples/internal/components/ui/card";
-import { ExampleAppHeader } from "./example-app-header";
-import { Button } from "./ui/button";
+import { ExampleAppHeader } from "../example-app-header";
+import { Button } from "../ui/button";
 
 export function MagicLinkSentCard({
   onResendClick,

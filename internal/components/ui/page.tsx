@@ -7,7 +7,7 @@ interface PageProps {
 function Page({ children }: PageProps) {
   return (
     <div
-      className="min-h-screen flex flex-1 items-center justify-center w-full"
+      className="min-h-screen flex flex-1 items-center w-full overflow-x-auto"
       style={{
         backgroundColor: "#FBFAF9",
         backgroundImage:
@@ -16,7 +16,7 @@ function Page({ children }: PageProps) {
         backgroundRepeat: "repeat",
       }}
     >
-      {children}
+      <div className="min-w-[900px] w-full mx-auto">{children}</div>
     </div>
   );
 }
