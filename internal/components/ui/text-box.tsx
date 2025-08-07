@@ -15,8 +15,8 @@ export function TextBox({
   ...props
 }: TextBoxProps) {
   return (
-    <div className={cn("flex flex-col gap-4", className)} {...props}>
-      <Typography variant="h1" className="pb-4">
+    <div className={cn("flex flex-col gap-4 min-w-md", className)} {...props}>
+      <Typography variant="h1" className="pb-4 tracking-wide">
         {title}
       </Typography>
       {children}

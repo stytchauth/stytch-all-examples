@@ -6,11 +6,12 @@ import { cn } from "@stytch-all-examples/internal/lib/utils";
 const typographyVariants = cva("font-default", {
   variants: {
     variant: {
-      h1: "text-h1 font-semibold",
-      h2: "text-h2 font-semibold tracking-tight",
-      h3: "text-h3 font-semibold tracking-tight",
-      body1: "text-body1 tracking-tight",
-      body2: "text-body2 tracking-tight",
+      h1: "text-h1 font-semibold tracking-normal",
+      h2: "text-h2 font-semibold tracking-normal",
+      h3: "text-h3 font-semibold tracking-normal",
+      h4: "text-h4 tracking-normal",
+      body1: "text-body1 tracking-normal",
+      body2: "text-body2 tracking-normal",
     },
   },
   defaultVariants: {
@@ -39,6 +40,7 @@ function Typography({
       h1: "h1",
       h2: "h2",
       h3: "h3",
+      h4: "h4",
       body1: "p",
       body2: "p",
     };
