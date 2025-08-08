@@ -719,6 +719,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-headless@workspace:frontend/react/headless"
   dependencies:
+    "@stytch/react": "npm:^19.7.0"
+    "@stytch/vanilla-js": "npm:^5.29.0"
     "@types/react": "npm:^18.3.3"
     "@types/react-dom": "npm:^18.3.0"
     "@types/react-router-dom": "npm:^5.3.3"
@@ -764,6 +766,37 @@ __metadata:
     react-dom: ">=18.0.0"
   languageName: unknown
   linkType: soft
+
+"@stytch/core@npm:2.55.0":
+  version: 2.55.0
+  resolution: "@stytch/core@npm:2.55.0"
+  dependencies:
+    uuid: "npm:8.3.2"
+  checksum: d8e942fd2d0c18d5f0aaca808918e8712e751abcf099d7f4aeaa0ba65544e557953198a821dd41fa7ea12acac8717c463219ad5c01e671b7c73cc21ad066c460
+  languageName: node
+  linkType: hard
+
+"@stytch/react@npm:^19.7.0":
+  version: 19.7.0
+  resolution: "@stytch/react@npm:19.7.0"
+  peerDependencies:
+    "@stytch/vanilla-js": ^5.0.0
+    react: ">= 17.0.2"
+    react-dom: ">= 17.0.2"
+  checksum: 7e921a73e54f98a5c5fc85c95aef50c72750f57a1fd43d5cb4f6097150fbec05f2d8eab68d22204eb59b10880aefbb4b349db11fd8225f97d4635ac4be8c71e7
+  languageName: node
+  linkType: hard
+
+"@stytch/vanilla-js@npm:^5.29.0":
+  version: 5.29.0
+  resolution: "@stytch/vanilla-js@npm:5.29.0"
+  dependencies:
+    "@stytch/core": "npm:2.55.0"
+    "@types/google-one-tap": "npm:^1.2.0"
+    type-fest: "npm:4.15.0"
+  checksum: 600bafff08c8f29204c828d0ff557805fb932a6ae8a017289815c4119f8aabcf38c2dd7c4b40beb8422fee4166e3c49688dad9418c771e312087bdbd7334c9b1
+  languageName: node
+  linkType: hard
 
 "@tailwindcss/cli@npm:^4.1.11":
   version: 4.1.11
@@ -991,6 +1024,13 @@ __metadata:
   dependencies:
     "@babel/types": "npm:^7.20.7"
   checksum: 5386f0af44f8746b063b87418f06129a814e16bb2686965a575e9d7376b360b088b89177778d8c426012abc43dd1a2d8ec3218bfc382280c898682746ce2ffbd
+  languageName: node
+  linkType: hard
+
+"@types/google-one-tap@npm:^1.2.0":
+  version: 1.2.6
+  resolution: "@types/google-one-tap@npm:1.2.6"
+  checksum: 6732e170c556f281fe98a06e01bd656f70144554c011cc6e00579474f5b2adb659562bc2f2b031bc13f7ee63d3f0f3bbaf6d3e7c183bfac0640a0496f2ef9faa
   languageName: node
   linkType: hard
 
@@ -2500,6 +2540,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"type-fest@npm:4.15.0":
+  version: 4.15.0
+  resolution: "type-fest@npm:4.15.0"
+  checksum: 677a7da18dbbe07668bdf47fcb976fdcbea77e118156a7245182fdf65633d69228ce773b0022d507636945a8f22b593e09a3c08f695d2aecf96f035ff0186825
+  languageName: node
+  linkType: hard
+
 "typescript@npm:^5.0.0, typescript@npm:^5.5.3":
   version: 5.8.3
   resolution: "typescript@npm:5.8.3"
@@ -2556,6 +2603,15 @@ __metadata:
   bin:
     update-browserslist-db: cli.js
   checksum: 682e8ecbf9de474a626f6462aa85927936cdd256fe584c6df2508b0df9f7362c44c957e9970df55dfe44d3623807d26316ea2c7d26b80bb76a16c56c37233c32
+  languageName: node
+  linkType: hard
+
+"uuid@npm:8.3.2":
+  version: 8.3.2
+  resolution: "uuid@npm:8.3.2"
+  bin:
+    uuid: dist/bin/uuid
+  checksum: bcbb807a917d374a49f475fae2e87fdca7da5e5530820ef53f65ba1d12131bd81a92ecf259cc7ce317cbe0f289e7d79fdfebcef9bfa3087c8c8a2fa304c9be54
   languageName: node
   linkType: hard
 

@@ -13,3 +13,12 @@ export const HEADLESS_LIST_ITEMS = [
 ];
 export const HEADLESS_INTRO_DESCRIPTION =
   "This application demonstrates integrating with the Stytch API using your own frontend and the Headless SDK at a high-level.";
+
+export const LINK_MAP = {
+  exchangeSessions:
+    "https://stytch.com/docs/b2b/sdks/session-management/exchange-session",
+  revoke:
+    "https://stytch.com/docs/b2b/sdks/session-management/revoke-sessions-for-member",
+  authenticate:
+    "https://stytch.com/docs/b2b/sdks/session-management/authenticate-session",
+};

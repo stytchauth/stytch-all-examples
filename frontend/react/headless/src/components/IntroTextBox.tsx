@@ -15,7 +15,7 @@ import {
 
 export function IntroTextBox() {
   return (
-    <TextBox title={INTRO_TITLE}>
+    <TextBox className="w-2xl" title={INTRO_TITLE}>
       <Typography variant="body1">
         See how Stytch simplifies user auth with just a few lines of code. This
         application demonstrates a Stytch API integration that{" "}
