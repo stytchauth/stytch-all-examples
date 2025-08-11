@@ -4,7 +4,7 @@ import { Typography } from "@stytch-all-examples/internal/components/ui/typograp
 import {
   CUSTOM_EMAIL_TEMPLATES_URL,
   REDIRECT_URL_DOCS_URL,
-} from "../../constants/text-box";
+} from "../../lib/constants";
 import { AdditionalResources } from "./additional-resources";
 
 export function RedirectUrlTextBox() {

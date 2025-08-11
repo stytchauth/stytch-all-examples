@@ -10,7 +10,7 @@ import {
 } from "@stytch/react/b2b";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LINK_MAP } from "../utils/constants";
+import { SESSION_LINKS } from "../utils/constants";
 
 export function ViewSession() {
   const stytch = useStytchB2BClient();
@@ -34,7 +34,7 @@ export function ViewSession() {
   return (
     <div className="flex flex-row items-center gap-8 p-16">
       <div className="flex-1">
-        <B2BSessionTextBox links={LINK_MAP} />
+        <B2BSessionTextBox links={SESSION_LINKS} />
       </div>
       <div className="flex-1 flex flex-col items-center">
         <B2BSessionCard
@@ -44,6 +44,10 @@ export function ViewSession() {
           sessionToken={sessionToken}
           handleSwitchOrgs={() => {
             navigate("/organizations");
+          }}
+          handleLogout={() => {
+            stytch.session.revoke();
+            navigate("/");
           }}
         />
       </div>

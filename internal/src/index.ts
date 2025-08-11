@@ -19,7 +19,5 @@ export { default as Page } from "../components/ui/page";
 export { TextBox } from "../components/ui/text-box";
 export { Typography } from "../components/ui/typography";
 
-export { CALLOUT_ALERT_TITLE, INTRO_TITLE } from "../constants/text-box";
-
 // Export the utility function
 export { cn } from "../lib/utils";

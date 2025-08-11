@@ -1,7 +1,5 @@
 import {
-  CALLOUT_ALERT_TITLE,
   CalloutAlert,
-  INTRO_TITLE,
   Link,
   List,
   TextBox,
@@ -12,6 +10,10 @@ import {
   DISCOVERY_OAUTH_LOGIN_URL,
   HEADLESS_LIST_ITEMS,
 } from "../utils/constants";
+
+export const INTRO_TITLE = "Hello World 👋";
+export const CALLOUT_ALERT_TITLE =
+  "Get Started to see the life cycle of a Stytch session 👉";
 
 export function IntroTextBox() {
   return (

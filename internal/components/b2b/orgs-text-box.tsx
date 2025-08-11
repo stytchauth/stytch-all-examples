@@ -1,3 +1,4 @@
+import { B2B_BASICS_URL, B2B_VS_CONSUMER_URL } from "@/lib/constants";
 import {
   AdditionalResources,
   List,
@@ -32,11 +33,11 @@ export function OrgsTextBox() {
       <AdditionalResources
         links={[
           {
-            href: "TODO",
+            href: B2B_BASICS_URL,
             text: "Auth for Orgs basics",
           },
           {
-            href: "TODO",
+            href: B2B_VS_CONSUMER_URL,
             text: "Organization vs Consumer Auth",
           },
         ]}

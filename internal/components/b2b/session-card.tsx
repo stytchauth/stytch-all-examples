@@ -8,6 +8,7 @@ interface B2BSessionCardProps {
   organizationName: string;
   sessionToken: string;
   handleSwitchOrgs: () => void;
+  handleLogout: () => void;
 }
 
 export function B2BSessionCard({
@@ -16,6 +17,7 @@ export function B2BSessionCard({
   organizationName,
   sessionToken,
   handleSwitchOrgs,
+  handleLogout,
 }: B2BSessionCardProps) {
   const [isViewingToken, setIsViewingToken] = useState(false);
   const handleViewToken = () => {
@@ -57,7 +59,9 @@ export function B2BSessionCard({
           >
             Switch Orgs
           </Button>
-          <Button className="text-sm">Logout</Button>
+          <Button className="text-sm" onClick={handleLogout}>
+            Logout
+          </Button>
         </div>
       </CardContent>
     </Card>

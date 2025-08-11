@@ -1,5 +1,6 @@
 import {
   LoadingSpinner,
+  OrgCreateTextBox,
   OrgDiscoveryCard,
   OrgsTextBox,
   TextBox,
@@ -8,6 +9,7 @@ import {
 import { useStytchB2BClient, useStytchMemberSession } from "@stytch/react/b2b";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { DISCOVERY_EML_AUTHENTICATE_URL } from "../utils/constants";
 
 export function Organizations() {
   const stytch = useStytchB2BClient();
@@ -16,6 +18,7 @@ export function Organizations() {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [orgs, setOrgs] = useState<{ id: string; name: string }[]>([]);
+  const [creatingOrg, setCreatingOrg] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -77,7 +80,10 @@ export function Organizations() {
   if (error) {
     return (
       <div className="flex justify-center items-center h-screen">
-        <TextBox title="There was an error loading organizations">
+        <TextBox
+          className="max-w-2xl"
+          title="There was an error loading organizations"
+        >
           <Typography>{error}</Typography>
         </TextBox>
       </div>
@@ -95,13 +101,21 @@ export function Organizations() {
   return (
     <div className="flex flex-row items-center p-16 gap-8">
       <div className="flex-1">
-        <OrgsTextBox />
+        {creatingOrg ? (
+          <OrgCreateTextBox
+            discoveryEmailMagicLinkUrl={DISCOVERY_EML_AUTHENTICATE_URL}
+          />
+        ) : (
+          <OrgsTextBox />
+        )}
       </div>
       <div className="flex-1 flex flex-col items-center p-16">
         <OrgDiscoveryCard
           orgs={orgs}
           onOrgSelect={handleOrgSelect}
           onCreateOrg={handleCreateOrg}
+          creatingOrg={creatingOrg}
+          setCreatingOrg={setCreatingOrg}
         />
       </div>
     </div>
