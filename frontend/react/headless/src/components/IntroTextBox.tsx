@@ -1,7 +1,5 @@
 import {
-  CALLOUT_ALERT_TITLE,
   CalloutAlert,
-  INTRO_TITLE,
   Link,
   List,
   TextBox,
@@ -13,9 +11,13 @@ import {
   HEADLESS_LIST_ITEMS,
 } from "../utils/constants";
 
+export const INTRO_TITLE = "Hello World 👋";
+export const CALLOUT_ALERT_TITLE =
+  "Get Started to see the life cycle of a Stytch session 👉";
+
 export function IntroTextBox() {
   return (
-    <TextBox title={INTRO_TITLE}>
+    <TextBox className="w-2xl" title={INTRO_TITLE}>
       <Typography variant="body1">
         See how Stytch simplifies user auth with just a few lines of code. This
         application demonstrates a Stytch API integration that{" "}

@@ -4,17 +4,21 @@ import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
 
+export type OrgDiscoveryCardProps = {
+  orgs: { id: string; name: string }[];
+  onOrgSelect: (orgId: string) => void;
+  onCreateOrg: (orgName: string) => void;
+  creatingOrg: boolean;
+  setCreatingOrg: (creatingOrg: boolean) => void;
+};
+
 export function OrgDiscoveryCard({
   orgs,
   onOrgSelect,
   onCreateOrg,
-}: {
-  orgs: { id: string; name: string }[];
-  onOrgSelect: (orgId: string) => void;
-  onCreateOrg: (orgName: string) => void;
-}) {
-  const [creatingOrg, setCreatingOrg] = useState(false);
-
+  creatingOrg,
+  setCreatingOrg,
+}: OrgDiscoveryCardProps) {
   return (
     <Card className="w-sm">
       <CardHeader className="items-center flex flex-col gap-8">

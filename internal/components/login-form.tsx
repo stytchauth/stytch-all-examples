@@ -11,12 +11,16 @@ import { ExampleAppHeader } from "./example-app-header";
 
 interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
+  isSendingEmail: boolean;
+  setIsSendingEmail: (isSendingEmail: boolean) => void;
   onEmailLogin: (email: string) => void;
   onGoogleLogin: () => void;
 }
 
 export function LoginForm({
   className,
+  isSendingEmail,
+  setIsSendingEmail,
   onEmailLogin,
   onGoogleLogin,
   ...props
@@ -27,40 +31,110 @@ export function LoginForm({
     <Card className="shadow-lg w-sm" {...props}>
       <CardHeader className="items-center flex flex-col gap-8">
         <ExampleAppHeader />
-        <CardTitle className="text-center">Log in or sign up</CardTitle>
+        <CardTitle className="text-center">
+          {isSendingEmail ? "Check your email" : "Log in or sign up"}
+        </CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="flex flex-col gap-4 w-full">
-          <div className="flex flex-col gap-2 w-full">
-            <Input
-              id="email"
-              type="email"
-              placeholder="email@example.com"
-              required
-              width="full"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </div>
-          <Button
-            type="submit"
-            className="w-full"
-            onClick={() => onEmailLogin(email)}
-          >
-            Log in with email
-          </Button>
-        </div>
-        <div className="flex gap-2 w-full items-center mt-4">
-          <div className="flex-grow border-t border-gray-200" />
-          <span className="text-xs text-gray-500">OR CONTINUE WITH</span>
-          <div className="flex-grow border-t border-gray-200" />
-        </div>
-        <div className="flex flex-col gap-2 w-full mt-4">
-          <Button variant="outline" className="w-full" onClick={onGoogleLogin}>
-            Continue with Google
-          </Button>
-        </div>
+      <CardContent className="min-h-24">
+        {isSendingEmail ? (
+          <MagicLinkCardContent
+            onResendClick={() => onEmailLogin(email)}
+            onEmailChangeClick={() => setIsSendingEmail(false)}
+          />
+        ) : (
+          <LoginCardContent
+            email={email}
+            setEmail={setEmail}
+            onEmailLogin={onEmailLogin}
+            onGoogleLogin={onGoogleLogin}
+          />
+        )}
       </CardContent>
     </Card>
+  );
+}
+
+function LoginCardContent({
+  email,
+  setEmail,
+  onEmailLogin,
+  onGoogleLogin,
+}: {
+  email: string;
+  setEmail: (email: string) => void;
+  onEmailLogin: (email: string) => void;
+  onGoogleLogin: () => void;
+}) {
+  const handleEmailLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (email.trim()) {
+      onEmailLogin(email);
+    }
+  };
+
+  return (
+    <>
+      <form onSubmit={handleEmailLogin} className="flex flex-col gap-4 w-full">
+        <div className="flex flex-col gap-2 w-full">
+          <Input
+            id="email"
+            type="email"
+            placeholder="email@example.com"
+            required
+            width="full"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+        <Button type="submit" className="w-full">
+          Log in with email
+        </Button>
+        {/** 
+       * To test out Google OAuth, uncomment the following code
+       * 
+      <div className="flex gap-2 w-full items-center mt-4">
+        <div className="flex-grow border-t border-gray-200" />
+        <span className="text-xs text-gray-500">OR CONTINUE WITH</span>
+        <div className="flex-grow border-t border-gray-200" />
+      </div>
+      <div className="flex flex-col gap-2 w-full mt-4">
+        <Button variant="outline" className="w-full" onClick={onGoogleLogin}>
+          Continue with Google
+        </Button>
+      </div>
+      */}
+      </form>
+    </>
+  );
+}
+
+function MagicLinkCardContent({
+  onResendClick,
+  onEmailChangeClick,
+}: {
+  onResendClick: () => void;
+  onEmailChangeClick: () => void;
+}) {
+  return (
+    <div className="flex flex-col w-full items-center">
+      <p className="text-center text-md font-semibold">Didn't get it?</p>
+      <p className="text-center">
+        <Button
+          variant="link"
+          onClick={onResendClick}
+          className="p-0 text-blue-500 font-normal"
+        >
+          Resend
+        </Button>{" "}
+        or{" "}
+        <Button
+          variant="link"
+          onClick={onEmailChangeClick}
+          className="p-0 text-blue-500 font-normal"
+        >
+          Change email
+        </Button>{" "}
+      </p>
+    </div>
   );
 }

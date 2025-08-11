@@ -1,17 +1,29 @@
+import { useState } from "react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
 interface B2BSessionCardProps {
   email: string;
   memberId: string;
-  organization: string;
+  organizationName: string;
+  sessionToken: string;
+  handleSwitchOrgs: () => void;
+  handleLogout: () => void;
 }
 
 export function B2BSessionCard({
   email,
   memberId,
-  organization,
+  organizationName,
+  sessionToken,
+  handleSwitchOrgs,
+  handleLogout,
 }: B2BSessionCardProps) {
+  const [isViewingToken, setIsViewingToken] = useState(false);
+  const handleViewToken = () => {
+    console.log(sessionToken);
+  };
+
   return (
     <Card className="w-lg">
       <CardHeader>
@@ -29,17 +41,27 @@ export function B2BSessionCard({
           </div>
           <div className="flex flex-col">
             <p className="font-bold">Organization</p>
-            <p>{organization}</p>
+            <p>{organizationName}</p>
           </div>
         </div>
         <div className="flex flex-row gap-2">
-          <Button variant="outline" className="text-sm">
+          <Button
+            variant="outline"
+            className="text-sm"
+            onClick={handleViewToken}
+          >
             View Token
           </Button>
-          <Button variant="outline" className="text-sm">
+          <Button
+            variant="outline"
+            className="text-sm"
+            onClick={handleSwitchOrgs}
+          >
             Switch Orgs
           </Button>
-          <Button className="text-sm">Logout</Button>
+          <Button className="text-sm" onClick={handleLogout}>
+            Logout
+          </Button>
         </div>
       </CardContent>
     </Card>

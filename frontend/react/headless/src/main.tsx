@@ -1,9 +1,18 @@
+import { StytchB2BProvider } from "@stytch/react/b2b";
+import { createStytchB2BHeadlessClient } from "@stytch/react/b2b/headless";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
+import { Authenticate } from "./pages/Authenticate";
 import { Login } from "./pages/Login";
-import { RedirectUrls } from "./pages/RedirectUrls";
+import { Organizations } from "./pages/Organizations";
+import { ViewSession } from "./pages/ViewSession";
+
+// Create the Stytch client
+const stytch = createStytchB2BHeadlessClient(
+  import.meta.env.VITE_STYTCH_PUBLIC_TOKEN || "test-token-placeholder"
+);
 
 const router = createBrowserRouter([
   {
@@ -19,8 +28,16 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "redirect-urls",
-        element: <RedirectUrls />,
+        path: "organizations",
+        element: <Organizations />,
+      },
+      {
+        path: "authenticate",
+        element: <Authenticate />,
+      },
+      {
+        path: "view-session",
+        element: <ViewSession />,
       },
     ],
   },
@@ -28,6 +45,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <StytchB2BProvider stytch={stytch}>
+      <RouterProvider router={router} />
+    </StytchB2BProvider>
   </StrictMode>
 );
