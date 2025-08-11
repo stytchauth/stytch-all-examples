@@ -1,12 +1,12 @@
-import {
-  ACCOUNT_ENUMERATION_URL,
-  B2B_BASICS_URL,
-  SESSION_OVERVIEW_URL,
-} from "@/lib/constants";
 import { AdditionalResources } from "@stytch-all-examples/internal";
 import { Link } from "@stytch-all-examples/internal/components/ui/link";
 import { TextBox } from "@stytch-all-examples/internal/components/ui/text-box";
 import { Typography } from "@stytch-all-examples/internal/components/ui/typography";
+import {
+  ACCOUNT_ENUMERATION_URL,
+  B2B_BASICS_URL,
+  SESSION_OVERVIEW_URL,
+} from "@stytch-all-examples/internal/lib/constants";
 
 export function OrgCreateTextBox({
   discoveryEmailMagicLinkUrl,

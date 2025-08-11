@@ -1,9 +1,12 @@
-import { B2B_BASICS_URL, B2B_VS_CONSUMER_URL } from "@/lib/constants";
 import {
   AdditionalResources,
   List,
   Typography,
 } from "@stytch-all-examples/internal";
+import {
+  B2B_BASICS_URL,
+  B2B_VS_CONSUMER_URL,
+} from "@stytch-all-examples/internal/lib/constants";
 import { TextBox } from "../ui/text-box";
 
 export function OrgsTextBox() {
