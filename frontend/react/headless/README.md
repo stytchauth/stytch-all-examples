@@ -31,7 +31,7 @@ Make sure you have the following installed:
    yarn dev
    ```
 
-3. **Open your browser** and navigate to `http://localhost:5173`
+3. **Open your browser** and navigate to `http://localhost:3000`
 
 ### Environment Variables
 
