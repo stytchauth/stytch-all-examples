@@ -8,7 +8,7 @@
     "frontend/nextjs/headless",
     "backend"
   ],
-  "packageManager": "yarn@4.9.2",
+  "packageManager": "yarn@1.22.22",
   "scripts": {
     "build": "echo 'Navigate to the specific project to build it'",
     "dev": "echo 'Navigate to the specific project to run it'",
