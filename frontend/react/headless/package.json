@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "yarn workspace @stytch-all-examples/internal run build && vite",
-    "build": "tsc && vite build",
+    "build": "yarn workspace @stytch-all-examples/internal run build && tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
