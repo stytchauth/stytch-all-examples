@@ -8,7 +8,7 @@ export function List({
   className?: string;
 }) {
   return (
-    <ul className={cn("list-disc pl-4 space-y-1 ml-4", className)}>
+    <ul className={cn("list-disc pl-4 space-y-3 ml-4", className)}>
       {items.map((item, index) => (
         <li key={index}>{item}</li>
       ))}

@@ -10,7 +10,7 @@ import { AdditionalResources } from "./additional-resources";
 export function RedirectUrlTextBox() {
   return (
     <TextBox
-      className="w-2xl"
+      className="max-w-2xl"
       title="An authentication session starts with a token"
     >
       <Typography variant="body1">

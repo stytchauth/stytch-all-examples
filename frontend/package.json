@@ -10,6 +10,6 @@
     "clean": "echo \"Frontend parent workspace - no clean needed\""
   },
   "dependencies": {
-    "@stytch-all-examples/internal": "workspace:*"
+    "@stytch-all-examples/internal": "*"
   }
 }

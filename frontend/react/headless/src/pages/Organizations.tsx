@@ -109,6 +109,8 @@ export function Organizations() {
           onCreateOrg={handleCreateOrg}
           creatingOrg={creatingOrg}
           setCreatingOrg={setCreatingOrg}
+          // create org is part of the discovery flow, so we only show it if the member doesn't have a session
+          showCreateOrg={!session}
         />
       </div>
     </div>

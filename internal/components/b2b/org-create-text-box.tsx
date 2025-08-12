@@ -1,18 +1,18 @@
+import { AdditionalResources } from "@stytch-all-examples/internal";
+import { Link } from "@stytch-all-examples/internal/components/ui/link";
+import { TextBox } from "@stytch-all-examples/internal/components/ui/text-box";
+import { Typography } from "@stytch-all-examples/internal/components/ui/typography";
 import {
   ACCOUNT_ENUMERATION_URL,
   B2B_BASICS_URL,
   DISCOVERY_EML_AUTHENTICATE_URL,
   SESSION_OVERVIEW_URL,
 } from "@stytch-all-examples/internal/lib/constants";
-import { AdditionalResources } from "@stytch-all-examples/internal";
-import { Link } from "@stytch-all-examples/internal/components/ui/link";
-import { TextBox } from "@stytch-all-examples/internal/components/ui/text-box";
-import { Typography } from "@stytch-all-examples/internal/components/ui/typography";
 
 export function OrgCreateTextBox() {
   return (
     <TextBox
-      className="w-2xl"
+      className="max-w-2xl"
       title="Creating an organization results in a fully authenticated session. "
     >
       <Typography variant="body1">
@@ -23,12 +23,20 @@ export function OrgCreateTextBox() {
       </Typography>
       <Typography variant="body1">
         The{" "}
-        <Link href={DISCOVERY_EML_AUTHENTICATE_URL} text="Discovery endpoint" />{" "}
+        <Link
+          className="font-bold"
+          href={DISCOVERY_EML_AUTHENTICATE_URL}
+          text="Discovery authenticate endpoint"
+        />{" "}
         returns an intermediate session token (IST), establishing an
         intermediate session to help prevent{" "}
-        <Link href={ACCOUNT_ENUMERATION_URL} text="account enumeration" />. This
-        lets you to preserve the Member’s auth state while you present options
-        on how to proceed.
+        <Link
+          className="font-bold"
+          href={ACCOUNT_ENUMERATION_URL}
+          text="account enumeration"
+        />
+        . This lets you to preserve the Member’s auth state while you present
+        options on how to proceed.
       </Typography>
       <AdditionalResources
         links={[

@@ -3,13 +3,15 @@ import { ExampleAppHeader } from "../example-app-header";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
+import { LoadingSpinner } from "../ui/loading-spinner";
 
 export type OrgDiscoveryCardProps = {
   orgs: { id: string; name: string }[];
-  onOrgSelect: (orgId: string) => void;
-  onCreateOrg: (orgName: string) => void;
+  onOrgSelect: (orgId: string) => Promise<void>;
+  onCreateOrg: (orgName: string) => Promise<void>;
   creatingOrg: boolean;
   setCreatingOrg: (creatingOrg: boolean) => void;
+  showCreateOrg: boolean;
 };
 
 export function OrgDiscoveryCard({
@@ -18,6 +20,7 @@ export function OrgDiscoveryCard({
   onCreateOrg,
   creatingOrg,
   setCreatingOrg,
+  showCreateOrg,
 }: OrgDiscoveryCardProps) {
   return (
     <Card className="w-sm">
@@ -27,12 +30,12 @@ export function OrgDiscoveryCard({
           {creatingOrg
             ? "New organization"
             : orgs.length > 0
-            ? "Select an org to join"
+            ? "Select an organization"
             : "No organizations found"}
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {creatingOrg ? (
+        {showCreateOrg && creatingOrg ? (
           <CreateOrgForm
             onCreateOrg={onCreateOrg}
             setCreatingOrg={setCreatingOrg}
@@ -42,6 +45,7 @@ export function OrgDiscoveryCard({
             orgs={orgs}
             onOrgSelect={onOrgSelect}
             setCreatingOrg={setCreatingOrg}
+            showCreateOrg={showCreateOrg}
           />
         )}
       </CardContent>
@@ -53,16 +57,20 @@ function CreateOrgForm({
   onCreateOrg,
   setCreatingOrg,
 }: {
-  onCreateOrg: (orgName: string) => void;
+  onCreateOrg: (orgName: string) => Promise<void>;
   setCreatingOrg: (creatingOrg: boolean) => void;
 }) {
   const [orgName, setOrgName] = useState("");
+  const [submittingOrgCreate, setSubmittingOrgCreate] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (orgName.trim()) {
-      setCreatingOrg(false);
-      onCreateOrg(orgName);
+      setSubmittingOrgCreate(true);
+      onCreateOrg(orgName).then(() => {
+        setCreatingOrg(false);
+        setSubmittingOrgCreate(false);
+      });
     }
   };
 
@@ -89,8 +97,19 @@ function CreateOrgForm({
         >
           Cancel
         </Button>
-        <Button type="submit" className="w-fit" disabled={!orgName.trim()}>
-          Create
+        <Button
+          type="submit"
+          className="w-fit"
+          disabled={!orgName.trim() || submittingOrgCreate}
+        >
+          {submittingOrgCreate ? (
+            <div className="flex flex-row gap-2 items-center">
+              <LoadingSpinner />
+              Authenticating
+            </div>
+          ) : (
+            "Create"
+          )}
         </Button>
       </div>
     </form>
@@ -101,10 +120,12 @@ function ViewOrgsList({
   orgs,
   onOrgSelect,
   setCreatingOrg,
+  showCreateOrg,
 }: {
   orgs: { id: string; name: string }[];
   onOrgSelect: (orgId: string) => void;
   setCreatingOrg: (creatingOrg: boolean) => void;
+  showCreateOrg: boolean;
 }) {
   return (
     <div className="flex flex-col gap-4 px-4">
@@ -120,13 +141,15 @@ function ViewOrgsList({
           <ArrowRightIcon />
         </Button>
       ))}
-      <Button
-        variant="outline"
-        className="text-sm w-fit mx-auto"
-        onClick={() => setCreatingOrg(true)}
-      >
-        Create organization
-      </Button>
+      {showCreateOrg && (
+        <Button
+          variant="outline"
+          className="text-sm w-fit mx-auto"
+          onClick={() => setCreatingOrg(true)}
+        >
+          Create organization
+        </Button>
+      )}
     </div>
   );
 }
