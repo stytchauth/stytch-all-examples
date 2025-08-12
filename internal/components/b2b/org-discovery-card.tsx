@@ -3,6 +3,7 @@ import { ExampleAppHeader } from "../example-app-header";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
+import { LoadingSpinner } from "../ui/loading-spinner";
 
 export type OrgDiscoveryCardProps = {
   orgs: { id: string; name: string }[];
@@ -44,6 +45,7 @@ export function OrgDiscoveryCard({
             orgs={orgs}
             onOrgSelect={onOrgSelect}
             setCreatingOrg={setCreatingOrg}
+            showCreateOrg={showCreateOrg}
           />
         )}
       </CardContent>
@@ -59,12 +61,15 @@ function CreateOrgForm({
   setCreatingOrg: (creatingOrg: boolean) => void;
 }) {
   const [orgName, setOrgName] = useState("");
+  const [submittingOrgCreate, setSubmittingOrgCreate] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (orgName.trim()) {
+      setSubmittingOrgCreate(true);
       onCreateOrg(orgName).then(() => {
         setCreatingOrg(false);
+        setSubmittingOrgCreate(false);
       });
     }
   };
@@ -92,8 +97,19 @@ function CreateOrgForm({
         >
           Cancel
         </Button>
-        <Button type="submit" className="w-fit" disabled={!orgName.trim()}>
-          Create
+        <Button
+          type="submit"
+          className="w-fit"
+          disabled={!orgName.trim() || submittingOrgCreate}
+        >
+          {submittingOrgCreate ? (
+            <div className="flex flex-row gap-2 items-center">
+              <LoadingSpinner />
+              Authenticating
+            </div>
+          ) : (
+            "Create"
+          )}
         </Button>
       </div>
     </form>
