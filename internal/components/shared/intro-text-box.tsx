@@ -1,15 +1,15 @@
 import {
-  DISCOVERY_EMAIL_MAGIC_LINK_URL,
-  DISCOVERY_OAUTH_LOGIN_URL,
-  HEADLESS_LIST_ITEMS,
-} from "@stytch-all-examples/internal/lib/constants";
-import {
   CalloutAlert,
   Link,
   List,
   TextBox,
   Typography,
 } from "@stytch-all-examples/internal";
+import {
+  DISCOVERY_EMAIL_MAGIC_LINK_URL,
+  DISCOVERY_OAUTH_LOGIN_URL,
+  HEADLESS_LIST_ITEMS,
+} from "@stytch-all-examples/internal/lib/constants";
 
 export const INTRO_TITLE = "Hello World 👋";
 export const CALLOUT_ALERT_TITLE =
@@ -17,7 +17,7 @@ export const CALLOUT_ALERT_TITLE =
 
 export function IntroTextBox() {
   return (
-    <TextBox className="w-2xl" title={INTRO_TITLE}>
+    <TextBox className="max-w-2xl" title={INTRO_TITLE}>
       <Typography variant="body1">
         See how Stytch simplifies user auth with just a few lines of code. This
         application demonstrates a Stytch API integration that{" "}

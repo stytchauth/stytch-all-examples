@@ -6,10 +6,11 @@ import { Input } from "../ui/input";
 
 export type OrgDiscoveryCardProps = {
   orgs: { id: string; name: string }[];
-  onOrgSelect: (orgId: string) => void;
-  onCreateOrg: (orgName: string) => void;
+  onOrgSelect: (orgId: string) => Promise<void>;
+  onCreateOrg: (orgName: string) => Promise<void>;
   creatingOrg: boolean;
   setCreatingOrg: (creatingOrg: boolean) => void;
+  showCreateOrg: boolean;
 };
 
 export function OrgDiscoveryCard({
@@ -18,6 +19,7 @@ export function OrgDiscoveryCard({
   onCreateOrg,
   creatingOrg,
   setCreatingOrg,
+  showCreateOrg,
 }: OrgDiscoveryCardProps) {
   return (
     <Card className="w-sm">
@@ -27,12 +29,12 @@ export function OrgDiscoveryCard({
           {creatingOrg
             ? "New organization"
             : orgs.length > 0
-            ? "Select an org to join"
+            ? "Select an organization"
             : "No organizations found"}
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {creatingOrg ? (
+        {showCreateOrg && creatingOrg ? (
           <CreateOrgForm
             onCreateOrg={onCreateOrg}
             setCreatingOrg={setCreatingOrg}
@@ -53,7 +55,7 @@ function CreateOrgForm({
   onCreateOrg,
   setCreatingOrg,
 }: {
-  onCreateOrg: (orgName: string) => void;
+  onCreateOrg: (orgName: string) => Promise<void>;
   setCreatingOrg: (creatingOrg: boolean) => void;
 }) {
   const [orgName, setOrgName] = useState("");
@@ -61,8 +63,9 @@ function CreateOrgForm({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (orgName.trim()) {
-      setCreatingOrg(false);
-      onCreateOrg(orgName);
+      onCreateOrg(orgName).then(() => {
+        setCreatingOrg(false);
+      });
     }
   };
 
@@ -101,10 +104,12 @@ function ViewOrgsList({
   orgs,
   onOrgSelect,
   setCreatingOrg,
+  showCreateOrg,
 }: {
   orgs: { id: string; name: string }[];
   onOrgSelect: (orgId: string) => void;
   setCreatingOrg: (creatingOrg: boolean) => void;
+  showCreateOrg: boolean;
 }) {
   return (
     <div className="flex flex-col gap-4 px-4">
@@ -120,13 +125,15 @@ function ViewOrgsList({
           <ArrowRightIcon />
         </Button>
       ))}
-      <Button
-        variant="outline"
-        className="text-sm w-fit mx-auto"
-        onClick={() => setCreatingOrg(true)}
-      >
-        Create organization
-      </Button>
+      {showCreateOrg && (
+        <Button
+          variant="outline"
+          className="text-sm w-fit mx-auto"
+          onClick={() => setCreatingOrg(true)}
+        >
+          Create organization
+        </Button>
+      )}
     </div>
   );
 }
