@@ -10,6 +10,7 @@ export { B2BSessionTextBox } from "../components/b2b/session-text-box";
 export { CalloutAlert } from "../components/callout-alert";
 export { LoginForm } from "../components/login-form";
 export { AdditionalResources } from "../components/shared/additional-resources";
+export { IntroTextBox } from "../components/shared/intro-text-box";
 export { MagicLinkSentCard } from "../components/shared/magic-link-sent-card";
 export { RedirectUrlTextBox } from "../components/shared/redirect-url-text-box";
 export { Link } from "../components/ui/link";

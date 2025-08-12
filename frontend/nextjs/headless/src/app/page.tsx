@@ -1,12 +1,12 @@
+import { useStytchB2BClient } from "@stytch/nextjs/b2b";
+import { useState } from "react";
 import {
   IntroTextBox,
   LoginForm,
   RedirectUrlTextBox,
 } from "@stytch-all-examples/internal";
-import { useStytchB2BClient } from "@stytch/react/b2b";
-import { useState } from "react";
 
-export function Login() {
+export default function Login() {
   const stytch = useStytchB2BClient();
 
   const [sendingEmail, setSendingEmail] = useState(false);

@@ -23,8 +23,8 @@
 /.vscode
 
 # local env files
-.env.local
-.env
+**/.env.local
+**/.env
 
 # tsc
 dist

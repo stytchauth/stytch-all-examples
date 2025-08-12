@@ -1,15 +1,15 @@
 import {
+  DISCOVERY_EMAIL_MAGIC_LINK_URL,
+  DISCOVERY_OAUTH_LOGIN_URL,
+  HEADLESS_LIST_ITEMS,
+} from "@/lib/constants";
+import {
   CalloutAlert,
   Link,
   List,
   TextBox,
   Typography,
 } from "@stytch-all-examples/internal";
-import {
-  DISCOVERY_EMAIL_MAGIC_LINK_URL,
-  DISCOVERY_OAUTH_LOGIN_URL,
-  HEADLESS_LIST_ITEMS,
-} from "../utils/constants";
 
 export const INTRO_TITLE = "Hello World 👋";
 export const CALLOUT_ALERT_TITLE =
