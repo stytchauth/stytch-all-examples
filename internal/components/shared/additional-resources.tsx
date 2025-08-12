@@ -10,7 +10,7 @@ export function AdditionalResources({
     <div className="flex flex-col gap-1">
       <Typography variant="h4">Additional Resources</Typography>
       {links.map((link) => (
-        <div className="flex flex-row gap-2">
+        <div className="flex flex-row gap-2" key={link.href}>
           <BookIcon />
           <Link className="text-body1" href={link.href} text={link.text} />
         </div>

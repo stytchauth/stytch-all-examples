@@ -1,3 +1,5 @@
+"use client";
+
 import {
   LoadingSpinner,
   OrgCreateTextBox,
@@ -6,14 +8,14 @@ import {
   TextBox,
   Typography,
 } from "@stytch-all-examples/internal";
-import { useStytchB2BClient, useStytchMemberSession } from "@stytch/react/b2b";
+import { useStytchB2BClient, useStytchMemberSession } from "@stytch/nextjs/b2b";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
-export function Organizations() {
+export const Organizations = () => {
   const stytch = useStytchB2BClient();
   const { session } = useStytchMemberSession();
-  const navigate = useNavigate();
+  const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [orgs, setOrgs] = useState<{ id: string; name: string }[]>([]);
@@ -47,7 +49,7 @@ export function Organizations() {
       session_duration_minutes: 60,
     });
     if (response.status_code === 200) {
-      navigate("/view-session");
+      router.push("/view-session");
     } else {
       setError("Unable to create organization: " + response.status_code);
     }
@@ -62,7 +64,7 @@ export function Organizations() {
         session_duration_minutes: 60,
       });
       if (response.status_code === 200) {
-        navigate("/view-session");
+        router.push("/view-session");
       }
     } else {
       // otherwise, use the discovery flow to exchange an intermediate session for a session in that org
@@ -72,7 +74,7 @@ export function Organizations() {
       });
     }
     if (response.status_code === 200) {
-      navigate("/view-session");
+      router.push("/view-session");
     }
   };
 
@@ -113,4 +115,4 @@ export function Organizations() {
       </div>
     </div>
   );
-}
+};

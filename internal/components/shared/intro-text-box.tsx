@@ -2,7 +2,7 @@ import {
   DISCOVERY_EMAIL_MAGIC_LINK_URL,
   DISCOVERY_OAUTH_LOGIN_URL,
   HEADLESS_LIST_ITEMS,
-} from "@/lib/constants";
+} from "@stytch-all-examples/internal/lib/constants";
 import {
   CalloutAlert,
   Link,

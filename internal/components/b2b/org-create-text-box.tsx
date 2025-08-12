@@ -1,6 +1,7 @@
 import {
   ACCOUNT_ENUMERATION_URL,
   B2B_BASICS_URL,
+  DISCOVERY_EML_AUTHENTICATE_URL,
   SESSION_OVERVIEW_URL,
 } from "@stytch-all-examples/internal/lib/constants";
 import { AdditionalResources } from "@stytch-all-examples/internal";
@@ -8,11 +9,7 @@ import { Link } from "@stytch-all-examples/internal/components/ui/link";
 import { TextBox } from "@stytch-all-examples/internal/components/ui/text-box";
 import { Typography } from "@stytch-all-examples/internal/components/ui/typography";
 
-export function OrgCreateTextBox({
-  discoveryEmailMagicLinkUrl,
-}: {
-  discoveryEmailMagicLinkUrl: string;
-}) {
+export function OrgCreateTextBox() {
   return (
     <TextBox
       className="w-2xl"
@@ -25,7 +22,8 @@ export function OrgCreateTextBox({
         Organizations they belong to, or creating one if none exist.
       </Typography>
       <Typography variant="body1">
-        The <Link href={discoveryEmailMagicLinkUrl} text="Discovery endpoint" />{" "}
+        The{" "}
+        <Link href={DISCOVERY_EML_AUTHENTICATE_URL} text="Discovery endpoint" />{" "}
         returns an intermediate session token (IST), establishing an
         intermediate session to help prevent{" "}
         <Link href={ACCOUNT_ENUMERATION_URL} text="account enumeration" />. This

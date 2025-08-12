@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "yarn workspace @stytch-all-examples/internal run build:css && next dev --turbopack",
+    "dev": "yarn workspace @stytch-all-examples/internal run build && next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
