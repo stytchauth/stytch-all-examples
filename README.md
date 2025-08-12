@@ -38,8 +38,10 @@ This monorepo contains multiple example applications organized by framework and 
 
 ## Repository Structure
 
+```bash
 stytch-all-examples/
 ├── frontend/
 │ ├── nextjs/headless/ # Next.js headless implementation
 │ └── react/headless/ # React headless implementation
 └── internal/ # Shared components and utilities
+```
