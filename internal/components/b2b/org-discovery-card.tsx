@@ -62,15 +62,15 @@ function CreateOrgForm({
 }) {
   const [orgName, setOrgName] = useState("");
   const [submittingOrgCreate, setSubmittingOrgCreate] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (orgName.trim()) {
       setSubmittingOrgCreate(true);
-      onCreateOrg(orgName).then(() => {
-        setCreatingOrg(false);
-        setSubmittingOrgCreate(false);
-      });
+      await onCreateOrg(orgName);
+      setSubmittingOrgCreate(false);
+      setCreatingOrg(false);
     }
   };
 
@@ -80,6 +80,7 @@ function CreateOrgForm({
         <label htmlFor="org-name" className="text-sm">
           Organization name
         </label>
+        {error && <p className="text-destructive">{error}</p>}
         <Input
           id="org-name"
           className="w-full"

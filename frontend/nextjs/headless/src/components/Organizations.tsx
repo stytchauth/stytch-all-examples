@@ -1,12 +1,11 @@
 "use client";
 
 import {
+  ErrorBox,
   LoadingSpinner,
   OrgCreateTextBox,
   OrgDiscoveryCard,
   OrgsTextBox,
-  TextBox,
-  Typography,
 } from "@stytch-all-examples/internal";
 import { useStytchB2BClient, useStytchMemberSession } from "@stytch/nextjs/b2b";
 import { useRouter } from "next/navigation";
@@ -22,11 +21,11 @@ export const Organizations = () => {
   const [creatingOrg, setCreatingOrg] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    // load all the organizations that the member is part of, or can join
-    stytch.discovery.organizations
-      .list()
-      .then((response) => {
+    const loadOrganizations = async () => {
+      setLoading(true);
+      try {
+        // load all the organizations that the member is part of, or can join
+        const response = await stytch.discovery.organizations.list();
         setOrgs(
           response.discovered_organizations.map((org) => ({
             id: org.organization.organization_id,
@@ -34,62 +33,53 @@ export const Organizations = () => {
           }))
         );
         setLoading(false);
-      })
-      .catch((error) => {
-        setError("Unable to load organizations: " + error.message);
+      } catch (error: any) {
+        setError(error.message);
         setLoading(false);
-      });
+      }
+    };
+
+    loadOrganizations();
   }, []);
 
   const handleCreateOrg = async (orgName: string) => {
     // Creating an org will automatically create a session for the member in that org
-    const response = await stytch.discovery.organizations.create({
-      organization_name: orgName,
-      sso_jit_provisioning: "ALL_ALLOWED",
-      session_duration_minutes: 60,
-    });
-    if (response.status_code === 200) {
+    try {
+      await stytch.discovery.organizations.create({
+        organization_name: orgName,
+        sso_jit_provisioning: "ALL_ALLOWED",
+        session_duration_minutes: 60,
+      });
+      // if the create is successful, navigate to the session page
       router.push("/view-session");
-    } else {
-      setError("Unable to create organization: " + response.status_code);
+    } catch (error: any) {
+      // if the create is not successful, set the error
+      setError(error.message);
     }
   };
 
   const handleOrgSelect = async (orgId: string) => {
-    let response: any;
-    if (session) {
-      // If the member already has a session, exchange it for the new organization
-      response = await stytch.session.exchange({
-        organization_id: orgId,
-        session_duration_minutes: 60,
-      });
-      if (response.status_code === 200) {
-        router.push("/view-session");
+    try {
+      if (session) {
+        // If the member already has a session, exchange it for the new organization
+        await stytch.session.exchange({
+          organization_id: orgId,
+          session_duration_minutes: 60,
+        });
+      } else {
+        // otherwise, use the discovery flow to exchange an intermediate session for a session in that org
+        await stytch.discovery.intermediateSessions.exchange({
+          organization_id: orgId,
+          session_duration_minutes: 60,
+        });
       }
-    } else {
-      // otherwise, use the discovery flow to exchange an intermediate session for a session in that org
-      response = await stytch.discovery.intermediateSessions.exchange({
-        organization_id: orgId,
-        session_duration_minutes: 60,
-      });
-    }
-    if (response.status_code === 200) {
+      // if the exchange is successful, navigate to the session page
       router.push("/view-session");
+    } catch (error: any) {
+      // if the exchange is not successful, set the error
+      setError(error.message);
     }
   };
-
-  if (error) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <TextBox
-          className="max-w-2xl"
-          title="There was an error loading organizations"
-        >
-          <Typography>{error}</Typography>
-        </TextBox>
-      </div>
-    );
-  }
 
   if (loading) {
     return (
@@ -105,13 +95,26 @@ export const Organizations = () => {
         {creatingOrg ? <OrgCreateTextBox /> : <OrgsTextBox />}
       </div>
       <div className="flex-1 flex flex-col items-center p-16">
-        <OrgDiscoveryCard
-          orgs={orgs}
-          onOrgSelect={handleOrgSelect}
-          onCreateOrg={handleCreateOrg}
-          creatingOrg={creatingOrg}
-          setCreatingOrg={setCreatingOrg}
-        />
+        {error ? (
+          <ErrorBox
+            title="There was an error"
+            error={error}
+            redirectUrl="/login"
+            redirectText="Go to login"
+          />
+        ) : (
+          <div className="flex-1">
+            <OrgDiscoveryCard
+              orgs={orgs}
+              onOrgSelect={handleOrgSelect}
+              onCreateOrg={handleCreateOrg}
+              creatingOrg={creatingOrg}
+              setCreatingOrg={setCreatingOrg}
+              // create org is part of the discovery flow, so we only show it if the member doesn't have a session
+              showCreateOrg={!session}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

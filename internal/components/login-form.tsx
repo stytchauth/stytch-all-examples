@@ -15,6 +15,7 @@ interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   setIsSendingEmail: (isSendingEmail: boolean) => void;
   onEmailLogin: (email: string) => void;
   onGoogleLogin: () => void;
+  showGoogleLogin: boolean;
 }
 
 export function LoginForm({
@@ -23,6 +24,7 @@ export function LoginForm({
   setIsSendingEmail,
   onEmailLogin,
   onGoogleLogin,
+  showGoogleLogin,
   ...props
 }: LoginFormProps) {
   const [email, setEmail] = useState("");
@@ -47,6 +49,7 @@ export function LoginForm({
             setEmail={setEmail}
             onEmailLogin={onEmailLogin}
             onGoogleLogin={onGoogleLogin}
+            showGoogleLogin={showGoogleLogin}
           />
         )}
       </CardContent>
@@ -59,11 +62,13 @@ function LoginCardContent({
   setEmail,
   onEmailLogin,
   onGoogleLogin,
+  showGoogleLogin,
 }: {
   email: string;
   setEmail: (email: string) => void;
   onEmailLogin: (email: string) => void;
   onGoogleLogin: () => void;
+  showGoogleLogin: boolean;
 }) {
   const handleEmailLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -89,21 +94,25 @@ function LoginCardContent({
         <Button type="submit" className="w-full">
           Log in with email
         </Button>
-        {/** 
-       * To test out Google OAuth, uncomment the following code
-       * 
-      <div className="flex gap-2 w-full items-center mt-4">
-        <div className="flex-grow border-t border-gray-200" />
-        <span className="text-xs text-gray-500">OR CONTINUE WITH</span>
-        <div className="flex-grow border-t border-gray-200" />
-      </div>
-      <div className="flex flex-col gap-2 w-full mt-4">
-        <Button variant="outline" className="w-full" onClick={onGoogleLogin}>
-          Continue with Google
-        </Button>
-      </div>
-      */}
       </form>
+      {showGoogleLogin && (
+        <>
+          <div className="flex gap-2 w-full items-center mt-4">
+            <div className="flex-grow border-t border-gray-200" />
+            <span className="text-xs text-gray-500">OR CONTINUE WITH</span>
+            <div className="flex-grow border-t border-gray-200" />
+          </div>
+          <div className="flex flex-col gap-2 w-full mt-4">
+            <Button
+              variant="outline"
+              className="w-full"
+              onClick={onGoogleLogin}
+            >
+              Continue with Google
+            </Button>
+          </div>
+        </>
+      )}
     </>
   );
 }

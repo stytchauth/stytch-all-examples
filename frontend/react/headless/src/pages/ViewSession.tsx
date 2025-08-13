@@ -1,7 +1,9 @@
 import {
   B2BSessionCard,
   B2BSessionTextBox,
+  ErrorBox,
   LoadingSpinner,
+  SessionTokens,
 } from "@stytch-all-examples/internal";
 import {
   useStytchB2BClient,
@@ -17,18 +19,33 @@ export function ViewSession() {
   const { member, isInitialized: isMemberInitialized } = useStytchMember();
   const { organization, isInitialized: isOrganizationInitialized } =
     useStytchOrganization();
-  const [sessionToken, setSessionToken] = useState("");
+  const [sessionTokens, setSessionTokens] = useState<SessionTokens | null>(
+    null
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
     if (member) {
       const tokens = stytch.session.getTokens();
-      setSessionToken(tokens.session_token);
+      setSessionTokens(tokens);
     }
   }, [member]);
 
-  if (!isMemberInitialized || !isOrganizationInitialized || !sessionToken) {
+  if (!isMemberInitialized || !isOrganizationInitialized) {
     return <LoadingSpinner />;
+  }
+
+  if (!sessionTokens) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ErrorBox
+          title="No session tokens found"
+          error="Unable to load session tokens from the SDK. Please ensure you are logged in and have a session."
+          redirectUrl="/login"
+          redirectText="Go to login"
+        />
+      </div>
+    );
   }
 
   return (
@@ -38,10 +55,10 @@ export function ViewSession() {
       </div>
       <div className="flex-1 flex flex-col items-center">
         <B2BSessionCard
-          email={member?.email_address}
-          memberId={member?.member_id}
-          organizationName={organization?.organization_name}
-          sessionToken={sessionToken}
+          email={member.email_address}
+          memberId={member.member_id}
+          organizationName={organization.organization_name}
+          sessionTokens={sessionTokens}
           handleSwitchOrgs={() => {
             navigate("/organizations");
           }}

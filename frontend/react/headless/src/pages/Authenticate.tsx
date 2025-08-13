@@ -1,8 +1,4 @@
-import {
-  LoadingSpinner,
-  TextBox,
-  Typography,
-} from "@stytch-all-examples/internal";
+import { ErrorBox, LoadingSpinner } from "@stytch-all-examples/internal";
 import { useStytchB2BClient, useStytchMemberSession } from "@stytch/react/b2b";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,42 +15,56 @@ export function Authenticate() {
       window.location.href = "/organizations";
     } else {
       // Get the token from the URL
-      const token = new URLSearchParams(window.location.search).get("token");
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get("token");
+      const tokenType = urlParams.get("stytch_token_type");
 
-      if (token && !isAuthenticatingRef.current) {
-        isAuthenticatingRef.current = true; // Set this immediately
+      const authenticate = async () => {
+        if (!token || !tokenType) {
+          setError(
+            "There is no token found in the URL. This likely means you didn't go through the login flow."
+          );
+          return;
+        }
+        isAuthenticatingRef.current = true;
+        try {
+          if (tokenType === "discovery_oauth") {
+            await stytch.oauth.discovery.authenticate({
+              discovery_oauth_token: token,
+            });
+          } else if (tokenType === "magic_link") {
+            await stytch.magicLinks.discovery.authenticate({
+              discovery_magic_links_token: token,
+            });
+          } else {
+            setError(
+              "The token type found in the URL is not supported for this example app."
+            );
+          }
+          navigate("/organizations");
+        } catch (error: any) {
+          isAuthenticatingRef.current = false; // Reset on error
+          setError(error.message);
+        }
+      };
 
-        // authenticate the token
-        stytch.magicLinks.discovery
-          .authenticate({
-            discovery_magic_links_token: token,
-          })
-          .then((response) => {
-            // if the response is successful, navigate to the organizations page
-            if (response.status_code === 200) {
-              navigate("/organizations");
-            } else {
-              isAuthenticatingRef.current = false; // Reset on error
-              setError(
-                `There was an error authenticating your magic link token: ${response.status_code}`
-              );
-            }
-          })
-          .catch((error) => {
-            isAuthenticatingRef.current = false; // Reset on error
-            setError(error.message);
-            return null;
-          });
+      if (isAuthenticatingRef.current) {
+        // if already authenticating, don't do anything
+        return;
       }
+      authenticate();
     }
   }, [session?.member_session_id]);
 
   if (error) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <TextBox title="There was an error authenticating your magic link token">
-          <Typography>{error}</Typography>
-        </TextBox>
+      <div className="flex justify-center items-center">
+        <ErrorBox
+          title="You've hit an error"
+          error={error}
+          redirectUrl="/login"
+          redirectText="Go to login"
+        />
       </div>
     );
   }

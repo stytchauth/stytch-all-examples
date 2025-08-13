@@ -12,6 +12,7 @@ const typographyVariants = cva("font-default", {
       h4: "text-h4 tracking-normal",
       body1: "text-body1 tracking-normal",
       body2: "text-body2 tracking-normal",
+      error: "text-body1 tracking-normal text-red-500",
     },
   },
   defaultVariants: {
@@ -20,7 +21,7 @@ const typographyVariants = cva("font-default", {
 });
 
 interface TypographyProps extends VariantProps<typeof typographyVariants> {
-  as?: "h1" | "h2" | "h3" | "p" | "span" | "div";
+  as?: "h1" | "h2" | "h3" | "h4" | "p" | "span" | "div";
   className?: string;
   children: React.ReactNode;
 }
@@ -43,6 +44,7 @@ function Typography({
       h4: "h4",
       body1: "p",
       body2: "p",
+      error: "p",
     };
 
     return elementMap[variant as keyof typeof elementMap] || "p";
