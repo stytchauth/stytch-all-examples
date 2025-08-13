@@ -1,8 +1,4 @@
-import {
-  LoadingSpinner,
-  TextBox,
-  Typography,
-} from "@stytch-all-examples/internal";
+import { ErrorBox, LoadingSpinner } from "@stytch-all-examples/internal";
 import { useStytchB2BClient, useStytchMemberSession } from "@stytch/react/b2b";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +17,10 @@ export function Authenticate() {
       // Get the token from the URL
       const token = new URLSearchParams(window.location.search).get("token");
 
-      if (token && !isAuthenticatingRef.current) {
+      if (token) {
+        if (isAuthenticatingRef.current) {
+          return;
+        }
         isAuthenticatingRef.current = true; // Set this immediately
 
         // authenticate the token
@@ -43,18 +42,24 @@ export function Authenticate() {
           .catch((error) => {
             isAuthenticatingRef.current = false; // Reset on error
             setError(error.message);
-            return null;
           });
+      } else {
+        setError(
+          "There is no token found in the URL. This likely means you didn't go through the login flow."
+        );
       }
     }
   }, [session?.member_session_id]);
 
   if (error) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <TextBox title="There was an error authenticating your magic link token">
-          <Typography>{error}</Typography>
-        </TextBox>
+      <div className="flex justify-center items-center">
+        <ErrorBox
+          title="You've hit an error"
+          error={error}
+          redirectUrl="/login"
+          redirectText="Go to login"
+        />
       </div>
     );
   }

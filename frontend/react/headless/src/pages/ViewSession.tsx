@@ -2,6 +2,7 @@ import {
   B2BSessionCard,
   B2BSessionTextBox,
   LoadingSpinner,
+  SessionTokens,
 } from "@stytch-all-examples/internal";
 import {
   useStytchB2BClient,
@@ -17,17 +18,19 @@ export function ViewSession() {
   const { member, isInitialized: isMemberInitialized } = useStytchMember();
   const { organization, isInitialized: isOrganizationInitialized } =
     useStytchOrganization();
-  const [sessionToken, setSessionToken] = useState("");
+  const [sessionTokens, setSessionTokens] = useState<SessionTokens | null>(
+    null
+  );
   const navigate = useNavigate();
 
   useEffect(() => {
     if (member) {
       const tokens = stytch.session.getTokens();
-      setSessionToken(tokens.session_token);
+      setSessionTokens(tokens);
     }
   }, [member]);
 
-  if (!isMemberInitialized || !isOrganizationInitialized || !sessionToken) {
+  if (!isMemberInitialized || !isOrganizationInitialized || !sessionTokens) {
     return <LoadingSpinner />;
   }
 
@@ -41,7 +44,7 @@ export function ViewSession() {
           email={member?.email_address}
           memberId={member?.member_id}
           organizationName={organization?.organization_name}
-          sessionToken={sessionToken}
+          sessionTokens={sessionTokens}
           handleSwitchOrgs={() => {
             navigate("/organizations");
           }}

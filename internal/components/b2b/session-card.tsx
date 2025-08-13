@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { SessionTokensCard } from "../shared/session-tokens-card";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
@@ -6,23 +7,37 @@ interface B2BSessionCardProps {
   email: string;
   memberId: string;
   organizationName: string;
-  sessionToken: string;
+  sessionTokens: SessionTokens;
   handleSwitchOrgs: () => void;
   handleLogout: () => void;
+}
+
+export interface SessionTokens {
+  session_token: string;
+  session_jwt: string;
 }
 
 export function B2BSessionCard({
   email,
   memberId,
   organizationName,
-  sessionToken,
+  sessionTokens,
   handleSwitchOrgs,
   handleLogout,
 }: B2BSessionCardProps) {
   const [isViewingToken, setIsViewingToken] = useState(false);
   const handleViewToken = () => {
-    console.log(sessionToken);
+    setIsViewingToken(true);
   };
+
+  if (isViewingToken) {
+    return (
+      <SessionTokensCard
+        sessionTokens={sessionTokens}
+        handleBack={() => setIsViewingToken(false)}
+      />
+    );
+  }
 
   return (
     <Card className="w-lg">

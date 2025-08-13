@@ -1,4 +1,5 @@
 import {
+  ErrorBox,
   IntroTextBox,
   LoginForm,
   RedirectUrlTextBox,
@@ -10,15 +11,19 @@ export function Login() {
   const stytch = useStytchB2BClient();
 
   const [sendingEmail, setSendingEmail] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
 
   const handleEmailLogin = async (email: string) => {
-    const response = await stytch.magicLinks.email.discovery.send({
-      email_address: email,
-      discovery_redirect_url: "http://localhost:5173/authenticate",
-    });
-    if (response.status_code === 200) {
-      setSendingEmail(true);
-    }
+    stytch.magicLinks.email.discovery
+      .send({
+        email_address: email,
+      })
+      .then(() => {
+        setSendingEmail(true);
+      })
+      .catch((error) => {
+        setApiError(error.message);
+      });
   };
 
   const handleGoogleLogin = () => {
@@ -27,18 +32,25 @@ export function Login() {
   };
 
   return (
-    <div className="flex flex-row items-center p-16 gap-8">
-      <div className="flex-1">
-        {sendingEmail ? <RedirectUrlTextBox /> : <IntroTextBox />}
+    <div>
+      <div className="flex flex-row items-center p-16 gap-8">
+        <div className="flex-1">
+          {sendingEmail ? <RedirectUrlTextBox /> : <IntroTextBox />}
+        </div>
+        <div className="flex-1 flex flex-col items-center p-16">
+          <LoginForm
+            isSendingEmail={sendingEmail}
+            setIsSendingEmail={setSendingEmail}
+            onEmailLogin={handleEmailLogin}
+            onGoogleLogin={handleGoogleLogin}
+          />
+        </div>
       </div>
-      <div className="flex-1 flex flex-col items-center p-16">
-        <LoginForm
-          isSendingEmail={sendingEmail}
-          setIsSendingEmail={setSendingEmail}
-          onEmailLogin={handleEmailLogin}
-          onGoogleLogin={handleGoogleLogin}
-        />
-      </div>
+      {apiError && (
+        <div className="flex justify-center items-center">
+          <ErrorBox title="You've hit an API error" error={apiError} />
+        </div>
+      )}
     </div>
   );
 }
