@@ -15,34 +15,38 @@ export function Authenticate() {
       window.location.href = "/organizations";
     } else {
       // Get the token from the URL
-      const token = new URLSearchParams(window.location.search).get("token");
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get("token");
+      const tokenType = urlParams.get("stytch_token_type");
 
+      const authenticate = async () => {
+        try {
+          if (tokenType === "discovery_oauth") {
+            await stytch.oauth.discovery.authenticate({
+              discovery_oauth_token: token,
+            });
+          } else if (tokenType === "magic_link") {
+            await stytch.magicLinks.discovery.authenticate({
+              discovery_magic_links_token: token,
+            });
+          } else {
+            setError(
+              "The token type found in the URL is not supported for this example app."
+            );
+          }
+          navigate("/organizations");
+        } catch (error: any) {
+          isAuthenticatingRef.current = false; // Reset on error
+          setError(error.message);
+        }
+      };
       if (token) {
         if (isAuthenticatingRef.current) {
+          // if already authenticating, don't do anything
           return;
         }
-        isAuthenticatingRef.current = true; // Set this immediately
-
-        // authenticate the token
-        stytch.magicLinks.discovery
-          .authenticate({
-            discovery_magic_links_token: token,
-          })
-          .then((response) => {
-            // if the response is successful, navigate to the organizations page
-            if (response.status_code === 200) {
-              navigate("/organizations");
-            } else {
-              isAuthenticatingRef.current = false; // Reset on error
-              setError(
-                `There was an error authenticating your magic link token: ${response.status_code}`
-              );
-            }
-          })
-          .catch((error) => {
-            isAuthenticatingRef.current = false; // Reset on error
-            setError(error.message);
-          });
+        isAuthenticatingRef.current = true;
+        authenticate();
       } else {
         setError(
           "There is no token found in the URL. This likely means you didn't go through the login flow."

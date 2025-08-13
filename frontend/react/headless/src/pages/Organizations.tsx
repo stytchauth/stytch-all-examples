@@ -94,7 +94,12 @@ export function Organizations() {
       </div>
       <div className="flex-1 flex flex-col items-center p-16">
         {error ? (
-          <ErrorBox title="There was an error" error={error} />
+          <ErrorBox
+            title="There was an error"
+            error={error}
+            redirectUrl="/login"
+            redirectText="Go to login"
+          />
         ) : (
           <div className="flex-1">
             <OrgDiscoveryCard

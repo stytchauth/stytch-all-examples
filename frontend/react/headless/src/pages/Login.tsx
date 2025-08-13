@@ -14,21 +14,22 @@ export function Login() {
   const [apiError, setApiError] = useState<string | null>(null);
 
   const handleEmailLogin = async (email: string) => {
-    stytch.magicLinks.email.discovery
-      .send({
+    try {
+      await stytch.magicLinks.email.discovery.send({
         email_address: email,
-      })
-      .then(() => {
-        setSendingEmail(true);
-      })
-      .catch((error) => {
-        setApiError(error.message);
       });
+      setSendingEmail(true);
+    } catch (error: any) {
+      setApiError(error.message);
+    }
   };
 
-  const handleGoogleLogin = () => {
-    console.log("Login with Google");
-    // handle the Google login logic
+  const handleGoogleLogin = async () => {
+    try {
+      await stytch.oauth.google.discovery.start({});
+    } catch (error: any) {
+      setApiError(error.message);
+    }
   };
 
   return (
@@ -43,6 +44,7 @@ export function Login() {
             setIsSendingEmail={setSendingEmail}
             onEmailLogin={handleEmailLogin}
             onGoogleLogin={handleGoogleLogin}
+            showGoogleLogin={true}
           />
         </div>
       </div>
