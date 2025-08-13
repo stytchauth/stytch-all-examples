@@ -2,7 +2,13 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
-First, run the development server:
+Create a `.env` file in this directory and add your Stytch public token
+
+```bash
+NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN=your_stytch_public_token_here
+```
+
+Run the development server:
 
 ```bash
 npm run dev

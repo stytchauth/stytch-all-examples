@@ -21,6 +21,7 @@ export const Login = () => {
         email_address: email,
       });
       setSendingEmail(true);
+      setApiError(null);
     } catch (error: any) {
       setApiError(error.message);
     }
@@ -29,6 +30,7 @@ export const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       await stytch.oauth.google.discovery.start({});
+      setApiError(null);
     } catch (error: any) {
       setApiError(error.message);
     }
