@@ -3,6 +3,7 @@
 import {
   B2BSessionCard,
   B2BSessionTextBox,
+  ErrorBox,
   LoadingSpinner,
   SessionTokens,
 } from "@stytch-all-examples/internal";
@@ -32,8 +33,21 @@ export function ViewSession() {
     }
   }, [member]);
 
-  if (!isMemberInitialized || !isOrganizationInitialized || !sessionTokens) {
+  if (!isMemberInitialized || !isOrganizationInitialized) {
     return <LoadingSpinner />;
+  }
+
+  if (!sessionTokens) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <ErrorBox
+          title="No session tokens found"
+          error="Unable to load session tokens from the SDK. Please ensure you are logged in and have a session."
+          redirectUrl="/login"
+          redirectText="Go to login"
+        />
+      </div>
+    );
   }
 
   return (
