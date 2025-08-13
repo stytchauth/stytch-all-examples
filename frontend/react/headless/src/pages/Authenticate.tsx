@@ -20,6 +20,13 @@ export function Authenticate() {
       const tokenType = urlParams.get("stytch_token_type");
 
       const authenticate = async () => {
+        if (!token || !tokenType) {
+          setError(
+            "There is no token found in the URL. This likely means you didn't go through the login flow."
+          );
+          return;
+        }
+        isAuthenticatingRef.current = true;
         try {
           if (tokenType === "discovery_oauth") {
             await stytch.oauth.discovery.authenticate({
@@ -40,18 +47,12 @@ export function Authenticate() {
           setError(error.message);
         }
       };
-      if (token) {
-        if (isAuthenticatingRef.current) {
-          // if already authenticating, don't do anything
-          return;
-        }
-        isAuthenticatingRef.current = true;
-        authenticate();
-      } else {
-        setError(
-          "There is no token found in the URL. This likely means you didn't go through the login flow."
-        );
+
+      if (isAuthenticatingRef.current) {
+        // if already authenticating, don't do anything
+        return;
       }
+      authenticate();
     }
   }, [session?.member_session_id]);
 
