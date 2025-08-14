@@ -12,7 +12,6 @@ const redirectUrlTextBox = document.getElementById('redirect-url-text-box');
 const resendBtn = document.getElementById('resend-btn');
 const changeEmailBtn = document.getElementById('change-email-btn');
 const googleLoginBtn = document.getElementById('google-login-btn');
-const errorContainer = document.getElementById('error-container');
 
 let currentEmail = '';
 let isSendingEmail = false;
@@ -26,31 +25,21 @@ function init() {
 
 function setupEventListeners() {
     // Email form submission
-    emailForm.addEventListener('submit', handleEmailLogin);
+    emailForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        handleEmailLogin(emailInput.value.trim());
+    });
     
     // Magic link sent buttons
     resendBtn.addEventListener('click', () => handleEmailLogin(currentEmail));
     changeEmailBtn.addEventListener('click', showLoginForm);
     
     // Google login button
-    if (googleLoginBtn) {
-        googleLoginBtn.addEventListener('click', handleGoogleLogin);
-    }
+    googleLoginBtn.addEventListener('click', handleGoogleLogin);
 }
 
 async function handleEmailLogin(email) {
-    if (typeof email === 'string') {
-        currentEmail = email;
-    } else {
-        // Form submission event
-        email.preventDefault();
-        currentEmail = emailInput.value.trim();
-    }
-    
-    if (!currentEmail) {
-        return;
-    }
-    
+    currentEmail = email;
     try {
         await stytch.magicLinks.email.discovery.send({
             email_address: currentEmail,

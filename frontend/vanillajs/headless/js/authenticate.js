@@ -1,10 +1,6 @@
 import { stytch } from './stytch-client.js';
 import { showErrorInContainer } from './errors.js';
 
-// DOM elements
-const loadingContainer = document.getElementById('loading-container');
-const errorContainer = document.getElementById('error-container');
-
 let isAuthenticating = false;
 
 // Initialize the page
@@ -41,7 +37,7 @@ async function authenticateToken() {
             await stytch.oauth.discovery.authenticate({
                 discovery_oauth_token: token,
             });
-        } else if (tokenType === "magic") {
+        } else if (tokenType === "discovery") {
             await stytch.magicLinks.discovery.authenticate({
                 discovery_magic_links_token: token,
             });
