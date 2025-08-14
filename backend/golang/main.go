@@ -38,8 +38,12 @@ func main() {
 	// Handle Email Magic Links routes.
 	mux.HandleFunc("/magic-links/invite", service.MagicLinksController.Invite)
 	mux.HandleFunc("/magic-links/login-signup", service.MagicLinksController.LoginOrSignup)
+	mux.HandleFunc("/magic-links/discovery", service.MagicLinksController.Discovery)
 
-	if err := http.ListenAndServe(":8080", mux); err != nil && !errors.Is(err, http.ErrServerClosed) {
+	// Handle Sessions routes.
+	mux.HandleFunc("/sessions/exchange", service.SessionsController.Exchange)
+
+	if err := http.ListenAndServe(":3000", mux); err != nil && !errors.Is(err, http.ErrServerClosed) {
 		log.Fatalf("Unable to start server: %v", err)
 	}
 }
