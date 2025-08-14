@@ -34,7 +34,7 @@ export const Authenticate = () => {
             await stytch.oauth.discovery.authenticate({
               discovery_oauth_token: token,
             });
-          } else if (tokenType === "magic_link") {
+          } else if (tokenType === "discovery") {
             await stytch.magicLinks.discovery.authenticate({
               discovery_magic_links_token: token,
             });
