@@ -94,17 +94,15 @@ export const Organizations = () => {
     <SplitPage
       leftSide={creatingOrg ? <OrgCreateTextBox /> : <OrgsTextBox />}
       rightSide={
-        <div className="flex-1">
-          <OrgDiscoveryCard
-            orgs={orgs}
-            onOrgSelect={handleOrgSelect}
-            onCreateOrg={handleCreateOrg}
-            creatingOrg={creatingOrg}
-            setCreatingOrg={setCreatingOrg}
-            // create org is part of the discovery flow, so we only show it if the member doesn't have a session
-            showCreateOrg={!session}
-          />
-        </div>
+        <OrgDiscoveryCard
+          orgs={orgs}
+          onOrgSelect={handleOrgSelect}
+          onCreateOrg={handleCreateOrg}
+          creatingOrg={creatingOrg}
+          setCreatingOrg={setCreatingOrg}
+          // create org is part of the discovery flow, so we only show it if the member doesn't have a session
+          showCreateOrg={!session}
+        />
       }
       error={error && <ErrorBox title="There was an error" error={error} />}
     />
