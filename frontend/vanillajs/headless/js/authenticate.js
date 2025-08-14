@@ -1,5 +1,5 @@
 import { stytch } from './stytch-client.js';
-import { showErrorInContainer } from './error-box.js';
+import { showErrorInContainer } from './errors.js';
 
 // DOM elements
 const loadingContainer = document.getElementById('loading-container');
@@ -21,14 +21,11 @@ async function authenticateToken() {
 
     if (!token || !tokenType) {
         showErrorInContainer(
-            errorContainer,
             "You've hit an error",
             "There is no token found in the URL. This likely means you didn't go through the login flow.",
             "/login",
             "Go to login"
         );
-        loadingContainer.classList.add('hidden');
-        errorContainer.classList.remove('hidden');
         return;
     }
 
@@ -58,14 +55,11 @@ async function authenticateToken() {
         console.error('Authentication error:', error);
         isAuthenticating = false; // Reset on error
         showErrorInContainer(
-            errorContainer,
             "You've hit an error",
             error.message || 'There was an error authenticating your token',
             "/login",
             "Go to login"
         );
-        loadingContainer.classList.add('hidden');
-        errorContainer.classList.remove('hidden');
     }
 }
 

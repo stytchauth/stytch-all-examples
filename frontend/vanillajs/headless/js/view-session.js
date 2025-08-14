@@ -1,5 +1,5 @@
 import { stytch } from './stytch-client.js';
-import { showErrorInContainer } from './error-box.js';
+import { showErrorInContainer } from './errors.js';
 
 // DOM elements
 const loadingContainer = document.getElementById('loading-container');
@@ -62,7 +62,6 @@ function loadSessionData() {
     } else {
         // Show error for missing session data
         showErrorInContainer(
-            loadingContainer,
             "No session data found",
             "Unable to load session data from the SDK. Please ensure you are logged in and have a valid session.",
             "/",

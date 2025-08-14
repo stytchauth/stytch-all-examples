@@ -1,5 +1,5 @@
 import { stytch } from './stytch-client.js';
-import { createErrorBox } from './error-box.js';
+import { showErrorInContainer, hideErrorContainer } from './errors.js';
 
 // DOM elements
 const emailForm = document.getElementById('email-form');
@@ -80,13 +80,10 @@ function setApiError(error) {
 }
 
 function updateErrorDisplay() {
-    // Clear the error container
-    errorContainer.innerHTML = '';
-    
-    // Add new error display if there's an error
     if (apiError) {
-        const errorBox = createErrorBox("You've hit an API error", apiError);
-        errorContainer.appendChild(errorBox);
+        showErrorInContainer("You've hit an API error", apiError);
+    } else {
+        hideErrorContainer();
     }
 }
 

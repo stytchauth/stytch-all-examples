@@ -1,5 +1,5 @@
 import { stytch } from './stytch-client.js';
-import { showErrorInContainer, showToastError } from './error-box.js';
+import { showErrorInContainer } from './errors.js';
 
 // DOM elements
 const loadingContainer = document.getElementById('loading-container');
@@ -51,7 +51,6 @@ async function loadOrganizations() {
     } catch (error) {
         console.error('Error loading organizations:', error);
         showErrorInContainer(
-            loadingContainer,
             "Unable to load organizations",
             error.message,
             "/login",
@@ -133,7 +132,7 @@ async function selectOrganization(orgId) {
         }
             } catch (error) {
             console.error('Error selecting organization:', error);
-            showToastError("Failed to select organization", error.message);
+            showErrorInContainer("There was an error", error.message, "/login", "Go to login");
         }
 }
 
@@ -167,7 +166,7 @@ async function handleCreateOrg(event) {
         }
             } catch (error) {
             console.error('Error creating organization:', error);
-            showToastError("Failed to create organization", error.message);
+            showErrorInContainer("There was an error", error.message, "/login", "Go to login");
         }
 }
 
