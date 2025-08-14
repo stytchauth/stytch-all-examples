@@ -8,7 +8,8 @@ interface B2BSessionCardProps {
   memberId: string;
   organizationName: string;
   sessionTokens: SessionTokens;
-  handleSwitchOrgs: () => void;
+  // optional, because in prebuilt we don't support this (yet)
+  handleSwitchOrgs?: () => void;
   handleLogout: () => void;
 }
 
@@ -67,13 +68,15 @@ export function B2BSessionCard({
           >
             View Token
           </Button>
-          <Button
-            variant="outline"
-            className="text-sm"
-            onClick={handleSwitchOrgs}
-          >
-            Switch Orgs
-          </Button>
+          {handleSwitchOrgs && (
+            <Button
+              variant="outline"
+              className="text-sm"
+              onClick={handleSwitchOrgs}
+            >
+              Switch Orgs
+            </Button>
+          )}
           <Button className="text-sm" onClick={handleLogout}>
             Logout
           </Button>
