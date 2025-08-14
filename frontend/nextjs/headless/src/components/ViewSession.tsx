@@ -5,8 +5,8 @@ import {
   B2BSessionTextBox,
   ErrorBox,
   LoadingSpinner,
-  Page,
   SessionTokens,
+  SplitPage,
 } from "@stytch-all-examples/internal";
 import {
   useStytchB2BClient,
@@ -25,6 +25,7 @@ export function ViewSession() {
   const [sessionTokens, setSessionTokens] = useState<SessionTokens | null>(
     null
   );
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -38,8 +39,21 @@ export function ViewSession() {
     return <LoadingSpinner />;
   }
 
+  const handleSwitchOrgs = () => {
+    router.push("/organizations");
+  };
+
+  const handleLogout = async () => {
+    try {
+      await stytch.session.revoke();
+      router.push("/");
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
+
   return (
-    <Page
+    <SplitPage
       leftSide={<B2BSessionTextBox links={SESSION_LINKS} />}
       rightSide={
         <B2BSessionCard
@@ -52,22 +66,18 @@ export function ViewSession() {
               session_jwt: "",
             }
           }
-          handleSwitchOrgs={() => {
-            router.push("/organizations");
-          }}
-          handleLogout={() => {
-            stytch.session.revoke();
-            router.push("/");
-          }}
+          handleSwitchOrgs={handleSwitchOrgs}
+          handleLogout={handleLogout}
         />
       }
       error={
-        !sessionTokens && (
+        (!sessionTokens && (
           <ErrorBox
             title="No session tokens found"
             error="Unable to load session tokens from the SDK. Please ensure you are logged in and have a session."
           />
-        )
+        )) ||
+        (error && <ErrorBox title="There was an error" error={error} />)
       }
     />
   );

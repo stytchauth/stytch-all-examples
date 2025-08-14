@@ -18,7 +18,8 @@ export { ErrorBox } from "../components/ui/error-box";
 export { Link } from "../components/ui/link";
 export { List } from "../components/ui/list";
 export { LoadingSpinner } from "../components/ui/loading-spinner";
-export { default as Page } from "../components/ui/page";
+export { Page } from "../components/ui/page";
+export { SplitPage } from "../components/ui/split-page";
 export { TextBox } from "../components/ui/text-box";
 export { Typography } from "../components/ui/typography";
 

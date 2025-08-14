@@ -6,7 +6,7 @@ import {
   OrgCreateTextBox,
   OrgDiscoveryCard,
   OrgsTextBox,
-  Page,
+  SplitPage,
 } from "@stytch-all-examples/internal";
 import { useStytchB2BClient, useStytchMemberSession } from "@stytch/nextjs/b2b";
 import { useRouter } from "next/navigation";
@@ -91,7 +91,7 @@ export const Organizations = () => {
   }
 
   return (
-    <Page
+    <SplitPage
       leftSide={creatingOrg ? <OrgCreateTextBox /> : <OrgsTextBox />}
       rightSide={
         <div className="flex-1">

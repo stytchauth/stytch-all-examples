@@ -3,8 +3,8 @@ import {
   B2BSessionTextBox,
   ErrorBox,
   LoadingSpinner,
-  Page,
   SessionTokens,
+  SplitPage,
 } from "@stytch-all-examples/internal";
 import {
   useStytchB2BClient,
@@ -35,10 +35,9 @@ export function ViewSession() {
   if (!isMemberInitialized || !isOrganizationInitialized) {
     return <LoadingSpinner />;
   }
-  console.log(sessionTokens);
 
   return (
-    <Page
+    <SplitPage
       leftSide={<B2BSessionTextBox links={SESSION_LINKS} />}
       rightSide={
         <B2BSessionCard

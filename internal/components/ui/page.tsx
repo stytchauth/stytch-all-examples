@@ -1,12 +1,4 @@
-import React from "react";
-
-interface PageProps {
-  leftSide: React.ReactNode;
-  rightSide: React.ReactNode;
-  error?: React.ReactNode;
-}
-
-function Page({ leftSide, rightSide, error }: PageProps) {
+export function Page({ children }: { children: React.ReactNode }) {
   return (
     <div
       className="min-h-screen flex flex-1 items-center w-full overflow-x-auto"
@@ -18,16 +10,9 @@ function Page({ leftSide, rightSide, error }: PageProps) {
         backgroundRepeat: "repeat",
       }}
     >
-      <div className="min-w-[900px] w-full mx-auto">
-        <div className="flex flex-row items-center p-16 gap-8">
-          <div className="flex-1">{leftSide}</div>
-          <div className="flex-1 flex flex-col items-center p-16">
-            {error ?? rightSide}
-          </div>
-        </div>
+      <div className="min-w-[900px] w-full mx-auto flex flex-col items-center">
+        {children}
       </div>
     </div>
   );
 }
-
-export default Page;

@@ -4,7 +4,7 @@ import {
   OrgCreateTextBox,
   OrgDiscoveryCard,
   OrgsTextBox,
-  Page,
+  SplitPage,
 } from "@stytch-all-examples/internal";
 import { useStytchB2BClient, useStytchMemberSession } from "@stytch/react/b2b";
 import { useEffect, useState } from "react";
@@ -89,7 +89,7 @@ export function Organizations() {
   }
 
   return (
-    <Page
+    <SplitPage
       leftSide={creatingOrg ? <OrgCreateTextBox /> : <OrgsTextBox />}
       rightSide={
         <div className="flex-1">

@@ -2,8 +2,8 @@ import {
   ErrorBox,
   IntroTextBox,
   LoginForm,
-  Page,
   RedirectUrlTextBox,
+  SplitPage,
 } from "@stytch-all-examples/internal";
 import { useStytchB2BClient } from "@stytch/react/b2b";
 import { useState } from "react";
@@ -34,7 +34,7 @@ export function Login() {
   };
 
   return (
-    <Page
+    <SplitPage
       leftSide={sendingEmail ? <RedirectUrlTextBox /> : <IntroTextBox />}
       rightSide={
         <LoginForm
