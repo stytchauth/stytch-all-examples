@@ -18,13 +18,14 @@ export function SplitPage({ leftSide, rightSide, error }: SplitPageProps) {
         backgroundRepeat: "repeat",
       }}
     >
-      <div className="min-w-[900px] w-full mx-auto">
+      <div className="min-w-[900px] w-full mx-auto flex flex-col ">
         <div className="flex flex-row items-center p-16 gap-8">
           <div className="flex-1">{leftSide}</div>
           <div className="flex-1 flex flex-col items-center p-16">
-            {error ?? rightSide}
+            {rightSide}
           </div>
         </div>
+        {error && <div className="flex flex-col items-end p-16">{error}</div>}
       </div>
     </div>
   );
