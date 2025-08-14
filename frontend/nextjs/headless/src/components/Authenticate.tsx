@@ -60,12 +60,7 @@ export const Authenticate = () => {
   if (error) {
     return (
       <div className="flex justify-center items-center">
-        <ErrorBox
-          title="You've hit an error"
-          error={error}
-          redirectUrl="/login"
-          redirectText="Go to login"
-        />
+        <ErrorBox title="You've hit an error" error={error} />
       </div>
     );
   }

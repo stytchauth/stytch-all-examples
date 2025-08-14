@@ -4,24 +4,15 @@ import { Link } from "./link";
 interface ErrorBoxProps {
   title: string;
   error: string;
-  redirectUrl?: string;
-  redirectText?: string;
 }
 
-export function ErrorBox({
-  title,
-  error,
-  redirectUrl,
-  redirectText,
-}: ErrorBoxProps) {
+export function ErrorBox({ title, error }: ErrorBoxProps) {
   return (
     <Alert variant="destructive" className="max-w-md">
       <AlertTitle>{title}</AlertTitle>
       <AlertDescription>
         {error}
-        {redirectUrl && redirectText && (
-          <Link href={redirectUrl} text={redirectText} />
-        )}
+        <Link href="/" text="Return to home" />
       </AlertDescription>
     </Alert>
   );

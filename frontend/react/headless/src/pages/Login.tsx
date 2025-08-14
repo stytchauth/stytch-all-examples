@@ -2,6 +2,7 @@ import {
   ErrorBox,
   IntroTextBox,
   LoginForm,
+  Page,
   RedirectUrlTextBox,
 } from "@stytch-all-examples/internal";
 import { useStytchB2BClient } from "@stytch/react/b2b";
@@ -33,26 +34,22 @@ export function Login() {
   };
 
   return (
-    <div>
-      <div className="flex flex-row items-center p-16 gap-8">
-        <div className="flex-1">
-          {sendingEmail ? <RedirectUrlTextBox /> : <IntroTextBox />}
-        </div>
-        <div className="flex-1 flex flex-col items-center p-16">
-          <LoginForm
-            isSendingEmail={sendingEmail}
-            setIsSendingEmail={setSendingEmail}
-            onEmailLogin={handleEmailLogin}
-            onGoogleLogin={handleGoogleLogin}
-            showGoogleLogin={true}
-          />
-        </div>
-      </div>
-      {apiError && (
-        <div className="flex justify-center items-center">
+    <Page
+      leftSide={sendingEmail ? <RedirectUrlTextBox /> : <IntroTextBox />}
+      rightSide={
+        <LoginForm
+          isSendingEmail={sendingEmail}
+          setIsSendingEmail={setSendingEmail}
+          onEmailLogin={handleEmailLogin}
+          onGoogleLogin={handleGoogleLogin}
+          showGoogleLogin={true}
+        />
+      }
+      error={
+        apiError && (
           <ErrorBox title="You've hit an API error" error={apiError} />
-        </div>
-      )}
-    </div>
+        )
+      }
+    />
   );
 }

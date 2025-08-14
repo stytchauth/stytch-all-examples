@@ -6,6 +6,7 @@ import {
   OrgCreateTextBox,
   OrgDiscoveryCard,
   OrgsTextBox,
+  Page,
 } from "@stytch-all-examples/internal";
 import { useStytchB2BClient, useStytchMemberSession } from "@stytch/nextjs/b2b";
 import { useRouter } from "next/navigation";
@@ -90,32 +91,22 @@ export const Organizations = () => {
   }
 
   return (
-    <div className="flex flex-row items-center p-16 gap-8">
-      <div className="flex-1">
-        {creatingOrg ? <OrgCreateTextBox /> : <OrgsTextBox />}
-      </div>
-      <div className="flex-1 flex flex-col items-center p-16">
-        {error ? (
-          <ErrorBox
-            title="There was an error"
-            error={error}
-            redirectUrl="/login"
-            redirectText="Go to login"
+    <Page
+      leftSide={creatingOrg ? <OrgCreateTextBox /> : <OrgsTextBox />}
+      rightSide={
+        <div className="flex-1">
+          <OrgDiscoveryCard
+            orgs={orgs}
+            onOrgSelect={handleOrgSelect}
+            onCreateOrg={handleCreateOrg}
+            creatingOrg={creatingOrg}
+            setCreatingOrg={setCreatingOrg}
+            // create org is part of the discovery flow, so we only show it if the member doesn't have a session
+            showCreateOrg={!session}
           />
-        ) : (
-          <div className="flex-1">
-            <OrgDiscoveryCard
-              orgs={orgs}
-              onOrgSelect={handleOrgSelect}
-              onCreateOrg={handleCreateOrg}
-              creatingOrg={creatingOrg}
-              setCreatingOrg={setCreatingOrg}
-              // create org is part of the discovery flow, so we only show it if the member doesn't have a session
-              showCreateOrg={!session}
-            />
-          </div>
-        )}
-      </div>
-    </div>
+        </div>
+      }
+      error={error && <ErrorBox title="There was an error" error={error} />}
+    />
   );
 };
