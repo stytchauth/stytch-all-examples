@@ -1,4 +1,4 @@
-import { ErrorBox, LoadingSpinner } from "@stytch-all-examples/internal";
+import { ErrorBox, LoadingSpinner, Page } from "@stytch-all-examples/internal";
 import { useStytchB2BClient, useStytchMemberSession } from "@stytch/react/b2b";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -56,22 +56,13 @@ export function Authenticate() {
     }
   }, [session?.member_session_id]);
 
-  if (error) {
-    return (
-      <div className="flex justify-center items-center">
-        <ErrorBox
-          title="You've hit an error"
-          error={error}
-          redirectUrl="/login"
-          redirectText="Go to login"
-        />
-      </div>
-    );
-  }
-
   return (
-    <div className="flex justify-center items-center h-screen">
-      <LoadingSpinner />
-    </div>
+    <Page>
+      {error ? (
+        <ErrorBox title="You've hit an error" error={error} />
+      ) : (
+        <LoadingSpinner />
+      )}
+    </Page>
   );
 }

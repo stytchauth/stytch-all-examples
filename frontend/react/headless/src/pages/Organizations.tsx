@@ -4,6 +4,7 @@ import {
   OrgCreateTextBox,
   OrgDiscoveryCard,
   OrgsTextBox,
+  SplitPage,
 } from "@stytch-all-examples/internal";
 import { useStytchB2BClient, useStytchMemberSession } from "@stytch/react/b2b";
 import { useEffect, useState } from "react";
@@ -88,32 +89,20 @@ export function Organizations() {
   }
 
   return (
-    <div className="flex flex-row items-center p-16 gap-8">
-      <div className="flex-1">
-        {creatingOrg ? <OrgCreateTextBox /> : <OrgsTextBox />}
-      </div>
-      <div className="flex-1 flex flex-col items-center p-16">
-        {error ? (
-          <ErrorBox
-            title="There was an error"
-            error={error}
-            redirectUrl="/login"
-            redirectText="Go to login"
-          />
-        ) : (
-          <div className="flex-1">
-            <OrgDiscoveryCard
-              orgs={orgs}
-              onOrgSelect={handleOrgSelect}
-              onCreateOrg={handleCreateOrg}
-              creatingOrg={creatingOrg}
-              setCreatingOrg={setCreatingOrg}
-              // create org is part of the discovery flow, so we only show it if the member doesn't have a session
-              showCreateOrg={!session}
-            />
-          </div>
-        )}
-      </div>
-    </div>
+    <SplitPage
+      leftSide={creatingOrg ? <OrgCreateTextBox /> : <OrgsTextBox />}
+      rightSide={
+        <OrgDiscoveryCard
+          orgs={orgs}
+          onOrgSelect={handleOrgSelect}
+          onCreateOrg={handleCreateOrg}
+          creatingOrg={creatingOrg}
+          setCreatingOrg={setCreatingOrg}
+          // create org is part of the discovery flow, so we only show it if the member doesn't have a session
+          showCreateOrg={!session}
+        />
+      }
+      error={error && <ErrorBox title="There was an error" error={error} />}
+    />
   );
 }

@@ -6,6 +6,7 @@ import {
   ErrorBox,
   LoadingSpinner,
   SessionTokens,
+  SplitPage,
 } from "@stytch-all-examples/internal";
 import {
   useStytchB2BClient,
@@ -24,6 +25,7 @@ export function ViewSession() {
   const [sessionTokens, setSessionTokens] = useState<SessionTokens | null>(
     null
   );
+  const [error, setError] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -37,39 +39,46 @@ export function ViewSession() {
     return <LoadingSpinner />;
   }
 
-  if (!sessionTokens) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <ErrorBox
-          title="No session tokens found"
-          error="Unable to load session tokens from the SDK. Please ensure you are logged in and have a session."
-          redirectUrl="/login"
-          redirectText="Go to login"
-        />
-      </div>
-    );
-  }
+  const handleSwitchOrgs = () => {
+    router.push("/organizations");
+  };
+
+  const handleLogout = async () => {
+    try {
+      await stytch.session.revoke();
+      router.push("/");
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
 
   return (
-    <div className="flex flex-row items-center gap-8 p-16">
-      <div className="flex-1">
-        <B2BSessionTextBox links={SESSION_LINKS} />
-      </div>
-      <div className="flex-1 flex flex-col items-center">
+    <SplitPage
+      leftSide={<B2BSessionTextBox links={SESSION_LINKS} />}
+      rightSide={
         <B2BSessionCard
           email={member?.email_address ?? ""}
           memberId={member?.member_id ?? ""}
           organizationName={organization?.organization_name ?? ""}
-          sessionTokens={sessionTokens}
-          handleSwitchOrgs={() => {
-            router.push("/organizations");
-          }}
-          handleLogout={() => {
-            stytch.session.revoke();
-            router.push("/");
-          }}
+          sessionTokens={
+            sessionTokens ?? {
+              session_token: "",
+              session_jwt: "",
+            }
+          }
+          handleSwitchOrgs={handleSwitchOrgs}
+          handleLogout={handleLogout}
         />
-      </div>
-    </div>
+      }
+      error={
+        (!sessionTokens && (
+          <ErrorBox
+            title="No session tokens found"
+            error="Unable to load session tokens from the SDK. Please ensure you are logged in and have a session."
+          />
+        )) ||
+        (error && <ErrorBox title="There was an error" error={error} />)
+      }
+    />
   );
 }
