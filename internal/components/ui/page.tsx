@@ -1,10 +1,4 @@
-import React from "react";
-
-interface PageProps {
-  children: React.ReactNode;
-}
-
-function Page({ children }: PageProps) {
+export function Page({ children }: { children: React.ReactNode }) {
   return (
     <div
       className="min-h-screen flex flex-1 items-center w-full overflow-x-auto"
@@ -16,9 +10,9 @@ function Page({ children }: PageProps) {
         backgroundRepeat: "repeat",
       }}
     >
-      <div className="min-w-[900px] w-full mx-auto">{children}</div>
+      <div className="min-w-[900px] w-full mx-auto flex flex-col items-center">
+        {children}
+      </div>
     </div>
   );
 }
-
-export default Page;
