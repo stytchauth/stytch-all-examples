@@ -5,6 +5,7 @@
     "internal",
     "frontend",
     "frontend/react/headless",
+    "frontend/react/prebuilt",
     "frontend/nextjs/headless",
     "backend"
   ],

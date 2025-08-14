@@ -1,0 +1,8 @@
+export const SESSION_LINKS = {
+  exchangeSessions:
+    "https://stytch.com/docs/b2b/sdks/session-management/exchange-session",
+  revoke:
+    "https://stytch.com/docs/b2b/sdks/session-management/revoke-sessions-for-member",
+  authenticate:
+    "https://stytch.com/docs/b2b/sdks/session-management/authenticate-session",
+};
