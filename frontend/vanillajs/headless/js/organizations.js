@@ -1,9 +1,9 @@
 import { stytch } from './stytch-client.js';
+import { showErrorInContainer, showToastError } from './error-box.js';
 
 // DOM elements
 const loadingContainer = document.getElementById('loading-container');
 const errorContainer = document.getElementById('error-container');
-const errorMessage = document.getElementById('error-message');
 const mainContainer = document.getElementById('main-container');
 const orgsList = document.getElementById('orgs-list');
 const createOrgBtn = document.getElementById('create-org-btn');
@@ -50,7 +50,13 @@ async function loadOrganizations() {
         }
     } catch (error) {
         console.error('Error loading organizations:', error);
-        showError('Unable to load organizations: ' + error.message);
+        showErrorInContainer(
+            loadingContainer,
+            "Unable to load organizations",
+            error.message,
+            "/login",
+            "Go to login"
+        );
     }
 }
 
@@ -125,10 +131,10 @@ async function selectOrganization(orgId) {
         } else {
             throw new Error(`Failed to select organization: ${response.status_code}`);
         }
-    } catch (error) {
-        console.error('Error selecting organization:', error);
-        alert('Failed to select organization. Please try again.');
-    }
+            } catch (error) {
+            console.error('Error selecting organization:', error);
+            showToastError("Failed to select organization", error.message);
+        }
 }
 
 function showCreateOrgForm() {
@@ -159,10 +165,10 @@ async function handleCreateOrg(event) {
         } else {
             throw new Error(`Failed to create organization: ${response.status_code}`);
         }
-    } catch (error) {
-        console.error('Error creating organization:', error);
-        alert('Failed to create organization. Please try again.');
-    }
+            } catch (error) {
+            console.error('Error creating organization:', error);
+            showToastError("Failed to create organization", error.message);
+        }
 }
 
 function updateUI() {
@@ -198,11 +204,7 @@ function showMainContent() {
     mainContainer.classList.remove('hidden');
 }
 
-function showError(message) {
-    loadingContainer.classList.add('hidden');
-    errorContainer.classList.remove('hidden');
-    errorMessage.textContent = message;
-}
+// Remove the old showError function since we're using showErrorInContainer now
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', init);

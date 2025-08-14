@@ -131,6 +131,19 @@ body {
   background-color: var(--color-page);
 }
 
+/* Width utilities */
+.w-sm {
+  width: 24rem; /* 384px */
+}
+
+.w-lg {
+  width: 32rem; /* 512px */
+}
+
+.max-w-md {
+  max-width: 28rem; /* 448px */
+}
+
 /* Typography utility classes */
 .font-default {
   font-family: "Booton", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;

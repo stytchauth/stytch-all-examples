@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Stytch B2B Headless - Authenticate</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script type="module" src="https://www.unpkg.com/@stytch/vanilla-js@5.29.1/dist/b2b/index.headless.esm.js"></script>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
-<body>
+    <script
+      type="module"
+      src="https://www.unpkg.com/@stytch/vanilla-js@5.29.1/dist/b2b/index.headless.esm.js"
+    ></script>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
     <div class="page-container">
-        <div class="page-content">
-            <div id="loading-container" class="flex justify-center items-center h-screen">
-        <div class="flex flex-col items-center gap-4">
-            <div class="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+      <div class="page-content">
+        <div
+          id="loading-container"
+          class="flex justify-center items-center h-screen"
+        >
+          <div class="flex flex-col items-center gap-4">
+            <div
+              class="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"
+            ></div>
             <p class="text-gray-600">Authenticating...</p>
+          </div>
         </div>
-    </div>
 
-            <div id="error-container" class="hidden flex justify-center items-center h-screen">
-        <div class="flex flex-col gap-4 min-w-md max-w-2xl">
-            <h1 class="text-2xl font-bold pb-4 tracking-wide">There was an error authenticating your magic link token</h1>
-            <div id="error-message" class="text-sm text-gray-600"></div>
-            </div>
+        <div
+          id="error-container"
+          class="hidden flex justify-center items-center"
+        >
+          <!-- ErrorBox will be dynamically inserted here -->
         </div>
+      </div>
     </div>
-    
-          <script type="module" src="js/authenticate.js"></script>
-</body>
+    <script type="module" src="js/authenticate.js"></script>
+  </body>
 </html>

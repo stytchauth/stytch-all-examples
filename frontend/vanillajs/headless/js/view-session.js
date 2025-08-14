@@ -1,4 +1,5 @@
 import { stytch } from './stytch-client.js';
+import { showErrorInContainer } from './error-box.js';
 
 // DOM elements
 const loadingContainer = document.getElementById('loading-container');
@@ -9,6 +10,17 @@ const orgNameDisplay = document.getElementById('org-name-display');
 const viewTokenBtn = document.getElementById('view-token-btn');
 const switchOrgsBtn = document.getElementById('switch-orgs-btn');
 const logoutBtn = document.getElementById('logout-btn');
+
+// Session tokens card elements
+const mainCard = document.getElementById('main-card');
+const sessionTokensCard = document.getElementById('session-tokens-card');
+const sessionTokenDisplay = document.getElementById('session-token-display');
+const jwtDisplay = document.getElementById('jwt-display');
+const copyJwtBtn = document.getElementById('copy-jwt-btn');
+const launchJwtDecoderBtn = document.getElementById('launch-jwt-decoder-btn');
+const backToSessionBtn = document.getElementById('back-to-session-btn');
+
+let sessionTokens = null;
 
 // Initialize the page
 function init() {
@@ -26,14 +38,19 @@ function setupEventListeners() {
     });
     
     logoutBtn.addEventListener('click', handleLogout);
+    
+    // Session tokens card event listeners
+    copyJwtBtn.addEventListener('click', handleCopyJwt);
+    launchJwtDecoderBtn.addEventListener('click', handleLaunchJwtDecoder);
+    backToSessionBtn.addEventListener('click', handleBackToSession);
 }
 
 function loadSessionData() {
     const member = stytch.member.getSync();
     const organization = stytch.organization.getSync();
-    const tokens = stytch.session.getTokens();
+    sessionTokens = stytch.session.getTokens();
     
-    if (member && organization && tokens) {
+    if (member && organization && sessionTokens) {
         // Display session information
         emailDisplay.textContent = member.email_address || 'N/A';
         memberIdDisplay.textContent = member.member_id || 'N/A';
@@ -43,14 +60,43 @@ function loadSessionData() {
         loadingContainer.classList.add('hidden');
         mainContainer.classList.remove('hidden');
     } else {
-        // Session data not available, redirect to login
-        window.location.href = '/';
+        // Show error for missing session data
+        showErrorInContainer(
+            loadingContainer,
+            "No session data found",
+            "Unable to load session data from the SDK. Please ensure you are logged in and have a valid session.",
+            "/",
+            "Go to login"
+        );
     }
 }
 
 function handleViewToken() {
-    const tokens = stytch.session.getTokens();
-    console.log(tokens.session_token);
+    if (sessionTokens) {
+        // Populate the session tokens card
+        sessionTokenDisplay.textContent = sessionTokens.session_token;
+        jwtDisplay.textContent = sessionTokens.session_jwt.substring(0, 300) + '...';
+        
+        // Show the session tokens card
+        mainCard.classList.add('hidden');
+        sessionTokensCard.classList.remove('hidden');
+    }
+}
+
+function handleCopyJwt() {
+    if (sessionTokens) {
+        navigator.clipboard.writeText(sessionTokens.session_jwt);
+    }
+}
+
+function handleLaunchJwtDecoder() {
+    window.open('https://jwts.dev');
+}
+
+function handleBackToSession() {
+    // Hide the session tokens card and show the main card
+    sessionTokensCard.classList.add('hidden');
+    mainCard.classList.remove('hidden');
 }
 
 async function handleLogout() {

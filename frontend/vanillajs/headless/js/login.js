@@ -1,4 +1,5 @@
 import { stytch } from './stytch-client.js';
+import { createErrorBox } from './error-box.js';
 
 // DOM elements
 const emailForm = document.getElementById('email-form');
@@ -10,9 +11,12 @@ const introTextBox = document.getElementById('intro-text-box');
 const redirectUrlTextBox = document.getElementById('redirect-url-text-box');
 const resendBtn = document.getElementById('resend-btn');
 const changeEmailBtn = document.getElementById('change-email-btn');
+const googleLoginBtn = document.getElementById('google-login-btn');
+const errorContainer = document.getElementById('error-container');
 
 let currentEmail = '';
 let isSendingEmail = false;
+let apiError = null;
 
 // Initialize the page
 function init() {
@@ -27,6 +31,11 @@ function setupEventListeners() {
     // Magic link sent buttons
     resendBtn.addEventListener('click', () => handleEmailLogin(currentEmail));
     changeEmailBtn.addEventListener('click', showLoginForm);
+    
+    // Google login button
+    if (googleLoginBtn) {
+        googleLoginBtn.addEventListener('click', handleGoogleLogin);
+    }
 }
 
 async function handleEmailLogin(email) {
@@ -43,19 +52,41 @@ async function handleEmailLogin(email) {
     }
     
     try {
-        const response = await stytch.magicLinks.email.discovery.send({
+        await stytch.magicLinks.email.discovery.send({
             email_address: currentEmail,
-            discovery_redirect_url: "http://localhost:3000/authenticate",
         });
         
-        if (response.status_code === 200) {
-            showMagicLinkSent();
-        } else {
-            throw new Error(`Failed to send magic link: ${response.status_code}`);
-        }
+        setApiError(null);
+        showMagicLinkSent();
     } catch (error) {
         console.error('Error sending magic link:', error);
-        alert('Failed to send magic link. Please try again.');
+        setApiError(error.message);
+    }
+}
+
+async function handleGoogleLogin() {
+    try {
+        await stytch.oauth.google.discovery.start({});
+        setApiError(null);
+    } catch (error) {
+        console.error('Error starting Google OAuth:', error);
+        setApiError(error.message);
+    }
+}
+
+function setApiError(error) {
+    apiError = error;
+    updateErrorDisplay();
+}
+
+function updateErrorDisplay() {
+    // Clear the error container
+    errorContainer.innerHTML = '';
+    
+    // Add new error display if there's an error
+    if (apiError) {
+        const errorBox = createErrorBox("You've hit an API error", apiError);
+        errorContainer.appendChild(errorBox);
     }
 }
 

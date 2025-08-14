@@ -1,9 +1,11 @@
 import { stytch } from './stytch-client.js';
+import { showErrorInContainer } from './error-box.js';
 
 // DOM elements
 const loadingContainer = document.getElementById('loading-container');
 const errorContainer = document.getElementById('error-container');
-const errorMessage = document.getElementById('error-message');
+
+let isAuthenticating = false;
 
 // Initialize the page
 function init() {
@@ -12,36 +14,59 @@ function init() {
 }
 
 async function authenticateToken() {
-    // Get the token from the URL
+    // Get the token and token type from the URL
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
+    const tokenType = urlParams.get('stytch_token_type');
 
-    if (!token) {
-        showError('No authentication token found in URL');
+    if (!token || !tokenType) {
+        showErrorInContainer(
+            errorContainer,
+            "You've hit an error",
+            "There is no token found in the URL. This likely means you didn't go through the login flow.",
+            "/login",
+            "Go to login"
+        );
+        loadingContainer.classList.add('hidden');
+        errorContainer.classList.remove('hidden');
         return;
     }
 
+    if (isAuthenticating) {
+        // if already authenticating, don't do anything
+        return;
+    }
+
+    isAuthenticating = true;
+
     try {
-        const response = await stytch.magicLinks.discovery.authenticate({
-            discovery_magic_links_token: token,
-        });
-        
-        if (response.status_code === 200) {
-            // Authentication successful, redirect to organizations
-            window.location.href = '/organizations';
+        if (tokenType === "discovery_oauth") {
+            await stytch.oauth.discovery.authenticate({
+                discovery_oauth_token: token,
+            });
+        } else if (tokenType === "magic") {
+            await stytch.magicLinks.discovery.authenticate({
+                discovery_magic_links_token: token,
+            });
         } else {
-            throw new Error(`Authentication failed: ${response.status_code}`);
+            throw new Error("The token type found in the URL is not supported for this example app.");
         }
+        
+        // Authentication successful, redirect to organizations
+        window.location.href = '/organizations';
     } catch (error) {
         console.error('Authentication error:', error);
-        showError(error.message || 'There was an error authenticating your magic link token');
+        isAuthenticating = false; // Reset on error
+        showErrorInContainer(
+            errorContainer,
+            "You've hit an error",
+            error.message || 'There was an error authenticating your token',
+            "/login",
+            "Go to login"
+        );
+        loadingContainer.classList.add('hidden');
+        errorContainer.classList.remove('hidden');
     }
-}
-
-function showError(message) {
-    loadingContainer.classList.add('hidden');
-    errorContainer.classList.remove('hidden');
-    errorMessage.textContent = message;
 }
 
 // Initialize when DOM is loaded
