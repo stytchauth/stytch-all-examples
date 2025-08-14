@@ -41,9 +41,9 @@ export function ViewSession() {
       leftSide={<B2BSessionTextBox links={SESSION_LINKS} />}
       rightSide={
         <B2BSessionCard
-          email={member.email_address}
-          memberId={member.member_id}
-          organizationName={organization.organization_name}
+          email={member?.email_address || ""}
+          memberId={member?.member_id || ""}
+          organizationName={organization?.organization_name || ""}
           sessionTokens={sessionTokens}
           handleSwitchOrgs={() => {
             navigate("/organizations");

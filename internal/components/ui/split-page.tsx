@@ -22,10 +22,16 @@ export function SplitPage({ leftSide, rightSide, error }: SplitPageProps) {
         <div className="flex flex-row items-center p-16 gap-8">
           <div className="flex-1">{leftSide}</div>
           <div className="flex-1 flex flex-col items-center p-16">
-            {rightSide}
+            <div className="relative">
+              {rightSide}
+              {error && (
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4">
+                  {error}
+                </div>
+              )}
+            </div>
           </div>
         </div>
-        {error && <div className="flex flex-col items-end p-16">{error}</div>}
       </div>
     </div>
   );

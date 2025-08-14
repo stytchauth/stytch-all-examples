@@ -8,7 +8,7 @@ interface ErrorBoxProps {
 
 export function ErrorBox({ title, error }: ErrorBoxProps) {
   return (
-    <Alert variant="destructive" className="max-w-md">
+    <Alert variant="destructive" className="max-w-lg min-w-md">
       <AlertTitle>{title}</AlertTitle>
       <AlertDescription>
         {error}
