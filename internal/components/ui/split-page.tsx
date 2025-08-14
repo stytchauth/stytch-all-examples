@@ -18,14 +18,14 @@ export function SplitPage({ leftSide, rightSide, error }: SplitPageProps) {
         backgroundRepeat: "repeat",
       }}
     >
-      <div className="min-w-[900px] w-full mx-auto flex flex-col ">
-        <div className="flex flex-row items-center p-16 gap-8">
+      <div className="min-w-md w-full mx-auto flex flex-col">
+        <div className="flex flex-col lg:flex-row lg:items-center p-4 lg:p-16 gap-4 lg:gap-8">
           <div className="flex-1">{leftSide}</div>
-          <div className="flex-1 flex flex-col items-center p-16">
+          <div className="flex-1 flex flex-col items-center p-4 lg:p-16">
             <div className="relative">
               {rightSide}
               {error && (
-                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-6">
                   {error}
                 </div>
               )}
