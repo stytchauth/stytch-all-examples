@@ -1,5 +1,6 @@
 import { LoadingSpinner } from "@stytch-all-examples/internal";
 import { useState } from "react";
+import { ExampleAppHeader } from "../example-app-header";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
@@ -7,9 +8,11 @@ import { Input } from "../ui/input";
 export function OrgCreateCard({
   onCreateOrg,
   setCreatingOrg,
+  appType,
 }: {
   onCreateOrg: (orgName: string) => Promise<void>;
   setCreatingOrg: (creatingOrg: boolean) => void;
+  appType: "headless" | "prebuilt";
 }) {
   const [orgName, setOrgName] = useState("");
   const [submittingOrgCreate, setSubmittingOrgCreate] = useState(false);
@@ -25,8 +28,9 @@ export function OrgCreateCard({
   };
 
   return (
-    <Card>
-      <CardHeader>
+    <Card className={`w-sm ${appType === "prebuilt" ? "border-dashed" : ""}`}>
+      <CardHeader className="items-center flex flex-col gap-8">
+        <ExampleAppHeader />
         <CardTitle>New organization</CardTitle>
       </CardHeader>
       <CardContent>

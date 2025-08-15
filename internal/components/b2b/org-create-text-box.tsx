@@ -9,7 +9,11 @@ import {
   SESSION_OVERVIEW_URL,
 } from "@stytch-all-examples/internal/lib/constants";
 
-export function OrgCreateTextBox({ type }: { type: "headless" | "prebuilt" }) {
+export function OrgCreateTextBox({
+  appType,
+}: {
+  appType: "headless" | "prebuilt";
+}) {
   const headlessParagraphs = [
     <Typography variant="body1">
       You may want to build a Discovery sign-up and login flow in your own app.{" "}
@@ -58,7 +62,7 @@ export function OrgCreateTextBox({ type }: { type: "headless" | "prebuilt" }) {
       className="max-w-2xl"
       title="Creating an organization results in a fully authenticated session. "
     >
-      {type === "headless" ? headlessParagraphs : prebuiltParagraphs}
+      {appType === "headless" ? headlessParagraphs : prebuiltParagraphs}
 
       <AdditionalResources
         links={[

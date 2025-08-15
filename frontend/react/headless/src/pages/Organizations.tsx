@@ -92,13 +92,14 @@ export function Organizations() {
   return (
     <SplitPage
       leftSide={
-        creatingOrg ? <OrgCreateTextBox type="headless" /> : <OrgsTextBox />
+        creatingOrg ? <OrgCreateTextBox appType="headless" /> : <OrgsTextBox />
       }
       rightSide={
         creatingOrg ? (
           <OrgCreateCard
             onCreateOrg={handleCreateOrg}
             setCreatingOrg={setCreatingOrg}
+            appType="headless"
           />
         ) : (
           <OrgDiscoveryCard
