@@ -2,7 +2,7 @@
 
 import {
   ErrorBox,
-  IntroTextBox,
+  HeadlessIntroTextBox,
   LoginForm,
   RedirectUrlTextBox,
   SplitPage,
@@ -39,7 +39,9 @@ export const Login = () => {
 
   return (
     <SplitPage
-      leftSide={sendingEmail ? <RedirectUrlTextBox /> : <IntroTextBox />}
+      leftSide={
+        sendingEmail ? <RedirectUrlTextBox /> : <HeadlessIntroTextBox />
+      }
       rightSide={
         <LoginForm
           isSendingEmail={sendingEmail}

@@ -8,14 +8,18 @@ import {
 import {
   DISCOVERY_EMAIL_MAGIC_LINK_URL,
   DISCOVERY_OAUTH_LOGIN_URL,
-  HEADLESS_LIST_ITEMS,
+  INTRO_CALLOUT_ALERT_TITLE,
+  INTRO_TITLE,
 } from "@stytch-all-examples/internal/lib/constants";
 
-export const INTRO_TITLE = "Hello World 👋";
-export const CALLOUT_ALERT_TITLE =
-  "Get Started to see the life cycle of a Stytch session 👉";
+const HEADLESS_LIST_ITEMS = [
+  "Your end users log into your app using your own frontend authentication flow.",
+  "Your app utilizes the Stytch SDK to call the Stytch API.",
+  "Stytch API processes the request and returns a response to your frontend.",
+  "The SDK automatically manages the session upon successful authentication.",
+];
 
-export function IntroTextBox() {
+export function HeadlessIntroTextBox() {
   return (
     <TextBox className="max-w-2xl" title={INTRO_TITLE}>
       <Typography variant="body1">
@@ -25,7 +29,7 @@ export function IntroTextBox() {
       </Typography>
       <List className="text-body1" items={HEADLESS_LIST_ITEMS} />
       <CalloutAlert
-        title={CALLOUT_ALERT_TITLE}
+        title={INTRO_CALLOUT_ALERT_TITLE}
         description={
           <Typography variant="body1">
             Log in with email to{" "}

@@ -20,10 +20,10 @@ export const DISCOVERY_OAUTH_LOGIN_URL =
 export const DISCOVERY_EML_AUTHENTICATE_URL =
   "https://stytch.com/docs/b2b/sdks/email-magic-links/authenticate-discovery-magic-link";
 
+export const MAGIC_LINKS_OVERVIEW_URL =
+  "https://stytch.com/docs/b2b/guides/magic-links/overview";
+
 // Text
-export const HEADLESS_LIST_ITEMS = [
-  "Your end users log into your app using your own frontend authentication flow.",
-  "Your app utilizes the Stytch SDK to call the Stytch API.",
-  "Stytch API processes the request and returns a response to your frontend.",
-  "The SDK automatically manages the session upon successful authentication.",
-];
+export const INTRO_TITLE = "Hello World 👋";
+export const INTRO_CALLOUT_ALERT_TITLE =
+  "Get Started to see the life cycle of a Stytch session 👉";

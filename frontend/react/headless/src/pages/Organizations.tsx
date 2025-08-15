@@ -1,6 +1,7 @@
 import {
   ErrorBox,
   LoadingSpinner,
+  OrgCreateCard,
   OrgCreateTextBox,
   OrgDiscoveryCard,
   OrgsTextBox,
@@ -90,17 +91,24 @@ export function Organizations() {
 
   return (
     <SplitPage
-      leftSide={creatingOrg ? <OrgCreateTextBox /> : <OrgsTextBox />}
+      leftSide={
+        creatingOrg ? <OrgCreateTextBox type="headless" /> : <OrgsTextBox />
+      }
       rightSide={
-        <OrgDiscoveryCard
-          orgs={orgs}
-          onOrgSelect={handleOrgSelect}
-          onCreateOrg={handleCreateOrg}
-          creatingOrg={creatingOrg}
-          setCreatingOrg={setCreatingOrg}
-          // create org is part of the discovery flow, so we only show it if the member doesn't have a session
-          showCreateOrg={!session}
-        />
+        creatingOrg ? (
+          <OrgCreateCard
+            onCreateOrg={handleCreateOrg}
+            setCreatingOrg={setCreatingOrg}
+          />
+        ) : (
+          <OrgDiscoveryCard
+            orgs={orgs}
+            onOrgSelect={handleOrgSelect}
+            setCreatingOrg={setCreatingOrg}
+            // create org is part of the discovery flow, so we only show it if the member doesn't have a session
+            showCreateOrg={!session}
+          />
+        )
       }
       error={error && <ErrorBox title="There was an error" error={error} />}
     />

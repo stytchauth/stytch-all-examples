@@ -24,13 +24,11 @@ export function B2BSessionTextBox({ links }: { links: LinkMap }) {
         Sessions are stored as{" "}
         <Link
           href="https://stytch.com/docs/b2b/guides/sessions/resources/using-jwts"
-          className="font-bold"
           text="JWTs"
         />{" "}
         or{" "}
         <Link
           href="https://stytch.com/docs/b2b/guides/sessions/resources/jwts-vs-tokens"
-          className="font-bold"
           text="session tokens"
         />{" "}
         in browser storage and let you authenticate and authorize requests
@@ -39,23 +37,13 @@ export function B2BSessionTextBox({ links }: { links: LinkMap }) {
       <List
         items={[
           <Typography variant="body1">
-            Use{" "}
-            <Link
-              href={links.exchangeSessions}
-              className="font-bold"
-              text="Exchange Sessions"
-            />{" "}
+            Use <Link href={links.exchangeSessions} text="Exchange Sessions" />{" "}
             to let Members switch between their Organizations without having to
             re-login.
           </Typography>,
           <Typography variant="body1">
             Extend a Member’s session duration with{" "}
-            <Link
-              href={links.authenticate}
-              className="font-bold"
-              text="Authenticate"
-            />
-            .
+            <Link href={links.authenticate} text="Authenticate" />.
           </Typography>,
           <Typography variant="body1">
             <Link href={links.revoke} className="font-bold" text="Revoke" /> a
