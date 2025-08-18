@@ -1,3 +1,4 @@
+import { CalloutAlert } from "../callout-alert";
 import { AdditionalResources } from "../shared/additional-resources";
 import { Link } from "../ui/link";
 import { List } from "../ui/list";
@@ -8,6 +9,8 @@ export type LinkMap = {
   exchangeSessions: string;
   authenticate: string;
   revoke: string;
+  oauth: string;
+  oauthCode: string;
 };
 
 export function B2BSessionTextBox({ links }: { links: LinkMap }) {
@@ -66,6 +69,20 @@ export function B2BSessionTextBox({ links }: { links: LinkMap }) {
             text: "JWTs vs session tokens",
           },
         ]}
+      />
+      <CalloutAlert
+        title="Next steps"
+        description={
+          <Typography variant="body1">
+            Try adding <Link href={links.oauth} text="OAuth" /> to your example
+            app by{" "}
+            <Link
+              href={links.oauthCode}
+              text="uncommenting the included code"
+            />
+            .
+          </Typography>
+        }
       />
     </TextBox>
   );

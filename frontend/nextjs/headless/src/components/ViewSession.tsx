@@ -68,6 +68,7 @@ export function ViewSession() {
           }
           handleSwitchOrgs={handleSwitchOrgs}
           handleLogout={handleLogout}
+          appType="headless"
         />
       }
       error={

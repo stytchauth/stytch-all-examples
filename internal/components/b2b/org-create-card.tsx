@@ -28,7 +28,13 @@ export function OrgCreateCard({
   };
 
   return (
-    <Card className={`w-sm ${appType === "prebuilt" ? "border-dashed" : ""}`}>
+    <Card
+      className={`w-sm ${
+        appType === "prebuilt"
+          ? "border-dashed border-3 bg-transparent shadow-none"
+          : ""
+      }`}
+    >
       <CardHeader className="items-center flex flex-col gap-8">
         <ExampleAppHeader />
         <CardTitle>New organization</CardTitle>

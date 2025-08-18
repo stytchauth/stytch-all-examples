@@ -49,6 +49,7 @@ export function ViewSession() {
             stytch.session.revoke();
             navigate("/");
           }}
+          appType="prebuilt"
         />
       }
       error={

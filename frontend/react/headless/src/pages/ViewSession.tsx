@@ -52,6 +52,7 @@ export function ViewSession() {
             stytch.session.revoke();
             navigate("/");
           }}
+          appType="headless"
         />
       }
       error={
