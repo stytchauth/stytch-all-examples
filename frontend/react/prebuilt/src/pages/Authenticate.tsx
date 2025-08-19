@@ -23,6 +23,7 @@ export function Authenticate() {
 
   const handleCreateOrg = async (orgName: string) => {
     await stytch.organization.update({ organization_name: orgName });
+    setCreatingOrg(false);
     navigate("/view-session");
   };
 
@@ -33,7 +34,7 @@ export function Authenticate() {
         rightSide={
           <OrgCreateCard
             onCreateOrg={handleCreateOrg}
-            setCreatingOrg={setCreatingOrg}
+            onCancel={() => setCreatingOrg(false)}
             appType="prebuilt"
           />
         }
@@ -44,7 +45,7 @@ export function Authenticate() {
   return (
     <SplitPage
       leftSide={<OrgsTextBox />}
-      rightSide={<LoginOrSignup setCreatingOrg={setCreatingOrg} />}
+      rightSide={<LoginOrSignup onCreateOrg={() => setCreatingOrg(true)} />}
     />
   );
 }

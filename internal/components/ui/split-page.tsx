@@ -1,4 +1,5 @@
 import React from "react";
+import { Toaster } from "./toaster";
 
 interface SplitPageProps {
   leftSide: React.ReactNode;
@@ -33,6 +34,7 @@ export function SplitPage({ leftSide, rightSide, error }: SplitPageProps) {
           </div>
         </div>
       </div>
+      <Toaster />
     </div>
   );
 }

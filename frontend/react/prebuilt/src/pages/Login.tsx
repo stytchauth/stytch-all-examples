@@ -1,5 +1,5 @@
 import {
-  PrebuiltIntroTextBox,
+  IntroTextBox,
   RedirectUrlTextBox,
   SplitPage,
 } from "@stytch-all-examples/internal";
@@ -8,14 +8,17 @@ import { LoginOrSignup } from "../components/LoginOrSignup";
 
 export function Login() {
   const [sendingEmail, setSendingEmail] = useState(false);
-  console.log("sendingEmail", sendingEmail);
 
   return (
     <SplitPage
       leftSide={
-        sendingEmail ? <RedirectUrlTextBox /> : <PrebuiltIntroTextBox />
+        sendingEmail ? (
+          <RedirectUrlTextBox />
+        ) : (
+          <IntroTextBox appType="prebuilt" />
+        )
       }
-      rightSide={<LoginOrSignup setSendingEmail={setSendingEmail} />}
+      rightSide={<LoginOrSignup onEmailSend={() => setSendingEmail(true)} />}
     />
   );
 }

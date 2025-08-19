@@ -22,6 +22,8 @@ export const DISCOVERY_EML_AUTHENTICATE_URL =
 
 export const MAGIC_LINKS_OVERVIEW_URL =
   "https://stytch.com/docs/b2b/guides/magic-links/overview";
+export const OAUTH_OVERVIEW_URL =
+  "https://stytch.com/docs/b2b/guides/oauth/overview";
 
 // Text
 export const INTRO_TITLE = "Hello World 👋";

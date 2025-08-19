@@ -1,3 +1,5 @@
+import { Toaster } from "./toaster";
+
 export function Page({ children }: { children: React.ReactNode }) {
   return (
     <div
@@ -13,6 +15,7 @@ export function Page({ children }: { children: React.ReactNode }) {
       <div className="min-w-[900px] w-full mx-auto flex flex-col items-center">
         {children}
       </div>
+      <Toaster />
     </div>
   );
 }

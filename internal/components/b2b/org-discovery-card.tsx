@@ -5,14 +5,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 export type OrgDiscoveryCardProps = {
   orgs: { id: string; name: string }[];
   onOrgSelect: (orgId: string) => Promise<void>;
-  setCreatingOrg: (creatingOrg: boolean) => void;
+  onClickCreateOrg: () => void;
   showCreateOrg: boolean;
 };
 
 export function OrgDiscoveryCard({
   orgs,
   onOrgSelect,
-  setCreatingOrg,
+  onClickCreateOrg,
   showCreateOrg,
 }: OrgDiscoveryCardProps) {
   return (
@@ -29,8 +29,8 @@ export function OrgDiscoveryCard({
         <ViewOrgsList
           orgs={orgs}
           onOrgSelect={onOrgSelect}
-          setCreatingOrg={setCreatingOrg}
           showCreateOrg={showCreateOrg}
+          onClickCreateOrg={onClickCreateOrg}
         />
       </CardContent>
     </Card>
@@ -40,12 +40,12 @@ export function OrgDiscoveryCard({
 function ViewOrgsList({
   orgs,
   onOrgSelect,
-  setCreatingOrg,
+  onClickCreateOrg,
   showCreateOrg,
 }: {
   orgs: { id: string; name: string }[];
   onOrgSelect: (orgId: string) => void;
-  setCreatingOrg: (creatingOrg: boolean) => void;
+  onClickCreateOrg: (creatingOrg: boolean) => void;
   showCreateOrg: boolean;
 }) {
   return (
@@ -66,7 +66,7 @@ function ViewOrgsList({
         <Button
           variant="outline"
           className="text-sm w-fit mx-auto"
-          onClick={() => setCreatingOrg(true)}
+          onClick={() => onClickCreateOrg(true)}
         >
           Create organization
         </Button>

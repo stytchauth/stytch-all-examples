@@ -1,6 +1,6 @@
 import {
   ErrorBox,
-  HeadlessIntroTextBox,
+  IntroTextBox,
   LoginForm,
   RedirectUrlTextBox,
   SplitPage,
@@ -36,7 +36,11 @@ export function Login() {
   return (
     <SplitPage
       leftSide={
-        sendingEmail ? <RedirectUrlTextBox /> : <HeadlessIntroTextBox />
+        sendingEmail ? (
+          <RedirectUrlTextBox />
+        ) : (
+          <IntroTextBox appType="headless" />
+        )
       }
       rightSide={
         <LoginForm

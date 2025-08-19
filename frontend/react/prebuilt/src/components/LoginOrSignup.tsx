@@ -2,11 +2,11 @@ import { StytchB2B } from "@stytch/react/b2b";
 import { AuthFlowType, B2BProducts, StytchEventType } from "@stytch/vanilla-js";
 
 export function LoginOrSignup({
-  setSendingEmail,
-  setCreatingOrg,
+  onEmailSend,
+  onCreateOrg,
 }: {
-  setSendingEmail?: (sendingEmail: boolean) => void;
-  setCreatingOrg?: (creatingOrg: boolean) => void;
+  onEmailSend?: () => void;
+  onCreateOrg?: () => void;
 }) {
   // To test OAuth, uncomment the oauthOptions the B2BProducts.oauth product type
   const config = {
@@ -28,16 +28,16 @@ export function LoginOrSignup({
       callbacks={{
         onEvent: (event) => {
           if (
-            setSendingEmail &&
+            onEmailSend &&
             event.type === StytchEventType.B2BMagicLinkEmailDiscoverySend
           ) {
-            setSendingEmail(true);
+            onEmailSend();
           }
           if (
-            setCreatingOrg &&
+            onCreateOrg &&
             event.type === StytchEventType.B2BDiscoveryOrganizationsCreate
           ) {
-            setCreatingOrg(true);
+            onCreateOrg();
           }
         },
       }}

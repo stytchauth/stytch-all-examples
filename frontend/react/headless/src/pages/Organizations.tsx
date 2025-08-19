@@ -50,6 +50,7 @@ export function Organizations() {
         sso_jit_provisioning: "ALL_ALLOWED",
         session_duration_minutes: 60,
       });
+      setCreatingOrg(false);
       // if the create is successful, navigate to the session page
       navigate("/view-session");
     } catch (error: any) {
@@ -98,14 +99,14 @@ export function Organizations() {
         creatingOrg ? (
           <OrgCreateCard
             onCreateOrg={handleCreateOrg}
-            setCreatingOrg={setCreatingOrg}
+            onCancel={() => setCreatingOrg(false)}
             appType="headless"
           />
         ) : (
           <OrgDiscoveryCard
             orgs={orgs}
             onOrgSelect={handleOrgSelect}
-            setCreatingOrg={setCreatingOrg}
+            onClickCreateOrg={() => setCreatingOrg(true)}
             // create org is part of the discovery flow, so we only show it if the member doesn't have a session
             showCreateOrg={!session}
           />

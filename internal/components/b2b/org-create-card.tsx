@@ -7,11 +7,11 @@ import { Input } from "../ui/input";
 
 export function OrgCreateCard({
   onCreateOrg,
-  setCreatingOrg,
+  onCancel,
   appType,
 }: {
   onCreateOrg: (orgName: string) => Promise<void>;
-  setCreatingOrg: (creatingOrg: boolean) => void;
+  onCancel: () => void;
   appType: "headless" | "prebuilt";
 }) {
   const [orgName, setOrgName] = useState("");
@@ -21,9 +21,8 @@ export function OrgCreateCard({
     e.preventDefault();
     if (orgName.trim()) {
       setSubmittingOrgCreate(true);
-      await onCreateOrg(orgName);
+      await onCreateOrg(orgName.trim());
       setSubmittingOrgCreate(false);
-      setCreatingOrg(false);
     }
   };
 
@@ -58,7 +57,7 @@ export function OrgCreateCard({
               type="button"
               variant="ghost"
               className="w-fit"
-              onClick={() => setCreatingOrg(false)}
+              onClick={onCancel}
             >
               Cancel
             </Button>
@@ -70,7 +69,7 @@ export function OrgCreateCard({
               {submittingOrgCreate ? (
                 <div className="flex flex-row gap-2 items-center">
                   <LoadingSpinner />
-                  Authenticating
+                  Creating
                 </div>
               ) : (
                 "Create"
