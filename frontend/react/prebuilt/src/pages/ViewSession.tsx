@@ -23,7 +23,6 @@ export function ViewSession() {
   const [sessionTokens, setSessionTokens] = useState<SessionTokens | null>(
     null
   );
-  const [error, setError] = useState<string | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -37,36 +36,30 @@ export function ViewSession() {
     return <LoadingSpinner />;
   }
 
-  const handleLogout = async () => {
-    try {
-      await stytch.session.revoke();
-      navigate("/");
-    } catch (error: any) {
-      setError(error.message);
-    }
-  };
-
   return (
     <SplitPage
       leftSide={<B2BSessionTextBox links={SESSION_LINKS} />}
       rightSide={
+        // This is your own app code
         <B2BSessionCard
           email={member?.email_address || ""}
           memberId={member?.member_id || ""}
           organizationName={organization?.organization_name || ""}
           sessionTokens={sessionTokens}
-          handleLogout={handleLogout}
+          handleLogout={() => {
+            stytch.session.revoke();
+            navigate("/");
+          }}
           appType="prebuilt"
         />
       }
       error={
-        (!sessionTokens && (
+        !sessionTokens && (
           <ErrorBox
             title="No session tokens found"
             error="Unable to load session tokens from the SDK. Please ensure you are logged in and have a session."
           />
-        )) ||
-        (error && <ErrorBox title="There was an error" error={error} />)
+        )
       }
     />
   );

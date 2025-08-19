@@ -28,6 +28,8 @@ export function Authenticate() {
   };
 
   if (creatingOrg) {
+    // If the user creates an organization from the prebuilt UI component, it defaults to name "Stytch"
+    // Using the onEvent callback, we can add custom UI when the user clicks Create Organization so they can pick a name
     return (
       <SplitPage
         leftSide={<OrgCreateTextBox appType="prebuilt" />}

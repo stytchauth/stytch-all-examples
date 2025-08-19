@@ -7,7 +7,7 @@ export function ExampleAppHeader() {
   );
 }
 
-const ExampleIcon = () => {
+export function ExampleIcon() {
   return (
     <svg
       width="48"
@@ -30,4 +30,4 @@ const ExampleIcon = () => {
       />
     </svg>
   );
-};
+}
