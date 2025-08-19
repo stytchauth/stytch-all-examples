@@ -1,3 +1,5 @@
+"use client";
+
 import {
   B2BSessionCard,
   B2BSessionTextBox,
@@ -10,9 +12,9 @@ import {
   useStytchB2BClient,
   useStytchMember,
   useStytchOrganization,
-} from "@stytch/react/b2b";
+} from "@stytch/nextjs/b2b";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { SESSION_LINKS } from "../utils/constants";
 
 export function ViewSession() {
@@ -24,7 +26,7 @@ export function ViewSession() {
     null
   );
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   useEffect(() => {
     if (member) {
@@ -40,7 +42,7 @@ export function ViewSession() {
   const handleLogout = async () => {
     try {
       await stytch.session.revoke();
-      navigate("/");
+      router.push("/");
     } catch (error: any) {
       setError(error.message);
     }
@@ -51,10 +53,15 @@ export function ViewSession() {
       leftSide={<B2BSessionTextBox links={SESSION_LINKS} />}
       rightSide={
         <B2BSessionCard
-          email={member?.email_address || ""}
-          memberId={member?.member_id || ""}
-          organizationName={organization?.organization_name || ""}
-          sessionTokens={sessionTokens}
+          email={member?.email_address ?? ""}
+          memberId={member?.member_id ?? ""}
+          organizationName={organization?.organization_name ?? ""}
+          sessionTokens={
+            sessionTokens ?? {
+              session_token: "",
+              session_jwt: "",
+            }
+          }
           handleLogout={handleLogout}
           appType="prebuilt"
         />
