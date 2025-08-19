@@ -20,12 +20,7 @@ export function RedirectUrlTextBox() {
       </Typography>
       <Typography variant="body1">
         After authentication, Stytch routes users back to your application based
-        on the{" "}
-        <Link
-          href={REDIRECT_URL_DOCS_URL}
-          text="redirect URL"
-          className="font-semibold"
-        />{" "}
+        on the <Link href={REDIRECT_URL_DOCS_URL} text="redirect URL" />{" "}
         configured in the Stytch dashboard.
       </Typography>
       <Typography variant="body1">

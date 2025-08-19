@@ -1,12 +1,11 @@
 import { StytchB2BProvider } from "@stytch/react/b2b";
-import { createStytchB2BHeadlessClient } from "@stytch/react/b2b/headless";
+import { StytchB2BUIClient } from "@stytch/vanilla-js/b2b";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import App from "./App";
 import { Authenticate } from "./pages/Authenticate";
 import { Login } from "./pages/Login";
-import { Organizations } from "./pages/Organizations";
 import { ViewSession } from "./pages/ViewSession";
 
 const router = createBrowserRouter([
@@ -23,10 +22,6 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path: "organizations",
-        element: <Organizations />,
-      },
-      {
         path: "authenticate",
         element: <Authenticate />,
       },
@@ -38,7 +33,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-const stytch = createStytchB2BHeadlessClient(
+const stytch = new StytchB2BUIClient(
   import.meta.env.VITE_STYTCH_PUBLIC_TOKEN || ""
 );
 

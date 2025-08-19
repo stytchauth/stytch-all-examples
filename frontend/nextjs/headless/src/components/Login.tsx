@@ -39,7 +39,13 @@ export const Login = () => {
 
   return (
     <SplitPage
-      leftSide={sendingEmail ? <RedirectUrlTextBox /> : <IntroTextBox />}
+      leftSide={
+        sendingEmail ? (
+          <RedirectUrlTextBox />
+        ) : (
+          <IntroTextBox appType="headless" />
+        )
+      }
       rightSide={
         <LoginForm
           isSendingEmail={sendingEmail}

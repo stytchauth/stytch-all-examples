@@ -1,5 +1,3 @@
-"use client";
-
 import {
   B2BSessionCard,
   B2BSessionTextBox,
@@ -12,9 +10,9 @@ import {
   useStytchB2BClient,
   useStytchMember,
   useStytchOrganization,
-} from "@stytch/nextjs/b2b";
-import { useRouter } from "next/navigation";
+} from "@stytch/react/b2b";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { SESSION_LINKS } from "../utils/constants";
 
 export function ViewSession() {
@@ -25,8 +23,7 @@ export function ViewSession() {
   const [sessionTokens, setSessionTokens] = useState<SessionTokens | null>(
     null
   );
-  const [error, setError] = useState<string | null>(null);
-  const router = useRouter();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (member) {
@@ -39,46 +36,29 @@ export function ViewSession() {
     return <LoadingSpinner />;
   }
 
-  const handleSwitchOrgs = () => {
-    router.push("/organizations");
-  };
-
-  const handleLogout = async () => {
-    try {
-      await stytch.session.revoke();
-      router.push("/");
-    } catch (error: any) {
-      setError(error.message);
-    }
-  };
-
   return (
     <SplitPage
       leftSide={<B2BSessionTextBox links={SESSION_LINKS} />}
       rightSide={
         <B2BSessionCard
-          email={member?.email_address ?? ""}
-          memberId={member?.member_id ?? ""}
-          organizationName={organization?.organization_name ?? ""}
-          sessionTokens={
-            sessionTokens ?? {
-              session_token: "",
-              session_jwt: "",
-            }
-          }
-          handleSwitchOrgs={handleSwitchOrgs}
-          handleLogout={handleLogout}
-          appType="headless"
+          email={member?.email_address || ""}
+          memberId={member?.member_id || ""}
+          organizationName={organization?.organization_name || ""}
+          sessionTokens={sessionTokens}
+          handleLogout={() => {
+            stytch.session.revoke();
+            navigate("/");
+          }}
+          appType="prebuilt"
         />
       }
       error={
-        (!sessionTokens && (
+        !sessionTokens && (
           <ErrorBox
             title="No session tokens found"
             error="Unable to load session tokens from the SDK. Please ensure you are logged in and have a session."
           />
-        )) ||
-        (error && <ErrorBox title="There was an error" error={error} />)
+        )
       }
     />
   );

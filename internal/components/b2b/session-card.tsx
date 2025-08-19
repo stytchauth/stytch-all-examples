@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ExampleAppHeader } from "../example-app-header";
 import { SessionTokensCard } from "../shared/session-tokens-card";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
@@ -8,8 +9,10 @@ interface B2BSessionCardProps {
   memberId: string;
   organizationName: string;
   sessionTokens: SessionTokens;
-  handleSwitchOrgs: () => void;
+  // optional, because in prebuilt we don't support this (yet)
+  handleSwitchOrgs?: () => void;
   handleLogout: () => void;
+  appType: "headless" | "prebuilt";
 }
 
 export interface SessionTokens {
@@ -24,6 +27,7 @@ export function B2BSessionCard({
   sessionTokens,
   handleSwitchOrgs,
   handleLogout,
+  appType,
 }: B2BSessionCardProps) {
   const [isViewingToken, setIsViewingToken] = useState(false);
   const handleViewToken = () => {
@@ -40,8 +44,16 @@ export function B2BSessionCard({
   }
 
   return (
-    <Card className="w-lg">
+    <Card
+      className={`w-lg ${
+        appType === "prebuilt"
+          ? "border-dashed border-3 bg-transparent shadow-none"
+          : ""
+      }`}
+    >
       <CardHeader>
+        <ExampleAppHeader />
+
         <CardTitle className="justify-start">Logged in as:</CardTitle>
       </CardHeader>
       <CardContent className="flex flex-col gap-6">
@@ -67,13 +79,15 @@ export function B2BSessionCard({
           >
             View Token
           </Button>
-          <Button
-            variant="outline"
-            className="text-sm"
-            onClick={handleSwitchOrgs}
-          >
-            Switch Orgs
-          </Button>
+          {handleSwitchOrgs && (
+            <Button
+              variant="outline"
+              className="text-sm"
+              onClick={handleSwitchOrgs}
+            >
+              Switch Orgs
+            </Button>
+          )}
           <Button className="text-sm" onClick={handleLogout}>
             Logout
           </Button>

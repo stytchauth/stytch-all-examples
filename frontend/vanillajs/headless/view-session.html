@@ -229,23 +229,22 @@
                 <div class="flex flex-col gap-2">
                   <p class="font-bold">Session JWT</p>
                   <div class="flex flex-row gap-2 justify-start">
-                    <button
-                      id="copy-jwt-btn"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-white text-black shadow-sm hover:bg-gray-100 h-8 px-3 py-1 has-[>svg]:px-2 w-fit border border-gray-200"
-                    >
-                      Copy full JWT to clipboard
-                    </button>
-                    <button
-                      id="launch-jwt-decoder-btn"
-                      class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-white text-black shadow-sm hover:bg-gray-100 h-8 px-3 py-1 has-[>svg]:px-2 w-fit border border-gray-200"
-                    >
-                      Launch JWT decoder
-                    </button>
-                  </div>
-                  <div
-                    class="break-all text-sm leading-relaxed bg-code rounded-md p-2"
-                  >
-                    <code id="jwt-display"></code>
+                    <div class="flex-1">
+                      <button
+                        id="copy-jwt-btn"
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-white text-black shadow-sm hover:bg-gray-100 h-8 px-3 py-1 has-[>svg]:px-2 w-full border border-gray-200"
+                      >
+                        Copy JWT to clipboard
+                      </button>
+                    </div>
+                    <div class="flex-1">
+                      <button
+                        id="launch-jwt-decoder-btn"
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-white text-black shadow-sm hover:bg-gray-100 h-8 px-3 py-1 has-[>svg]:px-2 w-full border border-gray-200"
+                      >
+                        Launch JWT decoder
+                      </button>
+                    </div>
                   </div>
                 </div>
                 <button
@@ -266,6 +265,9 @@
         </div>
       </div>
     </div>
+
+    <!-- Toast container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50"></div>
 
     <script type="module" src="js/view-session.js"></script>
   </body>

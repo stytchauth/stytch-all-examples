@@ -1,25 +1,18 @@
-import { useState } from "react";
 import { ExampleAppHeader } from "../example-app-header";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
-import { Input } from "../ui/input";
-import { LoadingSpinner } from "../ui/loading-spinner";
 
 export type OrgDiscoveryCardProps = {
   orgs: { id: string; name: string }[];
   onOrgSelect: (orgId: string) => Promise<void>;
-  onCreateOrg: (orgName: string) => Promise<void>;
-  creatingOrg: boolean;
-  setCreatingOrg: (creatingOrg: boolean) => void;
+  onClickCreateOrg: () => void;
   showCreateOrg: boolean;
 };
 
 export function OrgDiscoveryCard({
   orgs,
   onOrgSelect,
-  onCreateOrg,
-  creatingOrg,
-  setCreatingOrg,
+  onClickCreateOrg,
   showCreateOrg,
 }: OrgDiscoveryCardProps) {
   return (
@@ -27,105 +20,32 @@ export function OrgDiscoveryCard({
       <CardHeader className="items-center flex flex-col gap-8">
         <ExampleAppHeader />
         <CardTitle>
-          {creatingOrg
-            ? "New organization"
-            : orgs.length > 0
+          {orgs.length > 0
             ? "Select an organization"
             : "No organizations found"}
         </CardTitle>
       </CardHeader>
       <CardContent>
-        {showCreateOrg && creatingOrg ? (
-          <CreateOrgForm
-            onCreateOrg={onCreateOrg}
-            setCreatingOrg={setCreatingOrg}
-          />
-        ) : (
-          <ViewOrgsList
-            orgs={orgs}
-            onOrgSelect={onOrgSelect}
-            setCreatingOrg={setCreatingOrg}
-            showCreateOrg={showCreateOrg}
-          />
-        )}
+        <ViewOrgsList
+          orgs={orgs}
+          onOrgSelect={onOrgSelect}
+          showCreateOrg={showCreateOrg}
+          onClickCreateOrg={onClickCreateOrg}
+        />
       </CardContent>
     </Card>
-  );
-}
-
-function CreateOrgForm({
-  onCreateOrg,
-  setCreatingOrg,
-}: {
-  onCreateOrg: (orgName: string) => Promise<void>;
-  setCreatingOrg: (creatingOrg: boolean) => void;
-}) {
-  const [orgName, setOrgName] = useState("");
-  const [submittingOrgCreate, setSubmittingOrgCreate] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (orgName.trim()) {
-      setSubmittingOrgCreate(true);
-      await onCreateOrg(orgName);
-      setSubmittingOrgCreate(false);
-      setCreatingOrg(false);
-    }
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-4 w-full">
-      <div className="flex flex-col gap-2">
-        <label htmlFor="org-name" className="text-sm">
-          Organization name
-        </label>
-        {error && <p className="text-destructive">{error}</p>}
-        <Input
-          id="org-name"
-          className="w-full"
-          placeholder="Acme, Inc."
-          value={orgName}
-          onChange={(e) => setOrgName(e.target.value)}
-        />
-      </div>
-      <div className="flex flex-row gap-2 justify-end">
-        <Button
-          type="button"
-          variant="ghost"
-          className="w-fit"
-          onClick={() => setCreatingOrg(false)}
-        >
-          Cancel
-        </Button>
-        <Button
-          type="submit"
-          className="w-fit"
-          disabled={!orgName.trim() || submittingOrgCreate}
-        >
-          {submittingOrgCreate ? (
-            <div className="flex flex-row gap-2 items-center">
-              <LoadingSpinner />
-              Authenticating
-            </div>
-          ) : (
-            "Create"
-          )}
-        </Button>
-      </div>
-    </form>
   );
 }
 
 function ViewOrgsList({
   orgs,
   onOrgSelect,
-  setCreatingOrg,
+  onClickCreateOrg,
   showCreateOrg,
 }: {
   orgs: { id: string; name: string }[];
   onOrgSelect: (orgId: string) => void;
-  setCreatingOrg: (creatingOrg: boolean) => void;
+  onClickCreateOrg: (creatingOrg: boolean) => void;
   showCreateOrg: boolean;
 }) {
   return (
@@ -146,7 +66,7 @@ function ViewOrgsList({
         <Button
           variant="outline"
           className="text-sm w-fit mx-auto"
-          onClick={() => setCreatingOrg(true)}
+          onClick={() => onClickCreateOrg(true)}
         >
           Create organization
         </Button>

@@ -1,6 +1,7 @@
 import {
   ErrorBox,
   LoadingSpinner,
+  OrgCreateCard,
   OrgCreateTextBox,
   OrgDiscoveryCard,
   OrgsTextBox,
@@ -49,6 +50,7 @@ export function Organizations() {
         sso_jit_provisioning: "ALL_ALLOWED",
         session_duration_minutes: 60,
       });
+      setCreatingOrg(false);
       // if the create is successful, navigate to the session page
       navigate("/view-session");
     } catch (error: any) {
@@ -90,17 +92,25 @@ export function Organizations() {
 
   return (
     <SplitPage
-      leftSide={creatingOrg ? <OrgCreateTextBox /> : <OrgsTextBox />}
+      leftSide={
+        creatingOrg ? <OrgCreateTextBox appType="headless" /> : <OrgsTextBox />
+      }
       rightSide={
-        <OrgDiscoveryCard
-          orgs={orgs}
-          onOrgSelect={handleOrgSelect}
-          onCreateOrg={handleCreateOrg}
-          creatingOrg={creatingOrg}
-          setCreatingOrg={setCreatingOrg}
-          // create org is part of the discovery flow, so we only show it if the member doesn't have a session
-          showCreateOrg={!session}
-        />
+        creatingOrg ? (
+          <OrgCreateCard
+            onCreateOrg={handleCreateOrg}
+            onCancel={() => setCreatingOrg(false)}
+            appType="headless"
+          />
+        ) : (
+          <OrgDiscoveryCard
+            orgs={orgs}
+            onOrgSelect={handleOrgSelect}
+            onClickCreateOrg={() => setCreatingOrg(true)}
+            // create org is part of the discovery flow, so we only show it if the member doesn't have a session
+            showCreateOrg={!session}
+          />
+        )
       }
       error={error && <ErrorBox title="There was an error" error={error} />}
     />

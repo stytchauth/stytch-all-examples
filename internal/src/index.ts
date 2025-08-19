@@ -2,6 +2,7 @@
 import "../dist/styles.css";
 
 // Export the login form component
+export { OrgCreateCard } from "../components/b2b/org-create-card";
 export { OrgCreateTextBox } from "../components/b2b/org-create-text-box";
 export { OrgDiscoveryCard } from "../components/b2b/org-discovery-card";
 export { OrgsTextBox } from "../components/b2b/orgs-text-box";

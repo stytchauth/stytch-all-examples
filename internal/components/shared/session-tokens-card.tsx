@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { SessionTokens } from "../b2b/session-card";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
@@ -22,29 +23,31 @@ export function SessionTokensCard({
           <div className="flex flex-col gap-2">
             <p className="font-bold">Session JWT</p>
             <div className="flex flex-row gap-2 justify-start">
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-xs w-fit"
-                onClick={() => {
-                  navigator.clipboard.writeText(sessionTokens.session_jwt);
-                }}
-              >
-                Copy full JWT to clipboard
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-xs w-fit"
-                onClick={() => {
-                  window.open(`https://jwts.dev`);
-                }}
-              >
-                Launch JWT decoder
-              </Button>
-            </div>
-            <div className="break-all whitespace-pre-wrap text-sm leading-relaxed bg-code rounded-md p-2">
-              <code>{sessionTokens.session_jwt.substring(0, 300)}...</code>
+              <div className="flex-1">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs w-full"
+                  onClick={() => {
+                    navigator.clipboard.writeText(sessionTokens.session_jwt);
+                    toast.success("JWT copied to clipboard");
+                  }}
+                >
+                  Copy JWT to clipboard
+                </Button>
+              </div>
+              <div className="flex-1">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="text-xs w-full"
+                  onClick={() => {
+                    window.open(`https://jwts.dev`);
+                  }}
+                >
+                  Launch JWT decoder
+                </Button>
+              </div>
             </div>
           </div>
           <Button
