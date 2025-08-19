@@ -3,11 +3,12 @@
   "private": true,
   "workspaces": [
     "internal",
-    "frontend",
     "frontend/react/headless",
     "frontend/react/prebuilt",
     "frontend/nextjs/headless",
     "frontend/nextjs/prebuilt",
+    "frontend/vanillajs/headless",
+    "frontend/vanillajs/prebuilt",
     "backend/ui"
   ],
   "scripts": {

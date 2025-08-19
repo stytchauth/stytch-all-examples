@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stytch B2B Prebuilt - Authenticate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      type="module"
+      src="https://www.unpkg.com/@stytch/vanilla-js@5.29.1/dist/index.esm.js"
+    ></script>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="page-container">
+      <div class="page-content">
+        <div class="flex flex-row items-center p-16 gap-8">
+          <div class="flex-1">
+            <div
+              id="orgs-text-box"
+              class="flex flex-col gap-4 min-w-md max-w-2xl"
+            >
+              <h1 class="font-default text-h1 font-semibold pb-4 tracking-wide">
+                The session needs an organization to call home.
+              </h1>
+              <p class="font-default text-body1 tracking-normal">
+                All <strong>Members</strong> (end users) belong to an
+                <strong>Organization</strong> when using Stytch B2B: Auth for
+                Orgs. Stytch supports four different methods for provisioning
+                Members:
+              </p>
+              <ul
+                class="list-disc pl-4 space-y-3 ml-4 font-default text-body1 tracking-normal"
+              >
+                <li>
+                  <strong>Invite:</strong> Members can be invited to join a
+                  specific Organization
+                </li>
+                <li>
+                  <strong>Just-in-time (JIT):</strong> Eligible Organizations
+                  are shown in a Discovery flow so Members can find and join
+                  teammates.
+                </li>
+                <li>
+                  <strong>SCIM:</strong> Organizations can manage Members
+                  directly from their workforce IdP.
+                </li>
+                <li>
+                  <strong>Manual:</strong> Members can be manually provisioned
+                  via direct API calls.
+                </li>
+              </ul>
+              <div class="flex flex-col gap-1">
+                <p class="font-default text-h4">Additional Resources</p>
+                <div class="flex flex-row gap-2">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M16.6667 1.6665V18.3332H3.33337V1.6665H16.6667ZM10 8.33317H8.33337V9.99984H6.66671V3.33317H5.00004V16.6665H15V3.33317H11.6667V9.99984H10V8.33317Z"
+                      fill="#1D1D1D"
+                    />
+                  </svg>
+                  <a
+                    href="https://stytch.com/docs/b2b/guides/what-is-stytch-b2b-auth"
+                    target="_blank"
+                    class="font-default text-body1 underline"
+                    >Auth for Orgs basics</a
+                  >
+                </div>
+                <div class="flex flex-row gap-2">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M16.6667 1.6665V18.3332H3.33337V1.6665H16.6667ZM10 8.33317H8.33337V9.99984H6.66671V3.33317H5.00004V16.6665H15V3.33317H11.6667V9.99984H10V8.33317Z"
+                      fill="#1D1D1D"
+                    />
+                  </svg>
+                  <a
+                    href="https://stytch.com/docs/getting-started/b2b-vs-consumer-auth"
+                    target="_blank"
+                    class="font-default text-body1 underline"
+                    >Organization vs Consumer Auth</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div
+              id="org-create-text-box"
+              class="hidden flex flex-col gap-4 min-w-md max-w-2xl"
+            >
+              <h1 class="font-default text-h1 font-semibold pb-4 tracking-wide">
+                Creating an organization results in a fully authenticated
+                session.
+              </h1>
+              <p class="font-default text-body1 tracking-normal">
+                You may want to build a Discovery sign-up and login flow in your
+                own app. <strong>Discovery</strong> is the step after a Member
+                authenticates and enables a better user experience for
+                discovering and joining the Organizations they belong to, or
+                creating one if none exist.
+              </p>
+              <p class="font-default text-body1 tracking-normal">
+                The
+                <a
+                  href="https://stytch.com/docs/b2b/sdks/email-magic-links/authenticate-discovery-magic-link"
+                  target="_blank"
+                  class="font-bold underline"
+                  >Discovery authenticate endpoint</a
+                >
+                returns an intermediate session token (IST), establishing an
+                intermediate session to help prevent
+                <a
+                  href="https://stytch.com/docs/resources/platform/account-enumeration"
+                  target="_blank"
+                  class="font-bold underline"
+                  >account enumeration</a
+                >. This lets you to preserve the Member's auth state while you
+                present options on how to proceed.
+              </p>
+              <div class="flex flex-col gap-1">
+                <p class="font-default text-h4">Additional Resources</p>
+                <div class="flex flex-row gap-2">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M16.6667 1.6665V18.3332H3.33337V1.6665H16.6667ZM10 8.33317H8.33337V9.99984H6.66671V3.33317H5.00004V16.6665H15V3.33317H11.6667V9.99984H10V8.33317Z"
+                      fill="#1D1D1D"
+                    />
+                  </svg>
+                  <a
+                    href="https://stytch.com/docs/b2b/guides/what-is-stytch-b2b-auth"
+                    target="_blank"
+                    class="font-default text-body1 underline"
+                    >Auth for Orgs basics</a
+                  >
+                </div>
+                <div class="flex flex-row gap-2">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M16.6667 1.6665V18.3332H3.33337V1.6665H16.6667ZM10 8.33317H8.33337V9.99984H6.66671V3.33317H5.00004V16.6665H15V3.33317H11.6667V9.99984H10V8.33317Z"
+                      fill="#1D1D1D"
+                    />
+                  </svg>
+                  <a
+                    href="https://stytch.com/docs/b2b/guides/sessions/resources/overview"
+                    target="_blank"
+                    class="font-default text-body1 underline"
+                    >Session management</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-1 flex flex-col items-center p-16">
+            <div id="stytch-sdk"></div>
+            <div id="create-org-container" class="hidden">Create an org!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/authenticate.js"></script>
+  </body>
+</html>
