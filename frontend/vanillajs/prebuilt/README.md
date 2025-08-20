@@ -1,6 +1,6 @@
 # Stytch B2B Prebuilt - Vanilla JavaScript
 
-This is a vanilla JavaScript implementation of the Stytch B2B prebuilt authentication flow. It demonstrates how to build a B2B authentication app using raw HTML, CSS, and JavaScript with the Stytch vanilla JS SDK.
+This is a vanilla JavaScript implementation of the Stytch B2B prebuilt authentication flow. It demonstrates how to build a B2B authentication app using raw HTML, CSS, and JavaScript with the Stytch Prebuilt SDK.
 
 ## Features
 
@@ -8,7 +8,6 @@ This is a vanilla JavaScript implementation of the Stytch B2B prebuilt authentic
 - **Organization Discovery**: Users can discover and join existing organizations
 - **Organization Creation**: Users can create new organizations
 - **Session Management**: View session information and manage sessions
-- **Organization Switching**: Switch between different organizations
 - **Automatic Redirects**: Smart routing based on authentication state
 
 ## Setup
@@ -36,7 +35,7 @@ This is a vanilla JavaScript implementation of the Stytch B2B prebuilt authentic
 ## Project Structure
 
 ```
-frontend/vanillajs/headless/
+frontend/vanillajs/prebuilt/
 ├── index.html              # Login page
 ├── authenticate.html        # Magic link authentication
 ├── organizations.html       # Organization selection/creation
@@ -67,23 +66,25 @@ frontend/vanillajs/headless/
 - Separate HTML files for each route instead of Next.js routing
 - Manual DOM manipulation instead of React state management
 - `http-server` instead of Next.js development server
-- Direct Stytch SDK usage instead of React-specific hooks
+- Direct Stytch Prebuilt SDK usage instead of React-specific hooks
 
-## Stytch SDK Usage
+## Stytch Prebuilt SDK Usage
 
-The app uses the Stytch vanilla JS SDK with the following key methods:
+The app uses the Stytch Prebuilt SDK which provides pre-built UI components and handles most of the authentication logic automatically:
 
-- `new StytchUIClient(token)` - Initialize the client
-- `client.session.getSync()` - Get current session
-- `client.member.getSync()` - Get current member
-- `client.organization.getSync()` - Get current organization
-- `client.session.onChange(callback)` - Subscribe to session changes
-- `client.magicLinks.email.discovery.send()` - Send magic link
-- `client.magicLinks.discovery.authenticate()` - Authenticate magic link
-- `client.discovery.organizations.list()` - List organizations
-- `client.discovery.organizations.create()` - Create organization
-- `client.session.exchange()` - Exchange session for different organization
-- `client.session.revoke()` - Revoke session (logout)
+- `stytch.mount()` - Mount the prebuilt UI components
+- `stytch.member.getSync()` - Get current member information
+- `stytch.organization.getSync()` - Get current organization information
+- `stytch.session.getTokens()` - Get session tokens
+- `stytch.session.revoke()` - Revoke session (logout)
+
+The prebuilt SDK handles:
+
+- Magic link sending and authentication
+- Organization discovery and creation
+- Session management
+- UI state management
+- Error handling
 
 ## Browser Support
 
