@@ -9,8 +9,17 @@ function init() {
     elementId: "#stytch-sdk",
     config: {
       authFlowType: "Discovery",
-      products: ["emailMagicLinks"],
+      products: [
+        "emailMagicLinks",
+        // To test OAuth, uncomment the oauth product type
+        // "oauth"
+      ],
       sessionOptions: { sessionDurationMinutes: 60 },
+      /*
+      oauthOptions: {
+        providers: [{ type: "google" }],
+      },
+      */
     },
     callbacks: {
       onEvent: ({ type }) => {
