@@ -1,4 +1,4 @@
-import { StytchB2B } from "@stytch/react/b2b";
+import { StytchB2B } from "@stytch/nextjs/b2b";
 import { AuthFlowType, B2BProducts, StytchEventType } from "@stytch/vanilla-js";
 
 export function LoginOrSignup({
@@ -22,7 +22,9 @@ export function LoginOrSignup({
     },
     */
   };
+
   return (
+    // StytchB2B component is the prebuilt UI component for the login/signup flow
     <StytchB2B
       config={config}
       callbacks={{

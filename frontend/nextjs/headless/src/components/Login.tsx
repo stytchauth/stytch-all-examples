@@ -52,7 +52,8 @@ export const Login = () => {
           setIsSendingEmail={setSendingEmail}
           onEmailLogin={handleEmailLogin}
           onGoogleLogin={handleGoogleLogin}
-          showGoogleLogin={true}
+          // To test out OAuth, set this to true
+          showGoogleLogin={false}
         />
       }
       error={
