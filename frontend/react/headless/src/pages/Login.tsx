@@ -6,6 +6,7 @@ import {
   SplitPage,
 } from "@stytch-all-examples/internal";
 import { useStytchB2BClient } from "@stytch/react/b2b";
+import { AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 export function Login() {
@@ -36,11 +37,12 @@ export function Login() {
   return (
     <SplitPage
       leftSide={
-        sendingEmail ? (
+        <AnimatePresence mode="wait">
+          sendingEmail ? (
           <RedirectUrlTextBox />
-        ) : (
-          <IntroTextBox appType="headless" />
-        )
+          ) : (
+          <IntroTextBox appType="headless" />)
+        </AnimatePresence>
       }
       rightSide={
         <LoginForm
