@@ -1,6 +1,9 @@
 import React from "react";
 import { Toaster } from "./toaster";
 import { CodeTabs } from "./code-tabs";
+import { Typography } from "./typography";
+import { Tooltip, TooltipContent, TooltipTrigger } from "./tooltip";
+import { InfoIcon } from "./info-icon";
 
 interface SplitPageProps {
   leftSide: React.ReactNode;
@@ -32,7 +35,27 @@ export function SplitPage({
           <div className="flex-1 flex flex-col items-center p-4 lg:p-16 gap-8">
             {rightSide}
             {error}
-            {!error && !!codeTabs && <CodeTabs codes={codeTabs} />}
+            {!error && !!codeTabs && (
+              <div className="flex gap-2 flex-col">
+                <div className="flex gap-2 items-center">
+                  <Typography variant="h4" className="font-medium">
+                    Stytch API in your backend
+                  </Typography>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <InfoIcon />
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>
+                        The API Response and Backend SDK code show how the
+                        Stytch API will interact with your backend server.
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <CodeTabs codes={codeTabs} />
+              </div>
+            )}
           </div>
         </div>
       </div>

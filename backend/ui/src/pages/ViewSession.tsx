@@ -57,7 +57,7 @@ export function ViewSession() {
 
   return (
     <SplitPage
-      leftSide={<B2BSessionTextBox links={SESSION_LINKS} />}
+      leftSide={<B2BSessionTextBox links={SESSION_LINKS} appType="backend" />}
       rightSide={
         isLoading ? (
           <LoadingSpinner />

@@ -46,7 +46,11 @@ export function Login() {
   return (
     <SplitPage
       leftSide={
-        sentEmail ? <RedirectUrlTextBox /> : <IntroTextBox appType="backend" />
+        sentEmail ? (
+          <RedirectUrlTextBox appType="backend" />
+        ) : (
+          <IntroTextBox appType="backend" />
+        )
       }
       rightSide={
         <LoginForm

@@ -1,5 +1,6 @@
 import { CalloutAlert } from "../callout-alert";
 import { AdditionalResources } from "../shared/additional-resources";
+import { AppType } from "../types";
 import { Link } from "../ui/link";
 import { List } from "../ui/list";
 import { TextBox } from "../ui/text-box";
@@ -13,7 +14,13 @@ export type LinkMap = {
   oauthCode: string;
 };
 
-export function B2BSessionTextBox({ links }: { links: LinkMap }) {
+export function B2BSessionTextBox({
+  links,
+  appType,
+}: {
+  links: LinkMap;
+  appType: AppType;
+}) {
   return (
     <TextBox
       title={`Sessions eventually terminate;\n whether through timeout, logout, or revocation`}
@@ -34,8 +41,9 @@ export function B2BSessionTextBox({ links }: { links: LinkMap }) {
           href="https://stytch.com/docs/b2b/guides/sessions/resources/jwts-vs-tokens"
           text="session tokens"
         />{" "}
-        in browser storage and let you authenticate and authorize requests
-        between your client and server, for example:
+        in browser cookies or mobile storage and let{" "}
+        {appType === "backend" ? "your backend" : "you"} authenticate and
+        authorize requests between your client and server, for example:
       </Typography>
       <List
         items={[

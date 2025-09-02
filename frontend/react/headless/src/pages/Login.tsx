@@ -37,7 +37,7 @@ export function Login() {
     <SplitPage
       leftSide={
         sendingEmail ? (
-          <RedirectUrlTextBox />
+          <RedirectUrlTextBox appType="headless" />
         ) : (
           <IntroTextBox appType="headless" />
         )
