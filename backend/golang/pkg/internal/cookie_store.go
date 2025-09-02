@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"log"
 	"net/http"
 
 	"github.com/gorilla/sessions"
@@ -70,19 +69,9 @@ func (cs *CookieStore) get(r *http.Request, key string) (token string, exists bo
 }
 
 func (cs *CookieStore) store(w http.ResponseWriter, r *http.Request, key string, token string) {
-	log.Printf("Cookie store store called for key %s with token %s", key, token)
-	session, err := cs.gorillaSessions.Get(r, key)
-	if err != nil {
-		log.Printf("Cookie store get failed: %v", err)
-		return
-	}
+	session, _ := cs.gorillaSessions.Get(r, key)
 	session.Values["token"] = token
-	err = session.Save(r, w)
-	if err != nil {
-		log.Printf("Cookie store save failed: %v", err)
-		return
-	}
-	log.Printf("Cookie store save successful for key %s", key)
+	_ = session.Save(r, w)
 }
 
 func (cs *CookieStore) clear(w http.ResponseWriter, r *http.Request, key string) {
