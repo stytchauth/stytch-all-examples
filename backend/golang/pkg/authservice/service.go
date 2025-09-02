@@ -5,6 +5,7 @@ import (
 
 	"github.com/stytchauth/stytch-go/v16/stytch/b2b/b2bstytchapi"
 
+	"backend/golang/pkg/discovery"
 	"backend/golang/pkg/internal"
 	"backend/golang/pkg/magiclinks"
 	"backend/golang/pkg/session"
@@ -16,6 +17,7 @@ type Service struct {
 
 	MagicLinksController *magiclinks.Controller
 	SessionsController   *session.Controller
+	DiscoveryController  *discovery.Controller
 }
 
 func New(stytchAPI *b2bstytchapi.API) *Service {
@@ -25,6 +27,7 @@ func New(stytchAPI *b2bstytchapi.API) *Service {
 		cookieStore:          cookieStore,
 		MagicLinksController: magiclinks.NewController(stytchAPI, cookieStore),
 		SessionsController:   session.NewController(stytchAPI, cookieStore),
+		DiscoveryController:  discovery.NewController(stytchAPI, cookieStore),
 	}
 }
 
@@ -44,7 +47,7 @@ const (
 
 func (s *Service) AuthenticateHandler(w http.ResponseWriter, r *http.Request) {
 	// Retrieve the token type from the query parameter.
-	tokenType := r.URL.Query().Get("token_type")
+	tokenType := r.URL.Query().Get("stytch_token_type")
 
 	// Match the token type to the correct product, or return an
 	// error if the token type if for an unsupported authentication

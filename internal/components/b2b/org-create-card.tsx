@@ -5,6 +5,7 @@ import { YourOwnUIBadge } from "../shared/your-own-ui-badge";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
+import { AppType } from "../types";
 
 export function OrgCreateCard({
   onCreateOrg,
@@ -13,7 +14,7 @@ export function OrgCreateCard({
 }: {
   onCreateOrg: (orgName: string) => Promise<void>;
   onCancel: () => void;
-  appType: "headless" | "prebuilt";
+  appType: AppType;
 }) {
   const [orgName, setOrgName] = useState("");
   const [submittingOrgCreate, setSubmittingOrgCreate] = useState(false);

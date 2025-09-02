@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gorilla/sessions"
@@ -20,7 +21,9 @@ const (
 )
 
 func NewCookieStore() *CookieStore {
-	return &CookieStore{sessions.NewCookieStore()}
+	// Gorilla sessions requires at least one secret key for codecs
+	store := sessions.NewCookieStore([]byte("stytch-example-secret"))
+	return &CookieStore{store}
 }
 
 // GetSession retrieves a session token from the cookie in an incoming HTTP request,
@@ -67,9 +70,19 @@ func (cs *CookieStore) get(r *http.Request, key string) (token string, exists bo
 }
 
 func (cs *CookieStore) store(w http.ResponseWriter, r *http.Request, key string, token string) {
-	session, _ := cs.gorillaSessions.Get(r, key)
+	log.Printf("Cookie store store called for key %s with token %s", key, token)
+	session, err := cs.gorillaSessions.Get(r, key)
+	if err != nil {
+		log.Printf("Cookie store get failed: %v", err)
+		return
+	}
 	session.Values["token"] = token
-	_ = session.Save(r, w)
+	err = session.Save(r, w)
+	if err != nil {
+		log.Printf("Cookie store save failed: %v", err)
+		return
+	}
+	log.Printf("Cookie store save successful for key %s", key)
 }
 
 func (cs *CookieStore) clear(w http.ResponseWriter, r *http.Request, key string) {

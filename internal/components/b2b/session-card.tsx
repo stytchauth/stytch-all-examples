@@ -4,6 +4,7 @@ import { SessionTokensCard } from "../shared/session-tokens-card";
 import { YourOwnUIBadge } from "../shared/your-own-ui-badge";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { AppType } from "../types";
 
 interface B2BSessionCardProps {
   email: string;
@@ -13,7 +14,7 @@ interface B2BSessionCardProps {
   // optional, because in prebuilt we don't support this (yet)
   handleSwitchOrgs?: () => void;
   handleLogout: () => void;
-  appType: "headless" | "prebuilt";
+  appType: AppType;
 }
 
 export interface SessionTokens {
