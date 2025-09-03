@@ -12,6 +12,8 @@ type Response struct {
 	CodeSnippet string `json:"codeSnippet"`
 	// APIResponse contains the Stytch API response body.
 	APIResponse any `json:"stytchResponse"`
+	// Metadata contains additional metadata about the response.
+	Metadata any `json:"metadata,omitempty"`
 
 	// Error is populated with an error message if one occurred during the request.
 	Error string `json:"error,omitempty"`

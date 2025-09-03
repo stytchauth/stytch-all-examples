@@ -76,6 +76,6 @@ func (cs *CookieStore) store(w http.ResponseWriter, r *http.Request, key string,
 
 func (cs *CookieStore) clear(w http.ResponseWriter, r *http.Request, key string) {
 	session, _ := cs.gorillaSessions.Get(r, key)
-	delete(session.Values, "token")
-	_ = cs.gorillaSessions.Save(r, w, session)
+	session.Options.MaxAge = -1
+	_ = session.Save(r, w)
 }

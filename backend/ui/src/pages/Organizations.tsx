@@ -22,7 +22,8 @@ export function Organizations() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [orgs, setOrgs] = useState<{ id: string; name: string }[]>([]);
   const [creatingOrg, setCreatingOrg] = useState(false);
-  const { codeTabs, addResponse } = useCodeSnippets();
+  const [canCreateOrganization, setCanCreateOrganization] = useState(false);
+  const { codeTabs, addResponse, restorePreviousSnippets } = useCodeSnippets();
 
   useEffect(() => {
     const loadOrganizations = async () => {
@@ -38,6 +39,9 @@ export function Organizations() {
             id: org.organization.organization_id,
             name: org.organization.organization_name,
           })) || []
+        );
+        setCanCreateOrganization(
+          response.metadata?.canCreateOrganization ?? false
         );
         setIsLoaded(true);
       } catch (error) {
@@ -90,6 +94,24 @@ export function Organizations() {
     }
   };
 
+  const handleClickCreateOrg = () => {
+    addResponse(
+      {
+        codeSnippet:
+          "// This step only involves your frontend.\n// There is no backend SDK code with this step.",
+        stytchResponse:
+          "// This step only involves your frontend.\n// No response returned in this step.",
+      },
+      { replace: true }
+    );
+    setCreatingOrg(true);
+  };
+
+  const handleCancelCreateOrg = () => {
+    restorePreviousSnippets();
+    setCreatingOrg(false);
+  };
+
   if (!isLoaded) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -107,15 +129,15 @@ export function Organizations() {
         creatingOrg ? (
           <OrgCreateCard
             onCreateOrg={handleCreateOrg}
-            onCancel={() => setCreatingOrg(false)}
+            onCancel={handleCancelCreateOrg}
             appType="headless"
           />
         ) : (
           <OrgDiscoveryCard
             orgs={orgs}
             onOrgSelect={handleOrgSelect}
-            onClickCreateOrg={() => setCreatingOrg(true)}
-            showCreateOrg
+            onClickCreateOrg={handleClickCreateOrg}
+            showCreateOrg={canCreateOrganization}
           />
         )
       }

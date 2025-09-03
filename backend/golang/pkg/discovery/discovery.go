@@ -63,6 +63,9 @@ func (c *Controller) ListOrganizations(w http.ResponseWriter, r *http.Request) {
 		Method:      listOrganizationsMethod,
 		APIResponse: resp,
 		CodeSnippet: codeSnippet,
+		Metadata: map[string]any{
+			"canCreateOrganization": istUsed,
+		},
 	})
 }
 

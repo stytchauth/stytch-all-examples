@@ -47,8 +47,8 @@ export function SplitPage({
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>
-                        The API Response and Backend SDK code show how the
-                        Stytch API will interact with your backend server.
+                        The Backend SDK and API Response show how your backend
+                        server will interact with the Stytch API.
                       </p>
                     </TooltipContent>
                   </Tooltip>

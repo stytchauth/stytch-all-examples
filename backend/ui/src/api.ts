@@ -49,7 +49,7 @@ type ListDiscoveredOrganizationsResponse = BaseResponse & {
 export const listDiscoveredOrganizations = async (): Promise<
   APIResponseWithMetadata<
     ListDiscoveredOrganizationsResponse,
-    { can_create_organization: boolean }
+    { canCreateOrganization: boolean }
   >
 > => {
   const response = await fetch(
