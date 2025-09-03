@@ -8,12 +8,9 @@ import {
   DISCOVERY_EML_AUTHENTICATE_URL,
   SESSION_OVERVIEW_URL,
 } from "@stytch-all-examples/internal/lib/constants";
+import { AppType } from "../types";
 
-export function OrgCreateTextBox({
-  appType,
-}: {
-  appType: "headless" | "prebuilt";
-}) {
+export function OrgCreateTextBox({ appType }: { appType: AppType }) {
   const headlessParagraphs = [
     <Typography variant="body1">
       You may want to build a Discovery sign-up and login flow in your own app.{" "}

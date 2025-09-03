@@ -35,11 +35,25 @@ func (c *Controller) Invite(w http.ResponseWriter, r *http.Request) {
 		EmailAddress:   req.EmailAddress,
 	})
 	if err != nil {
-		internal.SendResponse(w, inviteMethod, nil, err)
+		internal.SendResponse(w, &internal.Response{
+			Method: inviteMethod,
+			Error:  err.Error(),
+		})
 		return
 	}
 
-	internal.SendResponse(w, inviteMethod, resp, nil)
+	internal.SendResponse(w, &internal.Response{
+		Method:      inviteMethod,
+		APIResponse: resp,
+		CodeSnippet: `resp, err := c.api.MagicLinks.Email.Invite(
+	r.Context(),
+	&email.InviteParams{
+		OrganizationID: req.OrganizationID,
+		Name:           req.Name,
+		EmailAddress:   req.EmailAddress,
+	},
+)`,
+	})
 }
 
 const loginOrSignupMethod = "MagicLinks.Email.LoginOrSignup"
@@ -62,11 +76,24 @@ func (c *Controller) LoginOrSignup(w http.ResponseWriter, r *http.Request) {
 		EmailAddress:   req.EmailAddress,
 	})
 	if err != nil {
-		internal.SendResponse(w, loginOrSignupMethod, nil, err)
+		internal.SendResponse(w, &internal.Response{
+			Method: loginOrSignupMethod,
+			Error:  err.Error(),
+		})
 		return
 	}
 
-	internal.SendResponse(w, loginOrSignupMethod, resp, nil)
+	internal.SendResponse(w, &internal.Response{
+		Method:      loginOrSignupMethod,
+		APIResponse: resp,
+		CodeSnippet: `resp, err := c.api.MagicLinks.Email.LoginOrSignup(
+	r.Context(),
+	&email.LoginOrSignupParams{
+		OrganizationID: req.OrganizationID,
+		EmailAddress:   req.EmailAddress,
+	},
+)`,
+	})
 }
 
 const discoveryMethod = "MagicLinks.Discovery.Send"
@@ -75,7 +102,7 @@ type discoveryRequest struct {
 	EmailAddress string `json:"email_address"`
 }
 
-func (c *Controller) Discovery(w http.ResponseWriter, r *http.Request) {
+func (c *Controller) DiscoveryEmailSend(w http.ResponseWriter, r *http.Request) {
 	var req discoveryRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
 		log.Println(err)
@@ -87,11 +114,23 @@ func (c *Controller) Discovery(w http.ResponseWriter, r *http.Request) {
 		EmailAddress: req.EmailAddress,
 	})
 	if err != nil {
-		internal.SendResponse(w, discoveryMethod, nil, err)
+		internal.SendResponse(w, &internal.Response{
+			Method: discoveryMethod,
+			Error:  err.Error(),
+		})
 		return
 	}
 
-	internal.SendResponse(w, discoveryMethod, resp, nil)
+	internal.SendResponse(w, &internal.Response{
+		Method:      discoveryMethod,
+		APIResponse: resp,
+		CodeSnippet: `resp, err := c.api.MagicLinks.Email.Discovery.Send(
+	r.Context(),
+	&discovery.SendParams{
+		EmailAddress: req.EmailAddress,
+	},
+)`,
+	})
 }
 
 const authenticateMethod = "MagicLinks.Authenticate"
@@ -103,7 +142,10 @@ func (c *Controller) Authenticate(w http.ResponseWriter, r *http.Request) {
 		MagicLinksToken: token,
 	})
 	if err != nil {
-		internal.SendResponse(w, authenticateMethod, nil, err)
+		internal.SendResponse(w, &internal.Response{
+			Method: authenticateMethod,
+			Error:  err.Error(),
+		})
 		return
 	}
 
@@ -117,7 +159,16 @@ func (c *Controller) Authenticate(w http.ResponseWriter, r *http.Request) {
 		c.cookieStore.StoreIntermediateSession(w, r, resp.IntermediateSessionToken)
 	}
 
-	internal.SendResponse(w, authenticateMethod, resp, nil)
+	internal.SendResponse(w, &internal.Response{
+		Method:      authenticateMethod,
+		APIResponse: resp,
+		CodeSnippet: `resp, err := c.api.MagicLinks.Authenticate(
+	r.Context(),
+	&magiclinks.AuthenticateParams{
+		MagicLinksToken: token,
+	},
+)`,
+	})
 }
 
 const discoveryAuthenticateMethod = "MagicLinks.Discovery.Authenticate"
@@ -129,7 +180,10 @@ func (c *Controller) DiscoveryAuthenticate(w http.ResponseWriter, r *http.Reques
 		DiscoveryMagicLinksToken: token,
 	})
 	if err != nil {
-		internal.SendResponse(w, discoveryAuthenticateMethod, nil, err)
+		internal.SendResponse(w, &internal.Response{
+			Method: discoveryAuthenticateMethod,
+			Error:  err.Error(),
+		})
 		return
 	}
 
@@ -139,5 +193,6 @@ func (c *Controller) DiscoveryAuthenticate(w http.ResponseWriter, r *http.Reques
 	// This helps prevent account enumeration attacks.
 	c.cookieStore.StoreIntermediateSession(w, r, resp.IntermediateSessionToken)
 
-	internal.SendResponse(w, discoveryAuthenticateMethod, resp, nil)
+	// Redirect to the organizations page after successful authentication
+	http.Redirect(w, r, "http://localhost:3001/organizations", http.StatusSeeOther)
 }

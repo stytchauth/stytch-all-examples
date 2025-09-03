@@ -11,6 +11,7 @@ import {
   MAGIC_LINKS_OVERVIEW_URL,
   OAUTH_OVERVIEW_URL,
 } from "@stytch-all-examples/internal/lib/constants";
+import { AppType } from "../types";
 
 const HEADLESS_LIST_ITEMS = [
   "Your end users log into your app using your own frontend authentication flow.",
@@ -26,34 +27,33 @@ const PREBUILT_LIST_ITEMS = [
   "The SDK automatically manages the session upon successful authentication.",
 ];
 
-export function IntroTextBox({
-  appType,
-}: {
-  appType: "headless" | "prebuilt";
-}) {
-  const introText =
-    appType === "headless" ? (
-      <Typography variant="body1">
-        See how Stytch simplifies user auth with just a few lines of code. This
-        application demonstrates a Stytch API integration that{" "}
-        <b>uses your own frontend</b>:
-      </Typography>
-    ) : (
-      <Typography variant="body1">
-        See how Stytch simplifies user auth with just a few lines of code. This
-        application demonstrates an integration using both the Stytch SDK and UI
-        components.
-      </Typography>
-    );
+const BACKEND_LIST_ITEMS = [
+  "Your end users log into your app using your own custom frontend.",
+  "Your app utilizes one of our backend SDKs to communicate with the Stytch API.",
+  "Stytch API processes the request and returns a response to your backend.",
+  "Your backend automatically manages the session upon successful authentication.",
+];
+
+const introTextForAppType = {
+  headless:
+    "See how Stytch simplifies user auth with just a few lines of code. This application demonstrates a Stytch API integration that uses your own frontend:",
+  prebuilt:
+    "See how Stytch simplifies user auth with just a few lines of code. This application demonstrates an integration using both the Stytch SDK and UI components.",
+  backend:
+    "See how Stytch simplifies user auth with just a few lines of code. This application demonstrates a Stytch API integration using a custom backend authentication flow:",
+};
+
+const listItemsForAppType = {
+  headless: HEADLESS_LIST_ITEMS,
+  prebuilt: PREBUILT_LIST_ITEMS,
+  backend: BACKEND_LIST_ITEMS,
+};
+
+export function IntroTextBox({ appType }: { appType: AppType }) {
   return (
     <TextBox className="max-w-2xl" title={INTRO_TITLE}>
-      {introText}
-      <List
-        className="text-body1"
-        items={
-          appType === "headless" ? HEADLESS_LIST_ITEMS : PREBUILT_LIST_ITEMS
-        }
-      />
+      <Typography variant="body1">{introTextForAppType[appType]}</Typography>
+      <List className="text-body1" items={listItemsForAppType[appType]} />
       <CalloutAlert
         title={INTRO_CALLOUT_ALERT_TITLE}
         description={

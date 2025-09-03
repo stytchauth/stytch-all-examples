@@ -8,7 +8,7 @@
     "frontend/react/prebuilt",
     "frontend/nextjs/headless",
     "frontend/nextjs/prebuilt",
-    "backend"
+    "backend/ui"
   ],
   "scripts": {
     "build": "echo 'Navigate to the specific project to build it'",

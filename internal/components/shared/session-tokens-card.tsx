@@ -3,6 +3,7 @@ import { SessionTokens } from "../b2b/session-card";
 import { Button } from "../ui/button";
 import { Card, CardContent } from "../ui/card";
 import { YourOwnUIBadge } from "./your-own-ui-badge";
+import { AppType } from "../types";
 
 export function SessionTokensCard({
   sessionTokens,
@@ -11,7 +12,7 @@ export function SessionTokensCard({
 }: {
   sessionTokens: SessionTokens;
   handleBack: () => void;
-  appType: "headless" | "prebuilt";
+  appType: AppType;
 }) {
   return (
     <div className="flex flex-col gap-4 items-center">

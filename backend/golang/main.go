@@ -13,6 +13,25 @@ import (
 
 var ctx = context.Background()
 
+// corsMiddleware adds CORS headers to allow cross-origin requests
+func corsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Allow requests from the frontend origin
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3001")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type, Authorization")
+		w.Header().Set("Access-Control-Allow-Credentials", "true")
+
+		// Handle preflight requests
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		next.ServeHTTP(w, r)
+	})
+}
+
 func main() {
 	// Load project id, project secret, and other variables from the .env file.
 	conf := LoadConfig()
@@ -38,12 +57,21 @@ func main() {
 	// Handle Email Magic Links routes.
 	mux.HandleFunc("/magic-links/invite", service.MagicLinksController.Invite)
 	mux.HandleFunc("/magic-links/login-signup", service.MagicLinksController.LoginOrSignup)
-	mux.HandleFunc("/magic-links/discovery", service.MagicLinksController.Discovery)
+	mux.HandleFunc("/magic_links/email/discovery/send", service.MagicLinksController.DiscoveryEmailSend)
+
+	// Handle Discovery routes.
+	mux.HandleFunc("/discovery/organizations", service.DiscoveryController.ListOrganizations)
+	mux.HandleFunc("/discovery/organizations/create", service.DiscoveryController.CreateOrganizationViaDiscovery)
 
 	// Handle Sessions routes.
 	mux.HandleFunc("/sessions/exchange", service.SessionsController.Exchange)
+	mux.HandleFunc("/session", service.SessionsController.GetCurrentSession)
+	mux.HandleFunc("/logout", service.SessionsController.Logout)
 
-	if err := http.ListenAndServe(":3000", mux); err != nil && !errors.Is(err, http.ErrServerClosed) {
+	// Wrap the mux with CORS middleware
+	handler := corsMiddleware(mux)
+
+	if err := http.ListenAndServe(":3000", handler); err != nil && !errors.Is(err, http.ErrServerClosed) {
 		log.Fatalf("Unable to start server: %v", err)
 	}
 }
