@@ -15,9 +15,9 @@ export const Login = () => {
     <SplitPage
       leftSide={
         sendingEmail ? (
-          <RedirectUrlTextBox />
+          <RedirectUrlTextBox appType="prebuilt" />
         ) : (
-          <IntroTextBox appType="headless" />
+          <IntroTextBox appType="prebuilt" />
         )
       }
       rightSide={<LoginOrSignup onEmailSend={() => setSendingEmail(true)} />}

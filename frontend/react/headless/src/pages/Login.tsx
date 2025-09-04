@@ -7,6 +7,7 @@ import {
 } from "@stytch-all-examples/internal";
 import { useStytchB2BClient } from "@stytch/react/b2b";
 import { useState } from "react";
+import { ENABLE_OAUTH } from "../config";
 
 export function Login() {
   const stytch = useStytchB2BClient();
@@ -48,8 +49,7 @@ export function Login() {
           setIsSendingEmail={setSendingEmail}
           onEmailLogin={handleEmailLogin}
           onGoogleLogin={handleGoogleLogin}
-          // To test out OAuth, set this to true
-          showGoogleLogin={false}
+          showGoogleLogin={ENABLE_OAUTH}
         />
       }
       error={

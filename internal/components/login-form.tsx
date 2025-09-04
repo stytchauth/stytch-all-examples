@@ -8,6 +8,7 @@ import {
 import { Input } from "@stytch-all-examples/internal/components/ui/input";
 import React, { useState } from "react";
 import { ExampleAppHeader } from "./example-app-header";
+import { GoogleIcon } from "./ui/google-icon";
 
 interface LoginFormProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -108,7 +109,9 @@ function LoginCardContent({
               className="w-full"
               onClick={onGoogleLogin}
             >
-              Continue with Google
+              <div className="flex items-center justify-center gap-1.5">
+                <GoogleIcon /> Continue with Google
+              </div>
             </Button>
           </div>
         </>

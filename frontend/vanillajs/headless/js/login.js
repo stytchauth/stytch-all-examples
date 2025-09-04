@@ -1,5 +1,6 @@
 import { stytch } from "./stytch-client.js";
 import { showErrorInContainer, hideErrorContainer } from "./errors.js";
+import { ENABLE_OAUTH } from "./config.js";
 
 // DOM elements
 const emailForm = document.getElementById("email-form");
@@ -21,6 +22,9 @@ let apiError = null;
 function init() {
   // Set up event listeners
   setupEventListeners();
+
+  // Configure OAuth visibility
+  configureOAuthVisibility();
 }
 
 function setupEventListeners() {
@@ -34,8 +38,29 @@ function setupEventListeners() {
   resendBtn.addEventListener("click", () => handleEmailLogin(currentEmail));
   changeEmailBtn.addEventListener("click", showLoginForm);
 
-  // Google login button
-  googleLoginBtn.addEventListener("click", handleGoogleLogin);
+  // Google login button (only if OAuth is enabled)
+  if (ENABLE_OAUTH) {
+    googleLoginBtn.addEventListener("click", handleGoogleLogin);
+  }
+}
+
+function configureOAuthVisibility() {
+  const oauthDivider = document.querySelector(
+    ".flex.gap-2.w-full.items-center.mt-4"
+  );
+  const oauthButtonContainer = document.querySelector(
+    ".flex.flex-col.gap-2.w-full.mt-4"
+  );
+
+  if (ENABLE_OAUTH) {
+    // Show OAuth elements
+    if (oauthDivider) oauthDivider.classList.remove("hidden");
+    if (oauthButtonContainer) oauthButtonContainer.classList.remove("hidden");
+  } else {
+    // Hide OAuth elements
+    if (oauthDivider) oauthDivider.classList.add("hidden");
+    if (oauthButtonContainer) oauthButtonContainer.classList.add("hidden");
+  }
 }
 
 async function handleEmailLogin(email) {

@@ -8,6 +8,7 @@ import (
 	"backend/golang/pkg/discovery"
 	"backend/golang/pkg/internal"
 	"backend/golang/pkg/magiclinks"
+	"backend/golang/pkg/oauth"
 	"backend/golang/pkg/session"
 )
 
@@ -18,6 +19,7 @@ type Service struct {
 	MagicLinksController *magiclinks.Controller
 	SessionsController   *session.Controller
 	DiscoveryController  *discovery.Controller
+	OAuthController      *oauth.Controller
 }
 
 func New(stytchAPI *b2bstytchapi.API) *Service {
@@ -28,6 +30,7 @@ func New(stytchAPI *b2bstytchapi.API) *Service {
 		MagicLinksController: magiclinks.NewController(stytchAPI, cookieStore),
 		SessionsController:   session.NewController(stytchAPI, cookieStore),
 		DiscoveryController:  discovery.NewController(stytchAPI, cookieStore),
+		OAuthController:      oauth.NewController(stytchAPI, cookieStore),
 	}
 }
 
@@ -41,8 +44,9 @@ func (s *Service) IndexHandler(w http.ResponseWriter, _ *http.Request) {
 //
 // For full list of token types, see: https://stytch.com/docs/workspace-management/redirect-urls.
 const (
-	tokenTypeMagicLinks = "multi_tenant_magic_links"
-	tokenTypeDiscovery  = "discovery"
+	tokenTypeMagicLinks     = "multi_tenant_magic_links"
+	tokenTypeDiscovery      = "discovery"
+	tokenTypeDiscoveryOAuth = "discovery_oauth"
 )
 
 func (s *Service) AuthenticateHandler(w http.ResponseWriter, r *http.Request) {
@@ -57,6 +61,8 @@ func (s *Service) AuthenticateHandler(w http.ResponseWriter, r *http.Request) {
 		s.MagicLinksController.Authenticate(w, r)
 	case tokenTypeDiscovery:
 		s.MagicLinksController.DiscoveryAuthenticate(w, r)
+	case tokenTypeDiscoveryOAuth:
+		s.OAuthController.DiscoveryOAuthAuthenticate(w, r)
 	default:
 		http.Error(w, "Authentication for this token type has not been implemented", http.StatusNotImplemented)
 	}

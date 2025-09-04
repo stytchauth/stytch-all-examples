@@ -1,5 +1,11 @@
 import { StytchB2B } from "@stytch/nextjs/b2b";
-import { AuthFlowType, B2BProducts, StytchEventType } from "@stytch/vanilla-js";
+import {
+  AuthFlowType,
+  B2BProducts,
+  B2BOAuthProviders,
+  StytchEventType,
+} from "@stytch/vanilla-js";
+import { ENABLE_OAUTH } from "../config";
 
 export function LoginOrSignup({
   onEmailSend,
@@ -8,19 +14,18 @@ export function LoginOrSignup({
   onEmailSend?: () => void;
   onCreateOrg?: () => void;
 }) {
-  // To test OAuth, uncomment the oauthOptions the B2BProducts.oauth product type
   const config = {
     products: [
       B2BProducts.emailMagicLinks,
-      // B2BProducts.oauth
+      ...(ENABLE_OAUTH ? [B2BProducts.oauth] : []),
     ],
     sessionOptions: { sessionDurationMinutes: 60 },
     authFlowType: AuthFlowType.Discovery,
-    /*
-    oauthOptions: {
-      providers: [{ type: B2BOAuthProviders.Google }],
-    },
-    */
+    ...(ENABLE_OAUTH && {
+      oauthOptions: {
+        providers: [{ type: B2BOAuthProviders.Google }],
+      },
+    }),
   };
 
   return (

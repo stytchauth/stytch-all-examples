@@ -1,16 +1,9 @@
 /**
  * Application Configuration
  *
- * This file contains configuration options for the vanilla JS headless example app.
+ * This file contains configuration options for the backend UI example app.
  * Modify these values to customize the app's behavior.
  */
-
-/**
- * Stytch Configuration
- *
- * Replace this with your actual Stytch project public token from the Stytch dashboard.
- */
-export const STYTCH_PUBLIC_TOKEN = "your-project-public-token-here";
 
 /**
  * OAuth Configuration

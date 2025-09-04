@@ -33,3 +33,6 @@ tsconfig.tsbuildinfo
 
 # vite
 **/.vite
+
+# next.js
+**/.next
