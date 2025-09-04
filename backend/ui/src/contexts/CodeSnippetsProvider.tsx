@@ -27,7 +27,6 @@ export const CodeSnippetsProvider = ({
 
   const addResponse = useCallback(
     (response: APIResponse<unknown>, opts?: { replace?: boolean }) => {
-      console.log("adding response", response, opts);
       prevRequests.current = apiRequests;
       setApiRequests((prev) => [
         ...(opts?.replace ? [] : prev),

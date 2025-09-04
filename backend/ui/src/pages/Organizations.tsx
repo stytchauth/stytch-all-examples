@@ -37,7 +37,6 @@ export function Organizations() {
         // TODO: Also include oauth if it's enabled
         // If canCreateOrganization is true, display a mock authenticate request/response
         if (response.metadata?.canCreateOrganization) {
-          console.log("adding mock authenticate response");
           addResponse(
             {
               codeSnippet: `// Magic links discovery authenticate
@@ -60,19 +59,21 @@ resp, err := c.api.MagicLinks.Discovery.Authenticate(
           );
         }
 
-        console.log("adding response", response);
         addResponse(response, {
           replace: !response.metadata?.canCreateOrganization,
         });
+
         setOrgs(
           response.stytchResponse.discovered_organizations?.map((org) => ({
             id: org.organization.organization_id,
             name: org.organization.organization_name,
           })) || []
         );
+
         setCanCreateOrganization(
           response.metadata?.canCreateOrganization ?? false
         );
+
         setIsLoaded(true);
       } catch (error) {
         setError(
