@@ -2,38 +2,35 @@ import { useCallback, useMemo, useRef, useState } from "react";
 import { APIResponse } from "../api";
 import { CodeSnippetsContext } from "./code-snippets";
 
+type CodeSnippet = {
+  codeSnippet: string;
+  stytchResponse: string;
+};
+
 export const CodeSnippetsProvider = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const [apiRequests, _setApiRequests] = useState<
-    {
-      codeSnippet: string;
-      stytchResponse: string;
-    }[]
-  >([]);
+  const [apiRequests, _setApiRequests] = useState<CodeSnippet[]>([]);
 
-  const prevRequests = useRef<
-    {
-      codeSnippet: string;
-      stytchResponse: string;
-    }[]
-  >([]);
+  const prevRequests = useRef<CodeSnippet[]>([]);
 
-  const setApiRequests = useCallback(
-    (requests: typeof apiRequests) => {
-      prevRequests.current = apiRequests;
-      _setApiRequests(requests);
-    },
-    [apiRequests]
-  );
+  const setApiRequests: React.Dispatch<React.SetStateAction<CodeSnippet[]>> =
+    useCallback(
+      (requests) => {
+        prevRequests.current = apiRequests;
+        _setApiRequests(requests);
+      },
+      [apiRequests]
+    );
 
   const addResponse = useCallback(
     (response: APIResponse<unknown>, opts?: { replace?: boolean }) => {
+      console.log("adding response", response, opts);
       prevRequests.current = apiRequests;
-      setApiRequests([
-        ...(opts?.replace ? [] : apiRequests),
+      setApiRequests((prev) => [
+        ...(opts?.replace ? [] : prev),
         {
           codeSnippet: response.codeSnippet,
           stytchResponse:

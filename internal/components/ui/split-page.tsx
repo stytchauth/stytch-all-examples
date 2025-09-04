@@ -47,13 +47,14 @@ export function SplitPage({
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>
-                        The Backend SDK and API Response show how your backend
-                        server will interact with the Stytch API.
+                        The Backend SDK Code and API Response snippets show how
+                        the Stytch API just interacted with your backend server
+                        to get to this screen.
                       </p>
                     </TooltipContent>
                   </Tooltip>
                 </div>
-                <CodeTabs codes={codeTabs} />
+                <CodeTabs lang="go" codes={codeTabs} />
               </div>
             )}
           </div>

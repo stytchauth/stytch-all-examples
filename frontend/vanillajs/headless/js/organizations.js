@@ -14,6 +14,8 @@ const orgNameInput = document.getElementById("org-name-input");
 const cancelCreateBtn = document.getElementById("cancel-create-btn");
 const orgsTextBox = document.getElementById("orgs-text-box");
 const orgCreateTextBox = document.getElementById("org-create-text-box");
+const orgsTextNoSession = document.getElementById("orgs-text-no-session");
+const orgsTextWithSession = document.getElementById("orgs-text-with-session");
 
 let organizations = [];
 let creatingOrg = false;
@@ -180,6 +182,19 @@ function updateCreateButtonVisibility() {
     createButtonContainer.classList.remove("hidden");
   } else {
     createButtonContainer.classList.add("hidden");
+  }
+
+  // Update the text box content based on session state
+  updateOrgsTextBox(session);
+}
+
+function updateOrgsTextBox(hasSession) {
+  if (hasSession) {
+    orgsTextNoSession.classList.add("hidden");
+    orgsTextWithSession.classList.remove("hidden");
+  } else {
+    orgsTextNoSession.classList.remove("hidden");
+    orgsTextWithSession.classList.add("hidden");
   }
 }
 

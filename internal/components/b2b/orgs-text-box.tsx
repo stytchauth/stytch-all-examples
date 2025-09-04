@@ -9,12 +9,21 @@ import {
 } from "@stytch-all-examples/internal/lib/constants";
 import { TextBox } from "../ui/text-box";
 
-export function OrgsTextBox() {
-  return (
-    <TextBox
-      className="max-w-2xl"
-      title="The session needs an organization to call home."
-    >
+export function OrgsTextBox({ hasSession }: { hasSession: boolean }) {
+  const content = hasSession ? (
+    <>
+      <Typography variant="body1">
+        Fully authenticated users can exchange their session between
+        organizations without having to re-login.
+      </Typography>
+      <Typography variant="body1">
+        Discovery also enables members to find their associated organizations
+        after authentication, increasing the chance of a successful onboarding
+        experience.
+      </Typography>
+    </>
+  ) : (
+    <>
       <Typography variant="body1">
         All <b>Members</b> (end users) belong to an <b>Organization</b> when
         using Stytch B2B: Auth for Orgs. Stytch supports four different methods
@@ -41,6 +50,18 @@ export function OrgsTextBox() {
           </Typography>,
         ]}
       />
+    </>
+  );
+  return (
+    <TextBox
+      className="max-w-2xl"
+      title={
+        hasSession
+          ? "Organizations, sessions, and discovery"
+          : "The session needs an organization to call home."
+      }
+    >
+      {content}
       <AdditionalResources
         links={[
           {

@@ -33,7 +33,37 @@ export function Organizations() {
         if (response.error) {
           throw response.error;
         }
-        addResponse(response, { replace: true });
+
+        // TODO: Also include oauth if it's enabled
+        // If canCreateOrganization is true, display a mock authenticate request/response
+        if (response.metadata?.canCreateOrganization) {
+          console.log("adding mock authenticate response");
+          addResponse(
+            {
+              codeSnippet: `// Magic links discovery authenticate
+resp, err := c.api.MagicLinks.Discovery.Authenticate(
+  r.Context(), 
+  &mldiscovery.AuthenticateParams{
+		DiscoveryMagicLinksToken: token,
+	},
+)`,
+              stytchResponse: `// The server at your redirect URL authenticates the discovery magic link token. We’ve included a sample response here to show what the response looks like.
+{
+	"request_id": "",
+	"status_code": 200,
+	"intermediate_session_token": "",
+	"email_address": "",
+	"discovered_organizations": []
+}`,
+            },
+            { replace: true }
+          );
+        }
+
+        console.log("adding response", response);
+        addResponse(response, {
+          replace: !response.metadata?.canCreateOrganization,
+        });
         setOrgs(
           response.stytchResponse.discovered_organizations?.map((org) => ({
             id: org.organization.organization_id,
@@ -123,7 +153,11 @@ export function Organizations() {
   return (
     <SplitPage
       leftSide={
-        creatingOrg ? <OrgCreateTextBox appType="headless" /> : <OrgsTextBox />
+        creatingOrg ? (
+          <OrgCreateTextBox appType="headless" />
+        ) : (
+          <OrgsTextBox hasSession={!canCreateOrganization} />
+        )
       }
       rightSide={
         creatingOrg ? (

@@ -44,14 +44,16 @@ func (c *Controller) ListOrganizations(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	codeSnippet := `resp, err := c.api.Discovery.Organizations.List(
+	codeSnippet := `// List discovered organizations
+resp, err := c.api.Discovery.Organizations.List(
 	r.Context(),
 	&organizations.ListParams{
 		SessionToken: token,
 	},
 )`
 	if istUsed {
-		codeSnippet = `resp, err := c.api.Discovery.Organizations.List(
+		codeSnippet = `// List discovered organizations
+resp, err := c.api.Discovery.Organizations.List(
 	r.Context(),
 	&organizations.ListParams{
 		IntermediateSessionToken: token,

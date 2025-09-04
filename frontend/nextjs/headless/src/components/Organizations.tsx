@@ -95,7 +95,11 @@ export const Organizations = () => {
   return (
     <SplitPage
       leftSide={
-        creatingOrg ? <OrgCreateTextBox appType="headless" /> : <OrgsTextBox />
+        creatingOrg ? (
+          <OrgCreateTextBox appType="headless" />
+        ) : (
+          <OrgsTextBox hasSession={!!session} />
+        )
       }
       rightSide={
         creatingOrg ? (
