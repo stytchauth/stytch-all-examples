@@ -12,11 +12,11 @@ type Config struct {
 	ProjectSecret string
 }
 
-// envFilePath is the path to the .env file located at the root
-// of this repository.
+// envFilePath is the path to the .env file located in the golang
+// directory.
 // In order to run the example apps you will need to populate this
 // with your project variables.
-const envFilepath = "../../.env"
+const envFilepath = ".env"
 
 func LoadConfig() Config {
 	if _, err := os.Stat(envFilepath); os.IsNotExist(err) {

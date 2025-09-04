@@ -8,6 +8,7 @@ import {
 import { useState } from "react";
 import { sendDiscoveryEmail } from "../api";
 import { useCodeSnippets } from "../contexts/code-snippets";
+import { ENABLE_OAUTH } from "../config";
 
 export function Login() {
   const { codeTabs, addResponse } = useCodeSnippets();
@@ -58,7 +59,7 @@ export function Login() {
           setIsSendingEmail={setSentEmail}
           onEmailLogin={handleEmailLogin}
           onGoogleLogin={handleGoogleLogin}
-          showGoogleLogin={false}
+          showGoogleLogin={ENABLE_OAUTH}
         />
       }
       error={

@@ -1,4 +1,5 @@
 import { stytch } from "./stytch-client.js";
+import { ENABLE_OAUTH } from "./config.js";
 
 const introTextBox = document.getElementById("intro-text-box");
 const redirectUrlTextBox = document.getElementById("redirect-url-text-box");
@@ -9,17 +10,13 @@ function init() {
     elementId: "#stytch-sdk",
     config: {
       authFlowType: "Discovery",
-      products: [
-        "emailMagicLinks",
-        // To test OAuth, uncomment the oauth product type
-        // "oauth"
-      ],
+      products: ["emailMagicLinks", ...(ENABLE_OAUTH ? ["oauth"] : [])],
       sessionOptions: { sessionDurationMinutes: 60 },
-      /*
-      oauthOptions: {
-        providers: [{ type: "google" }],
-      },
-      */
+      ...(ENABLE_OAUTH && {
+        oauthOptions: {
+          providers: [{ type: "google" }],
+        },
+      }),
     },
     callbacks: {
       onEvent: ({ type }) => {

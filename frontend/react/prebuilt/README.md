@@ -1,16 +1,15 @@
-# Stytch B2B Shared UI
+# Stytch B2B React Prebuilt SDK Example
 
-A React + TypeScript + Vite application that provides a shared UI for backend server examples. This UI demonstrates B2B authentication flows and communicates with backend APIs via HTTP requests.
+A React application demonstrating Stytch B2B authentication with Stytch's hosted UI components. Users can authenticate via email magic links, discover organizations, and manage sessions using pre-built UI.
 
-## What This UI Does
+## Features
 
 - **Email Magic Link Authentication**: Users log in by clicking a link sent to their email
 - **Google OAuth Login**: One-click authentication with Google (opt-in)
 - **Organization Discovery**: Users can find and join existing organizations
 - **Organization Creation**: Users can create new organizations
 - **Session Management**: View session details and switch between organizations
-- **Backend Integration**: Communicates with backend APIs via HTTP requests
-- **Code Snippets**: Interactive code examples showing API calls
+- **Prebuilt UI**: Uses Stytch's hosted authentication components
 
 ## Quick Start
 
@@ -40,9 +39,7 @@ A React + TypeScript + Vite application that provides a shared UI for backend se
    ```
 
 4. **Open your browser**:
-   Navigate to [http://localhost:3001](http://localhost:3001)
-
-**Note**: This UI is designed to work with backend servers. See the backend-specific READMEs (e.g., `../golang/README.md`) for instructions on running the complete full-stack application.
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
 ## Configuration
 
@@ -69,8 +66,7 @@ export const ENABLE_OAUTH = true;
 
 ## Tech Stack
 
-- **Framework**: React 18 + TypeScript + Vite
+- **Framework**: React 18 with Vite
 - **Styling**: Tailwind CSS
-- **Authentication**: Stytch B2B SDK
-- **Backend Communication**: HTTP API calls with CORS support
-- **Code Highlighting**: Shiki syntax highlighter
+- **Authentication**: Stytch B2B Prebuilt SDK
+- **Language**: TypeScript

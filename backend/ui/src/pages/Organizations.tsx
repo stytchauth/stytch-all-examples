@@ -15,6 +15,7 @@ import {
   listDiscoveredOrganizations,
 } from "../api";
 import { useCodeSnippets } from "../contexts/code-snippets";
+import { ENABLE_OAUTH } from "../config";
 
 export function Organizations() {
   const navigate = useNavigate();
@@ -35,18 +36,44 @@ export function Organizations() {
         }
 
         // TODO: Also include oauth if it's enabled
-        // If canCreateOrganization is true, display a mock authenticate request/response
+        // If canCreateOrganization is true, that means we got here through a discovery authenticate flow,
+        // so display a mock authenticate request/response
         if (response.metadata?.canCreateOrganization) {
+          if (ENABLE_OAUTH) {
+            addResponse(
+              {
+                codeSnippet: `// OAuth discovery authenticate
+  resp, err := c.api.OAuth.Discovery.Authenticate(
+    r.Context(), 
+    &oauthdiscovery.AuthenticateParams{
+      DiscoveryOAuthToken: token,
+    },
+  )`,
+                stytchResponse: `// OAuth discovery authenticate sample response
+  {
+    "request_id": "",
+    "status_code": 200,
+    "intermediate_session_token": "",
+    "email_address": "",
+    "discovered_organizations": []
+  }`,
+              },
+              { replace: true }
+            );
+          }
+
           addResponse(
             {
-              codeSnippet: `// Magic links discovery authenticate
+              codeSnippet: `// ${
+                ENABLE_OAUTH ? "OR " : ""
+              } Magic links discovery authenticate
 resp, err := c.api.MagicLinks.Discovery.Authenticate(
   r.Context(), 
   &mldiscovery.AuthenticateParams{
 		DiscoveryMagicLinksToken: token,
 	},
 )`,
-              stytchResponse: `// The server at your redirect URL authenticates the discovery magic link token. We’ve included a sample response here to show what the response looks like.
+              stytchResponse: `// Magic link discovery authenticate sample response
 {
 	"request_id": "",
 	"status_code": 200,
@@ -55,7 +82,7 @@ resp, err := c.api.MagicLinks.Discovery.Authenticate(
 	"discovered_organizations": []
 }`,
             },
-            { replace: true }
+            { replace: !ENABLE_OAUTH }
           );
         }
 

@@ -1,16 +1,17 @@
-# Stytch B2B Prebuilt - Vanilla JavaScript
+# Stytch B2B Vanilla JavaScript Prebuilt SDK Example
 
-This is a vanilla JavaScript implementation of the Stytch B2B prebuilt authentication flow. It demonstrates how to build a B2B authentication app using raw HTML, CSS, and JavaScript with the Stytch Prebuilt SDK.
+A vanilla JavaScript application demonstrating Stytch B2B authentication with Stytch's hosted UI components. Users can authenticate via email magic links, discover organizations, and manage sessions using pre-built UI.
 
 ## Features
 
-- **Magic Link Authentication**: Users can log in using email magic links
-- **Organization Discovery**: Users can discover and join existing organizations
+- **Email Magic Link Authentication**: Users log in by clicking a link sent to their email
+- **Google OAuth Login**: One-click authentication with Google (opt-in)
+- **Organization Discovery**: Users can find and join existing organizations
 - **Organization Creation**: Users can create new organizations
-- **Session Management**: View session information and manage sessions
-- **Automatic Redirects**: Smart routing based on authentication state
+- **Session Management**: View session details and switch between organizations
+- **Prebuilt UI**: Uses Stytch's hosted authentication components
 
-## Setup
+## Quick Start
 
 1. **Install dependencies**:
 
@@ -18,10 +19,12 @@ This is a vanilla JavaScript implementation of the Stytch B2B prebuilt authentic
    npm install
    ```
 
-2. **Configure Stytch**:
+2. **Configure your Stytch token**:
+   Open `js/config.js` and replace the placeholder with your actual Stytch public token:
 
-   - Open `js/config.js`
-   - Replace `'your-project-public-token-here'` with your actual Stytch project public token
+   ```javascript
+   export const STYTCH_PUBLIC_TOKEN = "your_actual_stytch_public_token_here";
+   ```
 
 3. **Start the development server**:
 
@@ -30,75 +33,34 @@ This is a vanilla JavaScript implementation of the Stytch B2B prebuilt authentic
    ```
 
 4. **Open your browser**:
-   Navigate to `http://localhost:3000`
+   Navigate to [http://localhost:3000](http://localhost:3000)
 
-## Project Structure
+## Configuration
 
-```
-frontend/vanillajs/prebuilt/
-├── index.html              # Login page
-├── authenticate.html        # Magic link authentication
-├── organizations.html       # Organization selection/creation
-├── view-session.html        # Session information
-├── js/
-│   ├── config.js           # Configuration and constants
-│   ├── stytch-client.js    # Stytch client initialization
-│   ├── login.js            # Login page logic
-│   ├── authenticate.js     # Authentication logic
-│   ├── organizations.js    # Organizations page logic
-│   └── view-session.js     # Session view logic
-├── css/
-│   └── styles.css          # Custom styles and fonts
-├── fonts/                  # Booton font files
-└── package.json
+### OAuth Configuration
+
+By default, this app only includes email magic link authentication. To enable Google OAuth login:
+
+1. Open `js/config.js`
+2. Change `ENABLE_OAUTH` from `false` to `true`:
+
+```javascript
+export const ENABLE_OAUTH = true;
 ```
 
-## How it Works
+**When `ENABLE_OAUTH = true`:**
 
-1. **Login Flow**: Users enter their email and receive a magic link
-2. **Authentication**: Clicking the magic link authenticates the user
-3. **Organization Selection**: Users can join existing organizations or create new ones
-4. **Session Management**: View session details and perform session operations
+- Google OAuth login button will be visible
+- OAuth authentication flows will be available
 
-## Key Differences from React/Next.js Version
+**When `ENABLE_OAUTH = false` (default):**
 
-- Uses vanilla JavaScript instead of React hooks
-- Separate HTML files for each route instead of Next.js routing
-- Manual DOM manipulation instead of React state management
-- `http-server` instead of Next.js development server
-- Direct Stytch Prebuilt SDK usage instead of React-specific hooks
+- Only email magic link authentication is available
+- OAuth login button is hidden
 
-## Stytch Prebuilt SDK Usage
+## Tech Stack
 
-The app uses the Stytch Prebuilt SDK which provides pre-built UI components and handles most of the authentication logic automatically:
-
-- `stytch.mount()` - Mount the prebuilt UI components
-- `stytch.member.getSync()` - Get current member information
-- `stytch.organization.getSync()` - Get current organization information
-- `stytch.session.getTokens()` - Get session tokens
-- `stytch.session.revoke()` - Revoke session (logout)
-
-The prebuilt SDK handles:
-
-- Magic link sending and authentication
-- Organization discovery and creation
-- Session management
-- UI state management
-- Error handling
-
-## Browser Support
-
-This app uses ES6 modules and modern JavaScript features. It requires a modern browser that supports:
-
-- ES6 modules (`import`/`export`)
-- `async`/`await`
-- Template literals
-- Arrow functions
-- `const`/`let`
-
-## Development
-
-- **Development server**: `npm run dev` (with cache disabled)
-- **Production server**: `npm start` (with caching enabled)
-
-The app runs on `http://localhost:3000` to match the redirect URLs configured in the Stytch dashboard.
+- **Framework**: Vanilla JavaScript with ES6 modules
+- **Styling**: Tailwind CSS
+- **Authentication**: Stytch B2B Prebuilt SDK
+- **Server**: http-server

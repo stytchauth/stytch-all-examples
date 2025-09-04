@@ -9,6 +9,7 @@ import {
 } from "@stytch-all-examples/internal";
 import { useStytchB2BClient } from "@stytch/nextjs/b2b";
 import { useState } from "react";
+import { ENABLE_OAUTH } from "../config";
 
 export const Login = () => {
   const stytch = useStytchB2BClient();
@@ -41,7 +42,7 @@ export const Login = () => {
     <SplitPage
       leftSide={
         sendingEmail ? (
-          <RedirectUrlTextBox />
+          <RedirectUrlTextBox appType="headless" />
         ) : (
           <IntroTextBox appType="headless" />
         )
@@ -52,8 +53,7 @@ export const Login = () => {
           setIsSendingEmail={setSendingEmail}
           onEmailLogin={handleEmailLogin}
           onGoogleLogin={handleGoogleLogin}
-          // To test out OAuth, set this to true
-          showGoogleLogin={false}
+          showGoogleLogin={ENABLE_OAUTH}
         />
       }
       error={
