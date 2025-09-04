@@ -31,38 +31,60 @@
                 id="orgs-text-box"
                 class="flex flex-col gap-4 min-w-md max-w-2xl"
               >
-                <h1
-                  class="font-default text-h1 font-semibold pb-4 tracking-wide"
-                >
-                  The session needs an organization to call home.
-                </h1>
-                <p class="font-default text-body1 tracking-normal">
-                  All <strong>Members</strong> (end users) belong to an
-                  <strong>Organization</strong> when using Stytch B2B: Auth for
-                  Orgs. Stytch supports four different methods for provisioning
-                  Members:
-                </p>
-                <ul
-                  class="list-disc pl-4 space-y-3 ml-4 font-default text-body1 tracking-normal"
-                >
-                  <li>
-                    <strong>Invite:</strong> Members can be invited to join a
-                    specific Organization
-                  </li>
-                  <li>
-                    <strong>Just-in-time (JIT):</strong> Eligible Organizations
-                    are shown in a Discovery flow so Members can find and join
-                    teammates.
-                  </li>
-                  <li>
-                    <strong>SCIM:</strong> Organizations can manage Members
-                    directly from their workforce IdP.
-                  </li>
-                  <li>
-                    <strong>Manual:</strong> Members can be manually provisioned
-                    via direct API calls.
-                  </li>
-                </ul>
+                <!-- Text for users without a session -->
+                <div id="orgs-text-no-session">
+                  <h1
+                    class="font-default text-h1 font-semibold pb-4 tracking-wide"
+                  >
+                    The session needs an organization to call home.
+                  </h1>
+                  <p class="font-default text-body1 tracking-normal">
+                    All <strong>Members</strong> (end users) belong to an
+                    <strong>Organization</strong> when using Stytch B2B: Auth
+                    for Orgs. Stytch supports four different methods for
+                    provisioning Members:
+                  </p>
+                  <ul
+                    class="list-disc pl-4 space-y-3 ml-4 font-default text-body1 tracking-normal"
+                  >
+                    <li>
+                      <strong>Invite:</strong> Members can be invited to join a
+                      specific Organization
+                    </li>
+                    <li>
+                      <strong>Just-in-time (JIT):</strong> Eligible
+                      Organizations are shown in a Discovery flow so Members can
+                      find and join teammates.
+                    </li>
+                    <li>
+                      <strong>SCIM:</strong> Organizations can manage Members
+                      directly from their workforce IdP.
+                    </li>
+                    <li>
+                      <strong>Manual:</strong> Members can be manually
+                      provisioned via direct API calls.
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Text for users with a session -->
+                <div id="orgs-text-with-session" class="hidden">
+                  <h1
+                    class="font-default text-h1 font-semibold pb-4 tracking-wide"
+                  >
+                    Organizations, sessions, and discovery
+                  </h1>
+                  <p class="font-default text-body1 tracking-normal">
+                    Fully authenticated users can exchange their session between
+                    organizations without having to re-login.
+                  </p>
+                  <p class="font-default text-body1 tracking-normal">
+                    Discovery also enables members to find their associated
+                    organizations after authentication, increasing the chance of
+                    a successful onboarding experience.
+                  </p>
+                </div>
+
                 <div class="flex flex-col gap-1">
                   <p class="font-default text-h4">Additional Resources</p>
                   <div class="flex flex-row gap-2">
