@@ -35,7 +35,6 @@ export function Organizations() {
           throw response.error;
         }
 
-        // TODO: Also include oauth if it's enabled
         // If canCreateOrganization is true, that means we got here through a discovery authenticate flow,
         // so display a mock authenticate request/response
         if (response.metadata?.canCreateOrganization) {
