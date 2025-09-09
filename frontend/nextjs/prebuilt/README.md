@@ -16,7 +16,7 @@ A Next.js application demonstrating Stytch B2B authentication with Stytch's host
 1. **Install dependencies**:
 
    ```bash
-   npm install
+   yarn install
    ```
 
 2. **Configure your Stytch token**:
@@ -35,7 +35,7 @@ A Next.js application demonstrating Stytch B2B authentication with Stytch's host
 3. **Start the development server**:
 
    ```bash
-   npm run dev
+   yarn dev
    ```
 
 4. **Open your browser**:

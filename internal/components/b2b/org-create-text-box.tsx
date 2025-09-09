@@ -7,18 +7,19 @@ import {
   B2B_BASICS_URL,
   DISCOVERY_EML_AUTHENTICATE_URL,
   SESSION_OVERVIEW_URL,
+  UI_CALLBACKS_URL,
 } from "@stytch-all-examples/internal/lib/constants";
 import { AppType } from "../types";
 
 export function OrgCreateTextBox({ appType }: { appType: AppType }) {
   const headlessParagraphs = [
-    <Typography variant="body1">
+    <Typography variant="body1" key="headless-1">
       You may want to build a Discovery sign-up and login flow in your own app.{" "}
       <b>Discovery</b> is the step after a Member authenticates and enables a
       better user experience for discovering and joining the Organizations they
       belong to, or creating one if none exist.
     </Typography>,
-    <Typography variant="body1">
+    <Typography variant="body1" key="headless-2">
       The{" "}
       <Link
         href={DISCOVERY_EML_AUTHENTICATE_URL}
@@ -37,19 +38,16 @@ export function OrgCreateTextBox({ appType }: { appType: AppType }) {
   ];
 
   const prebuiltParagraphs = [
-    <Typography variant="body1">
+    <Typography variant="body1" key="prebuilt-1">
       Prior to joining an organization, Stytch returns an intermediate session
       token (IST) establishing an intermediate authenticated session to help
       prevent <Link href={ACCOUNT_ENUMERATION_URL} text="account enumeration" />
+      .
     </Typography>,
-    <Typography variant="body1">
+    <Typography variant="body1" key="prebuilt-2">
       Stytch UI components provide end-to-end authentication flows for login and
       signup. Your authentication flows can be further extended with{" "}
-      <Link
-        className="font-bold"
-        href={ACCOUNT_ENUMERATION_URL}
-        text="UI callbacks"
-      />{" "}
+      <Link className="font-bold" href={UI_CALLBACKS_URL} text="UI callbacks" />{" "}
       to handle things like creating new organizations.
     </Typography>,
   ];

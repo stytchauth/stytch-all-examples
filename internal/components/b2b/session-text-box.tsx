@@ -11,7 +11,6 @@ export type LinkMap = {
   authenticate: string;
   revoke: string;
   oauth: string;
-  oauthCode: string;
 };
 
 export function B2BSessionTextBox({
@@ -83,12 +82,7 @@ export function B2BSessionTextBox({
         description={
           <Typography variant="body1">
             Try adding <Link href={links.oauth} text="OAuth" /> to your example
-            app by{" "}
-            <Link
-              href={links.oauthCode}
-              text="uncommenting the included code"
-            />
-            .
+            app by enabling it in the config file.
           </Typography>
         }
       />

@@ -10,7 +10,8 @@
  *
  * Replace this with your actual Stytch project public token from the Stytch dashboard.
  */
-export const STYTCH_PUBLIC_TOKEN = "your-project-public-token-here";
+export const STYTCH_PUBLIC_TOKEN =
+  "public-token-test-ba325570-3487-477a-94db-b4e7af7cc0a2";
 
 /**
  * OAuth Configuration
@@ -18,4 +19,4 @@ export const STYTCH_PUBLIC_TOKEN = "your-project-public-token-here";
  * Set to true to enable OAuth login buttons (Google, etc.)
  * Set to false to hide OAuth functionality and only show email magic links
  */
-export const ENABLE_OAUTH = true;
+export const ENABLE_OAUTH = false;

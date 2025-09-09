@@ -50,7 +50,7 @@ export function Login() {
         sentEmail ? (
           <RedirectUrlTextBox appType="backend" />
         ) : (
-          <IntroTextBox appType="backend" />
+          <IntroTextBox appType="backend" oauthEnabled={ENABLE_OAUTH} />
         )
       }
       rightSide={

@@ -4,6 +4,7 @@ import {
   SplitPage,
 } from "@stytch-all-examples/internal";
 import { useState } from "react";
+import { ENABLE_OAUTH } from "../config";
 import { LoginOrSignup } from "../components/LoginOrSignup";
 
 export function Login() {
@@ -15,7 +16,7 @@ export function Login() {
         sendingEmail ? (
           <RedirectUrlTextBox />
         ) : (
-          <IntroTextBox appType="prebuilt" />
+          <IntroTextBox appType="prebuilt" oauthEnabled={ENABLE_OAUTH} />
         )
       }
       rightSide={<LoginOrSignup onEmailSend={() => setSendingEmail(true)} />}

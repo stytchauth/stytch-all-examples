@@ -6,6 +6,4 @@ export const SESSION_LINKS = {
   authenticate:
     "https://stytch.com/docs/b2b/sdks/session-management/authenticate-session",
   oauth: "https://stytch.com/docs/b2b/guides/oauth/overview",
-  oauthCode:
-    "https://github.com/stytchauth/stytch-b2b-example-app/blob/main/frontend/react/headless/src/pages/Login.tsx",
 };

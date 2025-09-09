@@ -16,7 +16,7 @@ A vanilla JavaScript application demonstrating Stytch B2B authentication with St
 1. **Install dependencies**:
 
    ```bash
-   npm install
+   yarn install
    ```
 
 2. **Configure your Stytch token**:
@@ -29,7 +29,7 @@ A vanilla JavaScript application demonstrating Stytch B2B authentication with St
 3. **Start the development server**:
 
    ```bash
-   npm run dev
+   yarn dev
    ```
 
 4. **Open your browser**:

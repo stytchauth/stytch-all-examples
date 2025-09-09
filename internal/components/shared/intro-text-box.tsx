@@ -49,7 +49,13 @@ const listItemsForAppType = {
   backend: BACKEND_LIST_ITEMS,
 };
 
-export function IntroTextBox({ appType }: { appType: AppType }) {
+export function IntroTextBox({
+  appType,
+  oauthEnabled = false,
+}: {
+  appType: AppType;
+  oauthEnabled?: boolean;
+}) {
   return (
     <TextBox className="max-w-2xl" title={INTRO_TITLE}>
       <Typography variant="body1">{introTextForAppType[appType]}</Typography>
@@ -64,12 +70,20 @@ export function IntroTextBox({ appType }: { appType: AppType }) {
               text="send an email magic link"
               className="font-semibold"
             />{" "}
-            via the API or{" "}
-            <Link
-              href={OAUTH_OVERVIEW_URL}
-              text="login with OAuth."
-              className="font-semibold"
-            />
+            via the API
+            {oauthEnabled ? (
+              <>
+                {" "}
+                or{" "}
+                <Link
+                  href={OAUTH_OVERVIEW_URL}
+                  text="login with OAuth."
+                  className="font-semibold"
+                />
+              </>
+            ) : (
+              "."
+            )}
           </Typography>
         }
       />

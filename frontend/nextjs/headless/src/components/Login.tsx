@@ -44,7 +44,7 @@ export const Login = () => {
         sendingEmail ? (
           <RedirectUrlTextBox appType="headless" />
         ) : (
-          <IntroTextBox appType="headless" />
+          <IntroTextBox appType="headless" oauthEnabled={ENABLE_OAUTH} />
         )
       }
       rightSide={

@@ -11,4 +11,4 @@
  * Set to true to enable OAuth login buttons (Google, etc.)
  * Set to false to hide OAuth functionality and only show email magic links
  */
-export const ENABLE_OAUTH = true;
+export const ENABLE_OAUTH = false;

@@ -12,6 +12,7 @@ export const SESSION_OVERVIEW_URL =
   "https://stytch.com/docs/b2b/guides/sessions/resources/overview";
 export const ACCOUNT_ENUMERATION_URL =
   "https://stytch.com/docs/resources/platform/account-enumeration";
+export const UI_CALLBACKS_URL = "https://stytch.com/docs/b2b/sdks/ui-callbacks";
 
 export const DISCOVERY_EMAIL_MAGIC_LINK_URL =
   "https://stytch.com/docs/b2b/sdks/email-magic-links/login-or-signup";
