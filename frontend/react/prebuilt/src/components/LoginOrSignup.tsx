@@ -21,11 +21,13 @@ export function LoginOrSignup({
     ],
     sessionOptions: { sessionDurationMinutes: 60 },
     authFlowType: AuthFlowType.Discovery,
-    ...(ENABLE_OAUTH && {
-      oauthOptions: {
-        providers: [{ type: B2BOAuthProviders.Google }],
-      },
-    }),
+    ...(ENABLE_OAUTH
+      ? {
+          oauthOptions: {
+            providers: [{ type: B2BOAuthProviders.Google }],
+          },
+        }
+      : {}),
   };
   return (
     <StytchB2B

@@ -1,6 +1,6 @@
 # Stytch All Examples
 
-This is an example app monorepo that demonstrates how to use the different Stytch SDKs across various frameworks and implementations.
+Stytch provides SDKs for a number of different languages, frameworks, and implementations. This monorepo contains example apps you can try for our various frontend and backend SDKs.
 
 ## Getting Started
 
@@ -103,15 +103,6 @@ All implementations demonstrate the following Stytch B2B features:
 For a quick start, we recommend trying the **React Prebuilt** implementation as it requires minimal setup. See the [React Prebuilt README](frontend/react/prebuilt/README.md) for complete setup instructions.
 
 For a full-stack example with backend integration, try the **Go Backend** implementation. See the [Go Backend README](backend/golang/README.md) for complete setup instructions.
-
-## Contributing
-
-When adding new implementations or updating existing ones, please ensure:
-
-1. **Visual Parity**: All implementations should look and behave identically
-2. **Feature Parity**: All implementations should support the same features
-3. **Code Quality**: Follow the existing patterns and conventions
-4. **Documentation**: Update this README and package-specific READMEs
 
 ## Support
 
