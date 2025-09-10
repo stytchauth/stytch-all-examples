@@ -46,7 +46,7 @@ export function Authenticate() {
 
   return (
     <SplitPage
-      leftSide={<OrgsTextBox />}
+      leftSide={<OrgsTextBox hasSession={!!session} />}
       rightSide={<LoginOrSignup onCreateOrg={() => setCreatingOrg(true)} />}
     />
   );

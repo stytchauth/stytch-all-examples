@@ -63,7 +63,7 @@ export function OrgCreateTextBox({ appType }: { appType: AppType }) {
         links={[
           {
             href: B2B_BASICS_URL,
-            text: "Auth for Orgs basics",
+            text: "Stytch B2B basics",
           },
           {
             href: SESSION_OVERVIEW_URL,

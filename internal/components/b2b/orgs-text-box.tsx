@@ -26,8 +26,8 @@ export function OrgsTextBox({ hasSession }: { hasSession: boolean }) {
     <>
       <Typography variant="body1">
         All <b>Members</b> (end users) belong to an <b>Organization</b> when
-        using Stytch B2B: Auth for Orgs. Stytch supports four different methods
-        for provisioning Members:
+        using Stytch B2B. Stytch supports four different methods for
+        provisioning Members:
       </Typography>
       <List
         className="text-body1"
@@ -66,11 +66,11 @@ export function OrgsTextBox({ hasSession }: { hasSession: boolean }) {
         links={[
           {
             href: B2B_BASICS_URL,
-            text: "Auth for Orgs basics",
+            text: "Stytch B2B basics",
           },
           {
             href: B2B_VS_CONSUMER_URL,
-            text: "Organization vs Consumer Auth",
+            text: "B2B vs Consumer Auth",
           },
         ]}
       />

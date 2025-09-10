@@ -14,7 +14,7 @@ export function Login() {
     <SplitPage
       leftSide={
         sendingEmail ? (
-          <RedirectUrlTextBox />
+          <RedirectUrlTextBox appType="prebuilt" />
         ) : (
           <IntroTextBox appType="prebuilt" oauthEnabled={ENABLE_OAUTH} />
         )
