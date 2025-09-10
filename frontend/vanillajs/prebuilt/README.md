@@ -17,8 +17,9 @@ A vanilla JavaScript application demonstrating Stytch B2B authentication with St
 
    ```bash
    cp env.template .env
-   # Edit .env with your Stytch project credentials
    ```
+
+   **Find your Public Token:** Go to the [Stytch Dashboard](https://stytch.com/dashboard) → Project Overview page → copy your **Public Token** into the `.env` file.
 
 2. **Install dependencies** (if you haven't already, from the root of the monorepo):
 

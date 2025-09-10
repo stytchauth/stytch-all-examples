@@ -27,7 +27,7 @@ A React + TypeScript + Vite application that provides a shared UI for backend se
    cp .env.template .env
    ```
 
-   Then edit `.env` with your actual Stytch public token:
+   **Find your Public Token:** Go to the [Stytch Dashboard](https://stytch.com/dashboard) → Project Overview page → copy your **Public Token** into the `.env` file.
 
    ```bash
    VITE_STYTCH_PUBLIC_TOKEN=your_stytch_public_token_here

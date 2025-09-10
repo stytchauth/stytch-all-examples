@@ -26,7 +26,7 @@ A Next.js application demonstrating Stytch B2B authentication with Stytch's host
    cp .env.template .env
    ```
 
-   Then edit `.env` with your actual Stytch public token:
+   **Find your Public Token:** Go to the [Stytch Dashboard](https://stytch.com/dashboard) → Project Overview page → copy your **Public Token** into the `.env` file.
 
    ```bash
    NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN=your_stytch_public_token_here

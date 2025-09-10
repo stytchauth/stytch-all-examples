@@ -9,11 +9,9 @@ import { AppType } from "../types";
 
 export function OrgCreateCard({
   onCreateOrg,
-  onCancel,
   appType,
 }: {
   onCreateOrg: (orgName: string) => Promise<void>;
-  onCancel: () => void;
   appType: AppType;
 }) {
   const [orgName, setOrgName] = useState("");
@@ -56,14 +54,6 @@ export function OrgCreateCard({
               />
             </div>
             <div className="flex flex-row gap-2 justify-end">
-              <Button
-                type="button"
-                variant="ghost"
-                className="w-fit"
-                onClick={onCancel}
-              >
-                Cancel
-              </Button>
               <Button
                 type="submit"
                 className="w-fit"

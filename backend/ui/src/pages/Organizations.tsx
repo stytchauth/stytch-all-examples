@@ -24,7 +24,7 @@ export function Organizations() {
   const [orgs, setOrgs] = useState<{ id: string; name: string }[]>([]);
   const [creatingOrg, setCreatingOrg] = useState(false);
   const [canCreateOrganization, setCanCreateOrganization] = useState(false);
-  const { codeTabs, addResponse, restorePreviousSnippets } = useCodeSnippets();
+  const { codeTabs, addResponse } = useCodeSnippets();
 
   useEffect(() => {
     const loadOrganizations = async () => {
@@ -164,11 +164,6 @@ resp, err := c.api.MagicLinks.Discovery.Authenticate(
     setCreatingOrg(true);
   };
 
-  const handleCancelCreateOrg = () => {
-    restorePreviousSnippets();
-    setCreatingOrg(false);
-  };
-
   if (!isLoaded) {
     return (
       <div className="flex justify-center items-center h-screen">
@@ -188,11 +183,7 @@ resp, err := c.api.MagicLinks.Discovery.Authenticate(
       }
       rightSide={
         creatingOrg ? (
-          <OrgCreateCard
-            onCreateOrg={handleCreateOrg}
-            onCancel={handleCancelCreateOrg}
-            appType="headless"
-          />
+          <OrgCreateCard onCreateOrg={handleCreateOrg} appType="headless" />
         ) : (
           <OrgDiscoveryCard
             orgs={orgs}

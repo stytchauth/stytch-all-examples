@@ -25,7 +25,7 @@ A Go HTTP server demonstrating Stytch B2B authentication with a shared React UI.
    cp .env.template .env
    ```
 
-   Then edit `.env` with your actual Stytch credentials:
+   **Find your credentials:** Go to the [Stytch Dashboard](https://stytch.com/dashboard) → Project Overview page → copy your **Project ID** and **Secret** into the `.env` file.
 
    ```bash
    PROJECT_ID=your_stytch_project_id_here
@@ -44,7 +44,6 @@ A Go HTTP server demonstrating Stytch B2B authentication with a shared React UI.
 
    ```bash
    cd ../ui
-   yarn install
    yarn dev
    ```
 

@@ -30,9 +30,9 @@ export function SplitPage({
       }}
     >
       <div className="min-w-0 w-full mx-auto flex flex-col">
-        <div className="flex flex-col lg:flex-row lg:items-center p-4 lg:p-16 gap-4 lg:gap-8">
-          <div className="flex-1">{leftSide}</div>
-          <div className="flex-1 flex flex-col items-center p-4 lg:p-16 gap-8">
+        <div className="flex flex-col lg:flex-row items-center p-4 lg:p-16 gap-4 lg:gap-8">
+          <div className="flex-1 min-w-0">{leftSide}</div>
+          <div className="flex-1 min-w-0 flex flex-col items-center p-4 lg:p-16 gap-8">
             {rightSide}
             {error}
             {!error && !!codeTabs && (

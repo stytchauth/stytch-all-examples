@@ -26,7 +26,7 @@ A React application demonstrating Stytch B2B authentication with Stytch's hosted
    cp .env.template .env
    ```
 
-   Then edit `.env` with your actual Stytch public token:
+   **Find your Public Token:** Go to the [Stytch Dashboard](https://stytch.com/dashboard) → Project Overview page → copy your **Public Token** into the `.env` file.
 
    ```bash
    VITE_STYTCH_PUBLIC_TOKEN=your_stytch_public_token_here

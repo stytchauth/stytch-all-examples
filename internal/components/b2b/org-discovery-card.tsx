@@ -63,13 +63,22 @@ function ViewOrgsList({
         </Button>
       ))}
       {showCreateOrg && (
-        <Button
-          variant="outline"
-          className="text-sm w-fit mx-auto"
-          onClick={() => onClickCreateOrg(true)}
-        >
-          Create organization
-        </Button>
+        <>
+          {orgs.length > 0 && (
+            <div className="flex gap-2 w-full items-center mt-4 mb-4">
+              <div className="flex-grow border-t border-gray-200" />
+              <span className="text-xs text-gray-500">OR</span>
+              <div className="flex-grow border-t border-gray-200" />
+            </div>
+          )}
+          <Button
+            variant="outline"
+            className="text-sm w-fit mx-auto"
+            onClick={() => onClickCreateOrg(true)}
+          >
+            Create organization
+          </Button>
+        </>
       )}
     </div>
   );

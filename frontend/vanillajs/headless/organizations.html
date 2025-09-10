@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stytch B2B Headless - Organizations</title>
+    <title>Stytch B2B Example App - Vanilla JS Headless</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
@@ -24,12 +24,12 @@
           </div>
           <div
             id="main-container"
-            class="hidden flex flex-row items-center p-16 gap-8"
+            class="hidden flex flex-col lg:flex-row items-center p-4 lg:p-16 gap-4 lg:gap-8"
           >
-            <div class="flex-1">
+            <div class="flex-1 min-w-0">
               <div
                 id="orgs-text-box"
-                class="flex flex-col gap-4 min-w-md max-w-2xl"
+                class="flex flex-col gap-4 min-w-0 max-w-2xl"
               >
                 <!-- Text for users without a session -->
                 <div id="orgs-text-no-session">
@@ -218,7 +218,7 @@
               </div>
             </div>
 
-            <div class="flex-1 flex flex-col items-center p-16">
+            <div class="flex-1 min-w-0 flex flex-col items-center p-4 lg:p-16">
               <div
                 id="main-card"
                 class="bg-white text-black flex flex-col gap-8 rounded-xl border border-gray-200 py-6 shadow-lg w-96"
@@ -286,13 +286,6 @@
                       />
                     </div>
                     <div class="flex flex-row gap-2 justify-end">
-                      <button
-                        type="button"
-                        id="cancel-create-btn"
-                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-white text-black hover:bg-gray-100 h-9 px-4 py-2 has-[>svg]:px-3 w-fit border-0"
-                      >
-                        Cancel
-                      </button>
                       <button
                         type="submit"
                         class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-black text-white shadow-sm hover:bg-gray-800 h-9 px-4 py-2 has-[>svg]:px-3 w-fit"

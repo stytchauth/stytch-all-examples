@@ -10,6 +10,19 @@ Make sure you have the following installed on your machine:
 
 - [nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating) (Node Version Manager)
 
+### Stytch Dashboard Setup
+
+Before running any example apps, you'll need to configure your Stytch project:
+
+1. **Enable the Frontend SDK**: Go to your [Stytch Dashboard](https://stytch.com/dashboard) → **Frontend SDK** page → enable the **Frontend SDK**
+
+2. **Get your credentials**: On the **Project Overview** page, you'll find:
+   - **Project ID** - Used by backend applications
+   - **Public Token** - Used by frontend applications
+   - **Secret** - Used by backend applications for server-side operations
+
+> 💡 **Tip:** The Project Overview page shows all the credentials you need for each app type. Frontend apps typically need the Public Token, while backend apps need the Project ID and Secret.
+
 ### Installation
 
 1. **Clone the repository:**

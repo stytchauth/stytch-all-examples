@@ -11,7 +11,6 @@ const mainContent = document.getElementById("main-content");
 const createOrgContent = document.getElementById("create-org-content");
 const orgForm = document.getElementById("org-form");
 const orgNameInput = document.getElementById("org-name-input");
-const cancelCreateBtn = document.getElementById("cancel-create-btn");
 const orgsTextBox = document.getElementById("orgs-text-box");
 const orgCreateTextBox = document.getElementById("org-create-text-box");
 const orgsTextNoSession = document.getElementById("orgs-text-no-session");
@@ -31,7 +30,6 @@ function init() {
 
 function setupEventListeners() {
   createOrgBtn.addEventListener("click", showCreateOrgForm);
-  cancelCreateBtn.addEventListener("click", hideCreateOrgForm);
   orgForm.addEventListener("submit", handleCreateOrg);
 }
 
@@ -58,6 +56,8 @@ async function loadOrganizations() {
 }
 
 function renderOrganizations() {
+  const createButtonContainer = createOrgBtn.parentElement;
+
   // Update card title based on state
   const cardTitle = document.getElementById("card-title");
   if (creatingOrg) {
@@ -71,8 +71,14 @@ function renderOrganizations() {
   if (organizations.length === 0) {
     orgsList.innerHTML = "";
     // Remove margin-top from create button container when no orgs
-    const createButtonContainer = createOrgBtn.parentElement;
     createButtonContainer.classList.remove("mt-6");
+
+    // Remove any existing divider when no organizations
+    const existingDivider = document.getElementById("org-divider");
+    if (existingDivider) {
+      existingDivider.remove();
+    }
+
     return;
   }
 
@@ -84,12 +90,33 @@ function renderOrganizations() {
     orgsList.appendChild(button);
   });
 
+  // Add OR divider when there are organizations (outside the space-y-3 container)
+  const mainContent = document.getElementById("main-content");
+
+  // Remove any existing divider
+  const existingDivider = document.getElementById("org-divider");
+  if (existingDivider) {
+    existingDivider.remove();
+  }
+
+  // Add new divider
+  const divider = document.createElement("div");
+  divider.id = "org-divider";
+  divider.className = "flex gap-2 w-full items-center mt-6 mb-6 px-6";
+  divider.innerHTML = `
+    <div class="flex-grow border-t border-gray-200"></div>
+    <span class="text-xs text-gray-500">OR</span>
+    <div class="flex-grow border-t border-gray-200"></div>
+  `;
+
+  // Insert divider between orgs-list and create button
+  mainContent.insertBefore(divider, createButtonContainer);
+
   // Show/hide create button based on session
   updateCreateButtonVisibility();
 
-  // Add margin-top back when there are orgs
-  const createButtonContainer = createOrgBtn.parentElement;
-  createButtonContainer.classList.add("mt-6");
+  // Remove margin-top from create button since divider provides spacing
+  createButtonContainer.classList.remove("mt-6");
 }
 
 async function selectOrganization(orgId) {
@@ -124,11 +151,6 @@ async function selectOrganization(orgId) {
 
 function showCreateOrgForm() {
   creatingOrg = true;
-  updateUI();
-}
-
-function hideCreateOrgForm() {
-  creatingOrg = false;
   updateUI();
 }
 

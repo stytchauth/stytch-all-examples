@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { APIResponse } from "../api";
 import { CodeSnippetsContext } from "./code-snippets";
 
@@ -14,20 +14,13 @@ export const CodeSnippetsProvider = ({
 }) => {
   const [apiRequests, _setApiRequests] = useState<CodeSnippet[]>([]);
 
-  const prevRequests = useRef<CodeSnippet[]>([]);
-
   const setApiRequests: React.Dispatch<React.SetStateAction<CodeSnippet[]>> =
-    useCallback(
-      (requests) => {
-        prevRequests.current = apiRequests;
-        _setApiRequests(requests);
-      },
-      [apiRequests]
-    );
+    useCallback((requests) => {
+      _setApiRequests(requests);
+    }, []);
 
   const addResponse = useCallback(
     (response: APIResponse<unknown>, opts?: { replace?: boolean }) => {
-      prevRequests.current = apiRequests;
       setApiRequests((prev) => [
         ...(opts?.replace ? [] : prev),
         {
@@ -39,12 +32,8 @@ export const CodeSnippetsProvider = ({
         },
       ]);
     },
-    [apiRequests, setApiRequests]
+    [setApiRequests]
   );
-
-  const restorePreviousSnippets = useCallback(() => {
-    _setApiRequests(prevRequests.current);
-  }, [_setApiRequests]);
 
   const codeTabs = useMemo(() => {
     return apiRequests.length > 0
@@ -60,9 +49,7 @@ export const CodeSnippetsProvider = ({
   }, [apiRequests]);
 
   return (
-    <CodeSnippetsContext.Provider
-      value={{ codeTabs, addResponse, restorePreviousSnippets }}
-    >
+    <CodeSnippetsContext.Provider value={{ codeTabs, addResponse }}>
       {children}
     </CodeSnippetsContext.Provider>
   );

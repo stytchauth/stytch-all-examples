@@ -22,15 +22,13 @@ export function RedirectUrlTextBox({ appType }: { appType: AppType }) {
           To complete the authentication flow, you'll need to implement a
           backend endpoint (typically /authenticate) that:
         </Typography>
-        <Typography variant="body1">
-          <OrderedList
-            items={[
-              "Receives the token when Stytch redirects to your configured redirect URL.",
-              "Calls the Stytch API to validate the token.",
-              "Establishes the user session in your application.",
-            ]}
-          />
-        </Typography>
+        <OrderedList
+          items={[
+            "Receives the token when Stytch redirects to your configured redirect URL.",
+            "Calls the Stytch API to validate the token.",
+            "Establishes the user session in your application.",
+          ]}
+        />
       </>
     ) : (
       <>

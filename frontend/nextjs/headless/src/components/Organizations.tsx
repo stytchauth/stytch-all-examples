@@ -103,11 +103,7 @@ export const Organizations = () => {
       }
       rightSide={
         creatingOrg ? (
-          <OrgCreateCard
-            onCreateOrg={handleCreateOrg}
-            onCancel={() => setCreatingOrg(false)}
-            appType="headless"
-          />
+          <OrgCreateCard onCreateOrg={handleCreateOrg} appType="headless" />
         ) : (
           <OrgDiscoveryCard
             orgs={orgs}

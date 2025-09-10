@@ -8,7 +8,9 @@ export function OrderedList({
   items: React.ReactNode[];
 }) {
   return (
-    <ol className={cn("list-decimal pl-4 space-y-3 ml-4", className)}>
+    <ol
+      className={cn("list-decimal pl-4 space-y-3 ml-4 text-body1", className)}
+    >
       {items.map((item, index) => (
         <li key={index}>{item}</li>
       ))}

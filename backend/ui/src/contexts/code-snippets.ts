@@ -7,11 +7,9 @@ export const CodeSnippetsContext = createContext<{
     response: APIResponse<unknown>,
     opts?: { replace?: boolean }
   ) => void;
-  restorePreviousSnippets: () => void;
 }>({
   codeTabs: {},
   addResponse: () => {},
-  restorePreviousSnippets: () => {},
 });
 
 export const useCodeSnippets = () => {

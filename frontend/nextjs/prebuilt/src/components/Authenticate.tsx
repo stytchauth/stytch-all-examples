@@ -37,11 +37,7 @@ export function Authenticate() {
       <SplitPage
         leftSide={<OrgCreateTextBox appType="prebuilt" />}
         rightSide={
-          <OrgCreateCard
-            onCreateOrg={handleCreateOrg}
-            onCancel={() => setCreatingOrg(false)}
-            appType="prebuilt"
-          />
+          <OrgCreateCard onCreateOrg={handleCreateOrg} appType="prebuilt" />
         }
       />
     );
