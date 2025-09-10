@@ -50,20 +50,32 @@ This monorepo contains example applications organized by framework and implement
 stytch-all-examples/
 ├── frontend/
 │   ├── nextjs/
-│   │   ├── [headless/](frontend/nextjs/headless/)          # Next.js headless implementation
-│   │   └── [prebuilt/](frontend/nextjs/prebuilt/)          # Next.js prebuilt implementation
+│   │   ├── headless/          # Next.js headless implementation
+│   │   └── prebuilt/          # Next.js prebuilt implementation
 │   ├── react/
-│   │   ├── [headless/](frontend/react/headless/)           # React headless implementation
-│   │   └── [prebuilt/](frontend/react/prebuilt/)           # React prebuilt implementation
+│   │   ├── headless/          # React headless implementation
+│   │   └── prebuilt/          # React prebuilt implementation
 │   └── vanillajs/
-│       ├── [headless/](frontend/vanillajs/headless/)       # Vanilla JavaScript headless implementation
-│       └── [prebuilt/](frontend/vanillajs/prebuilt/)       # Vanilla JavaScript prebuilt implementation
+│       ├── headless/          # Vanilla JavaScript headless implementation
+│       └── prebuilt/          # Vanilla JavaScript prebuilt implementation
 ├── backend/
-│   ├── [golang/](backend/golang/)                          # Go server implementation
-│   ├── [ui/](backend/ui/)                                  # Shared React UI for backend examples
-│   └── internal/                                           # Shared backend configuration
-└── internal/                                               # Shared components and utilities
+│   ├── golang/                # Go server implementation
+│   ├── ui/                    # Shared React UI for backend examples
+│   └── internal/              # Shared backend configuration
+└── internal/                  # Shared components and utilities
 ```
+
+### Quick Links
+
+**Frontend Apps:**
+
+- [React Headless](frontend/react/headless/) | [React Prebuilt](frontend/react/prebuilt/)
+- [Next.js Headless](frontend/nextjs/headless/) | [Next.js Prebuilt](frontend/nextjs/prebuilt/)
+- [Vanilla JS Headless](frontend/vanillajs/headless/) | [Vanilla JS Prebuilt](frontend/vanillajs/prebuilt/)
+
+**Backend Apps:**
+
+- [Go Backend](backend/golang/) | [Shared UI](backend/ui/)
 
 ## Features Demonstrated
 
