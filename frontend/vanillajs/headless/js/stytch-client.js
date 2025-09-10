@@ -1,9 +1,14 @@
 // Import config and Stytch SDK
-import { STYTCH_PUBLIC_TOKEN } from './config.js';
+import { STYTCH_PUBLIC_TOKEN } from "./env.js";
 import { StytchB2BHeadlessClient } from "https://www.unpkg.com/@stytch/vanilla-js@5.29.1/dist/b2b/index.headless.esm.js";
 
-if (!STYTCH_PUBLIC_TOKEN || STYTCH_PUBLIC_TOKEN === 'your-project-public-token-here') {
-    console.error('Please update the STYTCH_PUBLIC_TOKEN in js/config.js with your actual Stytch project token');
+if (
+  !STYTCH_PUBLIC_TOKEN ||
+  STYTCH_PUBLIC_TOKEN === "your-project-public-token-here"
+) {
+  console.error(
+    "Please update the STYTCH_PUBLIC_TOKEN in your .env file with your actual Stytch project token"
+  );
 }
 
 // Export stytch so that the other scripts in this application can interact with it.

@@ -1,5 +1,5 @@
 // Import config and Stytch SDK
-import { STYTCH_PUBLIC_TOKEN } from "./config.js";
+import { STYTCH_PUBLIC_TOKEN } from "./env.js";
 import { StytchB2BUIClient } from "https://www.unpkg.com/@stytch/vanilla-js@5.29.1/dist/b2b/index.esm.js";
 
 if (
@@ -7,7 +7,7 @@ if (
   STYTCH_PUBLIC_TOKEN === "your-project-public-token-here"
 ) {
   console.error(
-    "Please update the STYTCH_PUBLIC_TOKEN in js/config.js with your actual Stytch project token"
+    "Please update the STYTCH_PUBLIC_TOKEN in your .env file with your actual Stytch project token"
   );
 }
 

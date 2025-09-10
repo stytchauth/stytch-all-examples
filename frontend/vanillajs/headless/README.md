@@ -13,17 +13,18 @@ A vanilla JavaScript application demonstrating Stytch B2B authentication with cu
 
 ## Quick Start
 
-1. **Install dependencies**:
+1. **Set up environment variables**:
 
    ```bash
-   yarn install
+   cp env.template .env
+   # Edit .env with your Stytch project credentials
    ```
 
-2. **Configure your Stytch token**:
-   Open `js/config.js` and replace the placeholder with your actual Stytch public token:
+2. **Install dependencies** (if you haven't already, from the root of the monorepo):
 
-   ```javascript
-   export const STYTCH_PUBLIC_TOKEN = "your_actual_stytch_public_token_here";
+   ```bash
+   cd ../../..  # Go to the root of the monorepo
+   yarn install
    ```
 
 3. **Start the development server**:
@@ -41,12 +42,12 @@ A vanilla JavaScript application demonstrating Stytch B2B authentication with cu
 
 By default, this app only includes email magic link authentication. To enable Google OAuth login:
 
-1. Open `js/config.js`
-2. Change `ENABLE_OAUTH` from `false` to `true`:
+1. Edit `js/config.js`
+2. Set `ENABLE_OAUTH` to `true`:
 
-```javascript
-export const ENABLE_OAUTH = true;
-```
+   ```javascript
+   export const ENABLE_OAUTH = true;
+   ```
 
 **When `ENABLE_OAUTH = true`:**
 

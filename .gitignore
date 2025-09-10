@@ -27,6 +27,9 @@
 **/.env.local
 **/.env
 
+# generated env files for vanilla apps
+**/js/env.js
+
 # tsc
 dist
 tsconfig.tsbuildinfo
