@@ -38,7 +38,7 @@ export function ViewSession() {
 
   return (
     <SplitPage
-      leftSide={<B2BSessionTextBox links={SESSION_LINKS} />}
+      leftSide={<B2BSessionTextBox links={SESSION_LINKS} appType="prebuilt" />}
       rightSide={
         // This is your own app code
         <B2BSessionCard
