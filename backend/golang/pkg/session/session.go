@@ -17,6 +17,10 @@ type exchangeRequest struct {
 	OrganizationID string `json:"organization_id"`
 }
 
+// Exchange exchanges an intermediate session token for a full session in the specified
+// Stytch Organization. If the incoming request already has a full session attached, it
+// attempts to perform a full session exchange and return a new session in the specified
+// Organization.
 func (c *Controller) Exchange(w http.ResponseWriter, r *http.Request) {
 	var req exchangeRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -96,6 +100,9 @@ func (c *Controller) Exchange(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+// GetCurrentSession wraps Stytch's SessionAuthenticate endpoint and returns information
+// about the requester's current session, as determined by the presence of session cookies
+// in the request headers.
 func (c *Controller) GetCurrentSession(w http.ResponseWriter, r *http.Request) {
 	st, ok := c.cookieStore.GetSession(r)
 	if !ok {
@@ -127,6 +134,8 @@ session, err := c.api.Sessions.Authenticate(
 	})
 }
 
+// Logout revokes any active sessions on the request and clears the requester's
+// session cookie cache.
 func (c *Controller) Logout(w http.ResponseWriter, r *http.Request) {
 	st, ok := c.cookieStore.GetSession(r)
 	if !ok {
