@@ -13,6 +13,9 @@ import (
 const listOrganizationsMethod = "Discovery.Organizations.List"
 const createOrganizationViaDiscoveryMethod = "Discovery.Organizations.Create"
 
+// ListOrganizations uses the intermediate or full session token in the request and
+// returns a list of Organizations that the user is eligible to authenticate into
+// based on the authentication requirements implemented by the Organizations.
 func (c *Controller) ListOrganizations(w http.ResponseWriter, r *http.Request) {
 	// If an intermediate session token exists, use it.
 	// Otherwise, look for a session token.
@@ -75,6 +78,8 @@ type createOrganizationViaDiscoveryRequest struct {
 	OrganizationName string `json:"organizationName"`
 }
 
+// CreateOrganizationViaDiscovery allows the end user to create a new Organization
+// with an intermediate session token and authenticate into it.
 func (c *Controller) CreateOrganizationViaDiscovery(w http.ResponseWriter, r *http.Request) {
 	var req createOrganizationViaDiscoveryRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {

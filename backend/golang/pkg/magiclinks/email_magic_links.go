@@ -21,6 +21,9 @@ type inviteRequest struct {
 	EmailAddress   string `json:"email_address"`
 }
 
+// Invite wraps Stytch's Email Magic Links Invite endpoint and sends an email to the specified
+// email address that can be used to create an account and authenticate into the specified Stytch
+// Organization.
 func (c *Controller) Invite(w http.ResponseWriter, r *http.Request) {
 	var req inviteRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -102,6 +105,9 @@ type discoveryRequest struct {
 	EmailAddress string `json:"email_address"`
 }
 
+// DiscoveryEmailSend uses Email Magic Links to begin a Discovery flow that, when
+// completed, will create an intermediate session for the end user that can be used
+// to surface Organizations the user is eligible to authenticate into.
 func (c *Controller) DiscoveryEmailSend(w http.ResponseWriter, r *http.Request) {
 	var req discoveryRequest
 	if err := json.NewDecoder(r.Body).Decode(&req); err != nil {
@@ -135,6 +141,10 @@ func (c *Controller) DiscoveryEmailSend(w http.ResponseWriter, r *http.Request) 
 
 const authenticateMethod = "MagicLinks.Authenticate"
 
+// Authenticate is the final step in Email Magic Links flows where the Magic Links token
+// (retrieved when the user clicks the link in the email they received) can be exchanged
+// for either an intermediate or full session, depending on whether the user has satisfied
+// the authentication requirements for the target Organization.
 func (c *Controller) Authenticate(w http.ResponseWriter, r *http.Request) {
 	// Retrieve the token from the query parameter.
 	token := r.URL.Query().Get("token")
@@ -173,6 +183,9 @@ func (c *Controller) Authenticate(w http.ResponseWriter, r *http.Request) {
 
 const discoveryAuthenticateMethod = "MagicLinks.Discovery.Authenticate"
 
+// DiscoveryAuthenticate is the final step in Discovery Email Magic Links flows where
+// the Magic Links token (retrieved when the user clicks the link in the email they
+// received) can be exchanged for either an intermediate session.
 func (c *Controller) DiscoveryAuthenticate(w http.ResponseWriter, r *http.Request) {
 	// Retrieve the token from the query parameter.
 	token := r.URL.Query().Get("token")

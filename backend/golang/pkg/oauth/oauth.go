@@ -10,6 +10,12 @@ import (
 
 const discoveryOAuthAuthenticateMethod = "OAuth.Discovery.Authenticate"
 
+// DiscoveryOAuthAuthenticate completes a Discovery OAuth flow by exchanging the OAuth
+// token received from the IdP for an intermediate session token.
+//
+// The intermediate session
+// token can be used in subsequent requests to show Organizations that the end user is
+// eligible to authenticate into.
 func (c *Controller) DiscoveryOAuthAuthenticate(w http.ResponseWriter, r *http.Request) {
 	// Retrieve the token from the query parameter.
 	token := r.URL.Query().Get("token")
