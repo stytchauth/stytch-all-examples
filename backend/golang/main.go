@@ -23,11 +23,22 @@ func corsMiddleware(next http.Handler) http.Handler {
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
 
 		// Handle preflight requests
-		if r.Method == "OPTIONS" {
+		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusOK)
 			return
 		}
 
+		next.ServeHTTP(w, r)
+	})
+}
+
+// loggingMiddleware logs the requested method and path of the incoming request.
+// It ignores browser preflight requests using OPTIONS for the sake of simplicity.
+func loggingMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		if r.Method != http.MethodOptions {
+			log.Printf("%s %s\n", r.Method, r.URL.Path)
+		}
 		next.ServeHTTP(w, r)
 	})
 }
@@ -68,10 +79,12 @@ func main() {
 	mux.HandleFunc("/session", service.SessionsController.GetCurrentSession)
 	mux.HandleFunc("/logout", service.SessionsController.Logout)
 
-	// Wrap the mux with CORS middleware
-	handler := corsMiddleware(mux)
+	// Wrap the mux with CORS and logging middleware
+	handler := loggingMiddleware(corsMiddleware(mux))
 
+	log.Println("Starting server on port 3000...")
 	if err := http.ListenAndServe(":3000", handler); err != nil && !errors.Is(err, http.ErrServerClosed) {
 		log.Fatalf("Unable to start server: %v", err)
 	}
+	log.Println("Shutting down server...")
 }
