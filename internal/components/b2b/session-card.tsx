@@ -10,7 +10,7 @@ interface B2BSessionCardProps {
   email: string;
   memberId: string;
   organizationName: string;
-  sessionTokens: SessionTokens;
+  sessionTokens: SessionTokens | null;
   // optional, because in prebuilt we don't support this (yet)
   handleSwitchOrgs?: () => void;
   handleLogout: () => void;

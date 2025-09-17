@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stytch Consumer Example App - Vanilla JS Prebuilt</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      type="module"
+      src="https://www.unpkg.com/@stytch/vanilla-js@5.29.1/dist/index.esm.js"
+    ></script>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="page-container">
+      <div class="page-content">
+        <div>
+          <div
+            class="flex flex-col lg:flex-row items-center p-4 lg:p-16 gap-4 lg:gap-8"
+          >
+            <div class="flex-1 min-w-0">
+              <div
+                id="intro-text-box"
+                class="flex flex-col gap-4 min-w-0 max-w-2xl"
+              >
+                <h1
+                  class="font-default text-h1 font-semibold pb-4 tracking-wide"
+                >
+                  Hello World 👋
+                </h1>
+                <p class="font-default text-body1 tracking-normal">
+                  See how Stytch simplifies user auth with just a few lines of
+                  code. This application demonstrates an integration using both
+                  the Stytch SDK and UI components.
+                </p>
+                <ul
+                  class="list-disc pl-4 space-y-3 ml-4 font-default text-body1 tracking-normal"
+                >
+                  <li>
+                    Your end users log into your app through Stytch UI
+                    components.
+                  </li>
+                  <li>
+                    Stytch SDK automatically handles UI events to call the
+                    Stytch API.
+                  </li>
+                  <li>
+                    Stytch UI handles the API response as needed via redirect
+                    URLs or event callbacks.
+                  </li>
+                  <li>
+                    The SDK automatically manages the session upon successful
+                    authentication.
+                  </li>
+                </ul>
+                <div
+                  class="relative w-full rounded-lg border px-4 py-3 text-sm bg-code"
+                >
+                  <div class="font-default font-semibold tracking-tight mb-1">
+                    Get Started to see the life cycle of a Stytch session 👉
+                  </div>
+                  <div class="font-default text-body1 tracking-normal">
+                    Log in with email to
+                    <a
+                      href="https://stytch.com/docs/b2b/sdks/email-magic-links/login-or-signup"
+                      target="_blank"
+                      class="font-semibold underline"
+                    >
+                      send an email magic link</a
+                    >
+                    via the API.
+                  </div>
+                </div>
+              </div>
+
+              <div
+                id="redirect-url-text-box"
+                class="hidden flex flex-col gap-4 min-w-md max-w-2xl"
+              >
+                <h1
+                  class="font-default text-h1 font-semibold pb-4 tracking-wide"
+                >
+                  The first step to a session.
+                </h1>
+                <p class="font-default text-body1 tracking-normal">
+                  After a user clicks a magic link, they are routed back to your
+                  application based on the
+                  <a
+                    href="https://stytch.com/dashboard/redirect-urls"
+                    target="_blank"
+                    class="font-semibold underline"
+                    >Redirect URL</a
+                  >
+                  configured in the Stytch Dashboard.
+                </p>
+                <p class="font-default text-body1 tracking-normal">
+                  The redirect includes a <i>Magic Links token</i>, which the
+                  Stytch UI will exchange for an
+                  <i>Intermediate Session token</i>.
+                </p>
+                <p class="font-default text-body1 tracking-normal">
+                  For this example app, the redirect URL has been set to:
+                </p>
+                <p class="font-default text-body1 tracking-normal">
+                  <code class="bg-code rounded-md p-1"
+                    >http://localhost:3000/authenticate</code
+                  >
+                </p>
+                <div class="flex flex-col gap-1">
+                  <p class="font-default text-h4">Additional Resources</p>
+                  <div class="flex flex-row gap-2">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M16.6667 1.6665V18.3332H3.33337V1.6665H16.6667ZM10 8.33317H8.33337V9.99984H6.66671V3.33317H5.00004V16.6665H15V3.33317H11.6667V9.99984H10V8.33317Z"
+                        fill="#1D1D1D"
+                      />
+                    </svg>
+                    <a
+                      href="https://stytch.com/docs/workspace-management/redirect-urls"
+                      target="_blank"
+                      class="font-default text-body1 underline"
+                      >Redirect URLs</a
+                    >
+                  </div>
+                  <div class="flex flex-row gap-2">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M16.6667 1.6665V18.3332H3.33337V1.6665H16.6667ZM10 8.33317H8.33337V9.99984H6.66671V3.33317H5.00004V16.6665H15V3.33317H11.6667V9.99984H10V8.33317Z"
+                        fill="#1D1D1D"
+                      />
+                    </svg>
+                    <a
+                      href="https://stytch.com/docs/b2b/api/email-templates"
+                      target="_blank"
+                      class="font-default text-body1 underline"
+                      >Email templates</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-1 min-w-0 flex flex-col items-center p-4 lg:p-16">
+              <div id="stytch-sdk"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/login.js"></script>
+  </body>
+</html>

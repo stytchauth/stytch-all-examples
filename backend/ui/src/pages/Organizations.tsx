@@ -5,7 +5,7 @@ import {
   OrgCreateTextBox,
   OrgDiscoveryCard,
   OrgsTextBox,
-  SplitPage,
+  PageWithContent,
 } from "@stytch-all-examples/internal";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
@@ -173,28 +173,31 @@ resp, err := c.api.MagicLinks.Discovery.Authenticate(
   }
 
   return (
-    <SplitPage
-      leftSide={
+    <PageWithContent
+      content={
         creatingOrg ? (
-          <OrgCreateTextBox appType="headless" />
+          <OrgCreateTextBox appType="backend" />
         ) : (
-          <OrgsTextBox hasSession={!canCreateOrganization} />
-        )
-      }
-      rightSide={
-        creatingOrg ? (
-          <OrgCreateCard onCreateOrg={handleCreateOrg} appType="headless" />
-        ) : (
-          <OrgDiscoveryCard
-            orgs={orgs}
-            onOrgSelect={handleOrgSelect}
-            onClickCreateOrg={handleClickCreateOrg}
-            showCreateOrg={canCreateOrganization}
+          <OrgsTextBox
+            hasSession={!canCreateOrganization}
+            hasOrgs={!!orgs.length}
+            appType="backend"
           />
         )
       }
       error={error && <ErrorBox title="There was an error" error={error} />}
       codeTabs={codeTabs}
-    />
+    >
+      {creatingOrg ? (
+        <OrgCreateCard onCreateOrg={handleCreateOrg} appType="backend" />
+      ) : (
+        <OrgDiscoveryCard
+          orgs={orgs}
+          onOrgSelect={handleOrgSelect}
+          onClickCreateOrg={handleClickCreateOrg}
+          showCreateOrg={canCreateOrganization}
+        />
+      )}
+    </PageWithContent>
   );
 }

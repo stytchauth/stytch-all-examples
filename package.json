@@ -3,12 +3,18 @@
   "private": true,
   "workspaces": [
     "internal",
-    "frontend/react/headless",
-    "frontend/react/prebuilt",
-    "frontend/nextjs/headless",
-    "frontend/nextjs/prebuilt",
-    "frontend/vanillajs/headless",
-    "frontend/vanillajs/prebuilt",
+    "frontend/react/headless/b2b",
+    "frontend/react/headless/consumer",
+    "frontend/react/prebuilt/b2b",
+    "frontend/react/prebuilt/consumer",
+    "frontend/nextjs/headless/b2b",
+    "frontend/nextjs/headless/consumer",
+    "frontend/nextjs/prebuilt/b2b",
+    "frontend/nextjs/prebuilt/consumer",
+    "frontend/vanillajs/headless/b2b",
+    "frontend/vanillajs/headless/consumer",
+    "frontend/vanillajs/prebuilt/b2b",
+    "frontend/vanillajs/prebuilt/consumer",
     "backend/ui"
   ],
   "scripts": {
@@ -22,5 +28,9 @@
     "@types/node": "^22.0.0",
     "typescript": "^5.0.0"
   },
-  "packageManager": "yarn@4.9.4"
+  "packageManager": "yarn@4.9.4",
+  "engines": {
+    "node": ">=22.0.0",
+    "yarn": ">=4.0.0"
+  }
 }

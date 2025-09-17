@@ -4,13 +4,13 @@ import {
   ErrorBox,
   LoadingSpinner,
   SessionTokens,
-  SplitPage,
+  PageWithContent,
 } from "@stytch-all-examples/internal";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import { ENABLE_OAUTH } from "../config";
 import { getCurrentSession, logout } from "../api";
 import { Member, Organization } from "../types";
-import { SESSION_LINKS } from "../utils/constants";
 import { useCodeSnippets } from "../contexts/code-snippets";
 
 export function ViewSession() {
@@ -56,35 +56,35 @@ export function ViewSession() {
   }, [addResponse, member]);
 
   return (
-    <SplitPage
-      leftSide={<B2BSessionTextBox links={SESSION_LINKS} appType="backend" />}
-      rightSide={
-        isLoading ? (
-          <LoadingSpinner />
-        ) : (
-          <B2BSessionCard
-            email={member?.email_address || ""}
-            memberId={member?.member_id || ""}
-            organizationName={organization?.organization_name || ""}
-            sessionTokens={sessionTokens}
-            handleSwitchOrgs={() => {
-              navigate("/organizations");
-            }}
-            handleLogout={async () => {
-              const response = await logout();
-              if (response.error) {
-                setError(response.error);
-                return;
-              }
-              addResponse(response, { replace: true });
-              navigate("/");
-            }}
-            appType="backend"
-          />
-        )
+    <PageWithContent
+      content={
+        <B2BSessionTextBox appType="backend" oauthEnabled={ENABLE_OAUTH} />
       }
-      error={error && <ErrorBox title="Error loading session" error={error} />}
-      codeTabs={codeTabs}
-    />
+    >
+      {isLoading ? (
+        <LoadingSpinner />
+      ) : (
+        <B2BSessionCard
+          email={member?.email_address || ""}
+          memberId={member?.member_id || ""}
+          organizationName={organization?.organization_name || ""}
+          sessionTokens={sessionTokens}
+          handleSwitchOrgs={() => {
+            navigate("/organizations");
+          }}
+          handleLogout={async () => {
+            const response = await logout();
+            if (response.error) {
+              setError(response.error);
+              return;
+            }
+            addResponse(response, { replace: true });
+            navigate("/");
+          }}
+          appType="backend"
+        />
+      )}
+      {error && <ErrorBox title="Error loading session" error={error} />}
+    </PageWithContent>
   );
 }

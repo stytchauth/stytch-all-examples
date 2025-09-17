@@ -1,0 +1,26 @@
+{
+  "name": "@stytch-all-examples/frontend-react-headless-b2b",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "yarn workspace @stytch-all-examples/internal run build && vite",
+    "build": "yarn workspace @stytch-all-examples/internal run build && tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@stytch-all-examples/internal": "*",
+    "@stytch/react": "^19.7.0",
+    "@stytch/vanilla-js": "^5.29.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router": "^7.8.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.10",
+    "@types/react-dom": "^19.1.7",
+    "@vitejs/plugin-react": "^4.3.1",
+    "typescript": "^5.5.3",
+    "vite": "^7.1.2"
+  }
+}

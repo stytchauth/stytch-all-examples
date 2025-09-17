@@ -3,7 +3,7 @@ import {
   IntroTextBox,
   LoginForm,
   RedirectUrlTextBox,
-  SplitPage,
+  PageWithContent,
 } from "@stytch-all-examples/internal";
 import { useState } from "react";
 import { sendDiscoveryEmail } from "../api";
@@ -45,27 +45,30 @@ export function Login() {
   };
 
   return (
-    <SplitPage
-      leftSide={
+    <PageWithContent
+      content={
         sentEmail ? (
-          <RedirectUrlTextBox appType="backend" />
+          <RedirectUrlTextBox appType="backend" vertical="b2b" />
         ) : (
-          <IntroTextBox appType="backend" oauthEnabled={ENABLE_OAUTH} />
+          <IntroTextBox
+            appType="backend"
+            oauthEnabled={ENABLE_OAUTH}
+            vertical="b2b"
+          />
         )
-      }
-      rightSide={
-        <LoginForm
-          isSendingEmail={sentEmail}
-          setIsSendingEmail={setSentEmail}
-          onEmailLogin={handleEmailLogin}
-          onGoogleLogin={handleGoogleLogin}
-          showGoogleLogin={ENABLE_OAUTH}
-        />
       }
       error={
         error && <ErrorBox title="You've hit an API error" error={error} />
       }
       codeTabs={codeTabs}
-    />
+    >
+      <LoginForm
+        isSendingEmail={sentEmail}
+        setIsSendingEmail={setSentEmail}
+        onEmailLogin={handleEmailLogin}
+        onGoogleLogin={handleGoogleLogin}
+        showGoogleLogin={ENABLE_OAUTH}
+      />
+    </PageWithContent>
   );
 }
