@@ -42,7 +42,7 @@ A React + TypeScript + Vite application that provides a shared UI for backend se
 4. **Open your browser**:
    Navigate to [http://localhost:3001](http://localhost:3001)
 
-**Note**: This UI is designed to work with backend servers. See the backend-specific READMEs (e.g., `../golang/README.md`) for instructions on running the complete full-stack application.
+**Note**: This UI is designed to work with backend servers. See the backend-specific READMEs (e.g., `../golang/b2b/README.md`) for instructions on running the complete full-stack application.
 
 ## Configuration
 
