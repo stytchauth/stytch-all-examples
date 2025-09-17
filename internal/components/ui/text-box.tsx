@@ -1,6 +1,5 @@
 import { Typography } from "@stytch-all-examples/internal/components/ui/typography";
 import { cn } from "@stytch-all-examples/internal/lib/utils";
-import React from "react";
 
 interface TextBoxProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;

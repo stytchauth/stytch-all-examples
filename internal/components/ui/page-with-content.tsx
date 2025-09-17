@@ -1,4 +1,3 @@
-import React from "react";
 import { Toaster } from "./toaster";
 import { CodeTabs } from "./code-tabs";
 import { Typography } from "./typography";
