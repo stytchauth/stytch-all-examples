@@ -1,76 +1,108 @@
-import {
-  AdditionalResources,
-  List,
-  Typography,
-} from "@stytch-all-examples/internal";
-import {
-  B2B_BASICS_URL,
-  B2B_VS_CONSUMER_URL,
-} from "@stytch-all-examples/internal/lib/constants";
+import { AdditionalResources, Typography } from "@stytch-all-examples/internal";
 import { TextBox } from "../ui/text-box";
+import { AppType } from "../types";
+import { Link } from "../ui/link";
 
-export function OrgsTextBox({ hasSession }: { hasSession: boolean }) {
+const DISCOVERED_ORGANIZATION_DOCS_URL =
+  "https://stytch.com/docs/b2b/api/discovered-organization-object";
+
+const MEMBER_SESSION_DOCS_URL =
+  "https://stytch.com/docs/b2b/api/session-object";
+
+const getExchangeSessionEndpointDocsUrl = (appType: AppType) => {
+  return appType === "backend"
+    ? "https://stytch.com/docs/b2b/api/exchange-session"
+    : "https://stytch.com/docs/b2b/sdks/session-management/exchange-session";
+};
+
+const getExchangeIntermediateSessionEndpointDocsUrl = (appType: AppType) => {
+  return appType === "backend"
+    ? "https://stytch.com/docs/b2b/api/exchange-intermediate-session"
+    : "https://stytch.com/docs/b2b/sdks/discovery/exchange-intermediate-session";
+};
+
+const getListDiscoveredOrganizationsEndpointDocsUrl = (appType: AppType) => {
+  return appType === "backend"
+    ? "https://stytch.com/docs/b2b/api/list-discovered-organizations"
+    : "https://stytch.com/docs/b2b/sdks/discovery/list-discovered-organizations";
+};
+
+export function OrgsTextBox({
+  hasSession,
+  hasOrgs,
+  appType,
+}: {
+  hasSession: boolean;
+  hasOrgs?: boolean;
+  appType: AppType;
+}) {
+  const title = hasSession
+    ? "Exchanging sessions between organizations."
+    : hasOrgs
+    ? "Joining an existing organization."
+    : "A session needs an organization to call home.";
+
   const content = hasSession ? (
     <>
       <Typography variant="body1">
-        Fully authenticated users can exchange their session between
-        organizations without having to re-login.
-      </Typography>
-      <Typography variant="body1">
-        Discovery also enables members to find their associated organizations
-        after authentication, increasing the chance of a successful onboarding
-        experience.
+        Stytch's{" "}
+        <Link
+          href={getExchangeSessionEndpointDocsUrl(appType)}
+          text="Exchange Session endpoint"
+        />{" "}
+        lets end users seamlessly switch between different organizations without
+        needing to re-authenticate by exchanging their current session for a
+        session in a specified organization.
       </Typography>
     </>
+  ) : hasOrgs ? (
+    <Typography variant="body1">
+      Stytch’s{" "}
+      <Link
+        href={getExchangeIntermediateSessionEndpointDocsUrl(appType)}
+        text="Exchange intermediate session endpoint"
+      />{" "}
+      lets end users log into an existing Organization, exchanging the
+      <i>Intermediate Session token</i> into a fully realized{" "}
+      <Link href={MEMBER_SESSION_DOCS_URL} text="Member session" /> for the
+      selected Organization.
+    </Typography>
   ) : (
     <>
       <Typography variant="body1">
-        All <b>Members</b> (end users) belong to an <b>Organization</b> when
-        using Stytch B2B. Stytch supports four different methods for
-        provisioning Members:
+        The <i>Intermediate Session token</i> has a 10-minute lifespan and can
+        only be used for <i>Discovery</i>—a step in authentication where a
+        Member (end user) has yet to be provisioned to an Organization.
       </Typography>
-      <List
-        className="text-body1"
-        items={[
-          <Typography variant="body1">
-            <b>Invite:</b> Members can be invited to join a specific
-            Organization
-          </Typography>,
-          <Typography variant="body1">
-            <b>Just-in-time (JIT):</b> Eligible Organizations are shown in a
-            Discovery flow so Members can find and join teammates.
-          </Typography>,
-          <Typography variant="body1">
-            <b>SCIM:</b> Organizations can manage Members directly from their
-            workforce IdP.
-          </Typography>,
-          <Typography variant="body1">
-            <b>Manual:</b> Members can be manually provisioned via direct API
-            calls.
-          </Typography>,
-        ]}
-      />
+      <Typography variant="body1">
+        {appType === "prebuilt" ? (
+          <>
+            Stytch UI handles the <i>Discovery</i> state, listing
+          </>
+        ) : (
+          <>
+            Stytch provides a
+            <Link
+              href={getListDiscoveredOrganizationsEndpointDocsUrl(appType)}
+              text="Discovery endpoint"
+            />
+            to list
+          </>
+        )}{" "}
+        Organizations that a Member is eligible to authenticate into, informed
+        by the <i>Intermediate Session token.</i>
+      </Typography>
     </>
   );
+
   return (
-    <TextBox
-      className="max-w-2xl"
-      title={
-        hasSession
-          ? "Organizations, sessions, and discovery"
-          : "The session needs an organization to call home."
-      }
-    >
+    <TextBox className="max-w-2xl" title={title}>
       {content}
       <AdditionalResources
         links={[
           {
-            href: B2B_BASICS_URL,
-            text: "Stytch B2B basics",
-          },
-          {
-            href: B2B_VS_CONSUMER_URL,
-            text: "B2B vs Consumer Auth",
+            href: DISCOVERED_ORGANIZATION_DOCS_URL,
+            text: "Discovered Organization object",
           },
         ]}
       />

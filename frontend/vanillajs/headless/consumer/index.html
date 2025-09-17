@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stytch Consumer Example App - Vanilla JS Headless</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script
+      type="module"
+      src="https://www.unpkg.com/@stytch/vanilla-js@5.29.1/dist/index.esm.js"
+    ></script>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="page-container">
+      <div class="page-content">
+        <div>
+          <div
+            class="flex flex-col lg:flex-row items-center p-4 lg:p-16 gap-4 lg:gap-8"
+          >
+            <div class="flex-1 min-w-0">
+              <div
+                id="intro-text-box"
+                class="flex flex-col gap-4 min-w-0 max-w-2xl"
+              >
+                <h1
+                  class="font-default text-h1 font-semibold pb-4 tracking-wide"
+                >
+                  Hello World 👋
+                </h1>
+                <p class="font-default text-body1 tracking-normal">
+                  See how Stytch simplifies user auth with just a few lines of
+                  code. This application demonstrates a Stytch API integration
+                  that <strong>uses your own frontend</strong>:
+                </p>
+                <ul
+                  class="list-disc pl-4 space-y-3 ml-4 font-default text-body1 tracking-normal"
+                >
+                  <li>
+                    Your end users log into your app using your own frontend
+                    authentication flow.
+                  </li>
+                  <li>
+                    Your app utilizes the Stytch SDK to call the Stytch API.
+                  </li>
+                  <li>
+                    Stytch API processes the request and returns a response to
+                    your frontend.
+                  </li>
+                  <li>
+                    The SDK automatically manages the session upon successful
+                    authentication.
+                  </li>
+                </ul>
+                <div
+                  class="relative w-full rounded-lg border px-4 py-3 text-sm bg-code"
+                >
+                  <div class="font-default font-semibold tracking-tight mb-1">
+                    Get Started to see the life cycle of a Stytch session 👉
+                  </div>
+                  <div class="font-default text-body1 tracking-normal">
+                    Log in with email to
+                    <a
+                      href="https://stytch.com/docs/b2b/sdks/email-magic-links/login-or-signup"
+                      target="_blank"
+                      class="font-semibold underline"
+                    >
+                      send an email magic link</a
+                    >
+                    via the API or
+                    <a
+                      href="https://stytch.com/docs/b2b/sdks/oauth/discovery-start"
+                      target="_blank"
+                      class="font-semibold underline"
+                    >
+                      login with OAuth.</a
+                    >
+                  </div>
+                </div>
+              </div>
+
+              <div
+                id="redirect-url-text-box"
+                class="hidden flex flex-col gap-4 min-w-md max-w-2xl"
+              >
+                <h1
+                  class="font-default text-h1 font-semibold pb-4 tracking-wide"
+                >
+                  The first step to a session.
+                </h1>
+                <p class="font-default text-body1 tracking-normal">
+                  After a user clicks a magic link, they are routed back to your
+                  application based on the
+                  <a
+                    href="https://stytch.com/dashboard/redirect-urls"
+                    target="_blank"
+                    class="font-semibold underline"
+                    >Redirect URL</a
+                  >
+                  configured in the Stytch Dashboard.
+                </p>
+                <p class="font-default text-body1 tracking-normal">
+                  The redirect includes a <i>Magic Links token</i>, which your
+                  application must exchange for an
+                  <i>Intermediate Session token</i>
+                  through an
+                  <a
+                    href="https://stytch.com/docs/b2b/sdks/email-magic-links/authenticate-discovery-magic-link"
+                    target="_blank"
+                    class="font-semibold underline"
+                    >Authenticate endpoint</a
+                  >.
+                </p>
+                <p class="font-default text-body1 tracking-normal">
+                  For this example app, the redirect URL has been set to:
+                </p>
+                <p class="font-default text-body1 tracking-normal">
+                  <code class="bg-code rounded-md p-1"
+                    >http://localhost:3000/authenticate</code
+                  >
+                </p>
+                <div class="flex flex-col gap-1">
+                  <p class="font-default text-h4">Additional Resources</p>
+                  <div class="flex flex-row gap-2">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M16.6667 1.6665V18.3332H3.33337V1.6665H16.6667ZM10 8.33317H8.33337V9.99984H6.66671V3.33317H5.00004V16.6665H15V3.33317H11.6667V9.99984H10V8.33317Z"
+                        fill="#1D1D1D"
+                      />
+                    </svg>
+                    <a
+                      href="https://stytch.com/docs/workspace-management/redirect-urls"
+                      target="_blank"
+                      class="font-default text-body1 underline"
+                      >Redirect URLs</a
+                    >
+                  </div>
+                  <div class="flex flex-row gap-2">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M16.6667 1.6665V18.3332H3.33337V1.6665H16.6667ZM10 8.33317H8.33337V9.99984H6.66671V3.33317H5.00004V16.6665H15V3.33317H11.6667V9.99984H10V8.33317Z"
+                        fill="#1D1D1D"
+                      />
+                    </svg>
+                    <a
+                      href="https://stytch.com/docs/b2b/api/email-templates"
+                      target="_blank"
+                      class="font-default text-body1 underline"
+                      >Email templates</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex-1 min-w-0 flex flex-col items-center p-4 lg:p-16">
+              <div
+                class="bg-white text-black flex flex-col gap-8 rounded-xl border border-gray-200 py-6 shadow-lg w-96"
+              >
+                <div class="px-6 flex flex-col items-center gap-8">
+                  <div class="flex flex-col gap-1 items-center">
+                    <svg
+                      width="48"
+                      height="48"
+                      viewBox="0 0 48 48"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M22.264 5.00797L14.264 19.008C14.0902 19.3121 13.9994 19.6565 14.0006 20.0067C14.0018 20.357 14.0949 20.7007 14.2707 21.0037C14.4465 21.3066 14.6987 21.5581 15.0022 21.7329C15.3057 21.9078 15.6497 21.9999 16 22H32C32.3502 21.9999 32.6943 21.9078 32.9977 21.7329C33.3012 21.5581 33.5535 21.3066 33.7292 21.0037C33.905 20.7007 33.9981 20.357 33.9993 20.0067C34.0005 19.6565 33.9097 19.3121 33.736 19.008L25.736 5.00797C25.561 4.70207 25.3082 4.44785 25.0034 4.27103C24.6985 4.09422 24.3524 4.0011 24 4.0011C23.6475 4.0011 23.3014 4.09422 22.9965 4.27103C22.6917 4.44785 22.439 4.70207 22.264 5.00797Z"
+                        fill="black"
+                      />
+                      <path
+                        d="M34 26C35.5652 26 37.096 26.4592 38.4029 27.3206C39.7097 28.182 40.7352 29.4079 41.3522 30.8464C41.9692 32.2848 42.1507 33.8727 41.8742 35.4133C41.5977 36.9539 40.8753 38.3795 39.7965 39.5136C38.7178 40.6477 37.3301 41.4405 35.8052 41.7937C34.2804 42.1469 32.6854 42.045 31.2179 41.5007C29.7504 40.9563 28.4748 39.9935 27.5491 38.7313C26.6234 37.4692 26.0883 35.9633 26.01 34.4L26 34L26.01 33.6C26.1126 31.5501 26.9992 29.618 28.4864 28.2034C29.9735 26.7889 31.9475 26 34 26Z"
+                        fill="black"
+                      />
+                      <path
+                        d="M18 26H10C8.93913 26 7.92172 26.4214 7.17157 27.1716C6.42143 27.9217 6 28.9391 6 30V38C6 39.0609 6.42143 40.0783 7.17157 40.8284C7.92172 41.5786 8.93913 42 10 42H18C19.0609 42 20.0783 41.5786 20.8284 40.8284C21.5786 40.0783 22 39.0609 22 38V30C22 28.9391 21.5786 27.9217 20.8284 27.1716C20.0783 26.4214 19.0609 26 18 26Z"
+                        fill="black"
+                      />
+                    </svg>
+                    <p class="text-gray-500 text-xs">Your App</p>
+                  </div>
+
+                  <h3
+                    id="card-title"
+                    class="font-bold text-h2 text-center font-system"
+                  >
+                    Log in or sign up
+                  </h3>
+                </div>
+
+                <div class="px-6 min-h-24 font-system">
+                  <div id="login-form">
+                    <form id="email-form" class="flex flex-col gap-4 w-full">
+                      <div class="flex flex-col gap-2 w-full">
+                        <input
+                          id="email-input"
+                          type="email"
+                          placeholder="email@example.com"
+                          required
+                          class="placeholder:text-gray-500 selection:bg-blue-500 selection:text-white border-gray-300 flex h-9 w-full min-w-0 rounded-md border bg-white px-3 py-1 text-base shadow-sm transition-all outline-none disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px]"
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-black text-white shadow-sm hover:bg-gray-800 h-9 px-4 py-2 has-[>svg]:px-3 w-full"
+                      >
+                        Log in with email
+                      </button>
+                    </form>
+
+                    <!-- OAuth section - visibility controlled by ENABLE_OAUTH config -->
+                    <div class="flex gap-2 w-full items-center mt-4">
+                      <div class="flex-grow border-t border-gray-200"></div>
+                      <span class="text-xs text-gray-500"
+                        >OR CONTINUE WITH</span
+                      >
+                      <div class="flex-grow border-t border-gray-200"></div>
+                    </div>
+                    <div class="flex flex-col gap-2 w-full mt-4">
+                      <button
+                        type="button"
+                        id="google-login-btn"
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-white text-black shadow-sm hover:bg-gray-100 h-9 px-4 py-2 has-[>svg]:px-3 w-full border border-gray-200"
+                      >
+                        Continue with Google
+                      </button>
+                    </div>
+                  </div>
+
+                  <div
+                    id="magic-link-sent"
+                    class="hidden flex flex-col w-full items-center"
+                  >
+                    <p class="text-center text-md font-semibold">
+                      Didn't get it?
+                    </p>
+                    <p class="text-center">
+                      <button
+                        id="resend-btn"
+                        class="text-primary underline-offset-4 hover:underline p-0 text-blue-500 font-normal"
+                      >
+                        Resend
+                      </button>
+                      or
+                      <button
+                        id="change-email-btn"
+                        class="text-primary underline-offset-4 hover:underline p-0 text-blue-500 font-normal"
+                      >
+                        Change email
+                      </button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Error container for API errors -->
+          <div
+            id="error-container"
+            class="flex justify-center items-center"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="js/login.js"></script>
+  </body>
+</html>

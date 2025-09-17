@@ -2,72 +2,52 @@ import { AdditionalResources } from "@stytch-all-examples/internal";
 import { Link } from "@stytch-all-examples/internal/components/ui/link";
 import { TextBox } from "@stytch-all-examples/internal/components/ui/text-box";
 import { Typography } from "@stytch-all-examples/internal/components/ui/typography";
-import {
-  ACCOUNT_ENUMERATION_URL,
-  B2B_BASICS_URL,
-  DISCOVERY_EML_AUTHENTICATE_URL,
-  SESSION_OVERVIEW_URL,
-  UI_CALLBACKS_URL,
-} from "@stytch-all-examples/internal/lib/constants";
 import { AppType } from "../types";
+import { OrderedList } from "../ui/ordered-list";
+
+const TITLE =
+  "Creating an organization results in a fully authenticated session.";
+
+const ORGANIZATION_OBJECT_DOCS_URL =
+  "https://stytch.com/docs/b2b/api/organization-object";
+
+const MEMBER_OBJECT_DOCS_URL = "https://stytch.com/docs/b2b/api/member-object";
+
+const getCreateOrganizationEndpointDocsUrl = (appType: AppType) => {
+  return appType === "backend"
+    ? "https://stytch.com/docs/b2b/api/create-organization-via-discovery"
+    : "https://stytch.com/docs/b2b/sdks/discovery/create-organization-via-discovery";
+};
 
 export function OrgCreateTextBox({ appType }: { appType: AppType }) {
-  const headlessParagraphs = [
-    <Typography variant="body1" key="headless-1">
-      You may want to build a Discovery sign-up and login flow in your own app.{" "}
-      <b>Discovery</b> is the step after a Member authenticates and enables a
-      better user experience for discovering and joining the Organizations they
-      belong to, or creating one if none exist.
-    </Typography>,
-    <Typography variant="body1" key="headless-2">
-      The{" "}
-      <Link
-        href={DISCOVERY_EML_AUTHENTICATE_URL}
-        text="Discovery authenticate endpoint"
-      />{" "}
-      returns an intermediate session token (IST), establishing an intermediate
-      session to help prevent{" "}
-      <Link
-        className="font-bold"
-        href={ACCOUNT_ENUMERATION_URL}
-        text="account enumeration"
-      />
-      . This lets you to preserve the Member’s auth state while you present
-      options on how to proceed.
-    </Typography>,
-  ];
-
-  const prebuiltParagraphs = [
-    <Typography variant="body1" key="prebuilt-1">
-      Prior to joining an organization, Stytch returns an intermediate session
-      token (IST) establishing an intermediate authenticated session to help
-      prevent <Link href={ACCOUNT_ENUMERATION_URL} text="account enumeration" />
-      .
-    </Typography>,
-    <Typography variant="body1" key="prebuilt-2">
-      Stytch UI components provide end-to-end authentication flows for login and
-      signup. Your authentication flows can be further extended with{" "}
-      <Link className="font-bold" href={UI_CALLBACKS_URL} text="UI callbacks" />{" "}
-      to handle things like creating new organizations.
-    </Typography>,
-  ];
-
   return (
-    <TextBox
-      className="max-w-2xl"
-      title="Creating an organization results in a fully authenticated session. "
-    >
-      {appType === "headless" ? headlessParagraphs : prebuiltParagraphs}
-
+    <TextBox className="max-w-2xl" title={TITLE}>
+      <Typography variant="body1">
+        This example of using the{" "}
+        <Link
+          text="Create Organization endpoint"
+          href={getCreateOrganizationEndpointDocsUrl(appType)}
+        />
+        :
+      </Typography>
+      <OrderedList
+        items={[
+          "Creates a new Organization object and Member object",
+          <>
+            Exchanges the <i>Intermediate Session token</i> for a full Member
+            session, completing the <i>Discovery</i> authentication flow
+          </>,
+        ]}
+      />
       <AdditionalResources
         links={[
           {
-            href: B2B_BASICS_URL,
-            text: "Stytch B2B basics",
+            href: ORGANIZATION_OBJECT_DOCS_URL,
+            text: "Organization object",
           },
           {
-            href: SESSION_OVERVIEW_URL,
-            text: "Session management",
+            href: MEMBER_OBJECT_DOCS_URL,
+            text: "Member object",
           },
         ]}
       />

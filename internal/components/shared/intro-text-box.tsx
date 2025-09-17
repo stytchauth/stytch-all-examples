@@ -5,13 +5,11 @@ import {
   TextBox,
   Typography,
 } from "@stytch-all-examples/internal";
-import {
-  INTRO_CALLOUT_ALERT_TITLE,
-  INTRO_TITLE,
-  MAGIC_LINKS_OVERVIEW_URL,
-  OAUTH_OVERVIEW_URL,
-} from "@stytch-all-examples/internal/lib/constants";
-import { AppType } from "../types";
+import { AppType, Vertical } from "../types";
+
+const TITLE = "Hello World 👋";
+const CALLOUT_ALERT_TITLE =
+  "Get Started to see the life cycle of a Stytch session 👉";
 
 const HEADLESS_LIST_ITEMS = [
   "Your end users log into your app using your own frontend authentication flow.",
@@ -49,24 +47,40 @@ const listItemsForAppType = {
   backend: BACKEND_LIST_ITEMS,
 };
 
+const getMagicLinksOverviewUrl = (vertical: Vertical, appType: AppType) => {
+  return vertical === "b2b"
+    ? "https://stytch.com/docs/b2b/guides/magic-links/overview"
+    : appType === "backend"
+    ? "https://stytch.com/docs/guides/magic-links/email-magic-links/api"
+    : "https://stytch.com/docs/guides/magic-links/email-magic-links/sdk";
+};
+
+const getOauthOverviewUrl = (vertical: Vertical) => {
+  return vertical === "b2b"
+    ? "https://stytch.com/docs/b2b/guides/oauth/overview"
+    : "https://stytch.com/docs/guides/oauth/api";
+};
+
 export function IntroTextBox({
+  vertical,
   appType,
   oauthEnabled = false,
 }: {
+  vertical: Vertical;
   appType: AppType;
   oauthEnabled?: boolean;
 }) {
   return (
-    <TextBox className="max-w-2xl" title={INTRO_TITLE}>
+    <TextBox className="max-w-2xl" title={TITLE}>
       <Typography variant="body1">{introTextForAppType[appType]}</Typography>
       <List className="text-body1" items={listItemsForAppType[appType]} />
       <CalloutAlert
-        title={INTRO_CALLOUT_ALERT_TITLE}
+        title={CALLOUT_ALERT_TITLE}
         description={
           <Typography variant="body1">
             Log in with email to{" "}
             <Link
-              href={MAGIC_LINKS_OVERVIEW_URL}
+              href={getMagicLinksOverviewUrl(vertical, appType)}
               text="send an email magic link"
               className="font-semibold"
             />{" "}
@@ -76,7 +90,7 @@ export function IntroTextBox({
                 {" "}
                 or{" "}
                 <Link
-                  href={OAUTH_OVERVIEW_URL}
+                  href={getOauthOverviewUrl(vertical)}
                   text="login with OAuth."
                   className="font-semibold"
                 />

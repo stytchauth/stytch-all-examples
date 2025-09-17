@@ -1,4 +1,4 @@
-# Stytch All Examples
+# Stytch Example Apps
 
 Stytch provides SDKs for a number of different languages, frameworks, and implementation approaches. This monorepo contains simple example apps that demonstrate our various frontend and backend SDKs.
 
@@ -53,7 +53,7 @@ Before exploring the repository, it's helpful to understand the different types 
 
 ## Repository Structure & Getting Started
 
-This monorepo contains example applications organized by framework and implementation type. To run a specific example app:
+This monorepo contains example applications organized by framework, implementation type, and Stytch data model (B2B vs Consumer). To run a specific example app:
 
 1. **Navigate to the specific package you want to build**
 
@@ -63,18 +63,33 @@ This monorepo contains example applications organized by framework and implement
 stytch-all-examples/
 ├── frontend/
 │   ├── nextjs/
-│   │   ├── headless/          # Next.js headless implementation
-│   │   └── prebuilt/          # Next.js prebuilt implementation
+│   │   ├── headless/
+│   │   │   ├── b2b/           # Next.js headless B2B implementation
+│   │   │   └── consumer/      # Next.js headless Consumer implementation
+│   │   └── prebuilt/
+│   │       ├── b2b/           # Next.js prebuilt B2B implementation
+│   │       └── consumer/      # Next.js prebuilt Consumer implementation
 │   ├── react/
-│   │   ├── headless/          # React headless implementation
-│   │   └── prebuilt/          # React prebuilt implementation
+│   │   ├── headless/
+│   │   │   ├── b2b/           # React headless B2B implementation
+│   │   │   └── consumer/      # React headless Consumer implementation
+│   │   └── prebuilt/
+│   │       ├── b2b/           # React prebuilt B2B implementation
+│   │       └── consumer/      # React prebuilt Consumer implementation
 │   └── vanillajs/
-│       ├── headless/          # Vanilla JavaScript headless implementation
-│       └── prebuilt/          # Vanilla JavaScript prebuilt implementation
+│       ├── headless/
+│       │   ├── b2b/           # Vanilla JS headless B2B implementation
+│       │   └── consumer/      # Vanilla JS headless Consumer implementation
+│       └── prebuilt/
+│           ├── b2b/           # Vanilla JS prebuilt B2B implementation
+│           └── consumer/      # Vanilla JS prebuilt Consumer implementation
 ├── backend/
-│   ├── golang/                # Go server implementation
-│   ├── ui/                    # Shared React UI for backend examples
-│   └── internal/              # Shared backend configuration
+│   ├── golang/
+│   │   ├── b2b/               # Go B2B server implementation
+│   │   └── consumer/          # Go Consumer server implementation
+│   └── ui/
+│       ├── b2b/               # Shared React UI for B2B backend examples
+│       └── consumer/          # Shared React UI for Consumer backend examples
 └── internal/                  # Shared components and utilities
 ```
 
@@ -82,17 +97,28 @@ stytch-all-examples/
 
 **Frontend Apps:**
 
-- [React Headless](frontend/react/headless/) | [React Prebuilt](frontend/react/prebuilt/)
-- [Next.js Headless](frontend/nextjs/headless/) | [Next.js Prebuilt](frontend/nextjs/prebuilt/)
-- [Vanilla JS Headless](frontend/vanillajs/headless/) | [Vanilla JS Prebuilt](frontend/vanillajs/prebuilt/)
+**B2B Apps:**
+
+- [React B2B Headless](frontend/react/headless/b2b/) | [React B2B Prebuilt](frontend/react/prebuilt/b2b/)
+- [Next.js B2B Headless](frontend/nextjs/headless/b2b/) | [Next.js B2B Prebuilt](frontend/nextjs/prebuilt/b2b/)
+- [Vanilla JS B2B Headless](frontend/vanillajs/headless/b2b/) | [Vanilla JS B2B Prebuilt](frontend/vanillajs/prebuilt/b2b/)
+
+**Consumer Apps:**
+
+- [React Consumer Headless](frontend/react/headless/consumer/) | [React Consumer Prebuilt](frontend/react/prebuilt/consumer/)
+- [Next.js Consumer Headless](frontend/nextjs/headless/consumer/) | [Next.js Consumer Prebuilt](frontend/nextjs/prebuilt/consumer/)
+- [Vanilla JS Consumer Headless](frontend/vanillajs/headless/consumer/) | [Vanilla JS Consumer Prebuilt](frontend/vanillajs/prebuilt/consumer/)
 
 **Backend Apps:**
 
-- [Go Backend](backend/golang/) | [Shared UI](backend/ui/)
+- [Go B2B Backend](backend/golang/b2b/) | [Go Consumer Backend](backend/golang/consumer/)
+- [B2B UI](backend/ui/b2b/) | [Consumer UI](backend/ui/consumer/)
 
 ## Features Demonstrated
 
-All implementations demonstrate the following Stytch B2B features:
+### B2B Applications
+
+B2B implementations demonstrate the following Stytch B2B features:
 
 - **Magic Link Authentication**: Email-based passwordless authentication
 - **Google OAuth Login**: One-click authentication with Google (opt-in)
@@ -102,11 +128,31 @@ All implementations demonstrate the following Stytch B2B features:
 - **Responsive Design**: Mobile-friendly layouts
 - **Configurable OAuth**: Easy toggle to enable/disable OAuth features
 
+### Consumer Applications
+
+Consumer implementations demonstrate the following Stytch Consumer features:
+
+- **Magic Link Authentication**: Email-based passwordless authentication
+- **Google OAuth Login**: One-click authentication with Google (opt-in)
+- **Session Management**: View session tokens, JWT handling, and logout functionality
+- **User Management**: View user information and profile details
+- **Error Handling**: Comprehensive error states and user feedback
+- **Responsive Design**: Mobile-friendly layouts
+- **Configurable OAuth**: Easy toggle to enable/disable OAuth features
+
 ## Quick Start
 
-For a quick start, we recommend trying the **React Prebuilt** implementation as it requires minimal setup. See the [React Prebuilt README](frontend/react/prebuilt/README.md) for complete setup instructions.
+For a quick start, we recommend trying one of these implementations:
 
-For a full-stack example with backend integration, try the **Go Backend** implementation. See the [Go Backend README](backend/golang/README.md) for complete setup instructions.
+**B2B Applications:**
+
+- **React B2B Prebuilt**: Minimal setup with Stytch's hosted UI. See the [React B2B Prebuilt README](frontend/react/prebuilt/b2b/README.md) for complete setup instructions.
+- **Go B2B Backend**: Full-stack example with backend integration. See the [Go B2B Backend README](backend/golang/b2b/README.md) for complete setup instructions.
+
+**Consumer Applications:**
+
+- **React Consumer Prebuilt**: Minimal setup with Stytch's hosted UI. See the [React Consumer Prebuilt README](frontend/react/prebuilt/consumer/README.md) for complete setup instructions.
+- **Go Consumer Backend**: Full-stack example with backend integration. See the [Go Consumer Backend README](backend/golang/consumer/README.md) for complete setup instructions.
 
 ## Support
 

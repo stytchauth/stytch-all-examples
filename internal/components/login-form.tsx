@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from "@stytch-all-examples/internal/components/ui/card";
 import { Input } from "@stytch-all-examples/internal/components/ui/input";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ExampleAppHeader } from "./example-app-header";
 import { GoogleIcon } from "./ui/google-icon";
 

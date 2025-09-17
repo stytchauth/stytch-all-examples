@@ -1,0 +1,24 @@
+{
+  "name": "@stytch-all-examples/frontend-nextjs-prebuilt-consumer",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "yarn workspace @stytch-all-examples/internal run build && next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@stytch/nextjs": "^21.7.0",
+    "@stytch/vanilla-js": "^5.29.1",
+    "next": "15.4.6",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5"
+  }
+}

@@ -10,7 +10,7 @@ export function SessionTokensCard({
   handleBack,
   appType,
 }: {
-  sessionTokens: SessionTokens;
+  sessionTokens: SessionTokens | null;
   handleBack: () => void;
   appType: AppType;
 }) {
@@ -28,7 +28,7 @@ export function SessionTokensCard({
             <div className="flex flex-col gap-2">
               <p className="font-bold">Session Token</p>
               <div className="border border-gray-200 rounded-md p-2 text-sm bg-code">
-                <code>{sessionTokens.session_token}</code>
+                <code>{sessionTokens?.session_token}</code>
               </div>
             </div>
             <div className="flex flex-col gap-2">
@@ -40,7 +40,9 @@ export function SessionTokensCard({
                     size="sm"
                     className="text-xs w-full"
                     onClick={() => {
-                      navigator.clipboard.writeText(sessionTokens.session_jwt);
+                      navigator.clipboard.writeText(
+                        sessionTokens?.session_jwt ?? ""
+                      );
                       toast.success("JWT copied to clipboard");
                     }}
                   >
