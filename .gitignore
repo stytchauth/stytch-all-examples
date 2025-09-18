@@ -1,0 +1,41 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# IntelliJ
+.idea
+**/.idea
+
+# dependencies
+**/node_modules
+/.pnp
+.pnp.js
+.pnp.cjs
+.pnp.loader.mjs
+
+# Yarn v4 with PnP
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# misc
+.DS_Store
+/.vscode
+
+# local env files
+**/.env.local
+**/.env
+
+# generated env files for vanilla apps
+**/js/env.js
+
+# tsc
+dist
+tsconfig.tsbuildinfo
+
+# vite
+**/.vite
+
+# next.js
+**/.next

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stytch Consumer Example App - Vanilla JS Headless</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="page-container">
+      <div class="page-content">
+        <div
+          id="loading-container"
+          class="flex justify-center items-center h-screen"
+        >
+          <div class="flex flex-col items-center gap-4">
+            <div
+              class="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"
+            ></div>
+            <p class="text-gray-600">Loading session...</p>
+          </div>
+        </div>
+
+        <div
+          id="main-container"
+          class="hidden flex flex-col lg:flex-row items-center gap-4 lg:gap-8 p-4 lg:p-16"
+        >
+          <div class="flex-1 min-w-0">
+            <div class="flex flex-col gap-4 min-w-0 max-w-2xl">
+              <h1 class="font-default text-h1 font-semibold pb-4 tracking-wide">
+                A full session begins.
+              </h1>
+              <p class="font-default text-body1 tracking-normal">
+                Your authentication token was exchanged for a fully realized
+                <a
+                  href="https://stytch.com/docs/api/session-object"
+                  target="_blank"
+                  class="font-semibold underline"
+                  >Session</a
+                >—meaning you're now fully authenticated for your app!
+              </p>
+              <p class="font-default text-body1 tracking-normal">
+                Sessions are stored as
+                <a
+                  href="https://stytch.com/docs/guides/sessions/session-tokens-vs-jwts"
+                  target="_blank"
+                  class="font-semibold underline"
+                  >JWTs or session tokens</a
+                >
+                in browser cookies or mobile storage and let you authenticate
+                and authorize requests between your client and server, for
+                example:
+              </p>
+              <ul
+                class="list-disc pl-4 space-y-3 ml-4 font-default text-body1 tracking-normal"
+              >
+                <li>
+                  Extend a user's session duration with
+                  <a
+                    href="https://stytch.com/docs/sdks/session-management/authenticate-session"
+                    target="_blank"
+                    class="font-semibold underline"
+                    >Authenticate</a
+                  >.
+                </li>
+                <li>
+                  <a
+                    href="https://stytch.com/docs/sdks/session-management/revoke-session"
+                    target="_blank"
+                    class="font-semibold underline"
+                    >Revoke</a
+                  >
+                  a session on logout.
+                </li>
+              </ul>
+              <div class="flex flex-col gap-1">
+                <p class="font-default text-h4">Additional Resources</p>
+                <div class="flex flex-row gap-2">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M16.6667 1.6665V18.3332H3.33337V1.6665H16.6667ZM10 8.33317H8.33337V9.99984H6.66671V3.33317H5.00004V16.6665H15V3.33317H11.6667V9.99984H10V8.33317Z"
+                      fill="#1D1D1D"
+                    />
+                  </svg>
+                  <a
+                    href="https://stytch.com/docs/guides/sessions/using-sessions"
+                    target="_blank"
+                    class="font-default text-body1 underline"
+                    >Sessions overview & how to use sessions</a
+                  >
+                </div>
+                <div class="flex flex-row gap-2">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      clip-rule="evenodd"
+                      d="M16.6667 1.6665V18.3332H3.33337V1.6665H16.6667ZM10 8.33317H8.33337V9.99984H6.66671V3.33317H5.00004V16.6665H15V3.33317H11.6667V9.99984H10V8.33317Z"
+                      fill="#1D1D1D"
+                    />
+                  </svg>
+                  <a
+                    href="https://stytch.com/docs/sdks/resources/cookies-and-session-management"
+                    target="_blank"
+                    class="font-default text-body1 underline"
+                    >Cookies & session management</a
+                  >
+                </div>
+              </div>
+              <div
+                id="oauth-callout"
+                class="relative w-full rounded-lg border px-4 py-3 text-sm bg-code"
+              >
+                <div class="font-default font-semibold tracking-tight mb-1">
+                  Next steps
+                </div>
+                <div class="font-default text-body1 tracking-normal">
+                  Try adding
+                  <a
+                    href="https://stytch.com/docs/guides/oauth/idp-overview"
+                    target="_blank"
+                    class="font-semibold underline"
+                    >OAuth</a
+                  >
+                  to your example app by enabling it in
+                  <a
+                    href="https://github.com/stytchauth/stytch-all-examples/blob/main/frontend/vanillajs/headless/consumer/js/config.js"
+                    target="_blank"
+                    class="font-semibold underline"
+                    >the config file</a
+                  >.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex-1 min-w-0 flex flex-col items-center p-4 lg:p-16">
+            <div
+              id="main-card"
+              class="bg-white text-black flex flex-col gap-8 rounded-xl border border-gray-200 py-6 shadow-lg w-lg"
+            >
+              <div class="px-6">
+                <h3 class="font-bold text-h2 justify-start font-system">
+                  Logged in as:
+                </h3>
+              </div>
+
+              <div class="px-6 flex flex-col gap-6 font-system">
+                <div class="flex flex-col gap-6">
+                  <div class="flex flex-col">
+                    <p class="font-bold">Email</p>
+                    <p id="email-display"></p>
+                  </div>
+
+                  <div class="flex flex-col">
+                    <p class="font-bold">User ID</p>
+                    <p id="user-id-display"></p>
+                  </div>
+                </div>
+
+                <div class="flex flex-row gap-2">
+                  <button
+                    id="view-token-btn"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-white text-black shadow-sm hover:bg-gray-100 h-9 px-4 py-2 has-[>svg]:px-3 border border-gray-200"
+                  >
+                    View Token
+                  </button>
+                  <button
+                    id="logout-btn"
+                    class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-black text-white shadow-sm hover:bg-gray-800 h-9 px-4 py-2 has-[>svg]:px-3"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Session Tokens Card (hidden by default) -->
+            <div
+              id="session-tokens-card"
+              class="hidden bg-white text-black flex flex-col gap-8 rounded-xl border border-gray-200 py-6 shadow-lg w-lg"
+            >
+              <div class="px-6 flex flex-col gap-6 font-system">
+                <div class="flex flex-col gap-2">
+                  <p class="font-bold">Session Token</p>
+                  <div
+                    class="border border-gray-200 rounded-md p-2 text-sm bg-code"
+                  >
+                    <code id="session-token-display"></code>
+                  </div>
+                </div>
+                <div class="flex flex-col gap-2">
+                  <p class="font-bold">Session JWT</p>
+                  <div class="flex flex-row gap-2 justify-start">
+                    <div class="flex-1">
+                      <button
+                        id="copy-jwt-btn"
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-white text-black shadow-sm hover:bg-gray-100 h-8 px-3 py-1 has-[>svg]:px-2 w-full border border-gray-200"
+                      >
+                        Copy JWT to clipboard
+                      </button>
+                    </div>
+                    <div class="flex-1">
+                      <button
+                        id="launch-jwt-decoder-btn"
+                        class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-xs font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-white text-black shadow-sm hover:bg-gray-100 h-8 px-3 py-1 has-[>svg]:px-2 w-full border border-gray-200"
+                      >
+                        Launch JWT decoder
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <button
+                  id="back-to-session-btn"
+                  class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-blue-500 focus-visible:ring-blue-500/50 focus-visible:ring-[3px] bg-white text-black shadow-sm hover:bg-gray-100 h-9 px-4 py-2 has-[>svg]:px-3 w-fit border border-gray-200 self-start"
+                >
+                  Back
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          id="error-container"
+          class="hidden flex justify-center items-center"
+        >
+          <!-- ErrorBox will be dynamically inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Toast container -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50"></div>
+
+    <script type="module" src="js/view-session.js"></script>
+  </body>
+</html>

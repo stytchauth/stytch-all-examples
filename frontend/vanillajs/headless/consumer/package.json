@@ -1,0 +1,16 @@
+{
+  "name": "@stytch-all-examples/frontend-vanillajs-headless-consumer",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "node build-config.js",
+    "dev": "yarn build && http-server . -p 3000 -c-1",
+    "start": "yarn build && http-server . -p 3000"
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  },
+  "dependencies": {
+    "@stytch/vanilla-js": "^5.29.1"
+  }
+}

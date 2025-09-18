@@ -1,0 +1,37 @@
+{
+  "name": "stytch-all-examples",
+  "private": true,
+  "workspaces": [
+    "internal",
+    "frontend/react/headless/b2b",
+    "frontend/react/headless/consumer",
+    "frontend/react/prebuilt/b2b",
+    "frontend/react/prebuilt/consumer",
+    "frontend/nextjs/headless/b2b",
+    "frontend/nextjs/headless/consumer",
+    "frontend/nextjs/prebuilt/b2b",
+    "frontend/nextjs/prebuilt/consumer",
+    "frontend/vanillajs/headless/b2b",
+    "frontend/vanillajs/headless/consumer",
+    "frontend/vanillajs/prebuilt/b2b",
+    "frontend/vanillajs/prebuilt/consumer",
+    "backend/ui/consumer",
+    "backend/ui/b2b"
+  ],
+  "scripts": {
+    "build": "echo 'Navigate to the specific project to build it'",
+    "dev": "echo 'Navigate to the specific project to run it'",
+    "test": "echo 'Navigate to the specific project to test it'",
+    "lint": "echo 'Navigate to the specific project to lint it'",
+    "clean": "echo 'Navigate to the specific project to clean it'"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.0.0"
+  },
+  "packageManager": "yarn@4.10.1",
+  "engines": {
+    "node": ">=22.0.0",
+    "yarn": ">=4.0.0"
+  }
+}
