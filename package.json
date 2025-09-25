@@ -16,7 +16,8 @@
     "frontend/vanillajs/prebuilt/b2b",
     "frontend/vanillajs/prebuilt/consumer",
     "backend/ui/consumer",
-    "backend/ui/b2b"
+    "backend/ui/b2b",
+    "backend/node/b2b"
   ],
   "scripts": {
     "build": "echo 'Navigate to the specific project to build it'",
