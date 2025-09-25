@@ -141,5 +141,5 @@ export async function discoveryAuthenticate(req: Request, res: Response) {
   res = setIntermediateSessionCookie(res, resp.intermediate_session_token);
 
   // Redirect to the organizations page after successful authentication.
-  res.writeHead(303, { Location: "http://localhost:3001/organizations" });
+  res.redirect(303, "http://localhost:3001/organizations");
 }
