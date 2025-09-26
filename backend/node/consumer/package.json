@@ -1,5 +1,5 @@
 {
-  "name": "@stytch-all-examples/backend-node-b2b",
+  "name": "@stytch-all-examples/backend-node-consumer",
   "private": true,
   "version": "0.0.0",
   "type": "module",

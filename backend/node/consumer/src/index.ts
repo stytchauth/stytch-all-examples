@@ -3,8 +3,8 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 
-import * as discovery from "./discovery/index.js";
 import * as magicLinks from "./magicLinks/index.js";
+import * as oauth from "./oauth/index.js";
 import * as sessions from "./session/index.js";
 import { universalAuthenticate } from "./utils/authenticate.js";
 import { loadStytchClient } from "./utils/stytchClient.js";
@@ -16,7 +16,7 @@ loadStytchClient();
 
 app.use(cors({ origin: true, credentials: true }));
 app.use(cookieParser());
-app.use(bodyParser.json());
+app.use(bodyParser.json({ strict: true }));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use((req: Request, _: Response, next: NextFunction) => {
   console.log(`${req.method} ${req.path} ${JSON.stringify(req.body)}`);
@@ -35,16 +35,13 @@ router.get("/", (_: Request, res: Response) => {
 router.all("/authenticate", universalAuthenticate);
 
 // Handle Email Magic Links routes.
-router.post("/magic-links/invite", magicLinks.invite);
-router.post("/magic-links/login-signup", magicLinks.loginOrSignup);
-router.post("/magic_links/email/discovery/send", magicLinks.discoverySend);
+router.post("/magic_links/email/send", magicLinks.sendEmail);
+router.post("/magic_links/authenticate", magicLinks.authenticate);
 
-// Handle Discovery routes.
-router.get("/discovery/organizations", discovery.listOrganizations);
-router.post("/discovery/organizations/create", discovery.createOrgViaDiscovery);
+// Handle OAuth routes.
+router.get("/oauth/authenticate", oauth.oauthAuthenticate);
 
 // Handle Sessions routes.
-router.post("/sessions/exchange", sessions.exchange);
 router.get("/session", sessions.getCurrentSession);
 router.all("/logout", sessions.logout);
 

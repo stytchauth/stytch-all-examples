@@ -1,15 +1,14 @@
 import { NextFunction, Request, Response } from "express";
-import { authenticate, discoveryAuthenticate } from "../magicLinks/index.js";
-import { discoveryOAuthAuthenticate } from "../oauth/index.js";
+import { authenticate } from "../magicLinks/index.js";
+import { oauthAuthenticate } from "../oauth/index.js";
 
 // Token types are passed as query parameters in the Redirect URL and serve
 // to identify which Stytch product and authentication flow the user is completing.
 //
 // For full list of token types, see: https://stytch.com/docs/workspace-management/redirect-urls.
 enum TokenType {
-  MagicLinks = "multi_tenant_magic_links",
-  Discovery = "discovery",
-  DiscoveryOAuth = "discovery_oauth",
+  MagicLinks = "magic_links",
+  OAuth = "oauth",
 }
 
 export async function universalAuthenticate(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -27,13 +26,11 @@ export async function universalAuthenticate(req: Request, res: Response, next: N
     case TokenType.MagicLinks:
       await authenticate(req, res);
       break;
-    case TokenType.Discovery:
-      await discoveryAuthenticate(req, res);
-      break;
-    case TokenType.DiscoveryOAuth:
-      await discoveryOAuthAuthenticate(req, res);
+    case TokenType.OAuth:
+      await oauthAuthenticate(req, res);
       break;
     default:
       res.status(400).send("Invalid token type.");
   }
+  next();
 }

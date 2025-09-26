@@ -2697,6 +2697,26 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@stytch-all-examples/backend-node-consumer@workspace:backend/node/consumer":
+  version: 0.0.0-use.local
+  resolution: "@stytch-all-examples/backend-node-consumer@workspace:backend/node/consumer"
+  dependencies:
+    "@types/cookie-parser": "npm:^1.4.7"
+    "@types/cors": "npm:^2.8.17"
+    "@types/express": "npm:^4.17.21"
+    "@types/node": "npm:^22.0.0"
+    body-parser: "npm:^2.2.0"
+    cookie-parser: "npm:^1.4.7"
+    cors: "npm:^2.8.5"
+    eslint: "npm:^9.22.0"
+    express: "npm:^5.1.0"
+    stytch: "npm:^12.38.0"
+    ts-node: "npm:^10.9.2"
+    typescript: "npm:^5.8.3"
+    typescript-eslint: "npm:^8.44.1"
+  languageName: unknown
+  linkType: soft
+
 "@stytch-all-examples/backend-ui-b2b@workspace:backend/ui/b2b":
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/backend-ui-b2b@workspace:backend/ui/b2b"

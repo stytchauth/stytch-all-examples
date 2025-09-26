@@ -18,6 +18,9 @@ export const sendMagicLinkEmail = async (
 ): Promise<APIResponse<SendMagicLinkEmailResponse>> => {
   const response = await fetch("http://localhost:3000/magic_links/email/send", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({
       email_address: email,
       login_magic_link_url: "http://localhost:3000/authenticate",
@@ -46,6 +49,9 @@ export const authenticateMagicLink = async (
     "http://localhost:3000/magic_links/authenticate",
     {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify({ token }),
       credentials: "include",
     }
@@ -67,6 +73,9 @@ export const authenticateOAuth = async (
 ): Promise<APIResponse<AuthenticateOAuthResponse>> => {
   const response = await fetch("http://localhost:3000/oauth/authenticate", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
     body: JSON.stringify({ token }),
     credentials: "include",
   });

@@ -85,8 +85,6 @@ export async function discoverySend(req: Request, res: Response) {
  * the authentication requirements for the target Organization.
  */
 export async function authenticate(req: Request, res: Response) {
-  console.log("MLA");
-
   // Retrieve the token from the query parameter.
   const token = req.query.token;
   if (!token || typeof token !== "string") {
@@ -122,7 +120,6 @@ export async function authenticate(req: Request, res: Response) {
 export async function discoveryAuthenticate(req: Request, res: Response) {
   // Retrieve the token from the query parameter.
   const token = req.query.token;
-  console.log(`Token: ${token}`);
   if (!token || typeof token !== "string") {
     res.status(400).send("No token provided");
     return;
@@ -131,8 +128,6 @@ export async function discoveryAuthenticate(req: Request, res: Response) {
   const resp = await StytchClient.magicLinks.discovery.authenticate({
     discovery_magic_links_token: token,
   });
-
-  console.log(`Resp: ${JSON.stringify(resp)}`);
 
   // An intermediate session token will be returned from successful Discovery
   // flows that establishes a session for an end user that is not associated
