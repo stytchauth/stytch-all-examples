@@ -2,6 +2,22 @@
 
 Stytch provides SDKs for a number of different languages, frameworks, and implementation approaches. This monorepo contains simple example apps that demonstrate our various frontend and backend SDKs.
 
+## Quick Start
+
+This repo contains examples in different languages and with varying implementation methods (for instance, using Stytch-provided prebuilt UI vs. using a component library like [radix-ui](https://www.radix-ui.com/) ). The first step is to figure out which directory in this repository *best* matches your situation. More detail about each example can be found further down in this README.
+
+When starting from scratch or to build a proof of concept app we recommend trying one of these implementations:
+
+**B2B Applications:**
+
+- **React B2B Prebuilt**: Minimal setup with Stytch's hosted UI. See the [React B2B Prebuilt README](frontend/react/prebuilt/b2b/README.md) for complete setup instructions.
+- **Go B2B Backend**: Full-stack example with backend integration. See the [Go B2B Backend README](backend/golang/b2b/README.md) for complete setup instructions.
+
+**Consumer Applications:**
+
+- **React Consumer Prebuilt**: Minimal setup with Stytch's hosted UI. See the [React Consumer Prebuilt README](frontend/react/prebuilt/consumer/README.md) for complete setup instructions.
+- **Go Consumer Backend**: Full-stack example with backend integration. See the [Go Consumer Backend README](backend/golang/consumer/README.md) for complete setup instructions.
+
 ## Getting Started
 
 ### Prerequisites
@@ -51,7 +67,7 @@ Before exploring the repository, it's helpful to understand the different types 
 - **Prebuilt**: Uses Stytch's pre-built UI components with minimal setup - faster to implement but less customization
 - **Backend**: Server-side authentication handling with custom UI - demonstrates API integration patterns
 
-## Repository Structure & Getting Started
+## Repository Structure
 
 This monorepo contains example applications organized by framework, implementation type, and Stytch data model (B2B vs Consumer). To run a specific example app:
 
@@ -123,19 +139,7 @@ All implementations demonstrate the following Stytch SDK capabilities:
 - **Session Management**: View session tokens, JWT handling, and logout functionality
 - **Organization Management** (B2B only): Create, list, and switch between organizations
 
-## Quick Start
 
-For a quick start, we recommend trying one of these implementations:
-
-**B2B Applications:**
-
-- **React B2B Prebuilt**: Minimal setup with Stytch's hosted UI. See the [React B2B Prebuilt README](frontend/react/prebuilt/b2b/README.md) for complete setup instructions.
-- **Go B2B Backend**: Full-stack example with backend integration. See the [Go B2B Backend README](backend/golang/b2b/README.md) for complete setup instructions.
-
-**Consumer Applications:**
-
-- **React Consumer Prebuilt**: Minimal setup with Stytch's hosted UI. See the [React Consumer Prebuilt README](frontend/react/prebuilt/consumer/README.md) for complete setup instructions.
-- **Go Consumer Backend**: Full-stack example with backend integration. See the [Go Consumer Backend README](backend/golang/consumer/README.md) for complete setup instructions.
 
 ## Support
 
