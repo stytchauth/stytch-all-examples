@@ -31,6 +31,7 @@ export const sendDiscoveryEmail = async (
   const response = await fetch(
     "http://localhost:3000/magic_links/email/discovery/send",
     {
+      headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({ email_address: email }),
       credentials: "include",
@@ -83,6 +84,7 @@ export const createOrganizationViaDiscovery = async (
   const response = await fetch(
     "http://localhost:3000/discovery/organizations/create",
     {
+      headers: { "Content-Type": "application/json" },
       method: "POST",
       body: JSON.stringify({ organizationName: orgName }),
       credentials: "include",
@@ -110,6 +112,7 @@ export const exchangeSession = async (
   orgId: string
 ): Promise<APIResponse<ExchangeSessionResponse>> => {
   const response = await fetch("http://localhost:3000/sessions/exchange", {
+    headers: { "Content-Type": "application/json" },
     method: "POST",
     body: JSON.stringify({ organization_id: orgId }),
     credentials: "include",
