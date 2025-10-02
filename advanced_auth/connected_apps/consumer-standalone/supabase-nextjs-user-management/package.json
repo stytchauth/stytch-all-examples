@@ -1,0 +1,47 @@
+{
+  "name": "@mcp-examples/supabase-nextjs-user-management",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "setup:supabase": "tsx scripts/setup.ts --supabase",
+    "setup:stytch": "tsx scripts/setup.ts --stytch",
+    "setup:localhost": "tsx scripts/setup.ts --localhost",
+    "setup:vercel": "tsx scripts/setup.ts --vercel",
+    "setup:all": "tsx scripts/setup.ts --all",
+    "setup": "tsx scripts/setup.ts --all",
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "prettier:check": "prettier --check app components scripts utils",
+    "prettier:fix": "prettier --write app components scripts utils"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.17.3",
+    "@stytch/nextjs": "^21.11.1",
+    "@stytch/vanilla-js": "^5.35.1",
+    "@supabase/ssr": "^0.6.1",
+    "@supabase/supabase-js": "^2.53.0",
+    "@vercel/mcp-adapter": "^1.0.0",
+    "next": "15.4.7",
+    "react": "19.1.1",
+    "react-dom": "19.1.1",
+    "stytch": "^12.32.1"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.1.11",
+    "@types/node": "^24.2.0",
+    "@types/react": "^19.1.9",
+    "@types/react-dom": "^19.1.7",
+    "axios": "^1.12.0",
+    "dotenv": "^17.2.1",
+    "eslint": "^8.52.0",
+    "eslint-config-next": "15.4.5",
+    "inquirer": "^12.9.3",
+    "prettier": "^3.6.2",
+    "tailwindcss": "^4.1.11",
+    "tsx": "^4.20.4",
+    "typescript": "^5"
+  }
+}

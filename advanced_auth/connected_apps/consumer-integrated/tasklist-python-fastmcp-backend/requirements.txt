@@ -1,0 +1,10 @@
+fastapi==0.111.0
+uvicorn[standard]==0.30.0
+python-dotenv>=1.1.0
+stytch>=10.18.0
+SQLAlchemy==2.0.43
+pydantic>=2.8.2
+pydantic-settings>=2.5.2
+
+# Optional MCP server utilities (stdio-based). HTTP exposure TBD.
+fastmcp==2.12.2
