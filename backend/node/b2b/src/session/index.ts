@@ -4,10 +4,10 @@ import {
   B2BSessionsAuthenticateResponse,
   B2BSessionsExchangeResponse, B2BSessionsRevokeResponse
 } from "stytch";
-import { clearIntermediateSession, clearSession, getCookies, setSessionCookie } from "../utils/cookies.js";
 import { StytchClient } from "../utils/stytchClient.js";
 import { ResponseBody } from "../utils/response.js";
 import { codeSnippets } from "../utils/snippets.js";
+import { parseTokensFromCookies, StytchIntermediateSessionKey, StytchSessionKey } from "../utils/cookies.js";
 
 type ExchangeRequest = {
   organizationId: string;
@@ -22,20 +22,22 @@ type ExchangeRequest = {
 export async function exchange(req: Request, res: Response) {
   const reqBody = req.body as ExchangeRequest;
 
-  const cookieJar = getCookies(req);
-  if (!cookieJar.intermediateSessionCookie && !cookieJar.sessionCookie) {
+  const { sessionToken, intermediateSessionToken } = parseTokensFromCookies(req);
+  if (!sessionToken && !intermediateSessionToken) {
     res.status(400).send("No token provided");
     return;
   }
 
-  if (cookieJar.intermediateSessionCookie) {
+  if (intermediateSessionToken) {
+    console.log("Exchanging intermediate session...");
+
     const resp = await StytchClient.discovery.intermediateSessions.exchange({
       organization_id: reqBody.organizationId,
-      intermediate_session_token: cookieJar.intermediateSessionCookie,
+      intermediate_session_token: intermediateSessionToken,
     });
 
-    res = setSessionCookie(res, resp.session_token);
-    res = clearIntermediateSession(res);
+    res.cookie(StytchSessionKey, resp.session_token);
+    res.clearCookie(StytchSessionKey);
     res.json({
       method: codeSnippets.Sessions.IntermediateSessionExchange.method,
       codeSnippet: codeSnippets.Sessions.IntermediateSessionExchange.snippet,
@@ -44,13 +46,15 @@ export async function exchange(req: Request, res: Response) {
     return;
   }
 
-  if (cookieJar.sessionCookie) {
+  if (sessionToken) {
+    console.log("Exchanging full session...");
+
     const resp = await StytchClient.sessions.exchange({
       organization_id: reqBody.organizationId,
-      session_token: cookieJar.sessionCookie,
+      session_token: sessionToken,
     });
 
-    res = setSessionCookie(res, resp.session_token);
+    res.cookie(StytchSessionKey, resp.session_token);
     res.json(({
       method: codeSnippets.Sessions.SessionExchange.method,
       codeSnippet: codeSnippets.Sessions.SessionExchange.snippet,
@@ -66,14 +70,14 @@ export async function exchange(req: Request, res: Response) {
  * in the request headers.
  */
 export async function getCurrentSession(req: Request, res: Response) {
-  const cookieJar = getCookies(req);
-  if (!cookieJar.sessionCookie) {
+  const { sessionToken } = parseTokensFromCookies(req);
+  if (!sessionToken) {
     res.status(400).send("No session token found");
     return;
   }
 
   const resp = await StytchClient.sessions.authenticate({
-    session_token: cookieJar.sessionCookie,
+    session_token: sessionToken,
   });
 
   res.json(({
@@ -89,18 +93,19 @@ export async function getCurrentSession(req: Request, res: Response) {
  * cookie cache.
  */
 export async function logout(req: Request, res: Response) {
-  const cookieJar = getCookies(req);
-  if (!cookieJar.sessionCookie) {
+  const { sessionToken } = parseTokensFromCookies(req);
+  if (!sessionToken) {
     res.status(400).send("No session token found");
     return;
   }
 
   const resp = await StytchClient.sessions.revoke({
-    session_token: cookieJar.sessionCookie,
+    session_token: sessionToken,
   });
 
-  res = clearSession(res);
-  res = clearIntermediateSession(res);
+  // Clear all session token cookies.
+  res.clearCookie(StytchSessionKey);
+  res.clearCookie(StytchIntermediateSessionKey);
 
   res.json(({
     method: codeSnippets.Sessions.Revoke.method,

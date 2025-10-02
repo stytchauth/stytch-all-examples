@@ -1,5 +1,3 @@
-import { StytchClient } from "./stytchClient.js";
-
 /**
  * This mapping is for internal use and displays metadata about the method name
  * and code excerpts for invoking it in the demo app's UI.

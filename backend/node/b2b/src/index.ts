@@ -1,4 +1,4 @@
-import express, { type Application, NextFunction, Request, Response, Router } from "express";
+import express, { type Application, Request, Response, Router } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
@@ -8,6 +8,7 @@ import * as magicLinks from "./magicLinks/index.js";
 import * as sessions from "./session/index.js";
 import { universalAuthenticate } from "./utils/authenticate.js";
 import { loadStytchClient } from "./utils/stytchClient.js";
+import { errorMiddleware, loggingMiddleware } from "./utils/middlewares.js";
 
 const port = 3000;
 const app: Application = express();
@@ -18,10 +19,7 @@ app.use(cors({ origin: true, credentials: true }));
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use((req: Request, _: Response, next: NextFunction) => {
-  console.log(`${req.method} ${req.path} ${JSON.stringify(req.body)}`);
-  next();
-});
+app.use(loggingMiddleware);
 
 const router = Router();
 
@@ -49,6 +47,9 @@ router.get("/session", sessions.getCurrentSession);
 router.all("/logout", sessions.logout);
 
 app.use(router);
+
+// Error handling middlewares should be used last in Express.js applications.
+app.use(errorMiddleware);
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);

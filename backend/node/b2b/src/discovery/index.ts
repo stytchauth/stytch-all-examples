@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
-import { clearIntermediateSession, getCookies, setSessionCookie } from "../utils/cookies.js";
-import { StytchClient } from "../utils/stytchClient.js";
 import {
   B2BDiscoveryOrganizationsCreateResponse,
-  B2BDiscoveryOrganizationsListRequest, B2BDiscoveryOrganizationsListResponse
+  B2BDiscoveryOrganizationsListRequest,
+  B2BDiscoveryOrganizationsListResponse
 } from "stytch";
+import { parseTokensFromCookies, StytchIntermediateSessionKey, StytchSessionKey } from "../utils/cookies.js";
 import { ResponseBody } from "../utils/response.js";
 import { codeSnippets } from "../utils/snippets.js";
+import { StytchClient } from "../utils/stytchClient.js";
 
 /**
  * Uses the intermediate or full session token in the request and returns a list of
@@ -14,16 +15,16 @@ import { codeSnippets } from "../utils/snippets.js";
  * requirements implemented by the Organizations.
  */
 export async function listOrganizations(req: Request, res: Response) {
-  const cookieJar = getCookies(req);
-  if (!cookieJar.sessionCookie && !cookieJar.intermediateSessionCookie) {
+  const { sessionToken, intermediateSessionToken } = parseTokensFromCookies(req);
+  if (!sessionToken && !intermediateSessionToken) {
     throw new Error("Must have at least one kind of session cookie present.");
   }
 
   const listOrgRequest: B2BDiscoveryOrganizationsListRequest = {};
-  if (cookieJar.sessionCookie) {
-    listOrgRequest.session_token = cookieJar.sessionCookie;
-  } else if (cookieJar.intermediateSessionCookie) {
-    listOrgRequest.intermediate_session_token = cookieJar.intermediateSessionCookie;
+  if (sessionToken) {
+    listOrgRequest.session_token = sessionToken;
+  } else if (intermediateSessionToken) {
+    listOrgRequest.intermediate_session_token = intermediateSessionToken;
   }
 
   const resp = await StytchClient.discovery.organizations.list(listOrgRequest);
@@ -44,19 +45,20 @@ type CreateOrgViaDiscoveryRequest = {
  * and authenticate into it.
  */
 export async function createOrgViaDiscovery(req: Request, res: Response) {
-  const cookieJar = getCookies(req);
-  if (!cookieJar.intermediateSessionCookie) {
+  const { intermediateSessionToken } = parseTokensFromCookies(req);
+  if (!intermediateSessionToken) {
     throw new Error("No intermediate session token found.");
   }
 
-  const reqBody = req.body as CreateOrgViaDiscoveryRequest;
+  const createReq = req.body as CreateOrgViaDiscoveryRequest;
   const resp = await StytchClient.discovery.organizations.create({
-    intermediate_session_token: cookieJar.intermediateSessionCookie,
-    organization_name: reqBody.organizationName,
+    intermediate_session_token: intermediateSessionToken,
+    organization_name: createReq.organizationName,
   });
 
-  res = setSessionCookie(res, resp.session_token);
-  res = clearIntermediateSession(res);
+  // Set full session token in a cookie and clear the intermediate session cookie.
+  res.cookie(StytchSessionKey, resp.session_token);
+  res.clearCookie(StytchIntermediateSessionKey);
 
   res.json({
     method: codeSnippets.Discovery.CreateOrganization.method,

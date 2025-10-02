@@ -1,13 +1,14 @@
-import { NextFunction, Request, Response } from "express";
+import { Request, Response } from "express";
 import {
   B2BMagicLinksAuthenticateResponse,
   B2BMagicLinksEmailDiscoverySendResponse,
-  B2BMagicLinksEmailInviteResponse, B2BMagicLinksEmailLoginOrSignupResponse
+  B2BMagicLinksEmailInviteResponse,
+  B2BMagicLinksEmailLoginOrSignupResponse
 } from "stytch";
 import { ResponseBody } from "../utils/response.js";
 import { StytchClient } from "../utils/stytchClient.js";
-import { setIntermediateSessionCookie, setSessionCookie } from "../utils/cookies.js";
 import { codeSnippets } from "../utils/snippets.js";
+import { StytchIntermediateSessionKey, StytchSessionKey } from "../utils/cookies.js";
 
 type InviteRequest = {
   organization_id: string;
@@ -49,8 +50,8 @@ export async function loginOrSignup(req: Request, res: Response) {
   });
 
   res.json({
-    method: codeSnippets.MagicLinks.Invite.method,
-    codeSnippet: codeSnippets.MagicLinks.Invite.snippet,
+    method: codeSnippets.MagicLinks.LoginSignup.method,
+    codeSnippet: codeSnippets.MagicLinks.LoginSignup.snippet,
     stytchResponse: resp,
   } as ResponseBody<B2BMagicLinksEmailLoginOrSignupResponse>);
 }
@@ -99,10 +100,10 @@ export async function authenticate(req: Request, res: Response) {
   // auth requirements of the organization that the user is attempting to
   // authenticate into.
   if (resp.session_token) {
-    res = setSessionCookie(res, resp.session_token);
+    res.cookie(StytchSessionKey, resp.session_token);
   }
   if (resp.intermediate_session_token) {
-    res = setIntermediateSessionCookie(res, resp.intermediate_session_token);
+    res.cookie(StytchIntermediateSessionKey, resp.intermediate_session_token);
   }
 
   res.json({
@@ -133,8 +134,9 @@ export async function discoveryAuthenticate(req: Request, res: Response) {
   // flows that establishes a session for an end user that is not associated
   // with any organization in particular.
   // This helps prevent account enumeration attacks.
-  res = setIntermediateSessionCookie(res, resp.intermediate_session_token);
+  res.cookie(StytchIntermediateSessionKey, resp.intermediate_session_token);
 
   // Redirect to the organizations page after successful authentication.
+  console.log("DiscoveryAuthenticate successful, redirecting...");
   res.redirect(303, "http://localhost:3001/organizations");
 }

@@ -1,11 +1,8 @@
 import { Request, Response } from "express";
-import {
-  MagicLinksAuthenticateResponse,
-  MagicLinksEmailSendResponse
-} from "stytch";
+import { MagicLinksEmailSendResponse } from "stytch";
+import { StytchSessionKey } from "../utils/cookies.js";
 import { ResponseBody } from "../utils/response.js";
 import { StytchClient } from "../utils/stytchClient.js";
-import { setSessionCookie } from "../utils/cookies.js";
 import { codeSnippets } from "../utils/snippets.js";
 
 type SendRequest = {
@@ -49,15 +46,8 @@ export async function authenticate(req: Request, res: Response) {
   });
 
   // Store the session token in a cookie
-  console.log(`Got auth resp: ${JSON.stringify(resp)}`);
-  res = setSessionCookie(res, resp.session_token);
+  res.cookie(StytchSessionKey, resp.session_token);
 
-  // http://localhost:3001/view-session
+  console.log("Authenticate successful, redirecting...");
   res.redirect(303, "http://localhost:3001/view-session");
-
-  // res.json({
-  //   method: codeSnippets.MagicLinks.Authenticate.method,
-  //   codeSnippet: codeSnippets.MagicLinks.Authenticate.snippet,
-  //   stytchResponse: resp,
-  // } as ResponseBody<MagicLinksAuthenticateResponse>);
 }

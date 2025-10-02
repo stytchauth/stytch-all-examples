@@ -3,7 +3,7 @@ import {
   SessionsAuthenticateResponse,
   SessionsRevokeResponse
 } from "stytch";
-import { clearSession, getSessionCookie } from "../utils/cookies.js";
+import { parseTokenFromCookie, StytchSessionKey } from "../utils/cookies.js";
 import { StytchClient } from "../utils/stytchClient.js";
 import { ResponseBody } from "../utils/response.js";
 import { codeSnippets } from "../utils/snippets.js";
@@ -14,7 +14,7 @@ import { codeSnippets } from "../utils/snippets.js";
  * in the request headers.
  */
 export async function getCurrentSession(req: Request, res: Response) {
-  const sessionToken = getSessionCookie(req);
+  const sessionToken = parseTokenFromCookie(req);
   if (!sessionToken) {
     res.status(400).send("No session token found");
     return;
@@ -37,7 +37,7 @@ export async function getCurrentSession(req: Request, res: Response) {
  * cookie cache.
  */
 export async function logout(req: Request, res: Response) {
-  const sessionToken = getSessionCookie(req);
+  const sessionToken = parseTokenFromCookie(req);
   if (!sessionToken) {
     res.status(400).send("No session token found");
     return;
@@ -47,7 +47,7 @@ export async function logout(req: Request, res: Response) {
     session_token: sessionToken,
   });
 
-  res = clearSession(res);
+  res.clearCookie(StytchSessionKey);
 
   res.json(({
     method: codeSnippets.Sessions.Revoke.method,

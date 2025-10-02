@@ -1,32 +1,34 @@
-import { Request, Response } from "express";
+import { Request } from "express";
 
-export type CookieJar = {
-  sessionCookie?: string;
-  intermediateSessionCookie?: string;
+/*
+  This file wraps Express.js' cookie management API. In this example app, session
+  and intermediate session tokens are set as cookies in the client's browser.
+
+  Unlike Stytch's consumer (B2C) vertical, B2B has two different flavors of session
+  token that are returned depending on the level of authentication that the end user
+  has performed. You can read more about the different kinds of session at:
+  https://stytch.com/docs/b2b/guides/sessions/resources/overview.
+
+  Depending on the way in which you implement Stytch, you may want to transmit
+  Stytch's session tokens to the client as is done here, or you may wish to
+  generate your own, application-specific session tokens or cookies.
+ */
+
+type StytchSessionTokens = {
+  sessionToken?: string;
+  intermediateSessionToken?: string;
 }
 
-const stytchSessionKey = "stytch_session_key";
-const stytchIntermediateSessionKey = "stytch_intermediate_session_key";
+/*
+ * The below constants are arbitrary keys for storing retrieved Stytch session tokens
+ * as cookies in the client's browser.
+ */
+export const StytchSessionKey = "stytch_session_key" as const;
+export const StytchIntermediateSessionKey = "stytch_intermediate_session_key" as const;
 
-export function getCookies(req: Request): CookieJar {
+export function parseTokensFromCookies(req: Request): StytchSessionTokens {
   return {
-    sessionCookie: req.cookies[stytchSessionKey],
-    intermediateSessionCookie: req.cookies[stytchIntermediateSessionKey],
+    sessionToken: req.cookies[StytchSessionKey],
+    intermediateSessionToken: req.cookies[StytchIntermediateSessionKey]
   };
-}
-
-export function setSessionCookie(res: Response, token: string): Response {
-  return res.cookie(stytchSessionKey, token);
-}
-
-export function setIntermediateSessionCookie(res: Response, token: string): Response {
-  return res.cookie(stytchIntermediateSessionKey, token);
-}
-
-export function clearSession(res: Response): Response {
-  return res.clearCookie(stytchSessionKey);
-}
-
-export function clearIntermediateSession(res: Response): Response {
-  return res.clearCookie(stytchIntermediateSessionKey);
 }

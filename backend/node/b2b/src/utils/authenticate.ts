@@ -12,6 +12,11 @@ enum TokenType {
   DiscoveryOAuth = "discovery_oauth",
 }
 
+/**
+ * Universal endpoint for routing different kinds of authentication callbacks to the correct
+ * handler. Stytch will include a "stytch_token_type" query parameter in callback requests
+ * that indicate which flow initiated the auth flow.
+ */
 export async function universalAuthenticate(req: Request, res: Response, next: NextFunction): Promise<void> {
   // Retrieve the token type from the query parameter.
   const tokenType = req.query.stytch_token_type;
@@ -36,4 +41,6 @@ export async function universalAuthenticate(req: Request, res: Response, next: N
     default:
       res.status(400).send("Invalid token type.");
   }
+
+  next();
 }

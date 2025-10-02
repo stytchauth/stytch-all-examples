@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
+import { StytchIntermediateSessionKey } from "../utils/cookies.js";
 import { StytchClient } from "../utils/stytchClient.js";
-import { setIntermediateSessionCookie } from "../utils/cookies.js";
 
 /**
  * DiscoveryOAuthAuthenticate completes a Discovery OAuth flow by exchanging the OAuth
@@ -24,7 +24,8 @@ export async function discoveryOAuthAuthenticate(req: Request, res: Response) {
   // flows that establishes a session for an end user that is not associated
   // with any organization in particular.
   // This helps prevent account enumeration attacks.
-  res = setIntermediateSessionCookie(res, resp.intermediate_session_token);
+  res.cookie(StytchIntermediateSessionKey, resp.intermediate_session_token);
 
-  res.writeHead(303, { Location: "http://localhost:3001/organizations" });
+  console.log("DiscoveryOAuthAuthenticate successful, redirecting...");
+  res.redirect(303, "http://localhost:3001/organizations");
 }

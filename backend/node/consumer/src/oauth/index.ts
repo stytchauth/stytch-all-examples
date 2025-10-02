@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { StytchClient } from "../utils/stytchClient.js";
-import { setSessionCookie } from "../utils/cookies.js";
+import { StytchSessionKey } from "../utils/cookies.js";
 
 /**
  * Authenticate completes an OAuth flow by exchanging the OAuth token received from the IdP
@@ -20,8 +20,9 @@ export async function oauthAuthenticate(req: Request, res: Response) {
   });
 
   // Store the session token in a cookie
-  res = setSessionCookie(res, resp.session_token);
+  res.cookie(StytchSessionKey, resp.session_token);
 
   // Redirect to the frontend after successful authentication
-  res.writeHead(303, { Location: "http://localhost:3001/view-session" });
+  console.log("OAuthAuthenticate successful, redirecting...");
+  res.redirect(303, "http://localhost:3001/view-session");
 }
