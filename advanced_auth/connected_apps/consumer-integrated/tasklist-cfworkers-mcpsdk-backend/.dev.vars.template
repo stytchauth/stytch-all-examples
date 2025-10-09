@@ -1,0 +1,7 @@
+##############################
+### stytch configuration   ###
+##############################
+# get these from your project settings
+STYTCH_PROJECT_ID=
+STYTCH_PROJECT_SECRET=
+STYTCH_DOMAIN=
