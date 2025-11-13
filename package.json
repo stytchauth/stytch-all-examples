@@ -22,7 +22,6 @@
     "advanced_auth/connected_apps/b2b-integrated/*",
     "advanced_auth/connected_apps/b2b-standalone/*",
     "advanced_auth/connected_apps/consumer-integrated/*",
-    "advanced_auth/connected_apps/consumer-integrated/tasklist-frontend",
     "advanced_auth/connected_apps/consumer-standalone/*"
   ],
   "scripts": {
