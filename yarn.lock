@@ -2866,7 +2866,7 @@ __metadata:
     "@eslint/compat": "npm:^1.3.2"
     "@eslint/eslintrc": "npm:^3.3.1"
     "@eslint/js": "npm:^9.34.0"
-    "@modelcontextprotocol/sdk": "npm:^1.17.5"
+    "@modelcontextprotocol/sdk": "npm:^1.24.0"
     "@stytch/react": "npm:^19.10.0"
     "@stytch/vanilla-js": "npm:^5.34.0"
     "@types/cors": "npm:^2.8.17"
@@ -2916,7 +2916,7 @@ __metadata:
     "@eslint/js": "npm:^9.17.0"
     "@hono/mcp": "npm:^0.1.2"
     "@hono/stytch-auth": "npm:^0.1.1"
-    "@modelcontextprotocol/sdk": "npm:^1.17.5"
+    "@modelcontextprotocol/sdk": "npm:^1.24.0"
     "@stytch/vanilla-js": "npm:^5.18.6"
     eslint: "npm:^9.17.0"
     hono: "npm:^4.9.7"
@@ -2934,7 +2934,7 @@ __metadata:
   resolution: "@mcp-examples/sprintplanner-express-mcpsdk-backend@workspace:advanced_auth/connected_apps/b2b-integrated/sprintplanner-express-mcpsdk-backend"
   dependencies:
     "@eslint/js": "npm:^9.17.0"
-    "@modelcontextprotocol/sdk": "npm:^1.12.0"
+    "@modelcontextprotocol/sdk": "npm:^1.24.0"
     "@types/better-sqlite3": "npm:^7.6.11"
     "@types/cookie-parser": "npm:^1.4.9"
     "@types/cors": "npm:^2.8.17"
@@ -2982,7 +2982,7 @@ __metadata:
   resolution: "@mcp-examples/supabase-nextjs-user-management@workspace:advanced_auth/connected_apps/consumer-standalone/supabase-nextjs-user-management"
   dependencies:
     "@eslint/eslintrc": "npm:^3"
-    "@modelcontextprotocol/sdk": "npm:^1.17.3"
+    "@modelcontextprotocol/sdk": "npm:^1.24.0"
     "@stytch/nextjs": "npm:^21.11.1"
     "@stytch/vanilla-js": "npm:^5.35.1"
     "@supabase/ssr": "npm:^0.6.1"
@@ -3016,7 +3016,7 @@ __metadata:
     "@eslint/js": "npm:^9.17.0"
     "@hono/mcp": "npm:^0.1.2"
     "@hono/stytch-auth": "npm:^0.1.1"
-    "@modelcontextprotocol/sdk": "npm:^1.17.5"
+    "@modelcontextprotocol/sdk": "npm:^1.24.0"
     "@stytch/vanilla-js": "npm:^5.18.6"
     eslint: "npm:^9.17.0"
     hono: "npm:^4.9.7"
@@ -3034,7 +3034,7 @@ __metadata:
   resolution: "@mcp-examples/tasklist-express-mcpsdk-backend@workspace:advanced_auth/connected_apps/consumer-integrated/tasklist-express-mcpsdk-backend"
   dependencies:
     "@eslint/js": "npm:^9.17.0"
-    "@modelcontextprotocol/sdk": "npm:^1.12.0"
+    "@modelcontextprotocol/sdk": "npm:^1.24.0"
     "@types/better-sqlite3": "npm:^7.6.11"
     "@types/cookie-parser": "npm:^1.4.9"
     "@types/cors": "npm:^2.8.17"
@@ -3084,7 +3084,7 @@ __metadata:
   resolution: "@mcp-examples/tasklist-nextjs-vercelsdk-fullstack@workspace:advanced_auth/connected_apps/consumer-integrated/tasklist-nextjs-vercelsdk-fullstack"
   dependencies:
     "@eslint/eslintrc": "npm:^3"
-    "@modelcontextprotocol/sdk": "npm:^1.17.5"
+    "@modelcontextprotocol/sdk": "npm:^1.24.0"
     "@stytch/nextjs": "npm:^21.5.0"
     "@stytch/vanilla-js": "npm:^5.23.4"
     "@types/node": "npm:^20.8.0"
@@ -3102,9 +3102,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@modelcontextprotocol/sdk@npm:^1.12.0, @modelcontextprotocol/sdk@npm:^1.17.3, @modelcontextprotocol/sdk@npm:^1.17.5":
-  version: 1.21.1
-  resolution: "@modelcontextprotocol/sdk@npm:1.21.1"
+"@modelcontextprotocol/sdk@npm:^1.24.0":
+  version: 1.24.0
+  resolution: "@modelcontextprotocol/sdk@npm:1.24.0"
   dependencies:
     ajv: "npm:^8.17.1"
     ajv-formats: "npm:^3.0.1"
@@ -3115,16 +3115,20 @@ __metadata:
     eventsource-parser: "npm:^3.0.0"
     express: "npm:^5.0.1"
     express-rate-limit: "npm:^7.5.0"
+    jose: "npm:^6.1.1"
     pkce-challenge: "npm:^5.0.0"
     raw-body: "npm:^3.0.0"
-    zod: "npm:^3.23.8"
-    zod-to-json-schema: "npm:^3.24.1"
+    zod: "npm:^3.25 || ^4.0"
+    zod-to-json-schema: "npm:^3.25.0"
   peerDependencies:
     "@cfworker/json-schema": ^4.1.1
+    zod: ^3.25 || ^4.0
   peerDependenciesMeta:
     "@cfworker/json-schema":
       optional: true
-  checksum: 10c0/5493af701bf7131abd375c1769195220d5d9452373f9ec4ed01782e46bf5ad59537d5bf1926c813dc435a4b26bc6fa91e66c45c81eb250e3165a9bb53eba57af
+    zod:
+      optional: false
+  checksum: 10c0/c5c03ee716a79d0a91db6a9f9aa372bec5bc925e9ad1f0c254a587f3e7253b76e4b83b09b0a509595273e11d8ffeebe4c53d4aafac290498bffa8823f8edba75
   languageName: node
   linkType: hard
 
@@ -11769,6 +11773,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jose@npm:^6.1.1":
+  version: 6.1.3
+  resolution: "jose@npm:6.1.3"
+  checksum: 10c0/b9577b4a7a5e84131011c23823db9f5951eae3ba796771a6a2401ae5dd50daf71104febc8ded9c38146aa5ebe94a92ac09c725e699e613ef26949b9f5a8bc30f
+  languageName: node
+  linkType: hard
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -17050,12 +17061,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod-to-json-schema@npm:^3.24.1":
-  version: 3.24.6
-  resolution: "zod-to-json-schema@npm:3.24.6"
+"zod-to-json-schema@npm:^3.25.0":
+  version: 3.25.0
+  resolution: "zod-to-json-schema@npm:3.25.0"
   peerDependencies:
-    zod: ^3.24.1
-  checksum: 10c0/b907ab6d057100bd25a37e5545bf5f0efa5902cd84d3c3ec05c2e51541431a47bd9bf1e5e151a244273409b45f5986d55b26e5d207f98abc5200702f733eb368
+    zod: ^3.25 || ^4
+  checksum: 10c0/2d2cf6ca49752bf3dc5fb37bc8f275eddbbc4020e7958d9c198ea88cd197a5f527459118188a0081b889da6a6474d64c4134cd60951fa70178c125138761c680
   languageName: node
   linkType: hard
 
@@ -17066,10 +17077,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"zod@npm:^3.23.8, zod@npm:^3.24.2, zod@npm:^3.24.4":
+"zod@npm:^3.24.2, zod@npm:^3.24.4":
   version: 3.25.76
   resolution: "zod@npm:3.25.76"
   checksum: 10c0/5718ec35e3c40b600316c5b4c5e4976f7fee68151bc8f8d90ec18a469be9571f072e1bbaace10f1e85cf8892ea12d90821b200e980ab46916a6166a4260a983c
+  languageName: node
+  linkType: hard
+
+"zod@npm:^3.25 || ^4.0":
+  version: 4.1.13
+  resolution: "zod@npm:4.1.13"
+  checksum: 10c0/d7e74e82dba81a91ffc3239cd85bc034abe193a28f7087a94ab258a3e48e9a7ca4141920cac979a0d781495b48fc547777394149f26be04c3dc642f58bbc3941
   languageName: node
   linkType: hard
 

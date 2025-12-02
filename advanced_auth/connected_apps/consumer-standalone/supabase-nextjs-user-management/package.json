@@ -17,7 +17,7 @@
     "prettier:fix": "prettier --write app components scripts utils"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.17.3",
+    "@modelcontextprotocol/sdk": "^1.24.0",
     "@stytch/nextjs": "^21.11.1",
     "@stytch/vanilla-js": "^5.35.1",
     "@supabase/ssr": "^0.6.1",
