@@ -7,4 +7,4 @@ pydantic>=2.8.2
 pydantic-settings>=2.5.2
 
 # Optional MCP server utilities (stdio-based). HTTP exposure TBD.
-fastmcp==2.12.2
+fastmcp==2.14.0
