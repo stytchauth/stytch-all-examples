@@ -14,7 +14,7 @@
   "dependencies": {
     "@hono/mcp": "^0.1.2",
     "@hono/stytch-auth": "^0.1.1",
-    "@modelcontextprotocol/sdk": "^1.17.5",
+    "@modelcontextprotocol/sdk": "^1.25.2",
     "@stytch/vanilla-js": "^5.18.6",
     "hono": "^4.9.7",
     "jose": "^6.0.10",
