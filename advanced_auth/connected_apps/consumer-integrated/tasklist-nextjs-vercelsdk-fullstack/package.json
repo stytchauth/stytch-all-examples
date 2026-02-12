@@ -13,7 +13,7 @@
     "@modelcontextprotocol/sdk": "^1.17.5",
     "@stytch/nextjs": "^22.0.1",
     "mcp-handler": "^1.0.2",
-    "next": "^15.3.2",
+    "next": "^15.5.10",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "stytch": "^12.32.1",
