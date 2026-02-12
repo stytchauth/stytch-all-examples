@@ -2603,7 +2603,7 @@ __metadata:
     "@hono/stytch-auth": "npm:^0.1.1"
     "@modelcontextprotocol/sdk": "npm:^1.17.5"
     eslint: "npm:^9.17.0"
-    hono: "npm:^4.9.7"
+    hono: "npm:^4.11.7"
     jose: "npm:^6.0.10"
     stytch: "npm:^12.32.0"
     typescript: "npm:~5.6.2"
@@ -2650,7 +2650,7 @@ __metadata:
     eslint: "npm:^9.17.0"
     eslint-plugin-react-hooks: "npm:^5.0.0"
     eslint-plugin-react-refresh: "npm:^0.4.16"
-    hono: "npm:^4.9.7"
+    hono: "npm:^4.11.7"
     react: "npm:^19.1.1"
     react-dom: "npm:^19.1.1"
     react-router-dom: "npm:^7.8.2"
@@ -2700,7 +2700,7 @@ __metadata:
     "@hono/stytch-auth": "npm:^0.1.1"
     "@modelcontextprotocol/sdk": "npm:^1.17.5"
     eslint: "npm:^9.17.0"
-    hono: "npm:^4.9.7"
+    hono: "npm:^4.11.7"
     jose: "npm:^6.0.10"
     stytch: "npm:^12.32.0"
     typescript: "npm:~5.6.2"
@@ -9947,10 +9947,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hono@npm:^4.9.7":
-  version: 4.10.5
-  resolution: "hono@npm:4.10.5"
-  checksum: 10c0/c7a4b5f9c9ce50e15bca589f968f991181518a6f117579fd9558799540317743bb8f2a6a017b177f492bfaa68b0efae520a7693839ae7ad7a2bff952dbedecc0
+"hono@npm:^4.11.7":
+  version: 4.11.9
+  resolution: "hono@npm:4.11.9"
+  checksum: 10c0/fe396a8e1a61755adb7afe8ce8e0935a6423a5680ec62f4fd3577c5c5a9236dec390dc28fef6b9742e067b5d9c53ddb3aa511b3359bf87dcc2105dae751f1242
   languageName: node
   linkType: hard
 
