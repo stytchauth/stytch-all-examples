@@ -288,10 +288,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20241230.0":
-  version: 4.20251111.0
-  resolution: "@cloudflare/workers-types@npm:4.20251111.0"
-  checksum: 10c0/1e96988f5793d0d7cfcff22be32dbfa170654b9f739f66be60dc0224824491ffb19b1c6d25065575d572fc693a4f916314c90e2ea431ce3d31fc356d3e4e3fb5
+"@cloudflare/workers-types@npm:^4.20260212.0":
+  version: 4.20260212.0
+  resolution: "@cloudflare/workers-types@npm:4.20260212.0"
+  checksum: 10c0/ffa82b46950b0e1775a7c4598ba9f33c8c3b53c792076867af941208376b7bf7e0fc0654346ded0da1036963e4cd25d3eff8b0172c886deabf7484835323208c
   languageName: node
   linkType: hard
 
@@ -2390,7 +2390,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mcp-examples/sprintplanner-cfworkers-mcpsdk-backend@workspace:advanced_auth/connected_apps/b2b-integrated/sprintplanner-cfworkers-mcpsdk-backend"
   dependencies:
-    "@cloudflare/workers-types": "npm:^4.20241230.0"
+    "@cloudflare/workers-types": "npm:^4.20260212.0"
     "@eslint/js": "npm:^9.17.0"
     "@hono/mcp": "npm:^0.1.2"
     "@hono/stytch-auth": "npm:^0.1.1"
@@ -2487,7 +2487,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mcp-examples/tasklist-cfworkers-mcpsdk-backend@workspace:advanced_auth/connected_apps/consumer-integrated/tasklist-cfworkers-mcpsdk-backend"
   dependencies:
-    "@cloudflare/workers-types": "npm:^4.20241230.0"
+    "@cloudflare/workers-types": "npm:^4.20260212.0"
     "@eslint/js": "npm:^9.17.0"
     "@hono/mcp": "npm:^0.1.2"
     "@hono/stytch-auth": "npm:^0.1.1"
