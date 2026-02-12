@@ -1,14 +1,17 @@
-import { stytch } from "./stytch-client.js";
+import { stytchClient } from "./stytch-client.js";
 import { ENABLE_OAUTH } from "./config.js";
 import { updateLoginUI } from "./dom-utils.js";
 
+const { Products } = stytch;
+
 // Initialize the page
 function init() {
-  // Stytch SDK method to mount the prebuilt UI components
-  stytch.mountLogin({
-    elementId: "#stytch-sdk",
+  // Stytch SDK method to render the prebuilt UI components using custom elements
+  const element = document.getElementById("stytch-sdk");
+  element.render({
+    client: stytchClient,
     config: {
-      products: ["emailMagicLinks", ...(ENABLE_OAUTH ? ["oauth"] : [])],
+      products: [Products.emailMagicLinks, ...(ENABLE_OAUTH ? [Products.oauth] : [])],
       emailMagicLinksOptions: {
         loginRedirectUrl: "http://localhost:3000/authenticate",
         signupRedirectUrl: "http://localhost:3000/authenticate",

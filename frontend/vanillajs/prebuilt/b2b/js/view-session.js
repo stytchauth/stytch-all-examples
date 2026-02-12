@@ -1,4 +1,4 @@
-import { stytch } from "./stytch-client.js";
+import { stytchClient } from "./stytch-client.js";
 import { showErrorInContainer } from "./errors.js";
 import { ENABLE_OAUTH } from "./config.js";
 import {
@@ -36,7 +36,7 @@ function setupEventListeners() {
 
 function loadSessionData() {
   // Stytch SDK method to get the current session synchronously
-  const session = stytch.session.getSync();
+  const session = stytchClient.session.getSync();
 
   // Check if user has a session, if not redirect to home
   if (!session) {
@@ -45,11 +45,11 @@ function loadSessionData() {
   }
 
   // Stytch SDK method to get the current member synchronously
-  const member = stytch.member.getSync();
+  const member = stytchClient.member.getSync();
   // Stytch SDK method to get the current organization synchronously
-  const organization = stytch.organization.getSync();
+  const organization = stytchClient.organization.getSync();
   // Stytch SDK method to get the current session tokens
-  const tokens = stytch.session.getTokens();
+  const tokens = stytchClient.session.getTokens();
   setSessionTokens(tokens);
 
   if (member && organization && tokens) {
@@ -64,7 +64,7 @@ function loadSessionData() {
       "No session data found",
       "Unable to load session data from the SDK. Please ensure you are logged in and have a valid session.",
       "/",
-      "Go to login"
+      "Go to login",
     );
   }
 }
@@ -72,7 +72,7 @@ function loadSessionData() {
 async function handleLogout() {
   try {
     // Stytch SDK method to revoke the current session
-    await stytch.session.revoke();
+    await stytchClient.session.revoke();
 
     // Redirect to login page
     window.location.href = "/";

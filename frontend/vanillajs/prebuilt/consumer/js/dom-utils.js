@@ -72,7 +72,7 @@ export function setupViewSessionEventListeners(handlers) {
   addEventListener(
     launchJwtDecoderBtn,
     "click",
-    handlers.handleLaunchJwtDecoder
+    handlers.handleLaunchJwtDecoder,
   );
   addEventListener(backToSessionBtn, "click", handlers.handleBackToSession);
 }

@@ -5,7 +5,7 @@ const path = require("path");
 const envPath = path.join(__dirname, ".env");
 if (!fs.existsSync(envPath)) {
   console.error(
-    "❌ .env file not found. Please copy env.template to .env and update the values."
+    "❌ .env file not found. Please copy env.template to .env and update the values.",
   );
   process.exit(1);
 }
@@ -43,7 +43,7 @@ export const STYTCH_PUBLIC_TOKEN = "{{STYTCH_PUBLIC_TOKEN}}";
 // Replace placeholders
 envJSContent = envJSContent.replace(
   /{{STYTCH_PUBLIC_TOKEN}}/g,
-  envVars.STYTCH_PUBLIC_TOKEN
+  envVars.STYTCH_PUBLIC_TOKEN,
 );
 
 // Write updated env file

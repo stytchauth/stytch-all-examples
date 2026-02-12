@@ -1,4 +1,4 @@
-import { stytch } from "./stytch-client.js";
+import { stytchClient } from "./stytch-client.js";
 import { showErrorInContainer } from "./errors.js";
 import { createOrgButton } from "./template-helpers.js";
 import {
@@ -32,7 +32,7 @@ function setupEventListeners() {
 async function loadOrganizations() {
   try {
     // Stytch SDK method to list organizations that the member is eligible to authenticate into
-    const response = await stytch.discovery.organizations.list();
+    const response = await stytchClient.discovery.organizations.list();
 
     organizations = response.discovered_organizations.map((org) => ({
       id: org.organization.organization_id,
@@ -43,7 +43,7 @@ async function loadOrganizations() {
       organizations,
       createOrgButton,
       { selectOrganization },
-      stytch
+      stytchClient,
     );
     showMainContent();
   } catch (error) {
@@ -52,24 +52,24 @@ async function loadOrganizations() {
       "Unable to load organizations",
       error.message,
       "/login",
-      "Go to login"
+      "Go to login",
     );
   }
 }
 
 async function selectOrganization(orgId) {
   try {
-    const session = stytch.session.getSync();
+    const session = stytchClient.session.getSync();
 
     if (session) {
       // Stytch SDK method to exchange an existing session for a new organization
-      await stytch.session.exchange({
+      await stytchClient.session.exchange({
         organization_id: orgId,
         session_duration_minutes: 60,
       });
     } else {
       // Stytch SDK method to exchange an intermediate session for a session
-      await stytch.discovery.intermediateSessions.exchange({
+      await stytchClient.discovery.intermediateSessions.exchange({
         organization_id: orgId,
         session_duration_minutes: 60,
       });
@@ -82,7 +82,7 @@ async function selectOrganization(orgId) {
       "There was an error",
       error.message,
       "/login",
-      "Go to login"
+      "Go to login",
     );
   }
 }
@@ -96,7 +96,7 @@ async function handleCreateOrg(event) {
   try {
     // Stytch SDK method to create a new organization
     // Creating an org will automatically create a session for the member in that org
-    await stytch.discovery.organizations.create({
+    await stytchClient.discovery.organizations.create({
       organization_name: orgName,
       sso_jit_provisioning: "ALL_ALLOWED",
       session_duration_minutes: 60,
@@ -109,7 +109,7 @@ async function handleCreateOrg(event) {
       "There was an error",
       error.message,
       "/login",
-      "Go to login"
+      "Go to login",
     );
   }
 }

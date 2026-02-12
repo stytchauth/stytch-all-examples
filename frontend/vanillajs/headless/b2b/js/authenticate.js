@@ -1,4 +1,4 @@
-import { stytch } from "./stytch-client.js";
+import { stytchClient } from "./stytch-client.js";
 import { showErrorInContainer } from "./errors.js";
 
 let isAuthenticating = false;
@@ -6,7 +6,7 @@ let isAuthenticating = false;
 // Initialize the page
 function init() {
   // Check if user already has a session
-  const session = stytch.session.getSync();
+  const session = stytchClient.session.getSync();
   if (session) {
     // User already has a session, redirect to view-session
     window.location.href = "/view-session";
@@ -28,7 +28,7 @@ async function authenticateToken() {
       "You've hit an error",
       "There is no token found in the URL. This likely means you didn't go through the login flow.",
       "/login",
-      "Go to login"
+      "Go to login",
     );
     return;
   }
@@ -43,17 +43,17 @@ async function authenticateToken() {
   try {
     if (tokenType === "discovery_oauth") {
       // Stytch SDK method to authenticate an OAuth token
-      await stytch.oauth.discovery.authenticate({
+      await stytchClient.oauth.discovery.authenticate({
         discovery_oauth_token: token,
       });
     } else if (tokenType === "discovery") {
       // Stytch SDK method to authenticate a magic link token
-      await stytch.magicLinks.discovery.authenticate({
+      await stytchClient.magicLinks.discovery.authenticate({
         discovery_magic_links_token: token,
       });
     } else {
       throw new Error(
-        "The token type found in the URL is not supported for this example app."
+        "The token type found in the URL is not supported for this example app.",
       );
     }
 
@@ -66,7 +66,7 @@ async function authenticateToken() {
       "You've hit an error",
       error.message || "There was an error authenticating your token",
       "/login",
-      "Go to login"
+      "Go to login",
     );
   }
 }

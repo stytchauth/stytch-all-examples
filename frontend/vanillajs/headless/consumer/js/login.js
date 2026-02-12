@@ -1,4 +1,4 @@
-import { stytch } from "./stytch-client.js";
+import { stytchClient } from "./stytch-client.js";
 import { ENABLE_OAUTH } from "./config.js";
 import {
   setupLoginEventListeners,
@@ -30,7 +30,7 @@ function setupEventListeners() {
 async function handleEmailLogin(email) {
   try {
     // Stytch SDK method to send a magic link email
-    await stytch.magicLinks.email.loginOrCreate(email, {
+    await stytchClient.magicLinks.email.loginOrCreate(email, {
       login_magic_link_url: "http://localhost:3000/authenticate",
       login_expiration_minutes: 60,
       signup_magic_link_url: "http://localhost:3000/authenticate",
@@ -48,7 +48,7 @@ async function handleEmailLogin(email) {
 async function handleGoogleLogin() {
   try {
     // Stytch SDK method to start a Google oauth flow
-    await stytch.oauth.google.start({});
+    await stytchClient.oauth.google.start({});
     setApiError(null);
   } catch (error) {
     console.error("Error starting Google OAuth:", error);

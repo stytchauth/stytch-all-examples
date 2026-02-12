@@ -94,7 +94,7 @@ export function updateCreateOrgButton(disabled, isLoading) {
         <div class="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
         Creating
       </div>
-    `
+    `,
     );
   } else {
     setElementText(createOrgBtn, "Create");
@@ -117,7 +117,7 @@ export function setupViewSessionEventListeners(handlers) {
   addEventListener(
     launchJwtDecoderBtn,
     "click",
-    handlers.handleLaunchJwtDecoder
+    handlers.handleLaunchJwtDecoder,
   );
   addEventListener(backToSessionBtn, "click", handlers.handleBackToSession);
 }
