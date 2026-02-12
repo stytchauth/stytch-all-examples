@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "@stytch-all-examples/internal": "*",
-    "@stytch/react": "^19.7.0",
-    "@stytch/vanilla-js": "^5.29.0",
+    "@stytch/react": "20.0.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router": "^7.8.1"

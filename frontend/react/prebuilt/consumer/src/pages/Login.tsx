@@ -10,8 +10,8 @@ import {
   Products,
   StytchEventType,
   StytchEvent,
-} from "@stytch/vanilla-js";
-import { StytchLogin } from "@stytch/react";
+  StytchLogin,
+} from "@stytch/react";
 
 // The Login page is the landing page for the login flow.
 // It uses the pre-built Stytch UI component.

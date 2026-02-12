@@ -1,5 +1,5 @@
 import { StytchProvider } from "@stytch/react";
-import { createStytchUIClient } from "@stytch/react/ui";
+import { createStytchClient } from "@stytch/react";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
@@ -33,7 +33,7 @@ const router = createBrowserRouter([
   },
 ]);
 
-const stytch = createStytchUIClient(
+const stytch = createStytchClient(
   import.meta.env.VITE_STYTCH_PUBLIC_TOKEN || ""
 );
 
