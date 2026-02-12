@@ -3173,6 +3173,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@next/eslint-plugin-next@npm:15.4.10":
+  version: 15.4.10
+  resolution: "@next/eslint-plugin-next@npm:15.4.10"
+  dependencies:
+    fast-glob: "npm:3.3.1"
+  checksum: 10c0/17739f54a94e8e57d7328e36443cb956dc98a0834de924547cdab809b21921548515d38d4d6cfc197385e4c73982e6abee991409c55bd784564535613596a5ff
+  languageName: node
+  linkType: hard
+
 "@next/eslint-plugin-next@npm:15.4.5":
   version: 15.4.5
   resolution: "@next/eslint-plugin-next@npm:15.4.5"
@@ -5475,11 +5484,11 @@ __metadata:
   resolution: "@stytch-all-examples/frontend-nextjs-headless-b2b@workspace:frontend/nextjs/headless/b2b"
   dependencies:
     "@stytch-all-examples/internal": "npm:*"
-    "@stytch/nextjs": "npm:^21.7.0"
-    "@stytch/vanilla-js": "npm:^5.29.1"
+    "@stytch/nextjs": "npm:22.0.1"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
+    eslint-config-next: "npm:15.4.10"
     next: "npm:15.4.10"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
@@ -5493,11 +5502,11 @@ __metadata:
   resolution: "@stytch-all-examples/frontend-nextjs-headless-consumer@workspace:frontend/nextjs/headless/consumer"
   dependencies:
     "@stytch-all-examples/internal": "npm:*"
-    "@stytch/nextjs": "npm:^21.7.0"
-    "@stytch/vanilla-js": "npm:^5.29.1"
+    "@stytch/nextjs": "npm:22.0.1"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
+    eslint-config-next: "npm:15.4.10"
     next: "npm:15.4.10"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
@@ -5510,11 +5519,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-nextjs-prebuilt-b2b@workspace:frontend/nextjs/prebuilt/b2b"
   dependencies:
-    "@stytch/nextjs": "npm:^21.7.0"
-    "@stytch/vanilla-js": "npm:^5.29.1"
+    "@stytch/nextjs": "npm:22.0.1"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
+    eslint-config-next: "npm:15.4.10"
     next: "npm:15.4.10"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
@@ -5526,11 +5535,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-nextjs-prebuilt-consumer@workspace:frontend/nextjs/prebuilt/consumer"
   dependencies:
-    "@stytch/nextjs": "npm:^21.7.0"
-    "@stytch/vanilla-js": "npm:^5.29.1"
+    "@stytch/nextjs": "npm:22.0.1"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
+    eslint-config-next: "npm:15.4.10"
     next: "npm:15.4.10"
     react: "npm:19.1.0"
     react-dom: "npm:19.1.0"
@@ -5543,8 +5552,7 @@ __metadata:
   resolution: "@stytch-all-examples/frontend-react-headless-b2b@workspace:frontend/react/headless/b2b"
   dependencies:
     "@stytch-all-examples/internal": "npm:*"
-    "@stytch/react": "npm:^19.7.0"
-    "@stytch/vanilla-js": "npm:^5.29.0"
+    "@stytch/react": "npm:20.0.1"
     "@types/react": "npm:^19.1.10"
     "@types/react-dom": "npm:^19.1.7"
     "@vitejs/plugin-react": "npm:^4.3.1"
@@ -5561,8 +5569,7 @@ __metadata:
   resolution: "@stytch-all-examples/frontend-react-headless-consumer@workspace:frontend/react/headless/consumer"
   dependencies:
     "@stytch-all-examples/internal": "npm:*"
-    "@stytch/react": "npm:^19.7.0"
-    "@stytch/vanilla-js": "npm:^5.29.0"
+    "@stytch/react": "npm:20.0.1"
     "@types/react": "npm:^19.1.10"
     "@types/react-dom": "npm:^19.1.7"
     "@vitejs/plugin-react": "npm:^4.3.1"
@@ -5579,8 +5586,7 @@ __metadata:
   resolution: "@stytch-all-examples/frontend-react-prebuilt-b2b@workspace:frontend/react/prebuilt/b2b"
   dependencies:
     "@stytch-all-examples/internal": "npm:*"
-    "@stytch/react": "npm:^19.7.0"
-    "@stytch/vanilla-js": "npm:^5.29.0"
+    "@stytch/react": "npm:20.0.1"
     "@types/react": "npm:^19.1.10"
     "@types/react-dom": "npm:^19.1.7"
     "@vitejs/plugin-react": "npm:^4.3.1"
@@ -5597,8 +5603,7 @@ __metadata:
   resolution: "@stytch-all-examples/frontend-react-prebuilt-consumer@workspace:frontend/react/prebuilt/consumer"
   dependencies:
     "@stytch-all-examples/internal": "npm:*"
-    "@stytch/react": "npm:^19.7.0"
-    "@stytch/vanilla-js": "npm:^5.29.0"
+    "@stytch/react": "npm:20.0.1"
     "@types/react": "npm:^19.1.10"
     "@types/react-dom": "npm:^19.1.7"
     "@vitejs/plugin-react": "npm:^4.3.1"
@@ -5614,7 +5619,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-vanillajs-headless-b2b@workspace:frontend/vanillajs/headless/b2b"
   dependencies:
-    "@stytch/vanilla-js": "npm:^5.29.1"
+    "@stytch/vanilla-js": "npm:6.0.1"
     http-server: "npm:^14.1.1"
   languageName: unknown
   linkType: soft
@@ -5623,7 +5628,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-vanillajs-headless-consumer@workspace:frontend/vanillajs/headless/consumer"
   dependencies:
-    "@stytch/vanilla-js": "npm:^5.29.1"
+    "@stytch/vanilla-js": "npm:6.0.1"
     http-server: "npm:^14.1.1"
   languageName: unknown
   linkType: soft
@@ -5632,7 +5637,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-vanillajs-prebuilt-b2b@workspace:frontend/vanillajs/prebuilt/b2b"
   dependencies:
-    "@stytch/vanilla-js": "npm:^5.29.1"
+    "@stytch/vanilla-js": "npm:6.0.1"
     http-server: "npm:^14.1.1"
   languageName: unknown
   linkType: soft
@@ -5641,7 +5646,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-vanillajs-prebuilt-consumer@workspace:frontend/vanillajs/prebuilt/consumer"
   dependencies:
-    "@stytch/vanilla-js": "npm:^5.29.1"
+    "@stytch/vanilla-js": "npm:6.0.1"
     http-server: "npm:^14.1.1"
   languageName: unknown
   linkType: soft
@@ -5678,21 +5683,22 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@stytch/core@npm:2.55.0":
-  version: 2.55.0
-  resolution: "@stytch/core@npm:2.55.0"
-  dependencies:
-    uuid: "npm:8.3.2"
-  checksum: 10c0/d8e942fd2d0c18d5f0aaca808918e8712e751abcf099d7f4aeaa0ba65544e557953198a821dd41fa7ea12acac8717c463219ad5c01e671b7c73cc21ad066c460
-  languageName: node
-  linkType: hard
-
 "@stytch/core@npm:2.64.0":
   version: 2.64.0
   resolution: "@stytch/core@npm:2.64.0"
   dependencies:
     uuid: "npm:8.3.2"
   checksum: 10c0/8080dbc535f35c5566239444d6ad80326d33017f8a500f7d86d5e1d819c8f3f9c46136a615633de2700319d1ab08236f966f4fe7076a71aaed3d4672a3803b17
+  languageName: node
+  linkType: hard
+
+"@stytch/nextjs@npm:22.0.1":
+  version: 22.0.1
+  resolution: "@stytch/nextjs@npm:22.0.1"
+  peerDependencies:
+    react: ">= 17.0.2"
+    react-dom: ">= 17.0.2"
+  checksum: 10c0/aad76105635bdf2f41ebca82c88f55f779af3feec638e45229290ffee9bf4f02a34a0267288216b7aa4282a9c1110602075f6203176f36cc29306ca3dcf1adde
   languageName: node
   linkType: hard
 
@@ -5707,14 +5713,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stytch/nextjs@npm:^21.7.0":
-  version: 21.7.0
-  resolution: "@stytch/nextjs@npm:21.7.0"
+"@stytch/react@npm:20.0.1":
+  version: 20.0.1
+  resolution: "@stytch/react@npm:20.0.1"
   peerDependencies:
-    "@stytch/vanilla-js": ^5.0.0
     react: ">= 17.0.2"
     react-dom: ">= 17.0.2"
-  checksum: 10c0/30f6bb0e972ad19bb624b472f5c0cf9a84aeb50674c1a65f92cd29655cba5cdb60d246ef57ca5535a7b3936637a15ed7727665a7406427f08696a8b051a8c43d
+  checksum: 10c0/863fa79d42acf107995f3aed0de5bd113d2655693a11abee25295fd7496601dbe168d0c53876d49e057285cf40782e4676bca79e217b83a767a809cf9ee94077
   languageName: node
   linkType: hard
 
@@ -5729,14 +5734,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stytch/react@npm:^19.7.0":
-  version: 19.7.0
-  resolution: "@stytch/react@npm:19.7.0"
-  peerDependencies:
-    "@stytch/vanilla-js": ^5.0.0
-    react: ">= 17.0.2"
-    react-dom: ">= 17.0.2"
-  checksum: 10c0/7e921a73e54f98a5c5fc85c95aef50c72750f57a1fd43d5cb4f6097150fbec05f2d8eab68d22204eb59b10880aefbb4b349db11fd8225f97d4635ac4be8c71e7
+"@stytch/vanilla-js@npm:6.0.1":
+  version: 6.0.1
+  resolution: "@stytch/vanilla-js@npm:6.0.1"
+  checksum: 10c0/6fcf49ee914af74a4ea9f5bca0365fe0e3100256e7109011fdd566296566570f9a0b932e3f7d4a385f1efc84ceaa6bb2e6e3f6c793a79a8e7b18cbab4cc977e7
   languageName: node
   linkType: hard
 
@@ -5748,17 +5749,6 @@ __metadata:
     "@types/google-one-tap": "npm:^1.2.0"
     type-fest: "npm:4.15.0"
   checksum: 10c0/f941842cf1b2d51660089f897c57fee8afa9f3ca32ab9264ebc0e892bdacadbdde359cae110e19c7ec8007f1e62aa13f28d8ce5ae6f69573dac1ec566640a6ba
-  languageName: node
-  linkType: hard
-
-"@stytch/vanilla-js@npm:^5.29.0, @stytch/vanilla-js@npm:^5.29.1":
-  version: 5.29.1
-  resolution: "@stytch/vanilla-js@npm:5.29.1"
-  dependencies:
-    "@stytch/core": "npm:2.55.0"
-    "@types/google-one-tap": "npm:^1.2.0"
-    type-fest: "npm:4.15.0"
-  checksum: 10c0/2a5f22e0712f46d5b3b9ceb0feb2ff6bb68b1729108c9b7ae3ed647fc6e20f9670b4a72668dc593e980b6496acaab061933099bd4d97b3f47006e1a0807673cb
   languageName: node
   linkType: hard
 
@@ -9527,6 +9517,30 @@ __metadata:
     escodegen: bin/escodegen.js
     esgenerate: bin/esgenerate.js
   checksum: 10c0/30d337803e8f44308c90267bf6192399e4b44792497c77a7506b68ab802ba6a48ebbe1ce77b219aba13dfd2de5f5e1c267e35be1ed87b2a9c3315e8b283e302a
+  languageName: node
+  linkType: hard
+
+"eslint-config-next@npm:15.4.10":
+  version: 15.4.10
+  resolution: "eslint-config-next@npm:15.4.10"
+  dependencies:
+    "@next/eslint-plugin-next": "npm:15.4.10"
+    "@rushstack/eslint-patch": "npm:^1.10.3"
+    "@typescript-eslint/eslint-plugin": "npm:^5.4.2 || ^6.0.0 || ^7.0.0 || ^8.0.0"
+    "@typescript-eslint/parser": "npm:^5.4.2 || ^6.0.0 || ^7.0.0 || ^8.0.0"
+    eslint-import-resolver-node: "npm:^0.3.6"
+    eslint-import-resolver-typescript: "npm:^3.5.2"
+    eslint-plugin-import: "npm:^2.31.0"
+    eslint-plugin-jsx-a11y: "npm:^6.10.0"
+    eslint-plugin-react: "npm:^7.37.0"
+    eslint-plugin-react-hooks: "npm:^5.0.0"
+  peerDependencies:
+    eslint: ^7.23.0 || ^8.0.0 || ^9.0.0
+    typescript: ">=3.3.1"
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+  checksum: 10c0/87caa48979bc90d19fdf5ee971318345beb5e89b282831014da3c85940924c816697def4bf1af2e0a2d5a98ec9f55149571325f82469dab355cbc5119ce07b9a
   languageName: node
   linkType: hard
 
@@ -15515,6 +15529,7 @@ __metadata:
   resolution: "stytch-all-examples@workspace:."
   dependencies:
     "@types/node": "npm:^22.0.0"
+    prettier: "npm:^3.6.2"
     typescript: "npm:^5.0.0"
   languageName: unknown
   linkType: soft

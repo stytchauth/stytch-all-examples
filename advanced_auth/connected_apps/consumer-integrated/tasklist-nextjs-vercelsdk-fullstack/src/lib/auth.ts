@@ -1,6 +1,6 @@
-import { Client, IntrospectTokenClaims, Session } from 'stytch';
-import { NextRequest, NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
+import { Client, IntrospectTokenClaims, Session } from "stytch";
+import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
 
 let client: Client | null = null;
 
@@ -18,7 +18,7 @@ function getClient(): Client {
 export async function authenticateSession(): Promise<Session | null> {
   try {
     const cookieStore = await cookies();
-    const sessionJwt = cookieStore.get('stytch_session_jwt');
+    const sessionJwt = cookieStore.get("stytch_session_jwt");
 
     if (!sessionJwt?.value) {
       return null;
@@ -30,15 +30,17 @@ export async function authenticateSession(): Promise<Session | null> {
 
     return session;
   } catch (err) {
-    console.error('Error authenticating session:', err);
+    console.error("Error authenticating session:", err);
     return null;
   }
 }
 
-export async function authenticateToken(req: NextRequest): Promise<IntrospectTokenClaims | null> {
+export async function authenticateToken(
+  req: NextRequest,
+): Promise<IntrospectTokenClaims | null> {
   try {
-    const authorization = req.headers.get('authorization');
-    const token = authorization?.split(' ')[1];
+    const authorization = req.headers.get("authorization");
+    const token = authorization?.split(" ")[1];
 
     if (!token) {
       return null;
@@ -47,22 +49,22 @@ export async function authenticateToken(req: NextRequest): Promise<IntrospectTok
     const claims = await getClient().idp.introspectTokenLocal(token);
     return claims;
   } catch (error) {
-    console.error('Error authenticating token:', error);
+    console.error("Error authenticating token:", error);
     return null;
   }
 }
 
 export function createUnauthorizedResponse(req: NextRequest): NextResponse {
-  const host = req.headers.get('host');
-  const protocol = req.headers.get('x-forwarded-proto') || 'http';
+  const host = req.headers.get("host");
+  const protocol = req.headers.get("x-forwarded-proto") || "http";
   const wwwAuthValue = `Bearer error="Unauthorized", error_description="Unauthorized", resource_metadata="${protocol}://${host}/.well-known/oauth-protected-resource"`;
 
   return NextResponse.json(
-    { error: 'Unauthorized' },
+    { error: "Unauthorized" },
     {
       status: 401,
       headers: {
-        'WWW-Authenticate': wwwAuthValue,
+        "WWW-Authenticate": wwwAuthValue,
       },
     },
   );

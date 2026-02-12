@@ -5,7 +5,7 @@ import { createStytchB2BClient } from "@stytch/nextjs/b2b";
 
 // Create the Stytch client
 const stytch = createStytchB2BClient(
-  process.env.NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN || ""
+  process.env.NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN || "",
 );
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {

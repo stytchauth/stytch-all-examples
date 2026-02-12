@@ -1,4 +1,4 @@
-import * as stytch from 'stytch';
+import * as stytch from "stytch";
 
 export type Task = {
   id: string;

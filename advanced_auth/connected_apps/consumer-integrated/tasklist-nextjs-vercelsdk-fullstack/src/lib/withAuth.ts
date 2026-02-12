@@ -1,10 +1,17 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { authenticateSession } from '@/lib/auth';
-import { Session } from 'stytch';
+import { NextRequest, NextResponse } from "next/server";
+import { authenticateSession } from "@/lib/auth";
+import { Session } from "stytch";
 
-type AuthenticatedHandler<TParams> = (req: NextRequest, session: Session, params: TParams) => Promise<NextResponse>;
+type AuthenticatedHandler<TParams> = (
+  req: NextRequest,
+  session: Session,
+  params: TParams,
+) => Promise<NextResponse>;
 
-type AuthenticatedHandlerWithoutParams = (req: NextRequest, session: Session) => Promise<NextResponse>;
+type AuthenticatedHandlerWithoutParams = (
+  req: NextRequest,
+  session: Session,
+) => Promise<NextResponse>;
 
 // Overloads for different use cases
 export function withAuth(
@@ -15,23 +22,36 @@ export function withAuth(
 export function withAuth<TParams>(
   handler: AuthenticatedHandler<TParams>,
   errorMessage?: string,
-): (req: NextRequest, context: { params: Promise<TParams> }) => Promise<NextResponse>;
+): (
+  req: NextRequest,
+  context: { params: Promise<TParams> },
+) => Promise<NextResponse>;
 
 export function withAuth<TParams>(
   handler: AuthenticatedHandler<TParams> | AuthenticatedHandlerWithoutParams,
-  errorMessage: string = 'Operation failed',
+  errorMessage: string = "Operation failed",
 ) {
-  return async (req: NextRequest, context?: { params: Promise<TParams> }): Promise<NextResponse> => {
+  return async (
+    req: NextRequest,
+    context?: { params: Promise<TParams> },
+  ): Promise<NextResponse> => {
     try {
       const session = await authenticateSession();
       if (!session) {
-        return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
       }
 
       if (context?.params) {
-        return await (handler as AuthenticatedHandler<TParams>)(req, session, await context.params);
+        return await (handler as AuthenticatedHandler<TParams>)(
+          req,
+          session,
+          await context.params,
+        );
       } else {
-        return await (handler as AuthenticatedHandlerWithoutParams)(req, session);
+        return await (handler as AuthenticatedHandlerWithoutParams)(
+          req,
+          session,
+        );
       }
     } catch (error) {
       console.error(`Error in ${handler.name}:`, error);

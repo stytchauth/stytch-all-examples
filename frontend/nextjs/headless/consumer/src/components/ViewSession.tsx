@@ -4,8 +4,6 @@ import {
   ConsumerSessionCard,
   ConsumerSessionTextBox,
   ErrorBox,
-  LoadingSpinner,
-  SessionTokens,
   PageWithContent,
 } from "@stytch-all-examples/internal";
 import { useStytch } from "@stytch/nextjs";
@@ -36,8 +34,8 @@ export function ViewSession({
     try {
       await stytch.session.revoke();
       router.push("/");
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : "An error occurred");
     }
   };
 

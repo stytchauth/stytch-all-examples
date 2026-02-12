@@ -22,7 +22,7 @@ const OAUTH_OVERVIEW_DOCS_URL =
 function getConfigPath(
   appType: AppType,
   framework: Framework,
-  vertical: "b2b" | "consumer"
+  vertical: "b2b" | "consumer",
 ): string {
   switch (appType) {
     case "headless":
@@ -143,7 +143,7 @@ export function B2BSessionTextBox({
                 href={`https://github.com/stytchauth/stytch-all-examples/blob/main/${getConfigPath(
                   appType,
                   framework,
-                  "b2b"
+                  "b2b",
                 )}`}
                 text="the config file"
               />

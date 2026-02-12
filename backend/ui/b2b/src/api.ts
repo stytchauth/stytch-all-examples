@@ -26,7 +26,7 @@ type BaseResponse = {
 type SendDiscoveryEmailResponse = BaseResponse;
 
 export const sendDiscoveryEmail = async (
-  email: string
+  email: string,
 ): Promise<APIResponse<SendDiscoveryEmailResponse>> => {
   const response = await fetch(
     "http://localhost:3000/magic_links/email/discovery/send",
@@ -35,7 +35,7 @@ export const sendDiscoveryEmail = async (
       method: "POST",
       body: JSON.stringify({ email_address: email }),
       credentials: "include",
-    }
+    },
   );
 
   return await response.json();
@@ -58,7 +58,7 @@ export const listDiscoveredOrganizations = async (): Promise<
     {
       method: "GET",
       credentials: "include",
-    }
+    },
   );
 
   return await response.json();
@@ -79,7 +79,7 @@ type CreateOrganizationViaDiscoveryResponse = BaseResponse & {
 };
 
 export const createOrganizationViaDiscovery = async (
-  orgName: string
+  orgName: string,
 ): Promise<APIResponse<CreateOrganizationViaDiscoveryResponse>> => {
   const response = await fetch(
     "http://localhost:3000/discovery/organizations/create",
@@ -88,7 +88,7 @@ export const createOrganizationViaDiscovery = async (
       method: "POST",
       body: JSON.stringify({ organizationName: orgName }),
       credentials: "include",
-    }
+    },
   );
 
   return await response.json();
@@ -109,7 +109,7 @@ type ExchangeSessionResponse = BaseResponse & {
 };
 
 export const exchangeSession = async (
-  orgId: string
+  orgId: string,
 ): Promise<APIResponse<ExchangeSessionResponse>> => {
   const response = await fetch("http://localhost:3000/sessions/exchange", {
     headers: { "Content-Type": "application/json" },

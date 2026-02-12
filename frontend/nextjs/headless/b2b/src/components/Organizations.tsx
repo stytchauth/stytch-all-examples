@@ -46,9 +46,9 @@ export const Organizations = ({
       setCreatingOrg(false);
       // if the create is successful, navigate to the session page
       router.push("/view-session");
-    } catch (error: any) {
+    } catch (error: unknown) {
       // if the create is not successful, set the error
-      setError(error.message);
+      setError(error instanceof Error ? error.message : "An error occurred");
     }
   };
 
@@ -69,9 +69,9 @@ export const Organizations = ({
       }
       // if the exchange is successful, navigate to the session page
       router.push("/view-session");
-    } catch (error: any) {
+    } catch (error: unknown) {
       // if the exchange is not successful, set the error
-      setError(error.message);
+      setError(error instanceof Error ? error.message : "An error occurred");
     }
   };
 

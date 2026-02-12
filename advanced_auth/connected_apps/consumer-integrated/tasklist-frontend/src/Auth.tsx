@@ -1,7 +1,18 @@
-import { OAuthProviders, OTPMethods, Products, StytchEvent, StytchLoginConfig } from '@stytch/vanilla-js';
-import { IdentityProvider, StytchLogin, useStytch, useStytchUser } from '@stytch/react';
-import { useEffect, useMemo } from 'react';
-import { withLoginRequired } from './utils/withLoginRequired';
+import {
+  OAuthProviders,
+  OTPMethods,
+  Products,
+  StytchEvent,
+  StytchLoginConfig,
+} from "@stytch/vanilla-js";
+import {
+  IdentityProvider,
+  StytchLogin,
+  useStytch,
+  useStytchUser,
+} from "@stytch/react";
+import { useEffect, useMemo } from "react";
+import { withLoginRequired } from "./utils/withLoginRequired";
 
 /**
  * The other half of the withLoginRequired flow
@@ -12,12 +23,12 @@ import { withLoginRequired } from './utils/withLoginRequired';
  * - If `returnTo` does not exist, redirects the user to the default '/todoapp' location.
  */
 const onLoginComplete = () => {
-  const returnTo = localStorage.getItem('returnTo');
+  const returnTo = localStorage.getItem("returnTo");
   if (returnTo) {
-    localStorage.setItem('returnTo', '');
+    localStorage.setItem("returnTo", "");
     window.location.href = returnTo;
   } else {
-    window.location.href = '/todoapp';
+    window.location.href = "/todoapp";
   }
 };
 
@@ -35,19 +46,24 @@ export function Login() {
       },
       oauthOptions: {
         providers: [{ type: OAuthProviders.Google }],
-        loginRedirectURL: window.location.origin + '/authenticate',
-        signupRedirectURL: window.location.origin + '/authenticate',
+        loginRedirectURL: window.location.origin + "/authenticate",
+        signupRedirectURL: window.location.origin + "/authenticate",
       },
     }),
     [],
   );
 
   const handleOnLoginComplete = (evt: StytchEvent) => {
-    if (evt.type !== 'AUTHENTICATE_FLOW_COMPLETE') return;
+    if (evt.type !== "AUTHENTICATE_FLOW_COMPLETE") return;
     onLoginComplete();
   };
 
-  return <StytchLogin config={loginConfig} callbacks={{ onEvent: handleOnLoginComplete }} />;
+  return (
+    <StytchLogin
+      config={loginConfig}
+      callbacks={{ onEvent: handleOnLoginComplete }}
+    />
+  );
 }
 
 /**
@@ -66,10 +82,12 @@ export function Authenticate() {
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const token = params.get('token');
+    const token = params.get("token");
     if (!token) return;
 
-    client.oauth.authenticate(token, { session_duration_minutes: 60 }).then(onLoginComplete);
+    client.oauth
+      .authenticate(token, { session_duration_minutes: 60 })
+      .then(onLoginComplete);
   }, [client]);
 
   return <>Loading...</>;
@@ -83,8 +101,8 @@ export const Logout = function () {
 
   return (
     <button className="primary" onClick={() => stytch.session.revoke()}>
-      {' '}
-      Log Out{' '}
+      {" "}
+      Log Out{" "}
     </button>
   );
 };

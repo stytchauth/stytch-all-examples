@@ -1,11 +1,11 @@
-import { useState, useEffect, FormEvent } from 'react';
-import { withLoginRequired } from './Auth';
-import type { Ticket } from './types';
-import { useStytchMember, useStytchOrganization } from '@stytch/react/b2b';
+import { useState, useEffect, FormEvent } from "react";
+import { withLoginRequired } from "./Auth";
+import type { Ticket } from "./types";
+import { useStytchMember, useStytchOrganization } from "@stytch/react/b2b";
 
 const SprintPlanner = withLoginRequired(() => {
   const [tickets, setTickets] = useState<Ticket[]>([]);
-  const [newTicketTitle, setNewTicketTitle] = useState('');
+  const [newTicketTitle, setNewTicketTitle] = useState("");
   const { organization } = useStytchOrganization();
   const { member } = useStytchMember();
 
@@ -15,9 +15,9 @@ const SprintPlanner = withLoginRequired(() => {
   }, []);
 
   const createTicket = (title: string) => {
-    return fetch('/api/tickets', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+    return fetch("/api/tickets", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ title, assignee: member?.email_address }),
     })
       .then((res) => res.json())
@@ -25,15 +25,15 @@ const SprintPlanner = withLoginRequired(() => {
   };
 
   const getTickets = () => {
-    return fetch('/api/tickets', {})
+    return fetch("/api/tickets", {})
       .then((res) => res.json())
       .then((res) => res.tickets);
   };
 
-  const updateTicketStatus = (id: string, status: Ticket['status']) => {
+  const updateTicketStatus = (id: string, status: Ticket["status"]) => {
     return fetch(`/api/tickets/${id}/status`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ status }),
     })
       .then((res) => res.json())
@@ -42,7 +42,7 @@ const SprintPlanner = withLoginRequired(() => {
 
   const deleteTicket = (id: string) => {
     return fetch(`/api/tickets/${id}`, {
-      method: 'DELETE',
+      method: "DELETE",
     })
       .then((res) => res.json())
       .then((res) => res.tickets);
@@ -53,10 +53,10 @@ const SprintPlanner = withLoginRequired(() => {
     if (!newTicketTitle.trim()) return;
 
     createTicket(newTicketTitle).then((tickets) => setTickets(tickets));
-    setNewTicketTitle('');
+    setNewTicketTitle("");
   };
 
-  const onUpdateStatus = (id: string, newStatus: Ticket['status']) => {
+  const onUpdateStatus = (id: string, newStatus: Ticket["status"]) => {
     updateTicketStatus(id, newStatus).then((tickets) => setTickets(tickets));
   };
 
@@ -65,21 +65,24 @@ const SprintPlanner = withLoginRequired(() => {
   };
 
   const statusColumns: {
-    status: Ticket['status'];
+    status: Ticket["status"];
     title: string;
     color: string;
   }[] = [
-    { status: 'backlog', title: 'Backlog', color: 'bg-gray-100' },
-    { status: 'in-progress', title: 'In Progress', color: 'bg-blue-100' },
-    { status: 'review', title: 'Review', color: 'bg-yellow-100' },
-    { status: 'done', title: 'Done', color: 'bg-green-100' },
+    { status: "backlog", title: "Backlog", color: "bg-gray-100" },
+    { status: "in-progress", title: "In Progress", color: "bg-blue-100" },
+    { status: "review", title: "Review", color: "bg-yellow-100" },
+    { status: "done", title: "Done", color: "bg-green-100" },
   ];
 
-  const getTicketsByStatus = (status: Ticket['status']) => tickets.filter((ticket) => ticket.status === status);
+  const getTicketsByStatus = (status: Ticket["status"]) =>
+    tickets.filter((ticket) => ticket.status === status);
 
   return (
     <div className="sprintPlanner">
-      <div className="boardHeader">{organization && <p>Organization: {organization.organization_name}</p>}</div>
+      <div className="boardHeader">
+        {organization && <p>Organization: {organization.organization_name}</p>}
+      </div>
 
       {/* Create Ticket Form */}
       <form onSubmit={onAddTicket} className="createTicketForm">
@@ -105,7 +108,10 @@ const SprintPlanner = withLoginRequired(() => {
                 <div key={ticket.id} className="ticket">
                   <div className="ticketHeader">
                     <h4>{ticket.title}</h4>
-                    <button onClick={() => onDeleteTicket(ticket.id)} className="deleteBtn">
+                    <button
+                      onClick={() => onDeleteTicket(ticket.id)}
+                      className="deleteBtn"
+                    >
                       ×
                     </button>
                   </div>
@@ -114,8 +120,10 @@ const SprintPlanner = withLoginRequired(() => {
                     {statusColumns.map((statusCol) => (
                       <button
                         key={statusCol.status}
-                        onClick={() => onUpdateStatus(ticket.id, statusCol.status)}
-                        className={`statusBtn ${ticket.status === statusCol.status ? 'active' : ''}`}
+                        onClick={() =>
+                          onUpdateStatus(ticket.id, statusCol.status)
+                        }
+                        className={`statusBtn ${ticket.status === statusCol.status ? "active" : ""}`}
                       >
                         {statusCol.title}
                       </button>

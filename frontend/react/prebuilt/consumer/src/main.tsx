@@ -34,7 +34,7 @@ const router = createBrowserRouter([
 ]);
 
 const stytch = createStytchClient(
-  import.meta.env.VITE_STYTCH_PUBLIC_TOKEN || ""
+  import.meta.env.VITE_STYTCH_PUBLIC_TOKEN || "",
 );
 
 createRoot(document.getElementById("root")!).render(
@@ -42,5 +42,5 @@ createRoot(document.getElementById("root")!).render(
     <StytchProvider stytch={stytch}>
       <RouterProvider router={router} />
     </StytchProvider>
-  </StrictMode>
+  </StrictMode>,
 );

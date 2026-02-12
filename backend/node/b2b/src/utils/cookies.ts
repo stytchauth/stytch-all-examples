@@ -17,18 +17,19 @@ import { Request } from "express";
 type StytchSessionTokens = {
   sessionToken?: string;
   intermediateSessionToken?: string;
-}
+};
 
 /*
  * The below constants are arbitrary keys for storing retrieved Stytch session tokens
  * as cookies in the client's browser.
  */
 export const StytchSessionKey = "stytch_session_key" as const;
-export const StytchIntermediateSessionKey = "stytch_intermediate_session_key" as const;
+export const StytchIntermediateSessionKey =
+  "stytch_intermediate_session_key" as const;
 
 export function parseTokensFromCookies(req: Request): StytchSessionTokens {
   return {
     sessionToken: req.cookies[StytchSessionKey],
-    intermediateSessionToken: req.cookies[StytchIntermediateSessionKey]
+    intermediateSessionToken: req.cookies[StytchIntermediateSessionKey],
   };
 }

@@ -9,29 +9,29 @@ To access this example via the frontend, use `tasklist-frontend`.
 
 1. Create and activate a virtual environment
 
-    ```bash
-    # Create virtual environment
-    python -m venv env
+   ```bash
+   # Create virtual environment
+   python -m venv env
 
-    # Activate virtual environment
-    # On macOS/Linux:
-    source env/bin/activate
+   # Activate virtual environment
+   # On macOS/Linux:
+   source env/bin/activate
 
-    # On Windows:
-    # env\Scripts\activate
-    ```
+   # On Windows:
+   # env\Scripts\activate
+   ```
 
 2. Install dependencies using pip
 
-    ```bash
-    pip install -r requirements.txt
-    ```
+   ```bash
+   pip install -r requirements.txt
+   ```
 
 3. Create an environment file
 
-    ```bash
-    cp .env.template .env.local
-    ```
+   ```bash
+   cp .env.template .env.local
+   ```
 
 4. Set environment variables based on your Stytch project (see the [Stytch Dashboard](https://stytch.com/dashboard))
 

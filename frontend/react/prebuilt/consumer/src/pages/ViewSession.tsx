@@ -15,7 +15,7 @@ import { ENABLE_OAUTH } from "../config";
 // Note that there is no pre-built UI component rendered on this page.
 export function ViewSession() {
   const [sessionTokens, setSessionTokens] = useState<SessionTokens | null>(
-    null
+    null,
   );
   const navigate = useNavigate();
 

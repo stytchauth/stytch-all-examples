@@ -1,7 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { getDatabase, generateId } from './database.js';
-import { Organization, Ticket, TicketCreate, TicketSearchParams, TicketStatistics } from './types.js';
+import { getDatabase, generateId } from "./database.js";
+import {
+  Organization,
+  Ticket,
+  TicketCreate,
+  TicketSearchParams,
+  TicketStatistics,
+} from "./types.js";
 
 export class TicketService {
   private db = getDatabase();
@@ -15,7 +21,7 @@ export class TicketService {
 
   // Organization operations
   getOrganization(): Organization | null {
-    const stmt = this.db.prepare('SELECT * FROM organizations WHERE id = ?');
+    const stmt = this.db.prepare("SELECT * FROM organizations WHERE id = ?");
     const row = stmt.get(this.organizationId) as any;
 
     if (!row) return null;
@@ -28,7 +34,9 @@ export class TicketService {
     };
   }
 
-  private createOrganization(name: string = 'Default Organization'): Organization {
+  private createOrganization(
+    name: string = "Default Organization",
+  ): Organization {
     const stmt = this.db.prepare(`
       INSERT INTO organizations (id, name, created_at, updated_at)
       VALUES (?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
@@ -39,7 +47,9 @@ export class TicketService {
     return this.getOrganization()!;
   }
 
-  private getOrCreateOrganization(name: string = 'Default Organization'): Organization {
+  private getOrCreateOrganization(
+    name: string = "Default Organization",
+  ): Organization {
     let org = this.getOrganization();
     if (!org) {
       org = this.createOrganization(name);
@@ -49,7 +59,9 @@ export class TicketService {
 
   // Ticket operations
   getTickets(): Ticket[] {
-    const stmt = this.db.prepare('SELECT * FROM tickets WHERE organization_id = ? ORDER BY created_at DESC');
+    const stmt = this.db.prepare(
+      "SELECT * FROM tickets WHERE organization_id = ? ORDER BY created_at DESC",
+    );
     const rows = stmt.all(this.organizationId) as any[];
 
     return rows.map((row) => ({
@@ -92,7 +104,13 @@ export class TicketService {
       VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)
     `);
 
-    stmt.run(ticketId, ticketData.title, ticketData.assignee, ticketData.description || null, this.organizationId);
+    stmt.run(
+      ticketId,
+      ticketData.title,
+      ticketData.assignee,
+      ticketData.description || null,
+      this.organizationId,
+    );
 
     return this.getTicket(ticketId)!;
   }
@@ -124,25 +142,25 @@ export class TicketService {
   }
 
   searchTickets(params: TicketSearchParams): Ticket[] {
-    let query = 'SELECT * FROM tickets WHERE organization_id = ?';
+    let query = "SELECT * FROM tickets WHERE organization_id = ?";
     const values: any[] = [this.organizationId];
 
     if (params.status) {
-      query += ' AND status = ?';
+      query += " AND status = ?";
       values.push(params.status);
     }
 
     if (params.assignee) {
-      query += ' AND LOWER(assignee) = LOWER(?)';
+      query += " AND LOWER(assignee) = LOWER(?)";
       values.push(params.assignee);
     }
 
     if (params.title_contains) {
-      query += ' AND LOWER(title) LIKE LOWER(?)';
+      query += " AND LOWER(title) LIKE LOWER(?)";
       values.push(`%${params.title_contains}%`);
     }
 
-    query += ' ORDER BY created_at DESC';
+    query += " ORDER BY created_at DESC";
 
     const stmt = this.db.prepare(query);
     const rows = stmt.all(...values) as any[];
@@ -167,10 +185,12 @@ export class TicketService {
 
     tickets.forEach((ticket) => {
       // Count by status
-      statusDistribution[ticket.status] = (statusDistribution[ticket.status] || 0) + 1;
+      statusDistribution[ticket.status] =
+        (statusDistribution[ticket.status] || 0) + 1;
 
       // Count by assignee
-      assigneeDistribution[ticket.assignee] = (assigneeDistribution[ticket.assignee] || 0) + 1;
+      assigneeDistribution[ticket.assignee] =
+        (assigneeDistribution[ticket.assignee] || 0) + 1;
     });
 
     return {

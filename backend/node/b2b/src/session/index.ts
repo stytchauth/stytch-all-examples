@@ -2,12 +2,17 @@ import { Request, Response } from "express";
 import {
   B2BDiscoveryIntermediateSessionsExchangeResponse,
   B2BSessionsAuthenticateResponse,
-  B2BSessionsExchangeResponse, B2BSessionsRevokeResponse
+  B2BSessionsExchangeResponse,
+  B2BSessionsRevokeResponse,
 } from "stytch";
 import { StytchClient } from "../utils/stytchClient.js";
 import { ResponseBody } from "../utils/response.js";
 import { codeSnippets } from "../utils/snippets.js";
-import { parseTokensFromCookies, StytchIntermediateSessionKey, StytchSessionKey } from "../utils/cookies.js";
+import {
+  parseTokensFromCookies,
+  StytchIntermediateSessionKey,
+  StytchSessionKey,
+} from "../utils/cookies.js";
 
 type ExchangeRequest = {
   organizationId: string;
@@ -22,7 +27,8 @@ type ExchangeRequest = {
 export async function exchange(req: Request, res: Response) {
   const reqBody = req.body as ExchangeRequest;
 
-  const { sessionToken, intermediateSessionToken } = parseTokensFromCookies(req);
+  const { sessionToken, intermediateSessionToken } =
+    parseTokensFromCookies(req);
   if (!sessionToken && !intermediateSessionToken) {
     res.status(400).send("No token provided");
     return;
@@ -55,11 +61,11 @@ export async function exchange(req: Request, res: Response) {
     });
 
     res.cookie(StytchSessionKey, resp.session_token);
-    res.json(({
+    res.json({
       method: codeSnippets.Sessions.SessionExchange.method,
       codeSnippet: codeSnippets.Sessions.SessionExchange.snippet,
       stytchResponse: resp,
-    } as ResponseBody<B2BSessionsExchangeResponse>));
+    } as ResponseBody<B2BSessionsExchangeResponse>);
     return;
   }
 }
@@ -80,11 +86,11 @@ export async function getCurrentSession(req: Request, res: Response) {
     session_token: sessionToken,
   });
 
-  res.json(({
+  res.json({
     method: codeSnippets.Sessions.Authenticate.method,
     codeSnippet: codeSnippets.Sessions.Authenticate.snippet,
     stytchResponse: resp,
-  } as ResponseBody<B2BSessionsAuthenticateResponse>));
+  } as ResponseBody<B2BSessionsAuthenticateResponse>);
   return;
 }
 
@@ -107,9 +113,9 @@ export async function logout(req: Request, res: Response) {
   res.clearCookie(StytchSessionKey);
   res.clearCookie(StytchIntermediateSessionKey);
 
-  res.json(({
+  res.json({
     method: codeSnippets.Sessions.Revoke.method,
     codeSnippet: codeSnippets.Sessions.Revoke.snippet,
     stytchResponse: resp,
-  } as ResponseBody<B2BSessionsRevokeResponse>));
+  } as ResponseBody<B2BSessionsRevokeResponse>);
 }

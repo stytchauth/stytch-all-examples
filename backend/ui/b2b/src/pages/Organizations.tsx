@@ -57,7 +57,7 @@ export function Organizations() {
     "discovered_organizations": []
   }`,
               },
-              { replace: true }
+              { replace: true },
             );
           }
 
@@ -81,7 +81,7 @@ resp, err := c.api.MagicLinks.Discovery.Authenticate(
 	"discovered_organizations": []
 }`,
             },
-            { replace: !ENABLE_OAUTH }
+            { replace: !ENABLE_OAUTH },
           );
         }
 
@@ -93,17 +93,17 @@ resp, err := c.api.MagicLinks.Discovery.Authenticate(
           response.stytchResponse.discovered_organizations?.map((org) => ({
             id: org.organization.organization_id,
             name: org.organization.organization_name,
-          })) || []
+          })) || [],
         );
 
         setCanCreateOrganization(
-          response.metadata?.canCreateOrganization ?? false
+          response.metadata?.canCreateOrganization ?? false,
         );
 
         setIsLoaded(true);
       } catch (error) {
         setError(
-          error instanceof Error ? error.message : "An unknown error occurred"
+          error instanceof Error ? error.message : "An unknown error occurred",
         );
         setIsLoaded(true);
       }
@@ -128,7 +128,7 @@ resp, err := c.api.MagicLinks.Discovery.Authenticate(
     } catch (error) {
       // if the create is not successful, set the error
       setError(
-        error instanceof Error ? error.message : "An unknown error occurred"
+        error instanceof Error ? error.message : "An unknown error occurred",
       );
     }
   };
@@ -146,7 +146,7 @@ resp, err := c.api.MagicLinks.Discovery.Authenticate(
     } catch (error) {
       // if the exchange is not successful, set the error
       setError(
-        error instanceof Error ? error.message : "An unknown error occurred"
+        error instanceof Error ? error.message : "An unknown error occurred",
       );
     }
   };
@@ -159,7 +159,7 @@ resp, err := c.api.MagicLinks.Discovery.Authenticate(
         stytchResponse:
           "// This step only involves your frontend.\n// No response returned in this step.",
       },
-      { replace: true }
+      { replace: true },
     );
     setCreatingOrg(true);
   };

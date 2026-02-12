@@ -1,8 +1,5 @@
 import { Request, Response } from "express";
-import {
-  SessionsAuthenticateResponse,
-  SessionsRevokeResponse
-} from "stytch";
+import { SessionsAuthenticateResponse, SessionsRevokeResponse } from "stytch";
 import { parseTokenFromCookie, StytchSessionKey } from "../utils/cookies.js";
 import { StytchClient } from "../utils/stytchClient.js";
 import { ResponseBody } from "../utils/response.js";
@@ -24,11 +21,11 @@ export async function getCurrentSession(req: Request, res: Response) {
     session_token: sessionToken,
   });
 
-  res.json(({
+  res.json({
     method: codeSnippets.Sessions.Authenticate.method,
     codeSnippet: codeSnippets.Sessions.Authenticate.snippet,
     stytchResponse: resp,
-  } as ResponseBody<SessionsAuthenticateResponse>));
+  } as ResponseBody<SessionsAuthenticateResponse>);
   return;
 }
 
@@ -49,9 +46,9 @@ export async function logout(req: Request, res: Response) {
 
   res.clearCookie(StytchSessionKey);
 
-  res.json(({
+  res.json({
     method: codeSnippets.Sessions.Revoke.method,
     codeSnippet: codeSnippets.Sessions.Revoke.snippet,
     stytchResponse: resp,
-  } as ResponseBody<SessionsRevokeResponse>));
+  } as ResponseBody<SessionsRevokeResponse>);
 }

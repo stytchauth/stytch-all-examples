@@ -1,4 +1,4 @@
-import * as stytch from 'stytch';
+import * as stytch from "stytch";
 
 let _stytchClient: stytch.Client | null = null;
 

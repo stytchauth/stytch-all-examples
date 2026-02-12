@@ -28,7 +28,6 @@ router.get("/", (_: Request, res: Response) => {
   res.status(200).send("OK");
 });
 
-
 // Handle universal authenticate endpoint.
 router.all("/authenticate", universalAuthenticate);
 

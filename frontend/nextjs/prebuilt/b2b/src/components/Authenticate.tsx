@@ -37,7 +37,7 @@ export function Authenticate() {
     if (session && !creatingOrg) {
       navigate.push("/view-session");
     }
-  }, [session?.member_session_id]);
+  }, [session, creatingOrg, navigate]);
 
   // The config object for the pre-built Stytch B2B UI component.
   // Note that it is duplicated here and in Login.tsx for clarity.

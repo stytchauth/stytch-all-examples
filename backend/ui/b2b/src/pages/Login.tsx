@@ -35,11 +35,11 @@ export function Login() {
 
   const handleGoogleLogin = async () => {
     const startUrl = new URL(
-      "https://test.stytch.com/v1/b2b/public/oauth/google/discovery/start"
+      "https://test.stytch.com/v1/b2b/public/oauth/google/discovery/start",
     );
     startUrl.searchParams.set(
       "public_token",
-      import.meta.env.VITE_STYTCH_PUBLIC_TOKEN ?? ""
+      import.meta.env.VITE_STYTCH_PUBLIC_TOKEN ?? "",
     );
     window.location.href = startUrl.toString();
   };

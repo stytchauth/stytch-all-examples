@@ -2,9 +2,13 @@ import { Request, Response } from "express";
 import {
   B2BDiscoveryOrganizationsCreateResponse,
   B2BDiscoveryOrganizationsListRequest,
-  B2BDiscoveryOrganizationsListResponse
+  B2BDiscoveryOrganizationsListResponse,
 } from "stytch";
-import { parseTokensFromCookies, StytchIntermediateSessionKey, StytchSessionKey } from "../utils/cookies.js";
+import {
+  parseTokensFromCookies,
+  StytchIntermediateSessionKey,
+  StytchSessionKey,
+} from "../utils/cookies.js";
 import { ResponseBody } from "../utils/response.js";
 import { codeSnippets } from "../utils/snippets.js";
 import { StytchClient } from "../utils/stytchClient.js";
@@ -15,7 +19,8 @@ import { StytchClient } from "../utils/stytchClient.js";
  * requirements implemented by the Organizations.
  */
 export async function listOrganizations(req: Request, res: Response) {
-  const { sessionToken, intermediateSessionToken } = parseTokensFromCookies(req);
+  const { sessionToken, intermediateSessionToken } =
+    parseTokensFromCookies(req);
   if (!sessionToken && !intermediateSessionToken) {
     throw new Error("Must have at least one kind of session cookie present.");
   }

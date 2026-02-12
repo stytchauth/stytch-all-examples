@@ -1,11 +1,18 @@
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import { StytchUIClient } from '@stytch/vanilla-js';
-import { StytchProvider } from '@stytch/react';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import { StytchUIClient } from "@stytch/vanilla-js";
+import { StytchProvider } from "@stytch/react";
 
-import TaskEditor from './Tasks.tsx';
-import { Authenticate, Authorize, Login, Logout } from './Auth.tsx';
+import TaskEditor from "./Tasks.tsx";
+import { Authenticate, Authorize, Login, Logout } from "./Auth.tsx";
 
-const stytch = new StytchUIClient(import.meta.env.VITE_STYTCH_PUBLIC_TOKEN ?? '');
+const stytch = new StytchUIClient(
+  import.meta.env.VITE_STYTCH_PUBLIC_TOKEN ?? "",
+);
 
 function App() {
   return (

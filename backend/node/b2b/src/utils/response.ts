@@ -10,4 +10,4 @@ export type ResponseBody<T> = {
   stytchResponse: T;
   metadata: Record<string, unknown>;
   error?: Error;
-}
+};
