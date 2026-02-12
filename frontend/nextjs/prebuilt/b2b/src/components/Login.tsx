@@ -13,8 +13,8 @@ import {
   B2BProducts,
   StytchEventType,
   StytchEvent,
-} from "@stytch/vanilla-js";
-import { StytchB2B } from "@stytch/nextjs/b2b";
+  StytchB2B,
+} from "@stytch/nextjs/b2b";
 
 // The Login page is the landing page for the login flow.
 // It uses the pre-built Stytch B2B UI component.
