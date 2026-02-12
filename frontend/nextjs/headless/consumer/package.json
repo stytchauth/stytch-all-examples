@@ -11,7 +11,7 @@
   "dependencies": {
     "@stytch-all-examples/internal": "*",
     "@stytch/nextjs": "22.0.1",
-    "next": "15.4.10",
+    "next": "15.5.10",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "stytch": "^12.35.0"
