@@ -24,13 +24,13 @@ export const codeSnippets = {
       method: "Sessions.Authenticate",
       snippet: `const resp = await StytchClient.sessions.authenticate({
   session_token: sessionToken,
-});`
+});`,
     },
     Revoke: {
       method: "Sessions.Revoke",
       snippet: `const resp = await StytchClient.sessions.revoke({
   session_token: sessionToken,
-});`
-    }
-  }
+});`,
+    },
+  },
 } as const;

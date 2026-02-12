@@ -35,19 +35,19 @@ export function Login() {
 
   const handleGoogleLogin = async () => {
     const startUrl = new URL(
-      "https://test.stytch.com/v1/public/oauth/google/start"
+      "https://test.stytch.com/v1/public/oauth/google/start",
     );
     startUrl.searchParams.set(
       "public_token",
-      import.meta.env.VITE_STYTCH_PUBLIC_TOKEN ?? ""
+      import.meta.env.VITE_STYTCH_PUBLIC_TOKEN ?? "",
     );
     startUrl.searchParams.set(
       "login_redirect_url",
-      "http://localhost:3000/authenticate"
+      "http://localhost:3000/authenticate",
     );
     startUrl.searchParams.set(
       "signup_redirect_url",
-      "http://localhost:3000/authenticate"
+      "http://localhost:3000/authenticate",
     );
     window.location.href = startUrl.toString();
   };

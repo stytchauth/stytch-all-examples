@@ -4,7 +4,7 @@ Stytch provides SDKs for a number of different languages, frameworks, and implem
 
 ## Quick Start
 
-This repo contains examples in different languages and with varying implementation methods (for instance, using Stytch-provided prebuilt UI vs. using a component library like [radix-ui](https://www.radix-ui.com/) ). The first step is to figure out which directory in this repository *best* matches your situation. More detail about each example can be found further down in this README.
+This repo contains examples in different languages and with varying implementation methods (for instance, using Stytch-provided prebuilt UI vs. using a component library like [radix-ui](https://www.radix-ui.com/) ). The first step is to figure out which directory in this repository _best_ matches your situation. More detail about each example can be found further down in this README.
 
 When starting from scratch or to build a proof of concept app we recommend trying one of these implementations:
 
@@ -138,8 +138,6 @@ All implementations demonstrate the following Stytch SDK capabilities:
 - **Google OAuth Login**: One-click authentication with Google (opt-in)
 - **Session Management**: View session tokens, JWT handling, and logout functionality
 - **Organization Management** (B2B only): Create, list, and switch between organizations
-
-
 
 ## Support
 

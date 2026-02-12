@@ -8,7 +8,7 @@ export default defineConfig([
   {
     rules: {
       semi: "error",
-      quotes: ["error", "double"]
+      quotes: ["error", "double"],
     },
-  }
+  },
 ]);

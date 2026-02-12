@@ -29,7 +29,7 @@ export function Authenticate() {
       const authenticate = async () => {
         if (!token || !tokenType) {
           setError(
-            "There is no token found in the URL. This likely means you didn't go through the login flow."
+            "There is no token found in the URL. This likely means you didn't go through the login flow.",
           );
           return;
         }
@@ -48,7 +48,7 @@ export function Authenticate() {
             });
           } else {
             setError(
-              "The token type found in the URL is not supported for this example app."
+              "The token type found in the URL is not supported for this example app.",
             );
           }
           navigate("/view-session");

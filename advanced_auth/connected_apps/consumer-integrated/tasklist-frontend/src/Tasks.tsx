@@ -1,6 +1,6 @@
-import { useState, useEffect, FormEvent } from 'react';
-import { withLoginRequired } from './utils/withLoginRequired';
-import { Task } from '../types';
+import { useState, useEffect, FormEvent } from "react";
+import { withLoginRequired } from "./utils/withLoginRequired";
+import { Task } from "../types";
 
 const handleTaskResponse = async (res: Response) => {
   if (!res.ok) {
@@ -12,29 +12,29 @@ const handleTaskResponse = async (res: Response) => {
 
 const createTask = (taskText: string) =>
   fetch(`${window.location.origin}/api/tasks`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ taskText }),
   }).then(handleTaskResponse);
 
 const getTasks = () =>
   fetch(`${window.location.origin}/api/tasks`, {
-    method: 'GET',
+    method: "GET",
   }).then(handleTaskResponse);
 
 const deleteTask = (id: string) =>
   fetch(`${window.location.origin}/api/tasks/${id}`, {
-    method: 'DELETE',
+    method: "DELETE",
   }).then(handleTaskResponse);
 
 const markComplete = (id: string) =>
   fetch(`${window.location.origin}/api/tasks/${id}/complete`, {
-    method: 'POST',
+    method: "POST",
   }).then(handleTaskResponse);
 
 const TaskEditor = withLoginRequired(() => {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [newTaskText, setNewTaskText] = useState('');
+  const [newTaskText, setNewTaskText] = useState("");
 
   // Fetch tasks on component mount
   useEffect(() => {
@@ -44,7 +44,7 @@ const TaskEditor = withLoginRequired(() => {
   const onAddTask = (evt: FormEvent) => {
     evt.preventDefault();
     createTask(newTaskText).then((tasks) => setTasks(tasks));
-    setNewTaskText('');
+    setNewTaskText("");
   };
 
   const onCompleteTask = (id: string) => {
@@ -58,19 +58,23 @@ const TaskEditor = withLoginRequired(() => {
   return (
     <div className="taskEditor">
       <p>
-        The task items shown below can be edited via the UI + REST API, or via the MCP Server. Connect to the MCP Server
-        running at{' '}
+        The task items shown below can be edited via the UI + REST API, or via
+        the MCP Server. Connect to the MCP Server running at{" "}
         <span>
           <b>
             <code>{window.location.origin}/mcp</code>
           </b>
-        </span>{' '}
+        </span>{" "}
         with your MCP Client to try it out.
       </p>
       <ul>
         <form onSubmit={onAddTask}>
           <li>
-            <input type="text" value={newTaskText} onChange={(e) => setNewTaskText(e.target.value)} />
+            <input
+              type="text"
+              value={newTaskText}
+              onChange={(e) => setNewTaskText(e.target.value)}
+            />
             <button type="submit" className="primary">
               Add Task
             </button>
@@ -88,7 +92,11 @@ const TaskEditor = withLoginRequired(() => {
               )}
             </div>
             <div>
-              {!task.completed && <button onClick={() => onCompleteTask(task.id)}>Complete</button>}
+              {!task.completed && (
+                <button onClick={() => onCompleteTask(task.id)}>
+                  Complete
+                </button>
+              )}
               <button onClick={() => onDeleteTask(task.id)}>Delete</button>
             </div>
           </li>

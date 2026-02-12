@@ -8,16 +8,14 @@ import {
   StytchB2B,
   useStytchB2BClient,
   useStytchMemberSession,
-} from "@stytch/react/b2b";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import {
   AuthFlowType,
   B2BOAuthProviders,
   B2BProducts,
   StytchEvent,
   StytchEventType,
-} from "@stytch/vanilla-js";
+} from "@stytch/react/b2b";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { ENABLE_OAUTH } from "../config";
 
 // The Authenticate page handles the redirect URL from magic link or OAuth login flows.

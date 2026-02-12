@@ -14,7 +14,7 @@ import { B2BDiscoveryOrganizationsListRequest } from "stytch";
 export default async function OrganizationsPage() {
   const cookieStore = await cookies();
   const intermediateSessionToken = cookieStore.get(
-    INTERMEDIATE_SESSION_TOKEN_COOKIE
+    INTERMEDIATE_SESSION_TOKEN_COOKIE,
   );
   const sessionToken = cookieStore.get(SESSION_TOKEN_COOKIE);
 

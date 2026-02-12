@@ -51,8 +51,8 @@ const getMagicLinksOverviewUrl = (vertical: Vertical, appType: AppType) => {
   return vertical === "b2b"
     ? "https://stytch.com/docs/b2b/guides/magic-links/overview"
     : appType === "backend"
-    ? "https://stytch.com/docs/guides/magic-links/email-magic-links/api"
-    : "https://stytch.com/docs/guides/magic-links/email-magic-links/sdk";
+      ? "https://stytch.com/docs/guides/magic-links/email-magic-links/api"
+      : "https://stytch.com/docs/guides/magic-links/email-magic-links/sdk";
 };
 
 const getOauthOverviewUrl = (vertical: Vertical) => {

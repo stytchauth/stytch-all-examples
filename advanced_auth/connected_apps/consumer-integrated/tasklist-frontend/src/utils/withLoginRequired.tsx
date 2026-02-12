@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { useStytchUser } from '@stytch/react';
+import React, { useEffect } from "react";
+import { useStytchUser } from "@stytch/react";
 
 /**
  * A higher-order component that enforces a login requirement for the wrapped component.
@@ -11,8 +11,8 @@ export const withLoginRequired = (Component: React.FC) => () => {
 
   useEffect(() => {
     if (!user && !fromCache) {
-      localStorage.setItem('returnTo', window.location.href);
-      window.location.href = '/login';
+      localStorage.setItem("returnTo", window.location.href);
+      window.location.href = "/login";
     }
   }, [user, fromCache]);
 

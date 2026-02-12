@@ -1,6 +1,6 @@
-import { Request, Response, NextFunction } from 'express';
-import { B2BClient, B2BIntrospectTokenClaims, MemberSession } from 'stytch';
-import { TicketService } from './TicketService';
+import { Request, Response, NextFunction } from "express";
+import { B2BClient, B2BIntrospectTokenClaims, MemberSession } from "stytch";
+import { TicketService } from "./TicketService";
 
 // Extend Express Request interface for B2B auth
 declare global {
@@ -27,11 +27,15 @@ function getB2BClient(): B2BClient {
 }
 
 export function authorizeSessionMiddleware() {
-  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  return async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
     try {
       const sessionJwt = req.cookies.stytch_session_jwt;
       if (!sessionJwt) {
-        res.status(401).json({ error: 'Missing session cookie' });
+        res.status(401).json({ error: "Missing session cookie" });
         return;
       }
 
@@ -40,28 +44,32 @@ export function authorizeSessionMiddleware() {
       });
 
       if (!member_session || !member_session.organization_id) {
-        res.status(401).json({ error: 'Invalid or expired session' });
+        res.status(401).json({ error: "Invalid or expired session" });
         return;
       }
 
       req.memberSession = member_session;
       next();
     } catch (err) {
-      console.error('Error in session auth middleware:', err);
-      res.status(401).json({ error: 'Invalid or expired session' });
+      console.error("Error in session auth middleware:", err);
+      res.status(401).json({ error: "Invalid or expired session" });
     }
   };
 }
 
 export function authorizeTokenMiddleware() {
-  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  return async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
     try {
-      const token = req.headers.authorization?.split(' ')[1];
+      const token = req.headers.authorization?.split(" ")[1];
       if (!token) {
-        console.error('Authorization header is missing');
-        const wwwAuthValue = `Bearer error="Unauthorized", error_description="Unauthorized", resource_metadata="${req.protocol}://${req.get('host')}/.well-known/oauth-protected-resource"`;
-        res.set('WWW-Authenticate', wwwAuthValue);
-        res.status(401).json({ error: 'Unauthorized' });
+        console.error("Authorization header is missing");
+        const wwwAuthValue = `Bearer error="Unauthorized", error_description="Unauthorized", resource_metadata="${req.protocol}://${req.get("host")}/.well-known/oauth-protected-resource"`;
+        res.set("WWW-Authenticate", wwwAuthValue);
+        res.status(401).json({ error: "Unauthorized" });
         return;
       }
 
@@ -69,7 +77,9 @@ export function authorizeTokenMiddleware() {
 
       // Check if token is valid and has organization context
       if (!tokenClaims.organization?.organization_id) {
-        res.status(401).json({ error: 'Missing organization context in token' });
+        res
+          .status(401)
+          .json({ error: "Missing organization context in token" });
         return;
       }
 
@@ -77,10 +87,10 @@ export function authorizeTokenMiddleware() {
 
       next();
     } catch (error) {
-      console.error('Error in token auth middleware:', error);
-      const wwwAuthValue = `Bearer error="Unauthorized", error_description="Unauthorized", resource_metadata="${req.protocol}://${req.get('host')}/.well-known/oauth-protected-resource"`;
-      res.set('WWW-Authenticate', wwwAuthValue);
-      res.status(401).json({ error: 'Unauthorized' });
+      console.error("Error in token auth middleware:", error);
+      const wwwAuthValue = `Bearer error="Unauthorized", error_description="Unauthorized", resource_metadata="${req.protocol}://${req.get("host")}/.well-known/oauth-protected-resource"`;
+      res.set("WWW-Authenticate", wwwAuthValue);
+      res.status(401).json({ error: "Unauthorized" });
     }
   };
 }
@@ -96,5 +106,5 @@ export function getTicketServiceForRequest(req: Request): TicketService {
     return new TicketService(organization_id, slug);
   }
 
-  throw new Error('No organization ID found in request context');
+  throw new Error("No organization ID found in request context");
 }

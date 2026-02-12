@@ -29,10 +29,14 @@
     "dev": "echo 'Navigate to the specific project to run it'",
     "test": "echo 'Navigate to the specific project to test it'",
     "lint": "echo 'Navigate to the specific project to lint it'",
-    "clean": "echo 'Navigate to the specific project to clean it'"
+    "lint:fix": "yarn workspaces foreach --all run lint --fix",
+    "clean": "echo 'Navigate to the specific project to clean it'",
+    "prettier": "prettier --write .",
+    "prettier:check": "prettier --check ."
   },
   "devDependencies": {
     "@types/node": "^22.0.0",
+    "prettier": "^3.6.2",
     "typescript": "^5.0.0"
   },
   "packageManager": "yarn@4.10.1",

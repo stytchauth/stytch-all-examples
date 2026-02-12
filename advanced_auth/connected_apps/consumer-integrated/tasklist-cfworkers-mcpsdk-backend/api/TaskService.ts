@@ -1,4 +1,4 @@
-import { Task } from '../types';
+import { Task } from "../types";
 
 /**
  * The `TaskListService` class provides methods for managing a task list backed by Cloudflare KV storage.
@@ -12,7 +12,7 @@ class TaskListService {
   ) {}
 
   get = async (): Promise<Task[]> => {
-    const tasks = await this.env.TASKS.get<Task[]>(this.userID, 'json');
+    const tasks = await this.env.TASKS.get<Task[]>(this.userID, "json");
     return tasks || [];
   };
 
@@ -56,4 +56,5 @@ class TaskListService {
   };
 }
 
-export const taskListService = (env: Env, userID: string) => new TaskListService(env, userID);
+export const taskListService = (env: Env, userID: string) =>
+  new TaskListService(env, userID);

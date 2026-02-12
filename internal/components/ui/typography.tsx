@@ -58,7 +58,7 @@ function Typography({
       className: cn(typographyVariants({ variant }), className),
       ...props,
     },
-    children
+    children,
   );
 }
 

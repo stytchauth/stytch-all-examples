@@ -10,8 +10,8 @@ import {
   Products,
   StytchEventType,
   StytchEvent,
-} from "@stytch/vanilla-js";
-import { StytchLogin } from "@stytch/react";
+  StytchLogin,
+} from "@stytch/react";
 
 // The Login page is the landing page for the login flow.
 // It uses the pre-built Stytch UI component.
@@ -26,8 +26,8 @@ export function Login() {
       ...(ENABLE_OAUTH ? [Products.oauth] : []),
     ],
     emailMagicLinksOptions: {
-      loginRedirectUrl: "http://localhost:3000/authenticate",
-      signupRedirectUrl: "http://localhost:3000/authenticate",
+      loginRedirectURL: "http://localhost:3000/authenticate",
+      signupRedirectURL: "http://localhost:3000/authenticate",
       loginExpirationMinutes: 60,
       signupExpirationMinutes: 60,
     },

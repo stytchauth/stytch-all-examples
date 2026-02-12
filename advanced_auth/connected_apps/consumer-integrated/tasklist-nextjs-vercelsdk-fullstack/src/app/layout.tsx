@@ -1,14 +1,14 @@
-import './globals.css';
+import "./globals.css";
 
-import { ReactNode } from 'react';
-import StytchProvider from '@/components/StytchProvider';
-import { Metadata } from 'next';
+import { ReactNode } from "react";
+import StytchProvider from "@/components/StytchProvider";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'Stytch Vercel MCP Server',
-  description: 'An example MCP Server using Stytch and Vercel',
+  title: "Stytch Vercel MCP Server",
+  description: "An example MCP Server using Stytch and Vercel",
   icons: {
-    icon: '/favicon.ico',
+    icon: "/favicon.ico",
   },
 };
 

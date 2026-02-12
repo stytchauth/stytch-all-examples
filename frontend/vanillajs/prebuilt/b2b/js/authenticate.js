@@ -1,4 +1,4 @@
-import { stytch } from "./stytch-client.js";
+import { stytchClient } from "./stytch-client.js";
 import {
   setupOrganizationsEventListeners,
   updateOrganizationsUI,
@@ -6,22 +6,25 @@ import {
   getOrgNameValue,
 } from "./dom-utils.js";
 
+const { Products } = stytch;
+
 // Initialize the page
 function init() {
   // Stytch SDK method to get the current session synchronously
-  const session = stytch.session.getSync();
+  const session = stytchClient.session.getSync();
   if (session) {
     // User already has a session, redirect to view-session
     window.location.href = "/view-session";
     return;
   }
 
-  // Stytch SDK method to mount the prebuilt UI components
-  stytch.mount({
-    elementId: "#stytch-sdk",
+  // Stytch SDK method to render the prebuilt UI components using custom elements
+  const element = document.getElementById("stytch-sdk");
+  element.render({
+    client: stytchClient,
     config: {
       authFlowType: "Discovery",
-      products: ["emailMagicLinks"],
+      products: [Products.emailMagicLinks],
       sessionOptions: { sessionDurationMinutes: 60 },
     },
     callbacks: {
@@ -57,7 +60,7 @@ async function handleCreateOrg(event) {
 
   try {
     // Stytch SDK method to update the organization name
-    await stytch.organization.update({ organization_name: orgName });
+    await stytchClient.organization.update({ organization_name: orgName });
 
     // Redirect to view-session page
     window.location.href = "/view-session";

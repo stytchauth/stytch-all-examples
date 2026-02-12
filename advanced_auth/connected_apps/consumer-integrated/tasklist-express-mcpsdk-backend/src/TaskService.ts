@@ -1,5 +1,5 @@
-import Database from 'better-sqlite3';
-import { getDatabase } from './database';
+import Database from "better-sqlite3";
+import { getDatabase } from "./database";
 
 export interface Task {
   id: string;
@@ -14,7 +14,9 @@ export class TaskListService {
     this.userID = userID;
   }
 
-  private async withDatabase<T>(operation: (db: Database.Database) => T): Promise<T> {
+  private async withDatabase<T>(
+    operation: (db: Database.Database) => T,
+  ): Promise<T> {
     const db = getDatabase();
     return operation(db);
   }
@@ -55,7 +57,12 @@ export class TaskListService {
         VALUES (?, ?, ?, ?)
       `);
 
-      stmt.run(newTask.id, this.userID, newTask.text, newTask.completed ? 1 : 0);
+      stmt.run(
+        newTask.id,
+        this.userID,
+        newTask.text,
+        newTask.completed ? 1 : 0,
+      );
 
       // Get updated tasks in the same connection
       const selectStmt = db.prepare(`

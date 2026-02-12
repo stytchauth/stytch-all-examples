@@ -7,22 +7,27 @@
  * @param {string} redirectUrl - Optional redirect URL
  * @param {string} redirectText - Optional redirect button text
  */
-export function showErrorInContainer(title, error, redirectUrl = null, redirectText = null) {
-    const errorContainer = document.getElementById('error-container');
-    const loadingContainer = document.getElementById('loading-container');
-    
-    if (!errorContainer) {
-        console.error('Error container not found');
-        return;
-    }
+export function showErrorInContainer(
+  title,
+  error,
+  redirectUrl = null,
+  redirectText = null,
+) {
+  const errorContainer = document.getElementById("error-container");
+  const loadingContainer = document.getElementById("loading-container");
 
-    // Hide loading container if it exists
-    if (loadingContainer) {
-        loadingContainer.classList.add('hidden');
-    }
+  if (!errorContainer) {
+    console.error("Error container not found");
+    return;
+  }
 
-    // Create error box HTML
-    let errorBoxHTML = `
+  // Hide loading container if it exists
+  if (loadingContainer) {
+    loadingContainer.classList.add("hidden");
+  }
+
+  // Create error box HTML
+  let errorBoxHTML = `
         <div class="bg-red-50 border border-gray-200 rounded-lg p-4 max-w-md">
             <div class="flex">
                 <div class="flex-shrink-0">
@@ -36,32 +41,32 @@ export function showErrorInContainer(title, error, redirectUrl = null, redirectT
                         <p>${error}</p>
                     </div>`;
 
-    if (redirectUrl && redirectText) {
-        errorBoxHTML += `
+  if (redirectUrl && redirectText) {
+    errorBoxHTML += `
                     <div class="mt-4">
                         <a href="${redirectUrl}" class="text-sm font-medium text-red-800 underline hover:text-red-900">
                             ${redirectText}
                         </a>
                     </div>`;
-    }
+  }
 
-    errorBoxHTML += `
+  errorBoxHTML += `
                 </div>
             </div>
         </div>`;
 
-    // Clear container and show error
-    errorContainer.innerHTML = errorBoxHTML;
-    errorContainer.classList.remove('hidden');
+  // Clear container and show error
+  errorContainer.innerHTML = errorBoxHTML;
+  errorContainer.classList.remove("hidden");
 }
 
 /**
  * Hides the error container
  */
 export function hideErrorContainer() {
-    const errorContainer = document.getElementById('error-container');
-    if (errorContainer) {
-        errorContainer.classList.add('hidden');
-        errorContainer.innerHTML = '';
-    }
+  const errorContainer = document.getElementById("error-container");
+  if (errorContainer) {
+    errorContainer.classList.add("hidden");
+    errorContainer.innerHTML = "";
+  }
 }

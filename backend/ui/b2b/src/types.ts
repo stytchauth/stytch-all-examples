@@ -169,6 +169,7 @@ export type Session = {
       email_id: string;
       provider_subject: string;
     };
+    // eslint-disable-next-line @typescript-eslint/no-empty-object-type
     slack_oauth_factor: {};
     hubspot_oauth_factor: {
       id: string;

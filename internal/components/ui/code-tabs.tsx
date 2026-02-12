@@ -161,7 +161,7 @@ function CodeTabs({
       data-slot="install-tabs"
       className={cn(
         "w-[580px] h-[500px] gap-0 bg-code rounded-xl border overflow-hidden",
-        className
+        className,
       )}
       {...tabsProps}
       {...props}

@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   build: {
@@ -8,21 +8,21 @@ export default defineConfig({
   server: {
     port: 3000,
     proxy: {
-      '/api': {
+      "/api": {
         changeOrigin: false,
-        target: 'http://localhost:3001',
+        target: "http://localhost:3001",
       },
-      '/.well-known': {
+      "/.well-known": {
         changeOrigin: false,
-        target: 'http://localhost:3001',
+        target: "http://localhost:3001",
       },
-      '/mcp': {
+      "/mcp": {
         changeOrigin: false,
-        target: 'http://localhost:3001',
+        target: "http://localhost:3001",
       },
-      '/sse': {
+      "/sse": {
         changeOrigin: false,
-        target: 'http://localhost:3001',
+        target: "http://localhost:3001",
       },
     },
   },

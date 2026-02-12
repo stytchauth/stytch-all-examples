@@ -39,8 +39,8 @@ export function OrgsTextBox({
   const title = hasSession
     ? "Exchanging sessions between organizations."
     : hasOrgs
-    ? "Joining an existing organization."
-    : "A session needs an organization to call home.";
+      ? "Joining an existing organization."
+      : "A session needs an organization to call home.";
 
   const content = hasSession ? (
     <>

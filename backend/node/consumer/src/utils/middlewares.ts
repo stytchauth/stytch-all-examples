@@ -7,7 +7,11 @@ import { ResponseBody } from "./response.js";
  *
  * You should design your own logging middleware when building a production application.
  */
-export function loggingMiddleware(req: Request, _: Response, next: NextFunction): void {
+export function loggingMiddleware(
+  req: Request,
+  _: Response,
+  next: NextFunction,
+): void {
   console.log(`${req.method} ${req.path} ${JSON.stringify(req.body)}`);
   next();
 }

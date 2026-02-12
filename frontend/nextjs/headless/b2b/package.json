@@ -10,8 +10,7 @@
   },
   "dependencies": {
     "@stytch-all-examples/internal": "*",
-    "@stytch/nextjs": "^21.7.0",
-    "@stytch/vanilla-js": "^5.29.1",
+    "@stytch/nextjs": "22.0.1",
     "next": "15.4.10",
     "react": "19.1.0",
     "react-dom": "19.1.0",
@@ -21,6 +20,8 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.4.10",
     "typescript": "^5"
   }
 }

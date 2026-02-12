@@ -5,7 +5,7 @@ export const CodeSnippetsContext = createContext<{
   codeTabs: Record<string, string> | undefined;
   addResponse: (
     response: APIResponse<unknown>,
-    opts?: { replace?: boolean }
+    opts?: { replace?: boolean },
   ) => void;
 }>({
   codeTabs: {},

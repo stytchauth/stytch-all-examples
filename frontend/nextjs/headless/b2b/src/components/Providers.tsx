@@ -1,11 +1,11 @@
 "use client";
 
 import { StytchB2BProvider } from "@stytch/nextjs/b2b";
-import { createStytchB2BHeadlessClient } from "@stytch/nextjs/b2b/headless";
+import { createStytchB2BClient } from "@stytch/nextjs/b2b";
 
 // Create the Stytch client
-const stytch = createStytchB2BHeadlessClient(
-  process.env.NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN || ""
+const stytch = createStytchB2BClient(
+  process.env.NEXT_PUBLIC_STYTCH_PUBLIC_TOKEN || "",
 );
 
 export const Providers = ({ children }: { children: React.ReactNode }) => {

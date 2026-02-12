@@ -66,7 +66,7 @@ resp, err := c.api.OAuth.Authenticate(
   }
 }`,
             },
-            { replace: true }
+            { replace: true },
           );
         }
 
@@ -102,7 +102,7 @@ resp, err := c.api.MagicLinks.Authenticate(
   }
 }`,
           },
-          { replace: !ENABLE_OAUTH }
+          { replace: !ENABLE_OAUTH },
         );
 
         addResponse(response, { replace: false });
@@ -114,7 +114,7 @@ resp, err := c.api.MagicLinks.Authenticate(
         setUser(response.stytchResponse.user);
       } catch (error) {
         setError(
-          error instanceof Error ? error.message : "An unknown error occurred"
+          error instanceof Error ? error.message : "An unknown error occurred",
         );
         // If there's an error (likely no session), redirect to login
         navigate("/");

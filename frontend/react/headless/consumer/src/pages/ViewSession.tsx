@@ -15,7 +15,7 @@ import { ENABLE_OAUTH } from "../config";
 // It uses Stytch SDK methods to get the session tokens and display the session information.
 export function ViewSession() {
   const [sessionTokens, setSessionTokens] = useState<SessionTokens | null>(
-    null
+    null,
   );
   const navigate = useNavigate();
 

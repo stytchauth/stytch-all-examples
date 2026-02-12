@@ -28,8 +28,8 @@ export const Login = () => {
       });
       setSendingEmail(true);
       setApiError(null);
-    } catch (error: any) {
-      setApiError(error.message);
+    } catch (error: unknown) {
+      setApiError((error as Error).message);
     }
   };
 
@@ -38,8 +38,8 @@ export const Login = () => {
       // Stytch SDK method to start a Google discovery oauth flow
       await stytch.oauth.google.discovery.start({});
       setApiError(null);
-    } catch (error: any) {
-      setApiError(error.message);
+    } catch (error: unknown) {
+      setApiError((error as Error).message);
     }
   };
 

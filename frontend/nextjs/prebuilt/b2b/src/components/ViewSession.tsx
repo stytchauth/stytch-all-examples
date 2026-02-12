@@ -25,7 +25,7 @@ export function ViewSession() {
   const { organization, isInitialized: isOrganizationInitialized } =
     useStytchOrganization();
   const [sessionTokens, setSessionTokens] = useState<SessionTokens | null>(
-    null
+    null,
   );
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -35,13 +35,13 @@ export function ViewSession() {
       const tokens = stytch.session.getTokens();
       setSessionTokens(tokens);
     }
-  }, [member]);
+  }, [member, stytch.session]);
 
   useEffect(() => {
     if (!session) {
       router.push("/");
     }
-  }, [session]);
+  }, [session, router]);
 
   if (!isMemberInitialized || !isOrganizationInitialized) {
     return <LoadingSpinner />;
@@ -51,8 +51,8 @@ export function ViewSession() {
     try {
       await stytch.session.revoke();
       router.push("/");
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : "An error occurred");
     }
   };
 

@@ -1,4 +1,9 @@
-import { Ticket, TicketCreate, TicketSearchParams, TicketStatistics } from '../types';
+import {
+  Ticket,
+  TicketCreate,
+  TicketSearchParams,
+  TicketStatistics,
+} from "../types";
 
 /**
  * SprintPlannerService implements ticket operations backed by Cloudflare KV.
@@ -15,12 +20,15 @@ class SprintPlannerService {
   }
 
   private async getAll(): Promise<Ticket[]> {
-    const tickets = await this.env.TASKS.get<Ticket[]>(this.kvKey(), 'json');
+    const tickets = await this.env.TASKS.get<Ticket[]>(this.kvKey(), "json");
     return tickets || [];
   }
 
   private async setAll(tickets: Ticket[]): Promise<Ticket[]> {
-    const sorted = tickets.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+    const sorted = tickets.sort(
+      (a, b) =>
+        new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+    );
     await this.env.TASKS.put(this.kvKey(), JSON.stringify(sorted));
     return sorted;
   }
@@ -41,7 +49,7 @@ class SprintPlannerService {
       id: Date.now().toString(36),
       title: data.title,
       assignee: data.assignee,
-      status: 'backlog',
+      status: "backlog",
       description: data.description,
       organization_id: this.organizationId,
       created_at: now,
@@ -51,7 +59,10 @@ class SprintPlannerService {
     return this.setAll(tickets);
   }
 
-  async updateTicketStatus(id: string, status: string): Promise<Ticket[] | null> {
+  async updateTicketStatus(
+    id: string,
+    status: string,
+  ): Promise<Ticket[] | null> {
     const tickets = await this.getAll();
     const ticket = tickets.find((t) => t.id === id);
     if (!ticket) return null;
@@ -72,8 +83,16 @@ class SprintPlannerService {
     const tickets = await this.getAll();
     return tickets.filter((t) => {
       if (params.status && t.status !== params.status) return false;
-      if (params.assignee && t.assignee.toLowerCase() !== params.assignee.toLowerCase()) return false;
-      if (params.title_contains && !t.title.toLowerCase().includes(params.title_contains.toLowerCase())) return false;
+      if (
+        params.assignee &&
+        t.assignee.toLowerCase() !== params.assignee.toLowerCase()
+      )
+        return false;
+      if (
+        params.title_contains &&
+        !t.title.toLowerCase().includes(params.title_contains.toLowerCase())
+      )
+        return false;
       return true;
     });
   }
@@ -84,7 +103,8 @@ class SprintPlannerService {
     const assignee_distribution: Record<string, number> = {};
     for (const t of tickets) {
       status_distribution[t.status] = (status_distribution[t.status] || 0) + 1;
-      assignee_distribution[t.assignee] = (assignee_distribution[t.assignee] || 0) + 1;
+      assignee_distribution[t.assignee] =
+        (assignee_distribution[t.assignee] || 0) + 1;
     }
     return {
       total_tickets: tickets.length,
@@ -95,4 +115,5 @@ class SprintPlannerService {
   }
 }
 
-export const sprintPlannerService = (env: Env, organizationId: string) => new SprintPlannerService(env, organizationId);
+export const sprintPlannerService = (env: Env, organizationId: string) =>
+  new SprintPlannerService(env, organizationId);

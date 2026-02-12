@@ -1,5 +1,5 @@
 import { StytchB2BProvider } from "@stytch/react/b2b";
-import { createStytchB2BUIClient } from "@stytch/react/b2b/ui";
+import { createStytchB2BClient } from "@stytch/react/b2b";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router";
@@ -33,8 +33,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-const stytch = createStytchB2BUIClient(
-  import.meta.env.VITE_STYTCH_PUBLIC_TOKEN || ""
+const stytch = createStytchB2BClient(
+  import.meta.env.VITE_STYTCH_PUBLIC_TOKEN || "",
 );
 
 createRoot(document.getElementById("root")!).render(
@@ -42,5 +42,5 @@ createRoot(document.getElementById("root")!).render(
     <StytchB2BProvider stytch={stytch}>
       <RouterProvider router={router} />
     </StytchB2BProvider>
-  </StrictMode>
+  </StrictMode>,
 );

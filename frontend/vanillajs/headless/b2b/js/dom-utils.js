@@ -101,10 +101,10 @@ export function getCurrentEmail() {
 
 export function configureOAuthVisibility(enableOAuth) {
   const oauthDivider = document.querySelector(
-    ".flex.gap-2.w-full.items-center.mt-4"
+    ".flex.gap-2.w-full.items-center.mt-4",
   );
   const oauthButtonContainer = document.querySelector(
-    ".flex.flex-col.gap-2.w-full.mt-4"
+    ".flex.flex-col.gap-2.w-full.mt-4",
   );
 
   if (enableOAuth) {
@@ -155,7 +155,7 @@ export function renderOrganizations(
   organizations,
   createOrgButton,
   handlers,
-  stytch
+  stytch,
 ) {
   const orgsList = getElementById("orgs-list");
   const createButtonContainer = getElementById("create-org-btn")?.parentElement;
@@ -182,7 +182,7 @@ export function renderOrganizations(
   organizations.forEach((org) => {
     const button = createOrgButton(org.id, org.name);
     addEventListener(button, "click", () =>
-      handlers.selectOrganization(org.id)
+      handlers.selectOrganization(org.id),
     );
     orgsList.appendChild(button);
   });
@@ -307,7 +307,7 @@ export function setupViewSessionEventListeners(handlers) {
   addEventListener(
     launchJwtDecoderBtn,
     "click",
-    handlers.handleLaunchJwtDecoder
+    handlers.handleLaunchJwtDecoder,
   );
   addEventListener(backToSessionBtn, "click", handlers.handleBackToSession);
 }

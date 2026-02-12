@@ -1,12 +1,12 @@
 // Font loading utilities for React components
 export const loadGoogleFont = (
   fontFamily: string,
-  weights: string[] = ["400"]
+  weights: string[] = ["400"],
 ) => {
   const link = document.createElement("link");
   link.href = `https://fonts.googleapis.com/css2?family=${fontFamily.replace(
     " ",
-    "+"
+    "+",
   )}:wght@${weights.join(";")}&display=swap`;
   link.rel = "stylesheet";
   document.head.appendChild(link);

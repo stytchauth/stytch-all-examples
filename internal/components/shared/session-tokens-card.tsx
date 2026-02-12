@@ -41,7 +41,7 @@ export function SessionTokensCard({
                     className="text-xs w-full"
                     onClick={() => {
                       navigator.clipboard.writeText(
-                        sessionTokens?.session_jwt ?? ""
+                        sessionTokens?.session_jwt ?? "",
                       );
                       toast.success("JWT copied to clipboard");
                     }}

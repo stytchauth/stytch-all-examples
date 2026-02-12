@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { useState, FormEvent, useEffect, useCallback } from 'react';
-import { withLoginRequired } from './Auth';
-import { useStytchUser } from '@stytch/nextjs';
-import { Task } from '@/services/TaskService';
-import { TaskClient } from '@/services/TaskClient';
+import { useState, FormEvent, useEffect, useCallback } from "react";
+import { withLoginRequired } from "./Auth";
+import { useStytchUser } from "@stytch/nextjs";
+import { Task } from "@/services/TaskService";
+import { TaskClient } from "@/services/TaskClient";
 
 const TaskEditor = withLoginRequired(() => {
-  const [newTaskText, setNewTaskText] = useState('');
+  const [newTaskText, setNewTaskText] = useState("");
   const [tasks, setTasks] = useState<Task[]>([]);
   const { user } = useStytchUser();
 
@@ -19,7 +19,7 @@ const TaskEditor = withLoginRequired(() => {
       const tasks = await TaskClient.getTasks();
       setTasks(tasks);
     } catch (error) {
-      console.error('Failed to load tasks:', error);
+      console.error("Failed to load tasks:", error);
     }
   }, [user]);
 
@@ -34,9 +34,9 @@ const TaskEditor = withLoginRequired(() => {
     try {
       const tasks = await TaskClient.createTask(newTaskText);
       setTasks(tasks);
-      setNewTaskText('');
+      setNewTaskText("");
     } catch (error) {
-      console.error('Failed to add task:', error);
+      console.error("Failed to add task:", error);
     }
   };
 
@@ -47,7 +47,7 @@ const TaskEditor = withLoginRequired(() => {
       const tasks = await TaskClient.completeTask(id);
       setTasks(tasks);
     } catch (error) {
-      console.error('Failed to complete task:', error);
+      console.error("Failed to complete task:", error);
     }
   };
 
@@ -58,26 +58,30 @@ const TaskEditor = withLoginRequired(() => {
       const tasks = await TaskClient.deleteTask(id);
       setTasks(tasks);
     } catch (error) {
-      console.error('Failed to delete task:', error);
+      console.error("Failed to delete task:", error);
     }
   };
 
   return (
     <div className="taskEditor">
       <p>
-        The task items shown below can be edited via the UI + REST API, or via the MCP Server. Connect to the MCP Server
-        running at{' '}
+        The task items shown below can be edited via the UI + REST API, or via
+        the MCP Server. Connect to the MCP Server running at{" "}
         <span>
           <b>
             <code>{window.location.origin}/mcp</code>
           </b>
-        </span>{' '}
+        </span>{" "}
         with your MCP Client to try it out.
       </p>
       <ul>
         <form onSubmit={onAddTask}>
           <li>
-            <input type="text" value={newTaskText} onChange={(e) => setNewTaskText(e.target.value)} />
+            <input
+              type="text"
+              value={newTaskText}
+              onChange={(e) => setNewTaskText(e.target.value)}
+            />
             <button type="submit" className="primary">
               Add Task
             </button>
@@ -95,7 +99,11 @@ const TaskEditor = withLoginRequired(() => {
               )}
             </div>
             <div>
-              {!task.completed && <button onClick={() => onCompleteTask(task.id)}>Complete</button>}
+              {!task.completed && (
+                <button onClick={() => onCompleteTask(task.id)}>
+                  Complete
+                </button>
+              )}
               <button onClick={() => onDeleteTask(task.id)}>Delete</button>
             </div>
           </li>

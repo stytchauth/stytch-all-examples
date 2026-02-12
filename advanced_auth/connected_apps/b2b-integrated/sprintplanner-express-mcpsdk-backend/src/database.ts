@@ -1,12 +1,12 @@
-import Database from 'better-sqlite3';
+import Database from "better-sqlite3";
 
 let db: Database.Database | null = null;
 
-export function initializeDatabase(dbPath: string = 'tickets.db'): void {
+export function initializeDatabase(dbPath: string = "tickets.db"): void {
   db = new Database(dbPath);
 
   // Enable foreign keys
-  db.exec('PRAGMA foreign_keys = ON');
+  db.exec("PRAGMA foreign_keys = ON");
 
   // Create organizations table
   db.exec(`
@@ -58,7 +58,9 @@ export function initializeDatabase(dbPath: string = 'tickets.db'): void {
 
 export function getDatabase(): Database.Database {
   if (!db) {
-    throw new Error('Database not initialized. Call initializeDatabase() first.');
+    throw new Error(
+      "Database not initialized. Call initializeDatabase() first.",
+    );
   }
   return db;
 }
@@ -67,14 +69,14 @@ export function closeDatabase(): void {
   if (db) {
     db.close();
     db = null;
-    console.log('✅ Database connection closed');
+    console.log("✅ Database connection closed");
   }
 }
 
 export function generateId(): string {
-  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
     const r = (Math.random() * 16) | 0;
-    const v = c === 'x' ? r : (r & 0x3) | 0x8;
+    const v = c === "x" ? r : (r & 0x3) | 0x8;
     return v.toString(16);
   });
 }

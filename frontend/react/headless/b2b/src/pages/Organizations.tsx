@@ -37,7 +37,7 @@ export function Organizations() {
           response.discovered_organizations.map((org) => ({
             id: org.organization.organization_id,
             name: org.organization.organization_name,
-          }))
+          })),
         );
         setLoading(false);
       } catch (error: any) {

@@ -3,12 +3,15 @@ import {
   B2BMagicLinksAuthenticateResponse,
   B2BMagicLinksEmailDiscoverySendResponse,
   B2BMagicLinksEmailInviteResponse,
-  B2BMagicLinksEmailLoginOrSignupResponse
+  B2BMagicLinksEmailLoginOrSignupResponse,
 } from "stytch";
 import { ResponseBody } from "../utils/response.js";
 import { StytchClient } from "../utils/stytchClient.js";
 import { codeSnippets } from "../utils/snippets.js";
-import { StytchIntermediateSessionKey, StytchSessionKey } from "../utils/cookies.js";
+import {
+  StytchIntermediateSessionKey,
+  StytchSessionKey,
+} from "../utils/cookies.js";
 
 type InviteRequest = {
   organization_id: string;

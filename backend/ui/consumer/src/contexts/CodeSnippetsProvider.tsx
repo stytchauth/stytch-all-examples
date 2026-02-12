@@ -32,7 +32,7 @@ export const CodeSnippetsProvider = ({
         },
       ]);
     },
-    [setApiRequests]
+    [setApiRequests],
   );
 
   const codeTabs = useMemo(() => {

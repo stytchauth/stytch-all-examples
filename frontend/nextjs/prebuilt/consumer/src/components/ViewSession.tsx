@@ -18,7 +18,7 @@ export function ViewSession() {
   const { session } = useStytchSession();
   const { user, isInitialized: isUserInitialized } = useStytchUser();
   const [sessionTokens, setSessionTokens] = useState<SessionTokens | null>(
-    null
+    null,
   );
   const [error, setError] = useState<string | null>(null);
   const router = useRouter();
@@ -28,13 +28,13 @@ export function ViewSession() {
       const tokens = stytch.session.getTokens();
       setSessionTokens(tokens);
     }
-  }, [user]);
+  }, [user, stytch.session]);
 
   useEffect(() => {
     if (!session) {
       router.push("/");
     }
-  }, [session]);
+  }, [session, router]);
 
   if (!isUserInitialized) {
     return <LoadingSpinner />;
@@ -44,8 +44,8 @@ export function ViewSession() {
     try {
       await stytch.session.revoke();
       router.push("/");
-    } catch (error: any) {
-      setError(error.message);
+    } catch (error: unknown) {
+      setError(error instanceof Error ? error.message : "An error occurred");
     }
   };
 

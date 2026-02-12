@@ -31,8 +31,8 @@ export const Login = () => {
       });
       setSendingEmail(true);
       setApiError(null);
-    } catch (error: any) {
-      setApiError(error.message);
+    } catch (error: unknown) {
+      setApiError(error instanceof Error ? error.message : "An error occurred");
     }
   };
 
@@ -43,8 +43,8 @@ export const Login = () => {
         login_redirect_url: "http://localhost:3000/authenticate",
       });
       setApiError(null);
-    } catch (error: any) {
-      setApiError(error.message);
+    } catch (error: unknown) {
+      setApiError(error instanceof Error ? error.message : "An error occurred");
     }
   };
 

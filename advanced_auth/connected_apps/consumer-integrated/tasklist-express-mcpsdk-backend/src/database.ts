@@ -1,5 +1,5 @@
-import Database from 'better-sqlite3';
-import path from 'path';
+import Database from "better-sqlite3";
+import path from "path";
 
 let db: Database.Database | null = null;
 
@@ -8,9 +8,9 @@ export function initializeDatabase(): Database.Database {
     return db;
   }
 
-  console.log('🗄️  Initializing SQLite database...');
+  console.log("🗄️  Initializing SQLite database...");
 
-  const dbPath = path.join(process.cwd(), 'tasks.db');
+  const dbPath = path.join(process.cwd(), "tasks.db");
   db = new Database(dbPath);
 
   // Create tasks table if it doesn't exist
@@ -29,13 +29,15 @@ export function initializeDatabase(): Database.Database {
     CREATE INDEX IF NOT EXISTS idx_tasks_user_id ON tasks(user_id)
   `);
 
-  console.log('✅ Database initialized successfully');
+  console.log("✅ Database initialized successfully");
   return db;
 }
 
 export function getDatabase(): Database.Database {
   if (!db) {
-    throw new Error('Database not initialized. Call initializeDatabase() first.');
+    throw new Error(
+      "Database not initialized. Call initializeDatabase() first.",
+    );
   }
   return db;
 }
@@ -44,6 +46,6 @@ export function closeDatabase(): void {
   if (db) {
     db.close();
     db = null;
-    console.log('🗄️  Database connection closed');
+    console.log("🗄️  Database connection closed");
   }
 }

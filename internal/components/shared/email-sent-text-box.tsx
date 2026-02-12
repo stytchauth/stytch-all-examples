@@ -6,7 +6,7 @@ import { AppType, Vertical } from "../types";
 
 const getAuthenticateEndpointDocsUrl = (
   appType: AppType,
-  vertical: Vertical
+  vertical: Vertical,
 ) => {
   if (appType === "backend") {
     return vertical === "b2b"

@@ -15,7 +15,7 @@ type TabsContextType<T extends string> = {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const TabsContext = React.createContext<TabsContextType<any> | undefined>(
-  undefined
+  undefined,
 );
 
 function useTabs<T extends string = string>(): TabsContextType<T> {
@@ -55,7 +55,7 @@ function Tabs<T extends string = string>({
   ...props
 }: TabsProps<T>) {
   const [activeValue, setActiveValue] = React.useState<T | undefined>(
-    defaultValue ?? undefined
+    defaultValue ?? undefined,
   );
   const triggersRef = React.useRef(new Map<string, HTMLElement>());
   const initialSet = React.useRef(false);
@@ -141,7 +141,7 @@ function TabsList({
         data-slot="tabs-list"
         className={cn(
           "bg-muted text-muted-foreground inline-flex h-10 w-fit items-center justify-center rounded-lg p-[4px]",
-          className
+          className,
         )}
         {...props}
       >
@@ -184,7 +184,7 @@ function TabsTrigger({
         data-state={activeValue === value ? "active" : "inactive"}
         className={cn(
           "inline-flex cursor-pointer items-center size-full justify-center whitespace-nowrap rounded-sm px-2 py-1 text-sm font-medium ring-offset-background transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:text-foreground z-[1]",
-          className
+          className,
         )}
         {...props}
       >
@@ -219,7 +219,7 @@ function TabsContents({
       typeof child.props === "object" &&
       child.props !== null &&
       "value" in child.props &&
-      child.props.value === activeValue
+      child.props.value === activeValue,
   );
 
   return (

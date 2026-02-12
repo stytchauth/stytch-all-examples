@@ -13,8 +13,9 @@ import {
   B2BProducts,
   StytchEventType,
   StytchEvent,
-} from "@stytch/vanilla-js";
-import { StytchB2B } from "@stytch/nextjs/b2b";
+  StytchB2B,
+  StytchB2BUIConfig,
+} from "@stytch/nextjs/b2b";
 
 // The Login page is the landing page for the login flow.
 // It uses the pre-built Stytch B2B UI component.
@@ -23,7 +24,7 @@ export const Login = () => {
 
   // The config object for the pre-built Stytch B2B UI component
   // Note that it is duplicated here and in Authenticate.tsx for clarity
-  const config = {
+  const config: StytchB2BUIConfig = {
     products: [
       B2BProducts.emailMagicLinks,
       ...(ENABLE_OAUTH ? [B2BProducts.oauth] : []),
@@ -53,7 +54,7 @@ export const Login = () => {
     <PageWithContent
       content={
         sentEmail ? (
-          <RedirectUrlTextBox appType="prebuilt" />
+          <RedirectUrlTextBox appType="prebuilt" vertical="b2b" />
         ) : (
           <IntroTextBox
             appType="prebuilt"

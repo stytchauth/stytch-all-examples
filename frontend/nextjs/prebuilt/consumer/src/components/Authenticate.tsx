@@ -32,7 +32,7 @@ export function Authenticate() {
       const authenticate = async () => {
         if (!token || !tokenType) {
           setError(
-            "There is no token found in the URL. This likely means you didn't go through the login flow."
+            "There is no token found in the URL. This likely means you didn't go through the login flow.",
           );
           return;
         }
@@ -51,13 +51,15 @@ export function Authenticate() {
             });
           } else {
             setError(
-              "The token type found in the URL is not supported for this example app."
+              "The token type found in the URL is not supported for this example app.",
             );
           }
           router.push("/view-session");
-        } catch (error: any) {
+        } catch (error: unknown) {
           isAuthenticatingRef.current = false; // Reset on error
-          setError(error.message);
+          setError(
+            error instanceof Error ? error.message : "An error occurred",
+          );
         }
       };
 
@@ -67,7 +69,7 @@ export function Authenticate() {
       }
       authenticate();
     }
-  }, [session?.session_id]);
+  }, [session, router, stytch.magicLinks, stytch.oauth]);
 
   return (
     <Page>

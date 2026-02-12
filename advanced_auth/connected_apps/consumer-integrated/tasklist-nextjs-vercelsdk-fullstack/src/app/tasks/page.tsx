@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import Tasks from '@/components/Tasks';
-import { Logout } from '@/components/Auth';
+import Tasks from "@/components/Tasks";
+import { Logout } from "@/components/Auth";
 
 export default function TaskPage() {
   return (

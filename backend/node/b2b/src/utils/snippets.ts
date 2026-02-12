@@ -20,13 +20,13 @@ export const codeSnippets = {
   organization_id: req.organization_id,
   email_address: req.email_address,
   name: req.name,
-});`
+});`,
     },
     DiscoverySend: {
       method: "MagicLinks.Email.Discovery.Send",
       snippet: `const resp = await StytchClient.magicLinks.email.discovery.send({
   email_address: req.email_address,
-});`
+});`,
     },
     Authenticate: {
       method: "MagicLinks.Authenticate",
@@ -54,8 +54,8 @@ export const codeSnippets = {
       snippet: `const resp = await StytchClient.discovery.organizations.create({
   intermediate_session_token: ist,
   organization_name: req.organizationName,
-});`
-    }
+});`,
+    },
   },
   Sessions: {
     IntermediateSessionExchange: {
@@ -76,13 +76,13 @@ export const codeSnippets = {
       method: "Sessions.Authenticate",
       snippet: `const resp = await StytchClient.sessions.authenticate({
   session_token: token,
-});`
+});`,
     },
     Revoke: {
       method: "Sessions.Revoke",
       snippet: `const resp = await StytchClient.sessions.revoke({
   session_token: token,
-});`
-    }
-  }
+});`,
+    },
+  },
 } as const;

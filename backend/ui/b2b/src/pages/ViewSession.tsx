@@ -43,7 +43,7 @@ export function ViewSession() {
         setOrganization(response.stytchResponse.organization);
       } catch (error) {
         setError(
-          error instanceof Error ? error.message : "An unknown error occurred"
+          error instanceof Error ? error.message : "An unknown error occurred",
         );
         // If there's an error (likely no session), redirect to login
         navigate("/");

@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
-import { createStytchB2BUIClient } from '@stytch/react/b2b/ui';
+import { createStytchB2BClient } from '@stytch/react/b2b';
 import { useAuth } from '@/frontend/contexts/AuthContext';
 import StytchProvider from '@/frontend/components/StytchProvider';
 import { IdentityProvider } from '@/frontend/components/StytchIdentityProvider';
 import { Navigate } from 'react-router-dom';
 
-const stytch = createStytchB2BUIClient(
+const stytch = createStytchB2BClient(
   import.meta.env.VITE_STYTCH_PUBLIC_TOKEN || (window as any).APP_CONFIG?.VITE_STYTCH_PUBLIC_TOKEN || '',
 );
 

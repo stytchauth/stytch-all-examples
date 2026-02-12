@@ -14,8 +14,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "@stytch/react": "^19.10.0",
-    "@stytch/vanilla-js": "^5.34.0",
+    "@stytch/react": "^20.0.1",
     "hono": "^4.9.7",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",

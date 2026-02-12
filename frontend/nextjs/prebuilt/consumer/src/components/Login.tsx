@@ -12,8 +12,9 @@ import {
   Products,
   StytchEventType,
   StytchEvent,
-} from "@stytch/vanilla-js";
-import { StytchLogin } from "@stytch/nextjs";
+  StytchLogin,
+  StytchLoginConfig,
+} from "@stytch/nextjs";
 
 // The Login page is the landing page for the login flow.
 // It uses the pre-built Stytch UI component.
@@ -22,14 +23,14 @@ export const Login = () => {
 
   // The config object for the pre-built Stytch UI component
   // Note that it is duplicated here and in Authenticate.tsx for clarity
-  const config = {
+  const config: StytchLoginConfig = {
     products: [
       Products.emailMagicLinks,
       ...(ENABLE_OAUTH ? [Products.oauth] : []),
     ],
     emailMagicLinksOptions: {
-      loginRedirectUrl: "http://localhost:3000/authenticate",
-      signupRedirectUrl: "http://localhost:3000/authenticate",
+      loginRedirectURL: "http://localhost:3000/authenticate",
+      signupRedirectURL: "http://localhost:3000/authenticate",
       loginExpirationMinutes: 60,
       signupExpirationMinutes: 60,
     },
