@@ -16,7 +16,6 @@ package-lock.json
 pnpm-lock.yaml
 
 # Generated files
-*.d.ts
 worker-configuration.d.ts
 
 # OS files
