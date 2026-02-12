@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@stytch/nextjs": "22.0.1",
-    "next": "15.4.10",
+    "next": "15.5.12",
     "react": "19.1.0",
     "react-dom": "19.1.0"
   },
