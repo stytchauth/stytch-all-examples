@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.17.5",
+    "@modelcontextprotocol/sdk": "^1.26.0",
     "@stytch/nextjs": "^22.0.1",
     "mcp-handler": "^1.0.2",
     "next": "^15.3.2",

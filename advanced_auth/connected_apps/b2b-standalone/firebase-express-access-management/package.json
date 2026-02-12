@@ -28,7 +28,7 @@
     "setup": "tsx scripts/setup.ts --all"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.17.5",
+    "@modelcontextprotocol/sdk": "^1.26.0",
     "@stytch/react": "^20.0.1",
     "axios": "^1.12.0",
     "cors": "^2.8.5",
