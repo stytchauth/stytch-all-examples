@@ -2,19 +2,17 @@
 
 import React from "react";
 import {
-  StytchLogin,
   IdentityProvider as BaseIdentityProvider,
-  useStytch,
-  useStytchUser,
-} from "@stytch/nextjs";
-import { useEffect, useMemo } from "react";
-import {
   OAuthProviders,
   OTPMethods,
   Products,
   StytchEvent,
+  StytchLogin,
   StytchLoginConfig,
-} from "@stytch/vanilla-js";
+  useStytch,
+  useStytchUser,
+} from "@stytch/nextjs";
+import { useEffect, useMemo } from "react";
 import { useRouter } from "next/navigation";
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 

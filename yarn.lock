@@ -2867,8 +2867,7 @@ __metadata:
     "@eslint/eslintrc": "npm:^3.3.1"
     "@eslint/js": "npm:^9.34.0"
     "@modelcontextprotocol/sdk": "npm:^1.17.5"
-    "@stytch/react": "npm:^19.10.0"
-    "@stytch/vanilla-js": "npm:^5.34.0"
+    "@stytch/react": "npm:^20.0.1"
     "@types/cors": "npm:^2.8.17"
     "@types/express": "npm:^4.17.21"
     "@types/node": "npm:^20.10.0"
@@ -2917,7 +2916,6 @@ __metadata:
     "@hono/mcp": "npm:^0.1.2"
     "@hono/stytch-auth": "npm:^0.1.1"
     "@modelcontextprotocol/sdk": "npm:^1.17.5"
-    "@stytch/vanilla-js": "npm:^5.18.6"
     eslint: "npm:^9.17.0"
     hono: "npm:^4.9.7"
     jose: "npm:^6.0.10"
@@ -2961,8 +2959,7 @@ __metadata:
   resolution: "@mcp-examples/sprintplanner-frontend@workspace:advanced_auth/connected_apps/b2b-integrated/sprintplanner-frontend"
   dependencies:
     "@eslint/js": "npm:^9.17.0"
-    "@stytch/react": "npm:^19.10.0"
-    "@stytch/vanilla-js": "npm:^5.34.0"
+    "@stytch/react": "npm:^20.0.1"
     "@vitejs/plugin-react": "npm:^4.7.0"
     eslint: "npm:^9.17.0"
     eslint-plugin-react-hooks: "npm:^5.0.0"
@@ -2983,8 +2980,7 @@ __metadata:
   dependencies:
     "@eslint/eslintrc": "npm:^3"
     "@modelcontextprotocol/sdk": "npm:^1.17.3"
-    "@stytch/nextjs": "npm:^21.11.1"
-    "@stytch/vanilla-js": "npm:^5.35.1"
+    "@stytch/nextjs": "npm:^22.0.1"
     "@supabase/ssr": "npm:^0.6.1"
     "@supabase/supabase-js": "npm:^2.53.0"
     "@tailwindcss/postcss": "npm:^4.1.11"
@@ -3017,7 +3013,6 @@ __metadata:
     "@hono/mcp": "npm:^0.1.2"
     "@hono/stytch-auth": "npm:^0.1.1"
     "@modelcontextprotocol/sdk": "npm:^1.17.5"
-    "@stytch/vanilla-js": "npm:^5.18.6"
     eslint: "npm:^9.17.0"
     hono: "npm:^4.9.7"
     jose: "npm:^6.0.10"
@@ -3061,8 +3056,7 @@ __metadata:
   resolution: "@mcp-examples/tasklist-frontend@workspace:advanced_auth/connected_apps/consumer-integrated/tasklist-frontend"
   dependencies:
     "@eslint/js": "npm:^9.17.0"
-    "@stytch/react": "npm:^19.4.1"
-    "@stytch/vanilla-js": "npm:^5.18.6"
+    "@stytch/react": "npm:^20.0.1"
     "@types/react": "npm:^18.3.18"
     "@types/react-dom": "npm:^18.3.5"
     "@vitejs/plugin-react": "npm:^4.3.4"
@@ -3085,8 +3079,7 @@ __metadata:
   dependencies:
     "@eslint/eslintrc": "npm:^3"
     "@modelcontextprotocol/sdk": "npm:^1.17.5"
-    "@stytch/nextjs": "npm:^21.5.0"
-    "@stytch/vanilla-js": "npm:^5.23.4"
+    "@stytch/nextjs": "npm:^22.0.1"
     "@types/node": "npm:^20.8.0"
     "@types/react": "npm:^18.2.0"
     "@types/react-dom": "npm:^18.2.0"
@@ -5683,16 +5676,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@stytch/core@npm:2.64.0":
-  version: 2.64.0
-  resolution: "@stytch/core@npm:2.64.0"
-  dependencies:
-    uuid: "npm:8.3.2"
-  checksum: 10c0/8080dbc535f35c5566239444d6ad80326d33017f8a500f7d86d5e1d819c8f3f9c46136a615633de2700319d1ab08236f966f4fe7076a71aaed3d4672a3803b17
-  languageName: node
-  linkType: hard
-
-"@stytch/nextjs@npm:22.0.1":
+"@stytch/nextjs@npm:22.0.1, @stytch/nextjs@npm:^22.0.1":
   version: 22.0.1
   resolution: "@stytch/nextjs@npm:22.0.1"
   peerDependencies:
@@ -5702,18 +5686,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stytch/nextjs@npm:^21.11.1, @stytch/nextjs@npm:^21.5.0":
-  version: 21.15.1
-  resolution: "@stytch/nextjs@npm:21.15.1"
-  peerDependencies:
-    "@stytch/vanilla-js": ^5.0.0
-    react: ">= 17.0.2"
-    react-dom: ">= 17.0.2"
-  checksum: 10c0/1b17e7757b373e8bf23399461647f7dde9b01d127198ef4b6f68415967beb2ae192008611c5b3099efb03cd7700e14db6e1fa590ae4067f0a1569133ca147690
-  languageName: node
-  linkType: hard
-
-"@stytch/react@npm:20.0.1":
+"@stytch/react@npm:20.0.1, @stytch/react@npm:^20.0.1":
   version: 20.0.1
   resolution: "@stytch/react@npm:20.0.1"
   peerDependencies:
@@ -5723,32 +5696,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@stytch/react@npm:^19.10.0, @stytch/react@npm:^19.4.1":
-  version: 19.15.1
-  resolution: "@stytch/react@npm:19.15.1"
-  peerDependencies:
-    "@stytch/vanilla-js": ^5.0.0
-    react: ">= 17.0.2"
-    react-dom: ">= 17.0.2"
-  checksum: 10c0/1eca6024909db4569574062b17dfa98048df7604f9c286019406176aaaf7bf241f95b9854d340c4b15526d6ff408e569064cc8f5550a5f009878ed1cc99ea2ff
-  languageName: node
-  linkType: hard
-
 "@stytch/vanilla-js@npm:6.0.1":
   version: 6.0.1
   resolution: "@stytch/vanilla-js@npm:6.0.1"
   checksum: 10c0/6fcf49ee914af74a4ea9f5bca0365fe0e3100256e7109011fdd566296566570f9a0b932e3f7d4a385f1efc84ceaa6bb2e6e3f6c793a79a8e7b18cbab4cc977e7
-  languageName: node
-  linkType: hard
-
-"@stytch/vanilla-js@npm:^5.18.6, @stytch/vanilla-js@npm:^5.23.4, @stytch/vanilla-js@npm:^5.34.0, @stytch/vanilla-js@npm:^5.35.1":
-  version: 5.41.0
-  resolution: "@stytch/vanilla-js@npm:5.41.0"
-  dependencies:
-    "@stytch/core": "npm:2.64.0"
-    "@types/google-one-tap": "npm:^1.2.0"
-    type-fest: "npm:4.15.0"
-  checksum: 10c0/f941842cf1b2d51660089f897c57fee8afa9f3ca32ab9264ebc0e892bdacadbdde359cae110e19c7ec8007f1e62aa13f28d8ce5ae6f69573dac1ec566640a6ba
   languageName: node
   linkType: hard
 
@@ -6530,13 +6481,6 @@ __metadata:
     "@types/minimatch": "npm:^5.1.2"
     "@types/node": "npm:*"
   checksum: 10c0/ded07aa0d7a1caf3c47b85e262be82989ccd7933b4a14712b79c82fd45a239249811d9fc3a135b3e9457afa163e74a297033d7245b0dc63cd3d032f3906b053f
-  languageName: node
-  linkType: hard
-
-"@types/google-one-tap@npm:^1.2.0":
-  version: 1.2.6
-  resolution: "@types/google-one-tap@npm:1.2.6"
-  checksum: 10c0/6732e170c556f281fe98a06e01bd656f70144554c011cc6e00579474f5b2adb659562bc2f2b031bc13f7ee63d3f0f3bbaf6d3e7c183bfac0640a0496f2ef9faa
   languageName: node
   linkType: hard
 
@@ -15955,13 +15899,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:4.15.0":
-  version: 4.15.0
-  resolution: "type-fest@npm:4.15.0"
-  checksum: 10c0/677a7da18dbbe07668bdf47fcb976fdcbea77e118156a7245182fdf65633d69228ce773b0022d507636945a8f22b593e09a3c08f695d2aecf96f035ff0186825
-  languageName: node
-  linkType: hard
-
 "type-fest@npm:^0.20.2":
   version: 0.20.2
   resolution: "type-fest@npm:0.20.2"
@@ -16501,7 +16438,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uuid@npm:8.3.2, uuid@npm:^8.0.0":
+"uuid@npm:^8.0.0":
   version: 8.3.2
   resolution: "uuid@npm:8.3.2"
   bin:

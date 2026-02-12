@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 import { User } from '@/frontend/types';
 import { authApi } from '@/frontend/lib/api';
-import { createStytchB2BUIClient } from '@stytch/react/dist/b2b/index.ui';
+import { createStytchB2BClient } from '@stytch/react/b2b';
 
 interface AuthContextType {
   user: User | null;
@@ -12,7 +12,7 @@ interface AuthContextType {
   loading: boolean;
 }
 
-const stytch = createStytchB2BUIClient(
+const stytch = createStytchB2BClient(
   import.meta.env.VITE_STYTCH_PUBLIC_TOKEN || (window as any).APP_CONFIG?.VITE_STYTCH_PUBLIC_TOKEN || '',
 );
 

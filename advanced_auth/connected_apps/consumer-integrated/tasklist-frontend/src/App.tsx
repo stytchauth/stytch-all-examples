@@ -4,13 +4,12 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { StytchUIClient } from "@stytch/vanilla-js";
-import { StytchProvider } from "@stytch/react";
+import { createStytchClient, StytchProvider } from "@stytch/react";
 
 import TaskEditor from "./Tasks.tsx";
 import { Authenticate, Authorize, Login, Logout } from "./Auth.tsx";
 
-const stytch = new StytchUIClient(
+const stytch = createStytchClient(
   import.meta.env.VITE_STYTCH_PUBLIC_TOKEN ?? "",
 );
 

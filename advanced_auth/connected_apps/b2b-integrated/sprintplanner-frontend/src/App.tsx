@@ -5,13 +5,12 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
-import { StytchB2BUIClient } from "@stytch/vanilla-js/b2b";
-import { StytchB2BProvider } from "@stytch/react/b2b";
+import { createStytchB2BClient, StytchB2BProvider } from "@stytch/react/b2b";
 
 import SprintPlanner from "./SprintPlanner";
 import { Authorize, Login, Logout } from "./Auth";
 
-const stytch = new StytchB2BUIClient(
+const stytch = createStytchB2BClient(
   import.meta.env.VITE_STYTCH_PUBLIC_TOKEN ?? "",
 );
 

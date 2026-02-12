@@ -1,13 +1,15 @@
 import React, { useEffect, useMemo } from "react";
 import {
   B2BIdentityProvider,
+  B2BProducts,
+  OAuthProviders,
   StytchB2B,
+  StytchB2BUIConfig,
+  StytchEventType,
   useStytchB2BClient,
   useStytchMember,
   useStytchMemberSession,
 } from "@stytch/react/b2b";
-import { B2BProducts, StytchEventType } from "@stytch/vanilla-js/b2b";
-import { OAuthProviders, StytchB2BUIConfig } from "@stytch/vanilla-js";
 
 /**
  * A higher-order component that enforces a login requirement for the wrapped component.

@@ -1,13 +1,11 @@
 import {
+  IdentityProvider,
   OAuthProviders,
   OTPMethods,
   Products,
   StytchEvent,
-  StytchLoginConfig,
-} from "@stytch/vanilla-js";
-import {
-  IdentityProvider,
   StytchLogin,
+  StytchLoginConfig,
   useStytch,
   useStytchUser,
 } from "@stytch/react";

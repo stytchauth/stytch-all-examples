@@ -1,9 +1,8 @@
 import { ReactNode } from 'react';
-import { StytchB2BProvider as ProviderActual } from '@stytch/react/b2b';
-import { createStytchB2BUIClient } from '@stytch/react/b2b/ui';
+import { StytchB2BProvider as ProviderActual, createStytchB2BClient } from '@stytch/react/b2b';
 
 // We initialize the Stytch client using our project's public token which can be found in the Stytch dashboard
-const stytch = createStytchB2BUIClient(
+const stytch = createStytchB2BClient(
   import.meta.env.VITE_STYTCH_PUBLIC_TOKEN || (window as any).APP_CONFIG?.VITE_STYTCH_PUBLIC_TOKEN || '',
 );
 
