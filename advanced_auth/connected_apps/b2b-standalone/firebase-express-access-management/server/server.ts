@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Express } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
@@ -22,7 +22,7 @@ const __dirname = dirname(__filename);
 // Load environment variables
 dotenv.config({ path: ['.env', '.env.production.local', '.env.local'] });
 
-const app = express();
+const app: Express = express();
 const PORT = process.env.PORT || 3000;
 
 // Security middleware

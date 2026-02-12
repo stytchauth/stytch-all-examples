@@ -1,9 +1,9 @@
-import express from 'express';
+import express, { Router } from 'express';
 import { StreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/streamableHttp.js';
 import { validateMcpToken } from '../middleware/mcpToken.js';
 import { initializeMCPServer } from '../utils/mcp.js';
 
-const router = express.Router();
+const router: Router = express.Router();
 
 router.get('/.well-known/oauth-authorization-server', (req, res) => {
   res.json({

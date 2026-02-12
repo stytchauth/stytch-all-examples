@@ -1,9 +1,9 @@
-import express, { Response } from 'express';
+import express, { Response, Router } from 'express';
 import { db, FieldValue } from '../config/firebase.js';
 import { authenticateToken } from '../middleware/auth.js';
 import { extractDomainFromEmail } from '../utils/domain.js';
 
-const router = express.Router();
+const router: Router = express.Router();
 
 // Get or create organization for user's domain
 router.get('/', authenticateToken, async (req: any, res: Response): Promise<void> => {

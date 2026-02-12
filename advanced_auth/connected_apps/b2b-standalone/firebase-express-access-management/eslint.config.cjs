@@ -27,6 +27,10 @@ module.exports = defineConfig([
       parser: tsParser,
     },
 
+    parserOptions: {
+      tsconfigRootDir: __dirname,
+    },
+
     extends: fixupConfigRules(
       compat.extends('eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react-hooks/recommended'),
     ),

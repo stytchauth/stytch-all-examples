@@ -1,10 +1,10 @@
-import express, { Response } from 'express';
+import express, { Response, Router } from 'express';
 import { db } from '../config/firebase.js';
 import { authenticateToken, requireOrgAdmin } from '../middleware/auth.js';
 import { validate, schemas } from '../middleware/validation.js';
 import { CreateAccessRequestData, ApproveDenyRequest } from '../types/index.js';
 
-const router = express.Router();
+const router: Router = express.Router();
 
 // Create an access request
 router.post(
