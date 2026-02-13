@@ -6,7 +6,7 @@
     "dev": "yarn workspace @stytch-all-examples/internal run build && next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@stytch-all-examples/internal": "*",

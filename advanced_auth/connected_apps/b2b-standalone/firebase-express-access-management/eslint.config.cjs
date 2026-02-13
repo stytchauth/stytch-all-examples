@@ -25,7 +25,9 @@ module.exports = defineConfig([
       },
 
       parser: tsParser,
-      // tsconfigRootDir: __dirname,
+      parserOptions: {
+        tsconfigRootDir: __dirname,
+      },
     },
 
     extends: fixupConfigRules(

@@ -4628,7 +4628,7 @@ __metadata:
     "@types/cors": "npm:^2.8.17"
     "@types/express": "npm:^4.17.25"
     "@types/node": "npm:^22.0.0"
-    body-parser: "npm:^2.2.0"
+    body-parser: "npm:^2.2.2"
     cookie-parser: "npm:^1.4.7"
     cors: "npm:^2.8.5"
     eslint: "npm:^9.22.0"
@@ -4648,7 +4648,7 @@ __metadata:
     "@types/cors": "npm:^2.8.17"
     "@types/express": "npm:^4.17.25"
     "@types/node": "npm:^22.0.0"
-    body-parser: "npm:^2.2.0"
+    body-parser: "npm:^2.2.2"
     cookie-parser: "npm:^1.4.7"
     cors: "npm:^2.8.5"
     eslint: "npm:^9.22.0"
@@ -6770,7 +6770,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"body-parser@npm:^2.2.0, body-parser@npm:^2.2.1":
+"body-parser@npm:^2.2.1, body-parser@npm:^2.2.2":
   version: 2.2.2
   resolution: "body-parser@npm:2.2.2"
   dependencies:

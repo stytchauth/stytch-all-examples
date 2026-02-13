@@ -10,16 +10,21 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  {
+    ignores: [
+      "node_modules/**",
+      ".next/**",
+      "out/**",
+      "build/**",
+      "next-env.d.ts",
+    ],
+  },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
-
   {
     languageOptions: {
       parserOptions: {
         tsconfigRootDir: __dirname,
       },
-    },
-    rules: {
-      "@typescript-eslint/triple-slash-reference": "off",
     },
   },
 ];
