@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.26.0",
-    "@stytch/nextjs": "^22.0.1",
+    "@stytch/nextjs": "^22.0.3",
     "mcp-handler": "^1.0.2",
     "next": "^15.3.2",
     "react": "^18.2.0",

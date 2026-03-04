@@ -2304,7 +2304,7 @@ __metadata:
     "@eslint/eslintrc": "npm:^3.3.1"
     "@eslint/js": "npm:^9.34.0"
     "@modelcontextprotocol/sdk": "npm:^1.26.0"
-    "@stytch/react": "npm:^20.0.1"
+    "@stytch/react": "npm:^20.0.3"
     "@types/cors": "npm:^2.8.17"
     "@types/express": "npm:^4.17.25"
     "@types/node": "npm:^20.10.0"
@@ -2396,7 +2396,7 @@ __metadata:
   resolution: "@mcp-examples/sprintplanner-frontend@workspace:advanced_auth/connected_apps/b2b-integrated/sprintplanner-frontend"
   dependencies:
     "@eslint/js": "npm:^9.17.0"
-    "@stytch/react": "npm:^20.0.1"
+    "@stytch/react": "npm:^20.0.3"
     "@vitejs/plugin-react": "npm:^4.7.0"
     eslint: "npm:^9.17.0"
     eslint-plugin-react-hooks: "npm:^5.0.0"
@@ -2417,7 +2417,7 @@ __metadata:
   dependencies:
     "@eslint/eslintrc": "npm:^3"
     "@modelcontextprotocol/sdk": "npm:^1.26.0"
-    "@stytch/nextjs": "npm:^22.0.1"
+    "@stytch/nextjs": "npm:^22.0.3"
     "@supabase/ssr": "npm:^0.6.1"
     "@supabase/supabase-js": "npm:^2.53.0"
     "@tailwindcss/postcss": "npm:^4.1.11"
@@ -2493,7 +2493,7 @@ __metadata:
   resolution: "@mcp-examples/tasklist-frontend@workspace:advanced_auth/connected_apps/consumer-integrated/tasklist-frontend"
   dependencies:
     "@eslint/js": "npm:^9.17.0"
-    "@stytch/react": "npm:^20.0.1"
+    "@stytch/react": "npm:^20.0.3"
     "@types/react": "npm:^18.3.18"
     "@types/react-dom": "npm:^18.3.5"
     "@vitejs/plugin-react": "npm:^4.3.4"
@@ -2516,7 +2516,7 @@ __metadata:
   dependencies:
     "@eslint/eslintrc": "npm:^3"
     "@modelcontextprotocol/sdk": "npm:^1.26.0"
-    "@stytch/nextjs": "npm:^22.0.1"
+    "@stytch/nextjs": "npm:^22.0.3"
     "@types/node": "npm:^20.8.0"
     "@types/react": "npm:^18.2.0"
     "@types/react-dom": "npm:^18.2.0"
@@ -4709,7 +4709,7 @@ __metadata:
   resolution: "@stytch-all-examples/frontend-nextjs-headless-b2b@workspace:frontend/nextjs/headless/b2b"
   dependencies:
     "@stytch-all-examples/internal": "npm:*"
-    "@stytch/nextjs": "npm:22.0.1"
+    "@stytch/nextjs": "npm:22.0.3"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
@@ -4728,7 +4728,7 @@ __metadata:
   resolution: "@stytch-all-examples/frontend-nextjs-headless-consumer@workspace:frontend/nextjs/headless/consumer"
   dependencies:
     "@stytch-all-examples/internal": "npm:*"
-    "@stytch/nextjs": "npm:22.0.1"
+    "@stytch/nextjs": "npm:22.0.3"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
@@ -4746,7 +4746,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-nextjs-prebuilt-b2b@workspace:frontend/nextjs/prebuilt/b2b"
   dependencies:
-    "@stytch/nextjs": "npm:22.0.1"
+    "@stytch/nextjs": "npm:22.0.3"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
@@ -4763,7 +4763,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-nextjs-prebuilt-consumer@workspace:frontend/nextjs/prebuilt/consumer"
   dependencies:
-    "@stytch/nextjs": "npm:22.0.1"
+    "@stytch/nextjs": "npm:22.0.3"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
     "@types/react-dom": "npm:^19"
@@ -4781,7 +4781,7 @@ __metadata:
   resolution: "@stytch-all-examples/frontend-react-headless-b2b@workspace:frontend/react/headless/b2b"
   dependencies:
     "@stytch-all-examples/internal": "npm:*"
-    "@stytch/react": "npm:20.0.1"
+    "@stytch/react": "npm:20.0.3"
     "@types/react": "npm:^19.1.10"
     "@types/react-dom": "npm:^19.1.7"
     "@vitejs/plugin-react": "npm:^4.3.1"
@@ -4798,7 +4798,7 @@ __metadata:
   resolution: "@stytch-all-examples/frontend-react-headless-consumer@workspace:frontend/react/headless/consumer"
   dependencies:
     "@stytch-all-examples/internal": "npm:*"
-    "@stytch/react": "npm:20.0.1"
+    "@stytch/react": "npm:20.0.3"
     "@types/react": "npm:^19.1.10"
     "@types/react-dom": "npm:^19.1.7"
     "@vitejs/plugin-react": "npm:^4.3.1"
@@ -4815,7 +4815,7 @@ __metadata:
   resolution: "@stytch-all-examples/frontend-react-prebuilt-b2b@workspace:frontend/react/prebuilt/b2b"
   dependencies:
     "@stytch-all-examples/internal": "npm:*"
-    "@stytch/react": "npm:20.0.1"
+    "@stytch/react": "npm:20.0.3"
     "@types/react": "npm:^19.1.10"
     "@types/react-dom": "npm:^19.1.7"
     "@vitejs/plugin-react": "npm:^4.3.1"
@@ -4832,7 +4832,7 @@ __metadata:
   resolution: "@stytch-all-examples/frontend-react-prebuilt-consumer@workspace:frontend/react/prebuilt/consumer"
   dependencies:
     "@stytch-all-examples/internal": "npm:*"
-    "@stytch/react": "npm:20.0.1"
+    "@stytch/react": "npm:20.0.3"
     "@types/react": "npm:^19.1.10"
     "@types/react-dom": "npm:^19.1.7"
     "@vitejs/plugin-react": "npm:^4.3.1"
@@ -4848,7 +4848,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-vanillajs-headless-b2b@workspace:frontend/vanillajs/headless/b2b"
   dependencies:
-    "@stytch/vanilla-js": "npm:6.0.1"
+    "@stytch/vanilla-js": "npm:6.0.3"
     http-server: "npm:^14.1.1"
   languageName: unknown
   linkType: soft
@@ -4857,7 +4857,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-vanillajs-headless-consumer@workspace:frontend/vanillajs/headless/consumer"
   dependencies:
-    "@stytch/vanilla-js": "npm:6.0.1"
+    "@stytch/vanilla-js": "npm:6.0.3"
     http-server: "npm:^14.1.1"
   languageName: unknown
   linkType: soft
@@ -4866,7 +4866,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-vanillajs-prebuilt-b2b@workspace:frontend/vanillajs/prebuilt/b2b"
   dependencies:
-    "@stytch/vanilla-js": "npm:6.0.1"
+    "@stytch/vanilla-js": "npm:6.0.3"
     http-server: "npm:^14.1.1"
   languageName: unknown
   linkType: soft
@@ -4875,7 +4875,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@stytch-all-examples/frontend-vanillajs-prebuilt-consumer@workspace:frontend/vanillajs/prebuilt/consumer"
   dependencies:
-    "@stytch/vanilla-js": "npm:6.0.1"
+    "@stytch/vanilla-js": "npm:6.0.3"
     http-server: "npm:^14.1.1"
   languageName: unknown
   linkType: soft
@@ -4912,30 +4912,30 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@stytch/nextjs@npm:22.0.1, @stytch/nextjs@npm:^22.0.1":
-  version: 22.0.1
-  resolution: "@stytch/nextjs@npm:22.0.1"
+"@stytch/nextjs@npm:22.0.3, @stytch/nextjs@npm:^22.0.3":
+  version: 22.0.3
+  resolution: "@stytch/nextjs@npm:22.0.3"
   peerDependencies:
     react: ">= 17.0.2"
     react-dom: ">= 17.0.2"
-  checksum: 10c0/aad76105635bdf2f41ebca82c88f55f779af3feec638e45229290ffee9bf4f02a34a0267288216b7aa4282a9c1110602075f6203176f36cc29306ca3dcf1adde
+  checksum: 10c0/34ad56872fdcc02e1305a596c3061702f930e81c59a1730cbb04a19c441280cb5ac72164a1c456550dfc7c80373a437214127a4cff6b28399afa73b3604b0152
   languageName: node
   linkType: hard
 
-"@stytch/react@npm:20.0.1, @stytch/react@npm:^20.0.1":
-  version: 20.0.1
-  resolution: "@stytch/react@npm:20.0.1"
+"@stytch/react@npm:20.0.3, @stytch/react@npm:^20.0.3":
+  version: 20.0.3
+  resolution: "@stytch/react@npm:20.0.3"
   peerDependencies:
     react: ">= 17.0.2"
     react-dom: ">= 17.0.2"
-  checksum: 10c0/863fa79d42acf107995f3aed0de5bd113d2655693a11abee25295fd7496601dbe168d0c53876d49e057285cf40782e4676bca79e217b83a767a809cf9ee94077
+  checksum: 10c0/a06bbbd1ff22021a1f0c653344eb939ffe8f8e2d66c88640c4f40aef507a6a257738087d04a77348d2881f7946f33461a7334ad1f508806edca59b1d96ebaa34
   languageName: node
   linkType: hard
 
-"@stytch/vanilla-js@npm:6.0.1":
-  version: 6.0.1
-  resolution: "@stytch/vanilla-js@npm:6.0.1"
-  checksum: 10c0/6fcf49ee914af74a4ea9f5bca0365fe0e3100256e7109011fdd566296566570f9a0b932e3f7d4a385f1efc84ceaa6bb2e6e3f6c793a79a8e7b18cbab4cc977e7
+"@stytch/vanilla-js@npm:6.0.3":
+  version: 6.0.3
+  resolution: "@stytch/vanilla-js@npm:6.0.3"
+  checksum: 10c0/7ab7606f18ce80fb09fd0d13a25cde5640e9eedb24bd5a893644017cd845fa078fcd3c89b7f490ca7482d7fa4e071539c657a5f94cb4476d709186c39b2d8895
   languageName: node
   linkType: hard
 

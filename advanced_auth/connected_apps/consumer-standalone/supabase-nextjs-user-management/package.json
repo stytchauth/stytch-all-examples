@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.26.0",
-    "@stytch/nextjs": "^22.0.1",
+    "@stytch/nextjs": "^22.0.3",
     "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.53.0",
     "@vercel/mcp-adapter": "^1.0.0",
