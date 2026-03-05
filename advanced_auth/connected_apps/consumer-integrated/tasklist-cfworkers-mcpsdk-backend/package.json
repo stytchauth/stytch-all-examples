@@ -15,7 +15,7 @@
     "@hono/mcp": "^0.1.2",
     "@hono/stytch-auth": "^0.1.1",
     "@modelcontextprotocol/sdk": "^1.26.0",
-    "hono": "^4.9.7",
+    "hono": "^4.12.4",
     "jose": "^6.0.10",
     "stytch": "^12.32.0",
     "zod": "^3.24.2"
