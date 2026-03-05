@@ -1,11 +1,11 @@
-import express, { Request, Response } from 'express';
+import express, { Request, Response, Router } from 'express';
 import { auth, db, FieldValue } from '../config/firebase.js';
 import { validate, schemas } from '../middleware/validation.js';
 import { authenticateToken } from '../middleware/auth.js';
 import { SignUpRequest, SignInRequest } from '../types/index.js';
 import { extractDomainFromEmail } from '../utils/domain.js';
 
-const router = express.Router();
+const router: Router = express.Router();
 
 // Sign up endpoint
 router.post('/signup', validate(schemas.signUp), async (req: Request, res: Response): Promise<void> => {

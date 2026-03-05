@@ -28,8 +28,8 @@
     "build": "echo 'Navigate to the specific project to build it'",
     "dev": "echo 'Navigate to the specific project to run it'",
     "test": "echo 'Navigate to the specific project to test it'",
-    "lint": "echo 'Navigate to the specific project to lint it'",
-    "lint:fix": "yarn workspaces foreach --all run lint --fix",
+    "lint": "yarn workspaces foreach -Ap run lint",
+    "lint:fix": "yarn workspaces foreach -Ap run lint --fix",
     "clean": "echo 'Navigate to the specific project to clean it'",
     "prettier": "prettier --write .",
     "prettier:check": "prettier --check ."

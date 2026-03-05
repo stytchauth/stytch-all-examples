@@ -6,12 +6,12 @@
     "dev": "yarn workspace @stytch-all-examples/internal run build && next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@stytch-all-examples/internal": "*",
-    "@stytch/nextjs": "22.0.1",
-    "next": "15.4.10",
+    "@stytch/nextjs": "22.0.3",
+    "next": "15.5.12",
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "stytch": "^12.35.0"

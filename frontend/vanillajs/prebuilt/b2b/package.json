@@ -11,6 +11,6 @@
     "http-server": "^14.1.1"
   },
   "dependencies": {
-    "@stytch/vanilla-js": "6.0.1"
+    "@stytch/vanilla-js": "6.0.3"
   }
 }

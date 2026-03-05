@@ -12,7 +12,10 @@ function init() {
     client: stytchClient,
     config: {
       authFlowType: "Discovery",
-      products: [Products.emailMagicLinks, ...(ENABLE_OAUTH ? [Products.oauth] : [])],
+      products: [
+        Products.emailMagicLinks,
+        ...(ENABLE_OAUTH ? [Products.oauth] : []),
+      ],
       sessionOptions: { sessionDurationMinutes: 60 },
       ...(ENABLE_OAUTH && {
         oauthOptions: {

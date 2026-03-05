@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@stytch-all-examples/internal": "*",
-    "@stytch/react": "20.0.1",
+    "@stytch/react": "20.0.3",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router": "^7.8.1"
@@ -20,6 +20,6 @@
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^4.3.1",
     "typescript": "^5.5.3",
-    "vite": "^7.1.5"
+    "vite": "^7.3.1"
   }
 }

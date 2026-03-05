@@ -11,7 +11,10 @@ function init() {
   element.render({
     client: stytchClient,
     config: {
-      products: [Products.emailMagicLinks, ...(ENABLE_OAUTH ? [Products.oauth] : [])],
+      products: [
+        Products.emailMagicLinks,
+        ...(ENABLE_OAUTH ? [Products.oauth] : []),
+      ],
       emailMagicLinksOptions: {
         loginRedirectURL: "http://localhost:3000/authenticate",
         signupRedirectURL: "http://localhost:3000/authenticate",

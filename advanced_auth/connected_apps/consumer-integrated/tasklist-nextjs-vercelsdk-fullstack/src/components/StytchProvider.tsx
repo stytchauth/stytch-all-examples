@@ -1,5 +1,8 @@
 "use client";
-import { StytchProvider as ProviderActual, createStytchClient } from "@stytch/nextjs";
+import {
+  StytchProvider as ProviderActual,
+  createStytchClient,
+} from "@stytch/nextjs";
 import { ReactNode } from "react";
 
 // We initialize the Stytch client using our project's public token which can be found in the Stytch dashboard

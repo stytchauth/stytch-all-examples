@@ -10,8 +10,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.17.5",
-    "@stytch/nextjs": "^22.0.1",
+    "@modelcontextprotocol/sdk": "^1.26.0",
+    "@stytch/nextjs": "^22.0.3",
     "mcp-handler": "^1.0.2",
     "next": "^15.3.2",
     "react": "^18.2.0",
@@ -24,8 +24,8 @@
     "@types/node": "^20.8.0",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
-    "eslint": "^8.52.0",
-    "eslint-config-next": "^14.0.0",
+    "eslint": "^9",
+    "eslint-config-next": "^15.3.2",
     "typescript": "^5.2.0"
   }
 }

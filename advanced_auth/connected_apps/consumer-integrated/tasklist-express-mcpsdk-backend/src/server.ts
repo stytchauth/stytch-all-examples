@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
+import type { Transport } from "@modelcontextprotocol/sdk/shared/transport.js";
 import { authorizeTokenMiddleware } from "./auth.js";
 import { createMcpServer } from "./mcpServer.js";
 import { initializeDatabase, closeDatabase } from "./database.js";
@@ -69,9 +70,7 @@ app.get("/.well-known/oauth-authorization-server", (req, res) => {
 app.post("/mcp", authorizeTokenMiddleware(), async (req, res) => {
   try {
     const server = createMcpServer(req.client!.subject);
-    const transport = new StreamableHTTPServerTransport({
-      sessionIdGenerator: undefined,
-    });
+    const transport = new StreamableHTTPServerTransport();
 
     res.on("close", () => {
       console.log("MCP request closed");
@@ -79,7 +78,7 @@ app.post("/mcp", authorizeTokenMiddleware(), async (req, res) => {
       server.close();
     });
 
-    await server.connect(transport);
+    await server.connect(transport as Transport);
     await transport.handleRequest(req, res, req.body);
   } catch (error) {
     console.error("Error handling MCP request:", error);
@@ -97,13 +96,12 @@ app.post("/mcp", authorizeTokenMiddleware(), async (req, res) => {
 });
 
 // Global error handler
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 app.use(
   (
     error: Error,
     req: express.Request,
     res: express.Response,
-    next: express.NextFunction,
+    // next: express.NextFunction,
   ) => {
     console.error("Unhandled error:", error);
 
