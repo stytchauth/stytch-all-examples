@@ -2,6 +2,31 @@ name: Bump Stytch Dependencies
 
 on:
   workflow_dispatch:
+    inputs:
+      base_branch:
+        description: 'Base branch to create the PR against'
+        required: false
+        default: 'main'
+      title:
+        description: 'PR title'
+        required: false
+        default: 'chore: bump @stytch packages to latest'
+  workflow_call:
+    inputs:
+      base_branch:
+        description: 'Base branch to create the PR against'
+        required: false
+        type: string
+        default: 'main'
+      title:
+        description: 'PR title'
+        required: false
+        type: string
+        default: 'chore: bump @stytch packages to latest'
+
+permissions:
+  contents: write
+  pull-requests: write
 
 concurrency:
   group: ${{ github.workflow }}
@@ -61,7 +86,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           committer: 'ci-stytch <ci-stytch@stytch.com>'
           commit-message: 'chore: bump @stytch packages to latest'
-          title: 'chore: bump @stytch packages to latest'
+          title: ${{ inputs.title || 'chore: bump @stytch packages to latest' }}
           body: |
             Bumps all `@stytch/*` and `stytch` packages to their latest versions and updates the lockfile.
 
@@ -70,7 +95,7 @@ jobs:
             ## Updated Packages
             ${{ steps.bump.outputs.packages_info }}
           branch: chore/bump-stytch-deps
-          base: main
+          base: ${{ inputs.base_branch || 'main' }}
           delete-branch: true
 
       - name: No changes detected
