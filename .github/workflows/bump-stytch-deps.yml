@@ -1,0 +1,103 @@
+name: Bump Stytch Dependencies
+
+on:
+  workflow_dispatch:
+    inputs:
+      base_branch:
+        description: 'Base branch to create the PR against'
+        required: false
+        default: 'main'
+      title:
+        description: 'PR title'
+        required: false
+        default: 'chore: bump @stytch packages to latest'
+  workflow_call:
+    inputs:
+      base_branch:
+        description: 'Base branch to create the PR against'
+        required: false
+        type: string
+        default: 'main'
+      title:
+        description: 'PR title'
+        required: false
+        type: string
+        default: 'chore: bump @stytch packages to latest'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true
+
+jobs:
+  bump-deps:
+    name: Bump @stytch Packages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git
+        run: |
+          git config --global user.email "ci-stytch@stytch.com"
+          git config --global user.name "ci-stytch"
+
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Setup Yarn
+        run: corepack enable
+
+      - name: Install Dependencies
+        run: yarn install --immutable
+
+      - name: Bump @stytch packages
+        id: bump
+        run: |
+          yarn up '@stytch/*' 'stytch'
+          yarn install
+
+          UPDATED=$(git diff --unified=0 yarn.lock | grep '^+' | grep -oP '"@stytch/[^@]+@npm:[^""]+"' | sort -u || true)
+          UPDATED_STYTCH=$(git diff --unified=0 yarn.lock | grep '^+' | grep -oP '"stytch@npm:[^""]+"' | sort -u || true)
+
+          PACKAGES_INFO=""
+          for LINE in $UPDATED $UPDATED_STYTCH; do
+            PACKAGES_INFO="${PACKAGES_INFO}- \`${LINE}\`\n"
+          done
+
+          if [ -n "$PACKAGES_INFO" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "packages_info<<EOF" >> $GITHUB_OUTPUT
+            echo -e "$PACKAGES_INFO" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request
+        if: steps.bump.outputs.has_changes == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          committer: 'ci-stytch <ci-stytch@stytch.com>'
+          commit-message: 'chore: bump @stytch packages to latest'
+          title: ${{ inputs.title || 'chore: bump @stytch packages to latest' }}
+          body: |
+            Bumps all `@stytch/*` and `stytch` packages to their latest versions and updates the lockfile.
+
+            This PR was [generated automatically via GitHub Actions](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}).
+
+            ## Updated Packages
+            ${{ steps.bump.outputs.packages_info }}
+          branch: chore/bump-stytch-deps
+          base: ${{ inputs.base_branch || 'main' }}
+          delete-branch: true
+
+      - name: No changes detected
+        if: steps.bump.outputs.has_changes != 'true'
+        run: echo "All @stytch packages are already up to date."
