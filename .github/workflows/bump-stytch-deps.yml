@@ -86,7 +86,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           committer: 'ci-stytch <ci-stytch@stytch.com>'
           commit-message: 'chore: bump @stytch packages to latest'
-          title: ${{ inputs.title || 'chore: bump @stytch packages to latest' }}
+          title: "${{ inputs.title || 'chore: bump @stytch packages to latest' }}"
           body: |
             Bumps all `@stytch/*` and `stytch` packages to their latest versions and updates the lockfile.
 
