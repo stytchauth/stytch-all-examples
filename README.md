@@ -141,4 +141,4 @@ All implementations demonstrate the following Stytch SDK capabilities:
 
 ## Support
 
-For questions about Stytch SDKs, visit our [documentation](https://stytch.com/docs) or [community forum](https://community.stytch.com/).
+For questions about Stytch SDKs, visit our [documentation](https://stytch.com/docs) or [contact support](https://stytch.com/docs/resources/get-support).
